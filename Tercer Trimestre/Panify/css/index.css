@@ -1,0 +1,218 @@
+:root {
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-oscuro: #2b1e13;
+  --color-claro: #fdfbf7;
+  --color-blanco: #ffffff;
+  --fuente-principal: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-claro);
+  color: var(--color-oscuro);
+  line-height: 1.6;
+}
+
+header {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.logo {
+  text-decoration: none;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1010;
+}
+
+.logo img {
+  display: block;
+  height: 60px;
+  width: auto;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--color-oscuro);
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-principal);
+}
+
+.nav-btn {
+  background-color: var(--color-principal);
+  color: var(--color-blanco) !important;
+  border-radius: 5px;
+}
+
+.nav-btn:hover {
+  background-color: var(--color-oscuro);
+}
+
+.hero {
+  background-color: var(--color-oscuro);
+  background-image:
+    linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)),
+    url("https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--color-blanco);
+  padding: 0 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 25px;
+  max-width: 600px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.btn-cta {
+  background-color: var(--color-secundario);
+  color: var(--color-oscuro);
+  padding: 12px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s,
+    background-color 0.3s;
+}
+
+.btn-cta:hover {
+  transform: scale(1.05);
+  background-color: #e5be3b;
+}
+
+.features {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background-color: var(--color-blanco);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  border-top: 4px solid var(--color-secundario);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: scale(1.04);
+}
+
+.feature-card h3 {
+  color: var(--color-principal);
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+footer {
+  background-color: var(--color-oscuro);
+  color: #a19285;
+  padding: 40px 20px;
+  margin-top: 60px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  color: var(--color-blanco);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.footer-info p {
+  font-size: 14px;
+}
+
+.footer-rights {
+  border-top: 1px solid #3d2b1b;
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .hero h1 {
+    font-size: 32px;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}

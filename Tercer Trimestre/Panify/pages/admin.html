@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Inicio</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="icon" href="../img/Icono Panify.png" type="image/png">
+  </head>
+  <body>
+    <header>
+      <nav class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="../img/Panify Logo v2.png" alt="Logo de Panify"
+        /></a>
+        <ul class="nav-menu">
+          <li><a href="#" class="nav-link active">Inicio</a></li>
+          <li><a href="#" class="nav-link">Pedidos</a></li>
+          <li><a href="#" class="nav-link">Recibos</a></li>
+          <li><a href="#" class="nav-link">Productos</a></li>
+          <li><a href="#" class="nav-link">Inventario</a></li>
+          <li><a href="#" class="nav-link nav-btn">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="targets">
+        <div class="target hornear">
+          <h3>PRODUCTOS POR HORNEAR</h3>
+          <p>145 Unidades</p>
+        </div>
+        <div class="target pedidos">
+          <h3>PEDIDOS DE CLIENTES</h3>
+          <p>12 Órdenes</p>
+        </div>
+        <div class="target alertas">
+          <h3>ALERTAS DE INGREDIENTES</h3>
+          <p>2 (Harina / Queso)</p>
+        </div>
+      </div>
+
+      <div class="contenido">
+        <div class="columna">
+          <h3>📋 Lista de Horneado del Día</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad Total</th>
+                <th>Estado Requerido</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pan Baguette</strong></td>
+                <td>40 unidades</td>
+                <td><span style="color: #e67e22">Pendiente urgente</span></td>
+                <td>
+                  <button class="btn btn-listo">Marcar como Listo</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Croissant de Mantequilla</strong></td>
+                <td>60 unidades</td>
+                <td>En proceso</td>
+                <td>
+                  <button class="btn btn-listo">Marcar como Listo</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Pan de Bono</strong></td>
+                <td>45 unidades</td>
+                <td>Listo en vitrina</td>
+                <td>
+                  <span style="color: #2ecc71; font-weight: bold"
+                    >Completado</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="columna-lateral">
+          <h3>🛒 Stock en Vitrina (Tienda)</h3>
+          <p>Usa esto si un producto se agota en tiempo real:</p>
+          <table>
+            <tbody>
+              <tr>
+                <td>Pan Blandito</td>
+                <td>
+                  <button class="btn btn-agotado">Poner "Agotado"</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Pastel de Gloria</td>
+                <td>
+                  <button class="btn btn-agotado">Poner "Agotado"</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">Panify - Distribuciones Oro Pan</div>
+            <div class="footer-info">
+                <p>3315796 | ADSO - Grupo 4</p>
+                <p>SENA - Centro de Formación</p>
+            </div>
+        </div>
+        <div class="footer-rights">
+            &copy; 2026 Panify. Todos los derechos reservados.
+        </div>
+    </footer>
+  </body>
+</html>
