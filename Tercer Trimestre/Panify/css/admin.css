@@ -125,18 +125,6 @@ main {
     border-left-color: #e74c3c
 }
 
-.tarjeta h3 {
-  margin: 0;
-  color: #7f8c8d;
-  font-size: 14px;
-}
-.tarjeta p {
-  margin: 10px 0 0 0;
-  font-size: 28px;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
 /* Sección de Producción */
 .contenido {
   display: flex;
