@@ -56,6 +56,17 @@ header {
   width: auto;
 }
 
+#menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--color-principal);
+  user-select: none;
+}
 .nav-menu {
   display: flex;
   list-style: none;
