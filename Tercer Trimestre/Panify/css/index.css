@@ -32,12 +32,10 @@ header {
 .nav-container {
   max-width: 100%;
   margin: auto;
-  margin-left: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 70px;
-  padding: 0 20px;
   position: relative;
 }
 
@@ -54,6 +52,7 @@ header {
   display: block;
   height: 60px;
   width: auto;
+  margin-left: 20px;
 }
 
 #menu-toggle {
@@ -76,6 +75,7 @@ header {
 }
 
 .nav-link {
+  margin-right: 20px;
   text-decoration: none;
   color: var(--color-oscuro);
   font-weight: 500;
@@ -212,17 +212,54 @@ footer {
   font-size: 12px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 590px) {
+  
+  header {
+    position: relative;
+  }
+
+  .menu-icon {
+    display: flex;
+    font-size: 28px;
+    color: var(--color-principal);
+    margin-right: 20px;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    top: 100%;
+    background-color: var(--color-blanco);
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    border-top: 1px solid var(--color-secundario);
+  }
+
+  #menu-toggle:checked ~ .nav-menu {
+    max-height: 350px;
+  }
+
   .nav-container {
+    justify-content: center;
+    align-items: flex-end;
     flex-direction: column;
     gap: 15px;
   }
+
   .hero h1 {
     font-size: 32px;
   }
+
   .hero p {
     font-size: 16px;
   }
+
   .footer-container {
     flex-direction: column;
     text-align: center;
