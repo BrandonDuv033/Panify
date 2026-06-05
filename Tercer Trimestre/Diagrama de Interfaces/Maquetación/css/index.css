@@ -66,6 +66,7 @@ header {
   color: var(--color-principal);
   user-select: none;
 }
+
 .nav-menu {
   display: flex;
   list-style: none;
@@ -213,7 +214,6 @@ footer {
 }
 
 @media (max-width: 590px) {
-  
   header {
     position: relative;
   }
