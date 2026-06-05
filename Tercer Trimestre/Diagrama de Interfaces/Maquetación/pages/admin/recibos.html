@@ -26,7 +26,39 @@
     </header>
 
     <main>
-      
+      <div class="recibos">
+        <h3>Recibos</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID Recibo</th>
+              <th>Cliente</th>
+              <th>Fecha</th>
+              <th>Total</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>001</td>
+              <td>Juan Pérez</td>
+              <td>2023-10-15</td>
+              <td>$150.00</td>
+              <td>Pagado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="reportes">
+        <h3>Reportes</h3>
+        <select name="tipo-reporte" id="">
+          <option value="diario">Diario</option>
+          <option value="semanal">Semanal</option>
+          <option value="mensual">Mensual</option>
+        </select>
+        <input type="text" class="datepicker" />
+        <button class="generar-recibo">Generar Reporte</button>
+      </div>
     </main>
 
     <footer>
