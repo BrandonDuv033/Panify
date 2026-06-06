@@ -364,6 +364,28 @@ footer {
   border-bottom: 1px solid #eee;
 }
 
+/* Recibos - Reportes */
+
+.reportes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.reportes h3{
+  width: 100%;
+}
+
+.periodicidad, .contenedor-datepicker {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contenedor-datepicker {
+  gap: 0px;
+}
+
 @media (max-width: 590px) {
   header {
     position: relative;
