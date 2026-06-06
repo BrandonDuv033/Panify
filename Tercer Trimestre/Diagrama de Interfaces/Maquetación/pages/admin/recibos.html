@@ -49,15 +49,31 @@
           </tbody>
         </table>
       </div>
+
       <div class="reportes">
         <h3>Reportes</h3>
-        <select name="tipo-reporte" id="">
-          <option value="diario">Diario</option>
-          <option value="semanal">Semanal</option>
-          <option value="mensual">Mensual</option>
-        </select>
-        <input type="text" class="datepicker" />
-        <button class="generar-recibo">Generar Reporte</button>
+        <div class="periodicidad">
+          <label for="periodicidad">Periodicidad</label>
+          <select name="periodicidad-reporte">
+            <option value="diario">Diario</option>
+            <option value="semanal">Semanal</option>
+            <option value="mensual">Mensual</option>
+          </select>
+        </div>
+
+        <div class="contenedor-datepicker">
+          <label for="fecha-reporte">Seleccione la Fecha del Reporte</label>
+          <div class="grupo-input">
+            <input
+              type="text"
+              id="fecha-reporte"
+              placeholder="Seleccionar fecha..."
+            />
+            <span class="material-symbols-outlined icono-calendario"
+              >calendar_month</span
+            >
+          </div>
+        </div>
       </div>
     </main>
 
@@ -74,4 +90,5 @@
       </div>
     </footer>
   </body>
+  <script src="../../js/admin/admin.js"></script>
 </html>
