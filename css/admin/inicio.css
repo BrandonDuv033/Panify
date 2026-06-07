@@ -2,6 +2,7 @@
   --color-principal: #8b5a2b;
   --color-secundario: #d4af37;
   --color-oscuro: #2b1e13;
+  --color-marron-trigo: #d4a373;
   --color-claro: #fdfbf7;
   --color-blanco: #ffffff;
   --fuente-principal: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -11,6 +12,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 body {
@@ -366,27 +368,83 @@ footer {
 
 /* Recibos - Reportes */
 
-.reportes {
+.contenedor-reportes {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.reportes h3{
+.contenedor-reportes h3{
   width: 100%;
+  margin-top: 15px;
 }
 
-.periodicidad, .contenedor-datepicker {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.contenedor-reportes label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
 }
+
+.contenedor-periodicidad {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(212, 163, 115, 0.2);
+  width: 180px;
+}
+
+.grupo-input, .grupo-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.grupo-input input, .grupo-select select {
+  width: 100%;
+  padding: 12px 40px 12px 14px;
+  font-size: 16px;
+  border: 1px solid var(--color-secundario);
+  border-radius: 8px;
+  outline: none;
+  color: var(--color-oscuro);
+  background-color: #fff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.grupo-input input:focus, .grupo-select select:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.25);
+}
+
+/* DatePicker */
 
 .contenedor-datepicker {
-  gap: 0px;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(212, 163, 115, 0.2);
+  width: 320px;
 }
 
-@media (max-width: 590px) {
+/* Estilos para el icono de calendario */
+.icono-calendario {
+  position: absolute;
+  right: 12px;
+  color: var(--color-marron-trigo);
+  pointer-events: none; /* Permite que el clic pase a través del icono hacia el input */
+  user-select: none;
+}
+
+/* Personalización sutil del diseño del calendario desplegable */
+.flatpickr-day.selected {
+  background: var(--color-marron-trigo) !important;
+  border-color: var(--color-marron-trigo) !important;
+}
+
+@media (max-width: 790px) {
   header {
     position: relative;
   }
