@@ -12,7 +12,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 body {
@@ -83,13 +82,16 @@ main {
 }
 
 .nav-link {
-  margin-right: 20px;
   text-decoration: none;
   color: var(--color-oscuro);
   font-weight: 500;
   transition: color 0.3s;
   padding: 8px 12px;
   border-radius: 4px;
+}
+
+.nav-link.nav-btn {
+  margin-right: 20px;
 }
 
 .nav-link:hover,
@@ -287,7 +289,6 @@ th {
 }
 
 /* Botones de acción rápida */
-
 .btn {
   padding: 6px 12px;
   border: none;
@@ -342,50 +343,65 @@ footer {
 }
 
 /* Recibos */
-
-.recibos {
-  width: 70%;
+.recibos-container {
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+  width: 30%;
 }
 
-.recibos table {
+.recibos-container h3 {
   width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
 }
 
-.recibos th {
-  background-color: #b3b4b5;
-  padding: 10px 25px;
-  text-align: left;
+.recibo-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--color-secundario);
 }
 
-.recibos td {
-  padding: 10px 18px;
+.recibo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.total-recibo {
+  color: #2e7d32; /* Verde para el total */
+}
+
+.recibo-body p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #333;
 }
 
 /* Recibos - Reportes */
-
-.contenedor-reportes {
+.reportes-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.contenedor-reportes h3{
+.reportes-container h3 {
   width: 100%;
   margin-top: 15px;
 }
 
-.contenedor-reportes label {
+.reportes-container label {
   margin-bottom: 8px;
   font-weight: 600;
   font-size: 14px;
 }
 
-.contenedor-periodicidad {
+.periodicidad-container {
   background-color: #ffffff;
   padding: 25px;
   border-radius: 12px;
@@ -394,13 +410,15 @@ footer {
   width: 180px;
 }
 
-.grupo-input, .grupo-select {
+.grupo-input,
+.grupo-select {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.grupo-input input, .grupo-select select {
+.grupo-input input,
+.grupo-select select {
   width: 100%;
   padding: 12px 40px 12px 14px;
   font-size: 16px;
@@ -413,14 +431,14 @@ footer {
   cursor: pointer;
 }
 
-.grupo-input input:focus, .grupo-select select:focus {
+.grupo-input input:focus,
+.grupo-select select:focus {
   border-color: var(--color-principal);
   box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.25);
 }
 
 /* DatePicker */
-
-.contenedor-datepicker {
+.datepicker-container {
   background-color: #ffffff;
   padding: 25px;
   border-radius: 12px;
@@ -429,28 +447,31 @@ footer {
   width: 320px;
 }
 
-/* Estilos para el icono de calendario */
 .icono-calendario {
   position: absolute;
   right: 12px;
   color: var(--color-marron-trigo);
-  pointer-events: none; /* Permite que el clic pase a través del icono hacia el input */
+  pointer-events: none;
   user-select: none;
 }
 
-/* Personalización sutil del diseño del calendario desplegable */
 .flatpickr-day.selected {
   background: var(--color-marron-trigo) !important;
   border-color: var(--color-marron-trigo) !important;
 }
 
 @media (max-width: 880px) {
-  header {
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
   }
 
   .menu-icon {
     display: flex;
+    position: absolute;
+    right: 0;
     font-size: 28px;
     color: var(--color-principal);
     margin-right: 20px;
@@ -458,33 +479,57 @@ footer {
 
   .nav-menu {
     display: flex;
-    gap: 10px;
-    position: absolute;
-    width: 100%;
-    height: 250px;
-    top: 100%;
-    background-color: var(--color-blanco);
     flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0px 20px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+    background-color: var(--color-blanco);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-    border-top: 1px solid var(--color-secundario);
+    border-top: 0 solid transparent;
+    box-shadow: none;
+    transition:
+      max-height 0.4s ease-in-out,
+      padding 0.4s ease-in-out,
+      box-shadow 0.3s ease-in-out;
+  }
+
+  .nav-menu .nav-link {
+    width: 100%;
+    text-align: left;
+  }
+
+  .nav-link.nav-btn {
+    margin-right: 0px;
   }
 
   #menu-toggle:checked ~ .nav-menu {
     max-height: 350px;
-  }
-
-  .nav-container {
-    justify-content: center;
-    align-items: flex-end;
-    flex-direction: column;
-    gap: 15px;
+    padding: 15px 20px;
+    border-top: 1px solid var(--color-secundario);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
   .footer-container {
     flex-direction: column;
     text-align: center;
+  }
+
+  .recibos-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .recibos.container {
+    width: 100%;
+  }
+  .recibo-card {
+    flex: 1 1 calc(33.333% - 15px);
+    min-width: 250px;
   }
 }
