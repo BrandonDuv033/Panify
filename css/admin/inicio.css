@@ -444,7 +444,7 @@ footer {
   border-color: var(--color-marron-trigo) !important;
 }
 
-@media (max-width: 790px) {
+@media (max-width: 880px) {
   header {
     position: relative;
   }
