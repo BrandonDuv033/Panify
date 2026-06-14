@@ -35,44 +35,34 @@
     </header>
 
     <main>
-      <div class="recibos">
+      <div class="recibos-container">
         <h3>Recibos</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>ID Recibo</th>
-              <th>Cliente</th>
-              <th>Fecha</th>
-              <th>Total</th>
-              <th>Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>001</td>
-              <td>Juan Pérez</td>
-              <td>2023-10-15</td>
-              <td>$150.00</td>
-              <td>Pagado</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="recibo-card">
+          <div class="recibo-header">
+            <span class="id-recibo">ID: 001</span>
+            <span class="total-recibo">$150.00</span>
+          </div>
+          <div class="recibo-body">
+            <p><strong>Cliente:</strong> Juan Pérez</p>
+            <p><strong>Fecha:</strong> 2023-10-15</p>
+          </div>
+        </div>
       </div>
 
-      <div class="contenedor-reportes">
+      <div class="reportes-container">
         <h3>Reportes</h3>
-        <div class="contenedor-periodicidad">
+        <div class="periodicidad-container">
           <label for="periodicidad">Periodicidad</label>
           <div class="grupo-select">
-          <select name="periodicidad-reporte">
-            <option value="diario">Diario</option>
-            <option value="semanal">Semanal</option>
-            <option value="mensual">Mensual</option>
-          </select>
+            <select name="periodicidad-reporte">
+              <option value="diario">Diario</option>
+              <option value="semanal">Semanal</option>
+              <option value="mensual">Mensual</option>
+            </select>
           </div>
         </div>
 
-        <div class="contenedor-datepicker">
+        <div class="datepicker-container">
           <label for="fecha-reporte">Seleccione la Fecha del Reporte</label>
           <div class="grupo-input">
             <input
