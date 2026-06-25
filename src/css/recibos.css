@@ -1,0 +1,186 @@
+:root {
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-oscuro: #2b1e13;
+  --color-claro: #fdfbf7;
+  --color-blanco: #ffffff;
+  --fuente-principal: "Lato", system-ui, -apple-system, sans-serif;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eef2f5;
+  transition: all 0.3s ease;
+}
+
+.cabecera-tabla h2,
+.reporte h2 {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+/* 2. Customización de la Tabla de Recibos */
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eef2f5;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch; /* Suaviza el scroll en dispositivos iOS (Safari) */
+  display: block;
+  width: 100%;
+}
+
+#tablaRecibos {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+#tablaRecibos thead th {
+  background-color: #f8f9fa;
+  color: #34495e;
+  font-weight: 700;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 14px;
+}
+
+#tablaRecibos tbody td {
+  padding: 12px 14px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* 3. Badges de Estados (Pagado, Pendiente, Cancelado) */
+.badge {
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 30px;
+  font-size: 0.85rem;
+}
+
+.bg-success {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+}
+
+.bg-warning {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+}
+
+.bg-danger {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+}
+
+/* 4. Botones de Acción (Ver Recibo / PDF) */
+.btn-outline-primary {
+  border-color: #e67e22; /* Ajusta este color al tono naranja/dorado de Oro Pan si aplica */
+  color: #e67e22;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #e67e22;
+  border-color: #e67e22;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(230, 126, 34, 0.2);
+}
+
+/* Botón Principal Generar Reporte */
+.btn-primary {
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1a252f;
+  border-color: #1a252f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
+}
+
+/* 5. Customización estética de DataTables (Filtros y Paginación) */
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-left: 0.5em;
+  outline: none;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.page-item.active .page-link {
+  background-color: #e67e22 !important;
+  border-color: #e67e22 !important;
+  color: white !important;
+}
+
+.page-link {
+  color: #2c3e50;
+}
+
+.dataTables_length select,
+.dt-length select,
+select.dt-input {
+  min-width: 70px !important;
+  padding: 8px 30px 8px 12px !important;
+  font-size: 1rem !important;
+  height: auto !important;
+  display: inline-block !important;
+  cursor: pointer;
+  margin-left: 10px;
+  text-align: center;
+}
+
+
+/* 6. Formulario del Reporte y Flatpickr */
+.form-label {
+  font-weight: 700;
+  color: #34495e;
+  font-size: 0.9rem;
+}
+
+.form-select,
+.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 10px 12px;
+  transition: all 0.2s ease;
+}
+
+.form-select:focus,
+.form-control:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+}
+
+.input-group-text {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #7f8c8d;
+}
+
+/* Iconos de Material alineados */
+.material-symbols-outlined {
+  vertical-align: middle;
+  color: var(--color-principal);
+}
