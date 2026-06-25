@@ -89,6 +89,8 @@
       <main class="dashboard-main">
         <!-- TOPBAR -->
         <header class="topbar">
+          <!-- Contenedor para mostrar mensajes al administrador -->
+          <div id="mensaje"></div>
           <!-- El botón hamburguesa interactivo -->
           <button class="mobile-toggle-btn" id="menuToggle">
             <i class="fa-solid fa-bars"></i>
@@ -106,11 +108,199 @@
             <span>Administrador</span>
           </div>
         </header>
+        <!-- CONTENIDO DEL INVENTARIO -->
+        <section class="container-fluid">
+          <!-- Cards -->
+          <div class="row g-4 mb-4">
+            <div class="col-md-3">
+              <div class="card-resumen">
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <div>
+                  <h3 id="totalProductos">0</h3>
+                  <p>Productos</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="card-resumen">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <div>
+                  <h3 id="stockBajo">0</h3>
+                  <p>Poco Stock</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="card-resumen">
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                <div>
+                  <h3 id="agotados">0</h3>
+                  <p>Agotados</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="card-resumen">
+                <i class="fa-solid fa-layer-group"></i>
+
+                <div>
+                  <h3>4</h3>
+                  <p>Categorías</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="panel tabla">
+          <div class="cabecera-tabla">
+            <div>
+              <h2>Inventario de Productos</h2>
+              <p>Administra los productos de la panadería.</p>
+            </div>
+            <!-- Boton para agregar los productos -->
+            <button
+              class="btn btn-maskot"
+              data-bs-toggle="modal"
+              data-bs-target="#modalProducto"
+            >
+              <i class="fa-solid fa-plus"></i>
+              Agregar Producto
+            </button>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-md-5">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Buscar producto..."
+                id="buscarProducto"
+                onkeyup="buscarProducto()"
+              />
+              <select
+                class="form-select"
+                id="filtroCategoria"
+                onchange="buscarProducto()"
+              >
+                <option value="">Todas las categorías</option>
+                <option value="Pan">Pan</option>
+                <option value="Pastelería">Pastelería</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <p id="ultimaActualizacion" class="text-end text-muted"></p>
+            <!-- Tabla donde se muestran los productos -->
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Imagen</th>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody id="tablaProductos"></tbody>
+            </table>
+          </div>
+        </div>
       </main>
     </div>
+    <!-- Modal para agregar y editar productos -->
+    <div class="modal fade" id="modalProducto" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Agregar Producto</h5>
 
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label>Nombre</label>
+
+              <input type="text" class="form-control" id="nombre" />
+            </div>
+
+            <div class="mb-3">
+              <label>Categoría</label>
+
+              <input type="text" class="form-control" id="categoria" />
+            </div>
+
+            <div class="mb-3">
+              <label>Precio</label>
+
+              <input type="number" class="form-control" id="precio" />
+            </div>
+
+            <div class="mb-3">
+              <label>Stock</label>
+
+              <input type="number" class="form-control" id="stock" />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Cancelar
+            </button>
+
+            <button class="btn btn-maskot" onclick="agregarProducto()">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal para confirmar la eliminación de un producto -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar eliminación</h5>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <p class="mb-0">¿Está seguro de eliminar este producto?</p>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Cancelar
+            </button>
+
+            <button class="btn btn-danger" onclick="confirmarEliminar()">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../src/js/admin/dashboard.js"></script>
+    <script src="/src/js/admin/productos.js"></script>
   </body>
 </html>
