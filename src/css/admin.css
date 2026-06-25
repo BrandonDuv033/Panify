@@ -33,6 +33,10 @@ body {
   transition: transform 0.3s ease;
 }
 
+.sidebar-logo {
+    text-align: center;
+}
+
 .sidebar-logo img {
   max-width: 60px;
   margin-bottom: 0.5rem;
@@ -46,7 +50,7 @@ body {
 }
 
 .marca-dos {
-    color: var(--color-secundario);
+  color: var(--color-secundario);
 }
 
 .sidebar-logo p {
@@ -88,25 +92,26 @@ body {
 
 /* TOPBAR */
 .topbar {
+  background-color: white;
+  border-radius: 24px;
+  padding: 24px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid var(--color-principal);
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  border-top: 2px solid var(--color-principal);
 }
 
 .topbar h1 {
-  font-size: 1.8rem;
+  font-size: 42px;
   font-weight: 700;
-  color: var(--color-principal);
-  margin: 0;
+  margin-bottom: 5px;
 }
 
 .topbar p {
   margin: 0;
-  color: #6e5a4b;
-  font-size: 0.95rem;
+  color: var(--gris);
 }
 
 .admin-info {
@@ -139,11 +144,18 @@ body {
   background: var(--color-blanco);
   border: 1px solid #e6dfd5;
   border-radius: 12px;
+  border-left: solid var(--color-principal);
   padding: 1.5rem;
   display: flex;
   align-items: center;
   gap: 1.2rem;
   box-shadow: 0 4px 6px rgba(43, 30, 19, 0.02);
+  transition: 0.3s;
+}
+
+.card-resumen:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
 }
 
 .card-resumen i {
