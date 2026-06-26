@@ -11,23 +11,21 @@
       rel="stylesheet"
     />
     
-    <script
-      src="https://kit.fontawesome.com/a0994db117.js"
-      crossorigin="anonymous"
-    ></script>
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    />
 
     <link rel="stylesheet" href="../src/css/pedidos.css" />
   </head>
   <body>
     
-     <header>
+    <header>
       <nav class="navbar navbar-expand-lg navbar-panify">
-          <img src="/src/img/Logo Panify.png" alt="Logo Panify" class="logo" />
         <div class="container">
           <a href="#" class="navbar-brand d-flex align-items-center gap-3">
-            <span class="marca"
-              >Pani<span class="marca marca-dos">fy</span></span
-            >
+            <img src="../src/img/Logo Panify.png" alt="Logo Panify" class="logo" onerror="this.src='https://placehold.co/50x35?text=Pan'"/>
+            <span class="marca">Pani<span class="marca-dos">fy</span></span>
           </a>
           <button
             class="navbar-toggler"
@@ -39,23 +37,11 @@
           </button>
           <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-5">
+              <li class="nav-item"><a class="nav-link opcion-menu" href="#">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link opcion-menu" href="#">Productos</a></li>
+              <li class="nav-item"><a class="nav-link opcion-menu" href="#">Contáctenos</a></li>
               <li class="nav-item">
-                <a class="nav-link opcion-menu" href="#">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link opcion-menu" href="#">Productos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link opcion-menu" href="#">Contáctenos</a>
-              </li>
-              <li class="nav-item">
-                <button
-                  class="btn btn-login-nav"
-                  data-bs-toggle="modal"
-                  data-bs-target="#loginModal"
-                >
-                  Ingresar
-                </button>
+                <button class="btn btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">Ingresar</button>
               </li>
             </ul>
           </div>
@@ -88,6 +74,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-    <script src="../src/js/cliente/pedidos.js"></script>
+    <script src="../src/js/client/pedidos.js"></script>
   </body>
 </html>
