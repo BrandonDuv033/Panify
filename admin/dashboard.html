@@ -23,8 +23,8 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="../src/css/admin.css" />
+    <link rel="icon" href="../src/img/Icono Panify.png" />
   </head>
 
   <body>
@@ -87,33 +87,26 @@
 
       <!-- CONTENIDO -->
       <main class="dashboard-main">
-        <!-- TOPBAR -->
         <header class="topbar">
-          <!-- El botón hamburguesa interactivo -->
-          <button class="mobile-toggle-btn" id="menuToggle">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-
           <div>
             <h1>Dashboard</h1>
-            <p class="d-none d-sm-block">
-              Bienvenido al panel administrativo de Panify.
-            </p>
+
+            <p>Bienvenido al panel administrativo de Panify.</p>
           </div>
 
           <div class="admin-info">
             <i class="fa-solid fa-circle-user"></i>
+
             <span>Administrador</span>
           </div>
         </header>
-
-        <!-- CARDS -->
         <section class="row g-4 mb-4">
           <div class="col-lg-4 col-md-6">
             <div class="card-resumen">
               <i class="fa-solid fa-users"></i>
+
               <div>
-                <h3>128</h3>
+                <h3>50</h3>
                 <p>Usuarios registrados</p>
               </div>
             </div>
@@ -122,8 +115,9 @@
           <div class="col-lg-4 col-md-6">
             <div class="card-resumen">
               <i class="fa-solid fa-box"></i>
+
               <div>
-                <h3>24</h3>
+                <h3>15</h3>
                 <p>Productos activos</p>
               </div>
             </div>
@@ -132,18 +126,248 @@
           <div class="col-lg-4 col-md-12">
             <div class="card-resumen">
               <i class="fa-solid fa-cart-shopping"></i>
+
               <div>
-                <h3>15</h3>
+                <h3>8</h3>
                 <p>Ventas del día</p>
               </div>
             </div>
           </div>
         </section>
+
+        <section class="panel tabla">
+          <div class="cabecera-tabla">
+            <div>
+              <h2>Usuarios</h2>
+              <p>Gestión de Usuarios CRUD</p>
+            </div>
+
+            <button
+              class="btn btn-panify"
+              data-bs-toggle="modal"
+              data-bs-target="#modalUsuario"
+            >
+              <i class="fa-solid fa-plus me-1"></i>
+              Nuevo
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table id="tablaUsuarios" class="table align-midle">
+              <thead>
+                <tr>
+                  <th>Identificación</th>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Rol</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>101</td>
+                  <td>Martin Diaz</td>
+                  <td>juan@gmail.com</td>
+                  <td>Cliente</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2 btnEliminar">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>102</td>
+                  <td>Brandon Devia</td>
+                  <td>maria.camila@gmail.com</td>
+                  <td>Administrador</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>103</td>
+                  <td>Jeison Guevara</td>
+                  <td>jeison.guevara@hotmail.com</td>
+                  <td>Cliente</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>104</td>
+                  <td>sofia diaz</td>
+                  <td>Sofia.Diaz@outlook.com</td>
+                  <td>Cliente</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>105</td>
+                  <td>Juan Vazques</td>
+                  <td>juan.vazques@gmail.com</td>
+                  <td>Cliente</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>106</td>
+                  <td>Maria Juana</td>
+                  <td>laura.juanita@gmail.com</td>
+                  <td>Cliente</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>107</td>
+                  <td>Santiago ortiz</td>
+                  <td>santiago.ortiz@yahoo.com</td>
+                  <td>Cliente</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>108</td>
+                  <td>Pedro Lopez</td>
+                  <td>legend.pedro@gmail.com</td>
+                  <td>Administrador</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>109</td>
+                  <td>Mateo Chavez</td>
+                  <td>mateo.chavez@hotmail.com</td>
+                  <td>Cliente</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>110</td>
+                  <td>Paula Salas</td>
+                  <td>paula.salas@outlook.com</td>
+                  <td>Cliente</td>
+                  <td>
+                    <button class="btn btn-sm btn-editar ms-2 btnEditar">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-eliminar ms-2">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <div class="modal fade" id="modalUsuario" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-login">
+              <div class="modal-header border-0">
+                <h2 class="modal-tittle w-100 text-center">Nuevo Usuario</h2>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form action="" id="formUsuario">
+                  <input
+                    type="number"
+                    class="form-control mb-3"
+                    placeholder="Identificación"
+                    required
+                  />
+                  <input
+                    type="text"
+                    class="form-control mb-3"
+                    placeholder="Nombre completo"
+                    minlength="3"
+                    maxlength="50"
+                    required
+                  />
+                  <input
+                    type="email"
+                    class="form-control mb-3"
+                    placeholder="Correo usuario"
+                    required
+                  />
+                  <select class="form-select mb-4" required>
+                    <option value="">Seleccione un rol</option>
+                    <option value="Ciente">Cliente</option>
+                    <option value="Administrador">Administrador</option>
+                  </select>
+                  <button type="submit" class="btn btn-panify w-100">
+                    Guardar Usuario
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../src/js/admin/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="src/js/admin/email.js"></script>
   </body>
 </html>
