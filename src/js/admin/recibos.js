@@ -22,10 +22,23 @@ $(document).ready(function () {
     const fecha = $("#fecha-reporte").val();
 
     if (!fecha) {
-      alert("Por favor seleccione una fecha.");
+      Swal.fire({
+        icon: "warning",
+        title: "Campo requerido",
+        text: "Por favor, seleccione una fecha para continuar.",
+        confirmButtonColor: "#e67e22",
+      });
       return;
     }
-    alert(`Generando reporte ${tipo} para la fecha: ${fecha}`);
+
+    Swal.fire({
+      icon: "success",
+      title: "¡Todo listo!",
+      text: `Generando reporte ${tipo} para la fecha: ${fecha}`,
+      confirmButtonColor: "#e67e22",
+      showConfirmButton: true,
+      timer: 3000,
+    });
   });
 
   $("#menuToggle").on("click", function () {
