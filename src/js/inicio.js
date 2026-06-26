@@ -23,7 +23,7 @@ document
         text: "Bienvenido Administrador",
         confirmButtonColor: "#37ac1d",
       }).then(() => {
-        window.location.href = "";
+        window.location.href = "admin/dashboard.html";
       });
     } else if (email === "cliente@panify.com" && password === "12345") {
       Swal.fire({
