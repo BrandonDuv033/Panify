@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  // Eventos para abrir/cerrar el menú responsivo lateral
   $("#menuToggle").on("click", function () {
     $("#sidebar").addClass("open");
     $("#sidebarOverlay").fadeIn();
@@ -10,5 +9,3 @@ $(document).ready(function () {
     $("#sidebarOverlay").fadeOut();
   });
 });
-
-

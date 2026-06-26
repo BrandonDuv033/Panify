@@ -40,14 +40,4 @@ $(document).ready(function () {
       timer: 3000,
     });
   });
-
-  $("#menuToggle").on("click", function () {
-    $("#sidebar").addClass("open");
-    $("#sidebarOverlay").fadeIn();
-  });
-
-  $("#sidebarOverlay").on("click", function () {
-    $("#sidebar").removeClass("open");
-    $("#sidebarOverlay").fadeOut();
-  });
 });

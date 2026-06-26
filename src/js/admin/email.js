@@ -41,19 +41,17 @@ document.querySelectorAll(".btnEliminar").forEach(function (boton) {
 });
 
 $("#tablaUsuarios").on("click", ".btnEditar", function () {
+  let fila = $(this).closest("tr");
 
-    let fila = $(this).closest("tr");
+  let identificacion = fila.find("td:eq(0)").text();
+  let nombre = fila.find("td:eq(1)").text();
+  let correo = fila.find("td:eq(2)").text();
+  let rol = fila.find("td:eq(3)").text();
 
-    let identificacion = fila.find("td:eq(0)").text();
-    let nombre = fila.find("td:eq(1)").text();
-    let correo = fila.find("td:eq(2)").text();
-    let rol = fila.find("td:eq(3)").text();
+  $("#identificacion").val(identificacion);
+  $("#nombre").val(nombre);
+  $("#correo").val(correo);
+  $("#rol").val(rol);
 
-    $("#identificacion").val(identificacion);
-    $("#nombre").val(nombre);
-    $("#correo").val(correo);
-    $("#rol").val(rol);
-
-    $("#modalUsuario").modal("show");
-
+  $("#modalUsuario").modal("show");
 });
