@@ -111,7 +111,7 @@ body {
 
 .topbar p {
   margin: 0;
-  color: #7a6b5e;
+  color: var(--gris);
 }
 
 .admin-info {
@@ -252,23 +252,21 @@ body {
     transform: translateX(-100%); /* Escondido por defecto a la izquierda */
   }
 
+  /* Clase activa que agregaremos con JS para mostrar el menú */
   .sidebar.open {
     transform: translateX(0);
   }
 
   .mobile-toggle-btn {
-    display: block;
+    display: block; /* Aparece la hamburguesa */
   }
 
   .topbar {
-    padding: 10px 12px;
+    justify-content: flex-start;
+    gap: 10px;
   }
 
-  .topbar h1 {
-    font-size: 1.1rem;
-  }
-
-  .admin-info span {
-    font-size: 0.85rem;
+  .admin-info {
+    margin-left: auto; /* Mueve la información del admin a la derecha */
   }
 }
