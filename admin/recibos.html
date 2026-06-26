@@ -31,7 +31,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../src/css/admin.css" />
+    <link rel="stylesheet" href="../src/css/dashboard.css" />
     <link rel="stylesheet" href="../src/css/recibos.css" />
   </head>
 
@@ -61,23 +61,23 @@
           </h2>
           <p>Distribuciones Oro Pan</p>
         </div>
-
         <nav class="sidebar-menu">
           <a href="dashboard.html">
             <i class="fa-solid fa-users"></i>
             Usuarios
           </a>
-
           <a href="productos.html">
             <i class="fa-solid fa-box"></i>
             Productos
           </a>
-
+          <a href="pedidos.html">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Pedidos
+          </a>
           <a href="#" class="active">
             <i class="fa-solid fa-receipt"></i>
             Recibos
           </a>
-
           <a href="../index.html">
             <i class="fa-solid fa-right-from-bracket"></i>
             Salir
@@ -108,9 +108,7 @@
           <div class="cabecera-tabla mb-4">
             <div>
               <h2>Gestión de Recibos</h2>
-              <p>
-                Visualiza, filtra y descarga las facturas de venta.
-              </p>
+              <p>Visualiza, filtra y descarga las facturas de venta.</p>
             </div>
           </div>
 
@@ -388,15 +386,14 @@
               >
               <div class="input-group">
                 <span class="input-group-text"
-                  ><span class="material-symbols-outlined fs-5"
-                    > <i class="fa-solid fa-calendar-day"></i> </span
-                  ></span
-                >
+                  ><span class="material-symbols-outlined fs-5">
+                    <i class="fa-solid fa-calendar-day"></i> </span
+                ></span>
                 <select id="tipo-reporte" class="form-select">
-                <option value="diario">Diario</option>
-                <option value="semanal">Semanal</option>
-                <option value="mensual">Mensual</option>
-              </select>
+                  <option value="diario">Diario</option>
+                  <option value="semanal">Semanal</option>
+                  <option value="mensual">Mensual</option>
+                </select>
               </div>
             </div>
 
@@ -408,8 +405,7 @@
                 <span class="input-group-text"
                   ><span class="material-symbols-outlined fs-5"
                     ><i class="fa-regular fa-calendar-days"></i></span
-                  ></span
-                >
+                ></span>
                 <input
                   type="text"
                   id="fecha-reporte"
@@ -436,6 +432,7 @@
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+    <script src="../src/js/admin/dashboard.js"></script>
     <script src="../src/js/admin/recibos.js"></script>
   </body>
 </html>

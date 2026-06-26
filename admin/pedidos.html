@@ -10,9 +10,9 @@
       rel="stylesheet"
     />
 
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
     <link
@@ -20,7 +20,8 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../src/css/admin.css" />
+    <link rel="stylesheet" href="../src/css/dashboard.css" />
+    <link rel="icon" href="../src/img/Icono Panify.png" />
   </head>
 
   <body>
@@ -29,16 +30,41 @@
     <div class="dashboard-layout">
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-logo">
-          <h2><span class="marca">Pani<span class="marca-dos">fy</span></span></h2>
+          <!-- Logo por defecto, puedes cambiar la ruta -->
+          <img src="../src/img/Icono Panify.png" alt="Logo" />
+          <h2>
+            <span class="marca"
+              >Pani<span class="marca marca-dos">fy</span></span
+            >
+          </h2>
           <p>Distribuciones Oro Pan</p>
         </div>
 
         <nav class="sidebar-menu">
-          <a href="dashboard.html"><i class="fa-solid fa-users"></i> Usuarios</a>
-          <a href="productos.html"><i class="fa-solid fa-box"></i> Productos</a>
-          <a href="#" class="active"><i class="fa-solid fa-cart-shopping"></i> Pedidos</a>
-          <a href="reportes.html"><i class="fa-solid fa-chart-line"></i> Reportes</a>
-          <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+          <a href="dashboard.html">
+            <i class="fa-solid fa-users"></i>
+            Usuarios
+          </a>
+
+          <a href="productos.html">
+            <i class="fa-solid fa-box"></i>
+            Productos
+          </a>
+
+          <a href="#" class="active">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Pedidos
+          </a>
+
+          <a href="recibos.html">
+            <i class="fa-solid fa-receipt"></i>
+            Recibos
+          </a>
+
+          <a href="../index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Salir
+          </a>
         </nav>
       </aside>
 
@@ -49,7 +75,9 @@
           </button>
           <div>
             <h1>Control de Pedidos</h1>
-            <p class="d-none d-sm-block">Gestión y despacho de órdenes de panadería en tiempo real.</p>
+            <p class="d-none d-sm-block">
+              Gestión y despacho de órdenes de panadería en tiempo real.
+            </p>
           </div>
           <div class="admin-info">
             <i class="fa-solid fa-circle-user"></i>
@@ -58,38 +86,57 @@
         </header>
 
         <div class="container-fluid py-4">
-          
           <div class="row g-3 mb-4">
             <div class="col-6 col-lg-3">
-              <div class="card-contador p-3 border-start border-warning border-4 bg-white rounded shadow-sm">
+              <div
+                class="card-contador p-3 border-start border-warning border-4 bg-white rounded shadow-sm"
+              >
                 <span class="text-muted small fw-bold">PENDIENTES</span>
-                <h2 class="fw-bold m-0 mt-1 text-warning" id="num-pendientes">0</h2>
+                <h2 class="fw-bold m-0 mt-1 text-warning" id="num-pendientes">
+                  0
+                </h2>
               </div>
             </div>
             <div class="col-6 col-lg-3">
-              <div class="card-contador p-3 border-start border-info border-4 bg-white rounded shadow-sm">
+              <div
+                class="card-contador p-3 border-start border-info border-4 bg-white rounded shadow-sm"
+              >
                 <span class="text-muted small fw-bold">PREPARACIÓN</span>
-                <h2 class="fw-bold m-0 mt-1 text-info" id="num-preparacion">0</h2>
+                <h2 class="fw-bold m-0 mt-1 text-info" id="num-preparacion">
+                  0
+                </h2>
               </div>
             </div>
             <div class="col-6 col-lg-3">
-              <div class="card-contador p-3 border-start border-primary border-4 bg-white rounded shadow-sm">
+              <div
+                class="card-contador p-3 border-start border-primary border-4 bg-white rounded shadow-sm"
+              >
                 <span class="text-muted small fw-bold">EN CAMINO</span>
                 <h2 class="fw-bold m-0 mt-1 text-primary" id="num-camino">0</h2>
               </div>
             </div>
             <div class="col-6 col-lg-3">
-              <div class="card-contador p-3 border-start border-success border-4 bg-white rounded shadow-sm">
+              <div
+                class="card-contador p-3 border-start border-success border-4 bg-white rounded shadow-sm"
+              >
                 <span class="text-muted small fw-bold">ENTREGADOS</span>
-                <h2 class="fw-bold m-0 mt-1 text-success" id="num-entregados">0</h2>
+                <h2 class="fw-bold m-0 mt-1 text-success" id="num-entregados">
+                  0
+                </h2>
               </div>
             </div>
           </div>
 
           <div class="card border rounded shadow-sm bg-white">
-            <div class="card-header bg-transparent py-3 d-flex justify-content-between align-items-center">
-              <h5 class="mb-0 fw-bold text-dark"><i class="fa-solid fa-folder-open me-2"></i>Órdenes de Compra</h5>
-              <span class="badge bg-dark rounded-1 text-white py-1 px-2">SENA 2026</span>
+            <div
+              class="card-header bg-transparent py-3 d-flex justify-content-between align-items-center"
+            >
+              <h5 class="mb-0 fw-bold text-dark">
+                <i class="fa-solid fa-folder-open me-2"></i>Órdenes de Compra
+              </h5>
+              <span class="badge bg-dark rounded-1 text-white py-1 px-2"
+                >SENA 2026</span
+              >
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -104,19 +151,16 @@
                       <th class="text-center pe-3">Acciones de Despacho</th>
                     </tr>
                   </thead>
-                  <tbody id="tabla-ordenes-admin">
-                    </tbody>
+                  <tbody id="tabla-ordenes-admin"></tbody>
                 </table>
               </div>
             </div>
           </div>
-
         </div>
       </main>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="../../src/js/admin/dashboard.js"></script>
+    <script src="../src/js/admin/dashboard.js"></script>
   </body>
 </html>
