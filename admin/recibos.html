@@ -113,7 +113,7 @@
           <div class="cabecera-tabla mb-4">
             <div>
               <h2>Gestión de Recibos</h2>
-              <p class="text-muted">
+              <p">
                 Visualiza, filtra y descarga las facturas de venta.
               </p>
             </div>
@@ -380,7 +380,7 @@
               <i class="fa-solid fa-chart-line me-1"></i>
               Reporte Ventas
             </h2>
-            <p class="text-muted">
+            <p>
               Configura los parámetros para exportar las estadísticas de
               facturación.
             </p>
@@ -391,11 +391,18 @@
               <label for="tipo-reporte" class="form-label font-weight-bold"
                 >Tipo de Reporte</label
               >
-              <select id="tipo-reporte" class="form-select">
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><span class="material-symbols-outlined fs-5"
+                    >calendar_month</span
+                  ></span
+                >
+                <select id="tipo-reporte" class="form-select">
                 <option value="diario">Diario</option>
                 <option value="semanal">Semanal</option>
                 <option value="mensual">Mensual</option>
               </select>
+              </div>
             </div>
 
             <div class="col-12 col-md-4">

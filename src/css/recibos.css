@@ -17,19 +17,18 @@
 
 .cabecera-tabla h2,
 .reporte h2 {
-  font-family: "Lato", sans-serif;
   font-weight: 700;
-  color: #2c3e50;
+  color: var(--color-oscuro);
   margin-bottom: 4px;
 }
 
-/* 2. Customización de la Tabla de Recibos */
+/* Customización de la Tabla de Recibos */
 .table-responsive {
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid #eef2f5;
   overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch; /* Suaviza el scroll en dispositivos iOS (Safari) */
+  -webkit-overflow-scrolling: touch;
   display: block;
   width: 100%;
 }
@@ -40,20 +39,25 @@
 }
 
 #tablaRecibos thead th {
-  background-color: #f8f9fa;
-  color: #34495e;
-  font-weight: 700;
+  background-color: #3d2314;
+  color: white;
+  font-weight: 600;
   border-bottom: 2px solid #e2e8f0;
   padding: 14px;
 }
 
 #tablaRecibos tbody td {
+  background-color: #fdfbf7;
   padding: 12px 14px;
-  color: #555;
+  color: black;
   font-size: 0.95rem;
 }
 
-/* 3. Badges de Estados (Pagado, Pendiente, Cancelado) */
+#tablaRecibos tbody tr:hover td {
+    background-color: #f5edd6;
+}
+
+/* Badges de Estados */
 .badge {
   padding: 6px 12px;
   font-weight: 600;
@@ -76,9 +80,9 @@
   color: #721c24 !important;
 }
 
-/* 4. Botones de Acción (Ver Recibo / PDF) */
+/* Botones de Acción (Ver Recibo / PDF) */
 .btn-outline-primary {
-  border-color: #e67e22; /* Ajusta este color al tono naranja/dorado de Oro Pan si aplica */
+  border-color: #e67e22;
   color: #e67e22;
   font-weight: 600;
   transition: all 0.2s ease;
@@ -108,7 +112,7 @@
   box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
 }
 
-/* 5. Customización estética de DataTables (Filtros y Paginación) */
+/* Customización estética de DataTables (Filtros y Paginación) */
 .dataTables_wrapper .dataTables_filter input {
   border: 1px solid #ced4da;
   border-radius: 6px;
@@ -151,11 +155,10 @@ select.dt-input {
   text-align: center;
 }
 
-
-/* 6. Formulario del Reporte y Flatpickr */
+/* Formulario del Reporte y Flatpickr */
 .form-label {
-  font-weight: 700;
-  color: #34495e;
+  font-weight: 800;
+  color: var(--color-oscuro);
   font-size: 0.9rem;
 }
 
@@ -179,7 +182,6 @@ select.dt-input {
   color: #7f8c8d;
 }
 
-/* Iconos de Material alineados */
 .material-symbols-outlined {
   vertical-align: middle;
   color: var(--color-principal);
