@@ -15,6 +15,11 @@
   transition: all 0.3s ease;
 }
 
+.panel p {
+  color: #7a6b5e;
+  font-size: 15px;
+}
+
 .cabecera-tabla h2,
 .reporte h2 {
   font-weight: 700;
@@ -54,7 +59,8 @@
 }
 
 #tablaRecibos tbody tr:hover td {
-    background-color: #f5edd6;
+  background-color: rgba(212, 175, 55, 0.12);
+  transition: background-color 0.3s ease;
 }
 
 /* Badges de Estados */
@@ -98,18 +104,18 @@
 
 /* Botón Principal Generar Reporte */
 .btn-primary {
-  background-color: #2c3e50;
-  border-color: #2c3e50;
+  background-color: var(--color-principal);
+  border-color: #8b5a2b;
   font-weight: 700;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: #1a252f;
-  border-color: #1a252f;
+  background-color: #e48226;
+  border-color: #e48226;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.25);
 }
 
 /* Customización estética de DataTables (Filtros y Paginación) */
