@@ -34,7 +34,7 @@ body {
 }
 
 .sidebar-logo {
-    text-align: center;
+  text-align: center;
 }
 
 .sidebar-logo img {
@@ -206,16 +206,18 @@ body {
   color: #7a6b5e;
 }
 
-.btn-maskot {
+.btn-panify {
   background-color: var(--color-principal);
-  color: var(--color-blanco);
+  color: var(--color-claro);
+  border: none;
+  padding: 11px 24px;
+
   font-weight: 700;
-  padding: 0.5rem 1.2rem;
 }
 
-.btn-maskot:hover {
-  background-color: #704720;
-  color: var(--color-blanco);
+.btn-panify:hover {
+  background-color: var(--color-oscuro);
+  color: rgba(255, 255, 255, 0.785);
 }
 
 .btn-editar {
