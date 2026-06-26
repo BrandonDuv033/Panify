@@ -272,3 +272,9 @@ body {
     margin-left: auto; /* Mueve la información del admin a la derecha */
   }
 }
+/* Mensajes del sistema */
+#mensaje{
+
+    margin-bottom:20px;
+
+}
