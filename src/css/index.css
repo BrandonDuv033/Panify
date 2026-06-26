@@ -185,3 +185,34 @@ footer {
     margin: 0 auto;
   }
 }
+.modal-login h2{
+
+border-radius: 200px; 
+text-align: center;
+align-items: center;
+font-weight: 700;
+color: var(--color-principal);
+background-color: solid var(--color-principal);
+
+}
+.modal-login{
+  background-color:var(--color-claro);
+  border-radius: 20px;
+  margin-top: 100px;
+
+  
+}
+.btn-login-ingresar{
+border-radius: 20px;
+background-color: var(--color-principal);
+border: solid var(--color-principal);
+font-weight: 600;
+color: white;
+}
+.link-login{
+  color: var(--color-oscuro);
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+
