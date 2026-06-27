@@ -284,7 +284,7 @@ function agregarProducto() {
 
         // Restaura el título y el botón del modal
         document.querySelector(".modal-title").textContent = "Agregar Producto";
-        document.querySelector("#modalProducto .btn-maskot").textContent = "Guardar";
+        document.querySelector("#modalProducto .btn-panify").textContent = "Guardar";
     }
 
     // Actualiza la tabla
@@ -356,7 +356,7 @@ function editarProducto(index){
 
     document.querySelector(".modal-title").textContent = "Editar Producto";
 
-    document.querySelector("#modalProducto .btn-maskot").textContent = "Actualizar";
+    document.querySelector("#modalProducto .btn-panify").textContent = "Actualizar";
 
     const modal = new bootstrap.Modal(document.getElementById("modalProducto"));
 
@@ -382,7 +382,7 @@ function reiniciarModal(){
 
     document.querySelector(".modal-title").textContent = "Agregar Producto";
 
-    document.querySelector("#modalProducto .btn-maskot").textContent = "Guardar";
+    document.querySelector("#modalProducto .btn-panify").textContent = "Guardar";
 
 }
 // Cuando el modal se cierre, vuelve a su estado inicial

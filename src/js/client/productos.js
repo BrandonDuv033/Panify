@@ -87,7 +87,7 @@ function mostrarProductos(){
                     </h4>
 
                     <button
-    class="btn btn-maskot w-100"
+    class="btn btn-panify w-100"
     onclick="agregarCarrito(${index})">
 
     <i class="fa-solid fa-cart-plus"></i>
