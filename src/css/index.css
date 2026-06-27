@@ -1,6 +1,7 @@
 :root {
   --color-principal: #8b5a2b;
   --color-secundario: #d4af37;
+  --color-dorado: #e5a93c;
   --color-oscuro: #2b1e13;
   --color-claro: #fdfbf7;
   --color-blanco: #ffffff;
@@ -54,7 +55,9 @@ body {
 }
 
 .nav-link:hover {
-  color: var(--color-principal);
+  color: var(--color-dorado);
+  font-weight: 600;
+  position: relative;
 }
 
 .btn-login-nav {
@@ -170,6 +173,53 @@ footer {
   font-size: 12px;
 }
 
+.modal-login h2 {
+  border-radius: 200px;
+  text-align: center;
+  align-items: center;
+  font-weight: 700;
+  color: var(--color-principal);
+  background-color: solid var(--color-principal);
+}
+
+.modal-login {
+  background-color: var(--color-claro);
+  border-radius: 20px;
+  margin-top: 100px;
+}
+
+.btn-login-ingresar {
+  border-radius: 20px;
+  background-color: var(--color-principal);
+  border: solid var(--color-principal);
+  font-weight: 600;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.btn-login-ingresar:hover {
+  background-color: var(--color-dorado);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.link-login {
+  color: var(--color-oscuro);
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.link-login {
+  color: var(--color-oscuro);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link-login:hover {
+  color: var(--color-dorado);
+  text-decoration: underline;
+}
+
 @media (max-width: 991.98px) {
   .navbar-nav {
     text-align: center;
@@ -185,34 +235,3 @@ footer {
     margin: 0 auto;
   }
 }
-.modal-login h2{
-
-border-radius: 200px; 
-text-align: center;
-align-items: center;
-font-weight: 700;
-color: var(--color-principal);
-background-color: solid var(--color-principal);
-
-}
-.modal-login{
-  background-color:var(--color-claro);
-  border-radius: 20px;
-  margin-top: 100px;
-
-  
-}
-.btn-login-ingresar{
-border-radius: 20px;
-background-color: var(--color-principal);
-border: solid var(--color-principal);
-font-weight: 600;
-color: white;
-}
-.link-login{
-  color: var(--color-oscuro);
-  text-decoration: none;
-  margin-top: 20px;
-}
-
-
