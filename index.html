@@ -11,9 +11,16 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/a0994db117.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="src/css/index.css" />
   </head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-panify">
@@ -38,7 +45,9 @@
                 <a class="nav-link opcion-menu" href="#">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link opcion-menu" href="/client/productos.html">Productos</a>
+                <a class="nav-link opcion-menu" href="/client/productos.html"
+                  >Productos</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link opcion-menu" href="#">Contáctenos</a>
@@ -52,72 +61,82 @@
                   Ingresar
                 </button>
               </li>
-
-
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    <!--Modal de Login-->
-<div class="modal fade" id="loginModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content modal-login">
 
-      <div class="modal-header border-0">
-        
-        <h2 class="modal-title w-100 text-center">Iniciar Sesión</h2> 
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <form action="">
-
-          <div class="mb-3">
-    <label for="email" class="form-label">Correo Electrónico</label>
-
-    <div class="input-group">
-        <span class="input-group-text">
-         <i class="bi bi-envelope-fill"></i>
-
-        </span>
-
-        <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="Ingresa tu correo"
-            required
-        >
-    </div>
-</div>    <div class="mb-4">
-            <label for="password" class="form-label"> Contraseña </label>
-            <input type="password"  class="form-control" id="password" placeholder="Ingresa tu Contraseña" required>
+    <div class="modal fade" id="loginModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-login">
+          <div class="modal-header border-0">
+            <h2 class="modal-title w-100 text-center">Iniciar Sesión</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
           </div>
-          <button type="submit" class="btn btn-login-ingresar w-100 mb-3">Ingresar</button>
-
-          <div class="d-flex justify-content-between mt-3">
-            <a href="#" class="link-login">¿Olvidaste tu contraseña?</a>
-            <a href="registro.html" class="link-login">Regístrate</a>
+          <div class="modal-body">
+            <form action="">
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="bi bi-envelope-fill"></i>
+                  </span>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="Ingresa tu correo"
+                    required
+                  />
+                </div>
               </div>
+
+              <div class="mb-4">
+                <label for="password" class="form-label"> Contraseña </label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-key"></i>
+                  </span>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Ingresa tu Contraseña"
+                    required
+                  />
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-login-ingresar w-100">
+                Ingresar
+              </button>
+
+              <div class="d-flex justify-content-between mt-3 mb-3">
+                <a href="#" class="link-login">¿Olvidaste tu contraseña?</a>
+                <a href="registro.html" class="link-login">Regístrate</a>
+              </div>
+            </form>
           </div>
-
-        </form>
+        </div>
       </div>
-
     </div>
-  </div>
-</div>
+
     <main>
       <section class="banner">
         <h1>Panadería Oro Pan</h1>
         <p>Horneamos Calidad, Entregamos Confianza</p>
-        <a href="/client/productos.html"
-          ><button type="button" class="btn btn-outline-warning">
+        <a href="/client/productos.html">
+          <button type="button" class="btn btn-outline-warning">
             Hacer Pedido
-          </button></a
-        >
+          </button>
+        </a>
       </section>
+
       <section class="container py-5" id="servicios">
         <div class="row g-4 tarjetas">
           <div class="col-md-4">
@@ -156,6 +175,7 @@
         </div>
       </section>
     </main>
+
     <footer id="contacto">
       <div class="container">
         <div class="row text-center g-4">
@@ -173,14 +193,12 @@
           </div>
         </div>
       </div>
-      
-      
     </footer>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
-      
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="src/js/inicio.js"></script>
