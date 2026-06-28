@@ -1,14 +1,3 @@
-window.addEventListener("scroll", function () {
-  const navbar = document.querySelector(".navbar-panify");
-  if (navbar) {
-    if (window.scrollY > 30) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  }
-});
-
 document.addEventListener("DOMContentLoaded", function () {
   console.log("¡El archivo JS cargó correctamente!");
 

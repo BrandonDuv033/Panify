@@ -24,7 +24,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-panify">
         <div class="container">
-          <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-5">
+          <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-3">
             <img src="src/img/Logo Panify.png" alt="Logo Panify" class="logo" />
           </a>
           <button
@@ -54,6 +54,7 @@
                   data-bs-toggle="modal"
                   data-bs-target="#loginModal"
                 >
+                  <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>
                   Ingresar
                 </button>
               </li>
@@ -124,46 +125,74 @@
 
     <main>
       <section class="banner">
-        <h1>Panadería Oro Pan</h1>
+        <h1>Distribuidora Oro Pan</h1>
         <p>Horneamos Calidad, Entregamos Confianza</p>
         <a href="/client/productos.html">
-          <button type="button" class="btn btn-outline-warning">
-            Hacer Pedido
+          <button type="button" class="btn btn-secondary">
+            <i class="fa-solid fa-basket-shopping me-2"></i>Hacer Pedido
           </button>
         </a>
       </section>
 
-      <section class="container py-5" id="servicios">
+      <section class="container py-5 productos">
+        <div class="container">
+          <div class="header-productos text-center mb-5">
+            <span class="subtitulo-decorativo">Nuestras Especialidades</span>
+            <h2>Nuestros Productos</h2>
+            <div class="linea-divisoria"></div>
+            <p class="lead-productos">
+              Horneamos diariamente con ingredientes seleccionados para llevar
+              la mejor frescura y tradición directamente a tu mesa.
+            </p>
+          </div>
+        </div>
         <div class="row g-4 tarjetas">
           <div class="col-md-4">
             <div class="card tarjeta h-100 text-center">
-              <div class="card-body">
-                <h3>Pedidos al Instante</h3>
+              <img
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop"
+                class="tarjeta-img"
+                alt="Pan Blandito"
+              />
+              <div class="card-body d-flex flex-column justify-content-center">
+                <h3>Blandito</h3>
                 <p>
-                  Olvídate del papel y las llamadas perdidas. Registra y haz
-                  seguimiento a tus solicitudes en tiempo real.
+                  El infaltable de la mañana. Masa extra suave, esponjosa y con
+                  un delicioso toque de mantequilla fresca.
                 </p>
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="card tarjeta h-100 text-center">
-              <div class="card-body">
-                <h3>Stock Siempre Fresco</h3>
+              <img
+                src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=600&auto=format&fit=crop"
+                class="tarjeta-img"
+                alt="Pan Rollo"
+              />
+              <div class="card-body d-flex flex-column justify-content-center">
+                <h3>Rollo</h3>
                 <p>
-                  Control automatizado de productos e insumos para garantizar
-                  que nunca te quedes sin tus panes favoritos.
+                  Dorado por fuera y tierno por dentro. Corteza crujiente con el
+                  sabor tradicional de siempre.
                 </p>
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="card tarjeta h-100 text-center">
-              <div class="card-body">
-                <h3>Rutas Optimizadas</h3>
+              <img
+                src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=600&auto=format&fit=crop"
+                class="tarjeta-img"
+                alt="Pan Hojaldre"
+              />
+              <div class="card-body d-flex flex-column justify-content-center">
+                <h3>Hojaldre</h3>
                 <p>
-                  Coordinación directa entre producción y entrega en cicla
-                  motorizada para que los pedidos lleguen calientes y a tiempo.
+                  Capas crujientes y livianas. El balance perfecto horneado
+                  hasta lograr un dorado ideal.
                 </p>
               </div>
             </div>
