@@ -1,4 +1,4 @@
-$(document).ready(function () {
+  $(document).ready(function () {
   $("#tablaUsuarios").DataTable({
     language: {
       search: "Buscar",

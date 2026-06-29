@@ -32,7 +32,7 @@ document
         text: "Bienvenido Cliente",
         confirmButtonColor: "#37ac1d",
       }).then(() => {
-        window.location.href = "client/client.html";
+        window.location.href = "client/panel.html";
       });
     } else {
       Swal.fire({

@@ -1,22 +1,23 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panify - Distribuidora de Pan</title>
-    <link rel="icon" href="src/img/Icono Panify.png" type="image/png" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panify distribuidora de oro pan</title>
+    <link   rel="icon" href="src/img/Icono Panify.png" type="image/png">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="src/css/index.css" />
-  </head>
+    <link rel="stylesheet" href="src/css/registro.css" />
+</head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <body>
+
+<body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-panify">
+        <nav class="navbar navbar-expand-lg navbar-panify">
         <div class="container">
           <a href="#" class="navbar-brand d-flex align-items-center gap-3">
             <img src="src/img/Logo Panify.png" alt="Logo Panify" class="logo" />
@@ -59,14 +60,20 @@
         </div>
       </nav>
     </header>
-    <!--Modal de Login-->
-<div class="modal fade" id="loginModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content modal-login">
+
+
+
+
+
+
+<div class="contenedor">
+    <section class="banner"></section>
+    <div class="form">
+    <div class="modal-content modal-registro">
 
       <div class="modal-header border-0">
         
-        <h2 class="modal-title w-100 text-center">Iniciar Sesión</h2> 
+        <h2 class="modal-title w-100 text-center">Registro</h2> 
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
@@ -74,31 +81,57 @@
         <form action="">
 
           <div class="mb-3">
-    <label for="email" class="form-label">Correo Electrónico</label>
-
-    <div class="input-group">
-        <span class="input-group-text">
-         <i class="bi bi-envelope-fill"></i>
-
-        </span>
+    <label for="text" class="form-label">Nombre</label>
 
         <input
-            type="email"
+            type="text"
             class="form-control"
-            id="email"
-            placeholder="Ingresa tu correo"
+            id="nombre"
+            placeholder="Ingresa tu nombre"
             required
         >
-    </div>
-</div>    <div class="mb-4">
-            <label for="password" class="form-label"> Contraseña </label>
+            </div>
+        </div>
+        
+            <div class="mb-3">
+     <label for="email" class="form-label">Direccion</label>
+
+        <input
+            type="text"
+            class="form-control"
+            id="direccion"
+            minlength="10"
+            maxlength="60"
+            placeholder="Ingresa tu direccion"
+            required
+            >
+         </div>
+         <div class="mb-3">
+            <label for="">Correo</label>
+             
+                
+                <input type="email"
+                  class="form-control "
+                  placeholder="Direccion"
+                  id="email"
+                  minlength="20"
+                  maxlength="80"
+                  required/>
+                  
+                  </div>
+
+    <div class="mb-4">
+            <label for="password" class="form-label" > Crea una contraseña </label>
             <input type="password"  class="form-control" id="password" placeholder="Ingresa tu Contraseña" required>
           </div>
-          <button type="submit" class="btn btn-login-ingresar w-100 mb-3">Ingresar</button>
+        <button
+            type="submit"
+            class="btn btn-login-ingresar w-100 mb-3">
+            Regístrate
+        </button>
 
           <div class="d-flex justify-content-between mt-3">
-            <a href="recuperacion.html" class="link-login">¿Olvidaste tu contraseña?</a>
-            <a href="registro.html " class="link-login">Regístrate</a>
+            <a href="index.html" class="link-login">Volver al inicio</a>
               </div>
           </div>
 
@@ -106,56 +139,10 @@
       </div>
 
     </div>
-  </div>
+  </div>    
+             
 </div>
-    <main>
-      <section class="banner">
-        <h1>Panadería Oro Pan</h1>
-        <p>Horneamos Calidad, Entregamos Confianza</p>
-        <a href="#"
-          ><button type="button" class="btn btn-outline-warning">
-            Hacer Pedido
-          </button></a
-        >
-      </section>
-      <section class="container py-5" id="servicios">
-        <div class="row g-4 tarjetas">
-          <div class="col-md-4">
-            <div class="card tarjeta h-100 text-center">
-              <div class="card-body">
-                <h3>Pedidos al Instante</h3>
-                <p>
-                  Olvídate del papel y las llamadas perdidas. Registra y haz
-                  seguimiento a tus solicitudes en tiempo real.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card tarjeta h-100 text-center">
-              <div class="card-body">
-                <h3>Stock Siempre Fresco</h3>
-                <p>
-                  Control automatizado de productos e insumos para garantizar
-                  que nunca te quedes sin tus panes favoritos.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card tarjeta h-100 text-center">
-              <div class="card-body">
-                <h3>Rutas Optimizadas</h3>
-                <p>
-                  Coordinación directa entre producción y entrega en cicla
-                  motorizada para que los pedidos lleguen calientes y a tiempo.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+        
     <footer id="contacto">
       <div class="container">
         <div class="row text-center g-4">
@@ -174,15 +161,14 @@
         </div>
       </div>
       
-      
-    </footer>
-    <script
+    
+</body>
+<script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
       
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="src/js/inicio.js"></script>
-  </body>
+    <script src="src/js/registro.js"></script>
 </html>

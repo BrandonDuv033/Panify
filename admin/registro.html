@@ -1,17 +1,18 @@
+
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panify - Distribuidora de Pan</title>
-    <link rel="icon" href="src/img/Icono Panify.png" type="image/png" />
+    <link rel="icon" href="/src/img/Logo Panify.png" type="image/png" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="src/css/index.css" />
+    <link rel="stylesheet" href="/src/css/registro.css" />
   </head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <body>
@@ -19,7 +20,7 @@
       <nav class="navbar navbar-expand-lg navbar-panify">
         <div class="container">
           <a href="#" class="navbar-brand d-flex align-items-center gap-3">
-            <img src="src/img/Logo Panify.png" alt="Logo Panify" class="logo" />
+            <img src="/src/img/Panify Logo v2.png" alt="Logo Panify" class="logo" />
             <span class="marca"
               >Pani<span class="marca marca-dos">fy</span></span
             >
@@ -66,12 +67,27 @@
 
       <div class="modal-header border-0">
         
-        <h2 class="modal-title w-100 text-center">Iniciar Sesión</h2> 
+        <h2 class="modal-title w-100 text-center">Registro</h2> 
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
         <form action="">
+
+            <div class="mb-6">
+                <label for="text" class="form-label" >Nombre </label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <input type="text"
+                    class="form-control"
+                    id="nombre"
+                    placeholder="Ingrese nombre"
+                    required/>
+                    
+                </div>
+            </div>
 
           <div class="mb-3">
     <label for="email" class="form-label">Correo Electrónico</label>
@@ -97,8 +113,8 @@
           <button type="submit" class="btn btn-login-ingresar w-100 mb-3">Ingresar</button>
 
           <div class="d-flex justify-content-between mt-3">
-            <a href="recuperacion.html" class="link-login">¿Olvidaste tu contraseña?</a>
-            <a href="registro.html " class="link-login">Regístrate</a>
+            <a href="#" class="link-login">¿Olvidaste tu contraseña?</a>
+            <a href="../Panify/admin/registro.html" class="link-login">Regístrate</a>
               </div>
           </div>
 
