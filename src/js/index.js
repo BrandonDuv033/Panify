@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
           icon: "warning",
           title: "Campos Vacíos",
           text: "Por favor complete los campos",
+          confirmButtonColor: "#e5a93c",
         });
         return;
       }

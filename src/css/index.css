@@ -58,13 +58,52 @@ body {
   color: var(--color-blanco);
   background-color: var(--color-principal);
   padding: 5px 25px;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .btn-login-nav:hover {
-  transform: scale(1.2);
+  transform: scale(1.05);
   color: var(--color-blanco);
-  background-color: var(--color-oscuro);
+  background-color: var(--color-dorado);
+}
+
+/* Modal */
+
+.modal-login {
+  background-color: var(--color-claro);
+  border-radius: 20px;
+  margin-top: 100px;
+}
+
+.modal-login h2 {
+  text-align: center;
+  align-items: center;
+  font-weight: 700;
+  color: var(--color-blanco);
+}
+
+.btn-login-ingresar {
+  border-radius: 20px;
+  background-color: var(--color-principal);
+  border: none;
+  font-weight: 600;
+  color: var(--color-blanco);
+}
+
+.btn-login-ingresar:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-blanco);
+}
+
+.link-login {
+  color: var(--color-blanco);
+  text-decoration: none;
+  margin-top: 20px;
+  transition: color 0.3s ease;
+}
+
+.link-login:hover {
+  text-decoration: underline;
 }
 
 /* Banner */
@@ -229,6 +268,16 @@ body {
   flex-grow: 1;
 }
 
+/* Visitanos */
+
+.visita {
+  background-color: #33261d;
+}
+
+.visita .text-muted{
+  color: #f7ebe1;
+}
+
 /* Footer */
 
 footer {
@@ -256,53 +305,6 @@ footer {
   padding-top: 20px;
   margin-top: 20px;
   font-size: 12px;
-}
-
-.modal-login h2 {
-  border-radius: 200px;
-  text-align: center;
-  align-items: center;
-  font-weight: 700;
-  color: var(--color-principal);
-  background-color: solid var(--color-principal);
-}
-
-.modal-login {
-  background-color: var(--color-claro);
-  border-radius: 20px;
-  margin-top: 100px;
-}
-
-.btn-login-ingresar {
-  border-radius: 20px;
-  background-color: var(--color-principal);
-  border: solid var(--color-principal);
-  font-weight: 600;
-  color: white;
-  transition: 0.3s ease;
-}
-
-.btn-login-ingresar:hover {
-  background-color: var(--color-dorado);
-  color: white;
-  transform: translateY(-2px);
-}
-
-.link-login {
-  color: var(--color-oscuro);
-  text-decoration: none;
-  margin-top: 20px;
-}
-
-.link-login {
-  color: var(--color-oscuro);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.link-login:hover {
-  color: var(--color-dorado);
-  text-decoration: underline;
 }
 
 @media (max-width: 991.98px) {
