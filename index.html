@@ -5,19 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panify - Distribuidora de Pan</title>
     <link rel="icon" href="src/img/Icono Panify.png" type="image/png" />
-    <!-- BootStrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <!-- Iconos - Font Awesome -->
     <script
       src="https://kit.fontawesome.com/a0994db117.js"
       crossorigin="anonymous"
     ></script>
-    <!-- CSS -->
     <link rel="stylesheet" href="src/css/index.css" />
   </head>
   <body>
@@ -135,16 +132,14 @@
       </section>
 
       <section class="container py-5 productos">
-        <div class="container">
-          <div class="header-productos text-center mb-5">
-            <span class="subtitulo-decorativo">Nuestras Especialidades</span>
-            <h2>Nuestros Productos</h2>
-            <div class="linea-divisoria"></div>
-            <p class="lead-productos">
-              Horneamos diariamente con ingredientes seleccionados para llevar
-              la mejor frescura y tradición directamente a tu mesa.
-            </p>
-          </div>
+        <div class="header-productos text-center mb-5">
+          <span class="subtitulo-decorativo">Nuestras Especialidades</span>
+          <h2>Nuestros Productos</h2>
+          <div class="linea-divisoria"></div>
+          <p class="lead-productos">
+            Horneamos diariamente con ingredientes seleccionados para llevar la
+            mejor frescura y tradición directamente a tu mesa.
+          </p>
         </div>
         <div class="row g-4 tarjetas">
           <div class="col-md-4">
@@ -200,74 +195,47 @@
         </div>
       </section>
 
-      <!-- Sección Visítanos -->
-      <section class="py-5 bg-light">
+      <section class="py-5 visita">
         <div class="container">
-          <!-- Fila Superior: Título y Párrafo de Introducción -->
-          <div class="row mb-4">
-            <div class="col-12 text-center text-md-start">
-              <h2 class="fw-bold mb-2">Visítanos</h2>
-              <p class="text-muted lead fs-6">
-                Nos encantaría recibirte y brindarte la mejor experiencia en
-                persona. Ven a conocer nuestras instalaciones, disfruta de un
-                ambiente acogedor y descubre todo lo que tenemos preparado
-                especialmente para ti. ¡Te esperamos con los brazos abiertos!
-              </p>
-            </div>
+          <div class="header-visita text-center mb-5">
+            <h2 class="text-white">Visítanos</h2>
+            <div class="linea-divisoria"></div>
+            <span class="mx-60">
+            <p class="lead-visita">
+              Retira tu pedido directamente en nuestra fábrica. Llevas el pan más fresco, recién horneado y listo para disfrutar. ¡Te esperamos!
+            </p>
+            </span>
           </div>
-
-          <!-- Fila Inferior: Contenido en dos columnas -->
-          <div class="row align-items-stretch g-4">
-            <!-- Columna Izquierda: Dirección y Horarios -->
-            <div
-              class="col-12 col-md-6 d-flex flex-column justify-content-center"
-            >
-              <div class="pe-md-4">
-                <!-- Dirección -->
-                <div
-                  class="mb-4 p-4 bg-white rounded shadow-sm border-start border-primary border-4"
-                >
-                  <h5 class="fw-semibold text-primary mb-2">
-                    <i class="fa-solid fa-location-dot me-2"></i></i>Dirección
-                  </h5>
-                  <p class="fw-medium">
-                    Calle Falsa 123, Municipio, Departamento
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="mb-4 p-4">
+                <h5 class="mb-2"">
+                  <i class="fa-solid fa-location-dot me-2"></i>
+                  Dirección
+                </h5>
+                <p class="mb-0">Cl. 15a #10-26</p>
+                <p>Soacha, Cundinamarca</p>
+              </div>
+              <div class="p-4 horarios">
+                <h5 class="mb-3">
+                  <i class="fa-solid fa-clock me-2"></i>Horarios de Atención
+                </h5>
+                  <p class="mb-0">
+                    <strong>Lunes a Viernes:</strong> 8:00 AM - 6:00 PM
                   </p>
-                </div>
-
-                <!-- Horarios -->
-                <div
-                  class="p-4 bg-white rounded shadow-sm border-start border-primary border-4"
-                >
-                  <h5 class="fw-semibold text-primary mb-3">
-                    <i class="fa-solid fa-clock me-2"></i>Horarios de Atención
-                  </h5>
-                  <ul class="list-unstyled text-muted mb-0">
-                    <li class="mb-2">
-                      <strong>Lunes a Viernes:</strong> 8:00 AM - 6:00 PM
-                    </li>
-                    <li class="mb-2">
-                      <strong>Sábados:</strong> 9:00 AM - 4:00 PM
-                    </li>
-                    <li><strong>Domingos y Festivos:</strong> Cerrado</li>
-                  </ul>
-                </div>
+                  <p class="mb-0">
+                    <strong>Sábados:</strong> 9:00 AM - 4:00 PM
+                  </p>
+                  <p><strong>Domingos y Festivos:</strong> Cerrado</p>
               </div>
             </div>
-
-            <!-- Columna Derecha: Google Maps Responsivo -->
-            <div class="col-12 col-md-6">
+            <div class="col-md-6">
               <div
-                class="ratio ratio-4x3 shadow-sm rounded overflow-hidden h-100"
+                class="h-20"
               >
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.0617377041725!2d-74.2215888!3d4.5834167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDM1JzAwLjMiTiA3NMMwMTMnMTcuNyJX!5e0!3m2!1ses!2sco!4v1710000000000!5m2!1ses!2sco"
-                  style="border: 0; min-height: 300px"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                >
-                </iframe>
+              <div class="mapa-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.2614857367814!2d-74.21789329908684!3d4.585776308800547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9fd5f8329ebf%3A0xe24729a4d3b22890!2sCl.%2015a%20%23%2011A-68%2C%20Soacha%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1782761193677!5m2!1ses-419!2sco" style="border: 0" width="100%" height="450px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
               </div>
             </div>
           </div>
@@ -294,15 +262,12 @@
       </div>
     </footer>
 
-    <!-- Verificación de Usuario -->
     <script src="src/js/index.js"></script>
-    <!-- BootStrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <!-- Alarmas -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

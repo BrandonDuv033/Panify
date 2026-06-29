@@ -161,14 +161,15 @@ body {
 }
 
 /* Productos */
-.header-productos {
+.header-productos,
+.header-visita {
   max-width: 600px;
   margin: 0 auto;
 }
 
 .subtitulo-decorativo {
   color: #ffc107;
-  font-size: 0.85rem;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
@@ -176,9 +177,10 @@ body {
   margin-bottom: 6px;
 }
 
-.header-productos h2 {
+.header-productos h2,
+.header-visita h2 {
   color: #fffaf4;
-  font-size: 2.5rem;
+  font-size: 40px;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 15px;
@@ -192,9 +194,10 @@ body {
   border-radius: 2px;
 }
 
-.lead-productos {
+.lead-productos,
+.lead-visita {
   color: #f7ebe1;
-  font-size: 1.05rem;
+  font-size: 17px;
   line-height: 1.6;
   opacity: 0.9;
 }
@@ -228,7 +231,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 1.8rem 1.2rem;
+  padding: 39px 19px;
   height: 100%;
 }
 
@@ -245,7 +248,7 @@ body {
 .tarjeta h3 {
   color: #fffaf4;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 20.8px;
   margin-top: 0;
   margin-bottom: 12px;
   width: 100%;
@@ -274,8 +277,20 @@ body {
   background-color: #33261d;
 }
 
-.visita .text-muted{
+.visita h5 {
+  color: var(--color-dorado);
+  text-transform: uppercase;
+}
+
+.visita p {
   color: #f7ebe1;
+}
+
+.mapa-container iframe{
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 /* Footer */
@@ -310,11 +325,11 @@ footer {
 @media (max-width: 991.98px) {
   .navbar-nav {
     text-align: center;
-    padding: 1.5rem 0;
+    padding: 24px 0;
   }
 
   .navbar-nav.gap-5 {
-    gap: 1.5rem !important;
+    gap: 24px !important;
   }
 
   .btn-login-nav {
