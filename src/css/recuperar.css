@@ -9,43 +9,6 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--fuente-principal);
-  background-color: var(--color-claro);
-  color: var(--color-oscuro);
-  line-height: 1.6;
-}
-
-/* Barra de Navegación */
-
-.logo {
-  height: 35px;
-  width: 50px;
-}
-
-.marca {
-  font-weight: 640;
-  color: #411d11;
-}
-
-.marca-dos {
-  color: #ebbd65;
-}
-
-.navbar-panify {
-  position: sticky;
-  background-color: white;
-  padding: 10px p;
-  top: 0;
-  border-bottom: solid var(--color-secundario) 1px;
-  z-index: 1000;
-}
 .banner {
   height: 70vh;
   background-image:

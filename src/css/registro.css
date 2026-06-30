@@ -9,43 +9,6 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--fuente-principal);
-  background-color: var(--color-claro);
-  color: var(--color-oscuro);
-  line-height: 1.6;
-}
-
-/* Barra de Navegación */
-
-.logo {
-  height: 35px;
-  width: 50px;
-}
-
-.marca {
-  font-weight: 640;
-  color: #411d11;
-}
-
-.marca-dos {
-  color: #ebbd65;
-}
-
-.navbar-panify {
-  position: sticky;
-  background-color: white;
-  padding: 10px p;
-  top: 0;
-  border-bottom: solid var(--color-secundario) 1px;
-  z-index: 1000;
-}
 .banner {
   height: 70vh;
   background-image:
@@ -66,6 +29,7 @@ body {
   
   
 }
+
 .banner::after {
     content: "";
     position: absolute;
@@ -109,6 +73,7 @@ body {
 /* Banner */
 
 .banner {
+  margin-top: 10vh;
   height: 80vh;
   background-image:
     linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)),
@@ -122,36 +87,6 @@ body {
   flex-direction: row;
   padding: 0 70px;
 }
-
-/* Footer */
-
-footer {
-  background-color: var(--color-oscuro);
-  color: #a19285;
-  padding: 40px 20px;
-
-}
-
-.footer-logo {
-  color: var(--color-blanco);
-  font-size: 20px;
-  font-weight: bold;
-  text-align: left;
-  padding-top: 30px;
-}
-
-.footer-info p {
-  font-size: 14px;
-}
-
-.footer-rights {
-  border-top: 1px solid #3d2b1b;
-  padding-top: 20px;
-  margin-top: 20px;
-  font-size: 12px;
-}
-
-
 
 .btn-login-ingresar{
 border-radius: 20px;
@@ -177,6 +112,7 @@ color: white;
     background: #fff;
     padding: 40px;
     margin: solid black;
+    margin-top: 10vh;
 }
 
 .modal-login{
