@@ -2,19 +2,24 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panify - Distribuidora de Pan</title>
     <link rel="icon" href="/src/img/Icono Panify.png" type="image/png" />
-    <!-- BootStrap -->
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <!-- CSS -->
-     <link rel="stylesheet" href="../src/css/index.css">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <link rel="stylesheet" href="../src/css/productos.css" />
+    <link rel="stylesheet" href="../src/css/index.css" />
   </head>
   <body>
     <header>
@@ -22,7 +27,7 @@
         <div class="container">
           <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-3">
             <img
-              src="/src/img/Logo Panify.png"
+              src="../src/img/Logo Panify.png"
               alt="Logo Panify"
               class="logo"
             />
@@ -38,12 +43,10 @@
           <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-5">
               <li class="nav-item">
-                <a class="nav-link opcion-menu" href="/index.html">Inicio</a>
+                <a class="nav-link opcion-menu" href="../index.html">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link opcion-menu" href="/client/productos.html"
-                  >Productos</a
-                >
+                <a class="nav-link opcion-menu" href="#">Productos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link opcion-menu" href="#">Contáctenos</a>
@@ -54,6 +57,7 @@
                   data-bs-toggle="modal"
                   data-bs-target="#loginModal"
                 >
+                  <i class="fa-solid fa-right-from-bracket me-1"></i>
                   Ingresar
                 </button>
               </li>
@@ -70,13 +74,13 @@
             <h2 class="modal-title w-100 text-center">Iniciar Sesión</h2>
             <button
               type="button"
-              class="btn-close"
+              class="btn-close btn-close-white"
               data-bs-dismiss="modal"
             ></button>
           </div>
           <div class="modal-body">
             <form action="">
-              <div class="mb-3">
+              <div class="mb-3 text-white">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <div class="input-group">
                   <span class="input-group-text">
@@ -92,8 +96,8 @@
                 </div>
               </div>
 
-              <div class="mb-4">
-                <label for="password" class="form-label"> Contraseña </label>
+              <div class="mb-4 text-white">
+                <label for="password" class="form-label">Contraseña</label>
                 <div class="input-group">
                   <span class="input-group-text">
                     <i class="fa-solid fa-key"></i>
@@ -112,7 +116,7 @@
                 Ingresar
               </button>
 
-              <div class="d-flex justify-content-between mt-3 mb-3">
+              <div class="d-flex justify-content-between mt-4 mb-3">
                 <a href="#" class="link-login">¿Olvidaste tu contraseña?</a>
                 <a href="registro.html" class="link-login">Regístrate</a>
               </div>
@@ -123,16 +127,11 @@
     </div>
 
     <main class="container py-5">
-      <!-- Título de la página -->
-      <div class="text-center mb-5">
-        <h1>Nuestros Productos</h1>
-
-        <p class="text-muted">
-          Escoge tus productos favoritos y agrégalos al carrito.
-        </p>
+      <div class="text-center text-white mb-5 header">
+        <h2>Nuestros Productos</h2>
+        <p>Escoge tus productos favoritos y agrégalos al carrito.</p>
       </div>
 
-      <!-- Barra de búsqueda -->
       <div class="row mb-4">
         <div class="col-md-8">
           <input
@@ -152,63 +151,84 @@
         </div>
       </div>
 
-      <!-- Aquí aparecerán los productos -->
-      <div class="row" id="listaProductos"></div>
-      <div class="col-lg-4">
-        <div class="card shadow">
-          <div class="card-header">
-            <h4>
-              <i class="fa-solid fa-cart-shopping"></i>
-              Carrito
-            </h4>
-          </div>
+      <div class="row">
+        <div class="col-lg-8 row" id="listaProductos"></div>
 
-          <div class="card-body" id="carrito">
-            <p class="text-center text-muted">El carrito está vacío.</p>
-          </div>
+        <div class="col-lg-4">
+          <div class="p-4 tarjeta shadow carrito bg-white rounded ms-4">
+            <div class="tarjeta-header mb-3">
+              <h4>
+                <i class="fa-solid fa-cart-shopping"></i>
+                Carrito
+              </h4>
+            </div>
 
-          <div class="card-footer">
-            <button class="btn btn-danger w-100 mt-2" onclick="vaciarCarrito()">
-              Vaciar carrito
-            </button>
-            <h5>
-              Total:
-              <span id="total">$ 0</span>
-            </h5>
-            <button
-              class="btn btn-success w-100 mt-2"
-              onclick="finalizarCompra()"
-            >
-              Finalizar compra
-            </button>
-            <button
-              class="btn btn-primary w-100 mt-2"
-              onclick="generarRecibo()"
-            >
-              Generar recibo
-            </button>
+            <div class="tarjeta-body" id="carrito">
+              <p class="text-center text-muted">El carrito está vacío.</p>
+            </div>
+
+            <div class="tarjeta-footer border-top pt-3 mt-3">
+              <button
+                class="btn btn-danger w-100 mb-2"
+                onclick="vaciarCarrito()"
+              >
+                Vaciar carrito
+              </button>
+              <h5>
+                Total:
+                <span id="total">$ 0</span>
+              </h5>
+              <button
+                class="btn btn-success w-100 mt-2"
+                onclick="finalizarCompra()"
+              >
+                Finalizar compra
+              </button>
+              <button
+                class="btn btn-primary w-100 mt-2"
+                onclick="generarRecibo()"
+              >
+                Generar recibo
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <!-- RECIBO DE COMPRA -->
-      <div id="recibo" class="card mt-3 p-3 d-none">
+
+      <div
+        id="recibo"
+        class="tarjeta mt-3 p-3 d-none bg-light rounded shadow-sm"
+      >
         <h4>Recibo de compra</h4>
-
         <div id="reciboDetalle"></div>
-
-        <h5 id="reciboTotal"></h5>
+        <h5 id="reciboTotal" class="mt-2"></h5>
       </div>
     </main>
 
+    <footer id="contacto">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md-9 footer-logo">
+            Panify - Distribuciones Oro Pan
+          </div>
+          <div class="col-md-3 foter-info">
+            <p>3315796 | ADSO - Grupo 4</p>
+            <p>SENA - Centro de Formación</p>
+          </div>
+        </div>
+        <div class="row text-center footer-rights">
+          <div class="col-md-12">
+            &copy; 2026 Panify. Todos los derechos reservados.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/src/js/client/productos.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://kit.fontawesome.com/a0994db117.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/src/js/client/productos.js"></script>
   </body>
 </html>
