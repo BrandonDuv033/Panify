@@ -44,7 +44,7 @@ body {
 
 .nav-link {
   font-weight: 620;
-  color: white;
+  color: var(--color-blanco);
   transition: color 0.5s;
 }
 
@@ -274,6 +274,7 @@ body {
 /* Visitanos */
 
 .visita {
+  max-height: 107vh;
   background-color: #33261d;
 }
 
@@ -299,7 +300,6 @@ footer {
   background-color: var(--color-oscuro);
   color: #a19285;
   padding: 40px 20px;
-  margin-top: 60px;
   border-top: solid #e5aa3c96 1px;
 }
 
