@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("¡El archivo JS cargó correctamente!");
 
-  // Lógica del Login
   const btnIngresar = document.querySelector(".btn-login-ingresar");
   if (btnIngresar) {
     btnIngresar.addEventListener("click", function (event) {
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
           title: "¡Bienvenido!",
           text: "Redireccionando...",
         }).then(() => {
-          window.location.href = "admin/dashboard.html";
+          window.location.href = "admin/usuarios.html";
         });
       } else if (email === "user@panify.com" && password === "12345") {
         Swal.fire({

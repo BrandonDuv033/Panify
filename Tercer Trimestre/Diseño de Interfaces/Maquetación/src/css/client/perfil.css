@@ -1,0 +1,124 @@
+:root {
+  --panify-bg-warm: #fcf9f4;
+  --panify-primary: #e65c00;
+  --panify-primary-hover: #cc5200;
+  --panify-navbar: #f8efe0;
+  --panify-text: #2d2621;
+  --color-dorado: #e65c00; /* Tu variable personalizada */
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  background-color: var(--panify-bg-warm);
+  color: var(--panify-text);
+}
+
+/* Estructura de Panel Lateral (Estilo GitHub) */
+.sidebar-menu {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--panify-text);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(230, 92, 0, 0.05);
+  color: var(--panify-primary);
+}
+
+.sidebar-link.active {
+  background-color: var(--panify-primary);
+  color: white;
+}
+
+/* Tarjeta de Formulario Principal */
+.profile-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+/* Zona de Foto de Perfil */
+.avatar-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.avatar-profile {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit-avatar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  color: var(--panify-text);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.btn-edit-avatar:hover {
+  background-color: #f8f9fa;
+  color: var(--panify-primary);
+  transform: scale(1.05);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--panify-primary);
+  box-shadow: 0 0 0 0.25xlrem rgba(230, 92, 0, 0.15);
+}
+
+.btn-guardar {
+  background-color: var(--panify-primary);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-guardar:hover {
+  background-color: var(--panify-primary-hover);
+  color: white;
+}
