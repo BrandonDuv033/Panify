@@ -321,3 +321,134 @@ body {
     font-size: 0px;
   }
 }
+
+/* ESTILOS DE TABLA - Basados en recibos.css */
+.panel {
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eef2f5;
+  transition: all 0.3s ease;
+}
+
+.panel p {
+  color: #7a6b5e;
+  font-size: 15px;
+}
+
+.cabecera-tabla h2,
+.reporte h2 {
+  font-weight: 700;
+  color: var(--color-oscuro);
+  margin-bottom: 4px;
+}
+
+/* Customización de la Tabla */
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eef2f5;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  width: 100%;
+}
+
+#tablaUsuarios {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+#tablaUsuarios thead th {
+  background-color: #3d2314;
+  color: white;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 14px;
+}
+
+#tablaUsuarios tbody td {
+  background-color: #fdfbf7;
+  padding: 12px 14px;
+  color: black;
+  font-size: 0.95rem;
+}
+
+#tablaUsuarios tbody tr:hover td {
+  background-color: rgba(212, 175, 55, 0.12);
+  transition: background-color 0.3s ease;
+}
+
+/* Botones de Acción */
+.btn-outline-primary {
+  border-color: #e67e22;
+  color: #e67e22;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #e67e22;
+  border-color: #e67e22;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(230, 126, 34, 0.2);
+}
+
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+}
+
+/* Customización estética de DataTables */
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-left: 0.5em;
+  outline: none;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.page-item.active .page-link {
+  background-color: #e67e22 !important;
+  border-color: #e67e22 !important;
+  color: white !important;
+}
+
+.page-link {
+  color: #2c3e50;
+}
+
+.dataTables_length select,
+.dt-length select,
+select.dt-input {
+  min-width: 70px !important;
+  padding: 8px 30px 8px 12px !important;
+  font-size: 1rem !important;
+  height: auto !important;
+  display: inline-block !important;
+  cursor: pointer;
+  margin-left: 10px;
+  text-align: center;
+}

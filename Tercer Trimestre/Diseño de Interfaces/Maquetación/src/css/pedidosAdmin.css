@@ -9,12 +9,6 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 .mapa {
   width: 80%;
   background-color: white;
@@ -54,7 +48,96 @@
   color: white;
 }
 
---Modal
+/* Tablas estilo recibos */
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eef2f5;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  width: 100%;
+}
+
+#tablaPedidos {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+#tablaPedidos thead th {
+  background-color: #3d2314;
+  color: white;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 14px;
+}
+
+#tablaPedidos tbody td {
+  background-color: #fdfbf7;
+  padding: 12px 14px;
+  color: black;
+  font-size: 0.95rem;
+}
+
+#tablaPedidos tbody tr:hover td {
+  background-color: rgba(212, 175, 55, 0.12);
+  transition: background-color 0.3s ease;
+}
+
+/* Columna Acciones más grande */
+#tablaPedidos th:last-child,
+#tablaPedidos td:last-child {
+  min-width: 140px;
+}
+
+#tablaPedidos .btn-detalle {
+  min-width: 100px;
+  padding: 8px 12px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-left: 0.5em;
+  outline: none;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.page-item.active .page-link {
+  background-color: #e67e22 !important;
+  border-color: #e67e22 !important;
+  color: white !important;
+}
+
+.page-link {
+  color: #2c3e50;
+}
+
+.dataTables_length select,
+.dt-length select,
+select.dt-input {
+  min-width: 70px !important;
+  padding: 8px 30px 8px 12px !important;
+  font-size: 1rem !important;
+  height: auto !important;
+  display: inline-block !important;
+  cursor: pointer;
+  margin-left: 10px;
+  text-align: center;
+}
+
+/* Modal */
 
 .btn-actualizar-nav:hover{
     background-color: var(--color-blanco);
