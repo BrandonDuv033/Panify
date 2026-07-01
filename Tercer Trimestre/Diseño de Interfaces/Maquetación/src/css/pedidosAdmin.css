@@ -1,46 +1,89 @@
-/* Estilos para badges de estado */
-.badge-pendiente {
-  background-color: #fff3cd;
-  color: #856404;
-  font-weight: bold;
-  padding: 6px 10px;
-  border-radius: 4px;
+:root {
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-oscuro: #2b1e13;
+  --color-claro: #fdfbf7;
+  --color-blanco: #ffffff;
+  --fuente-principal:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.badge-preparacion {
-  background-color: #d1ecf1;
-  color: #0c5460;
-  font-weight: bold;
-  padding: 6px 10px;
-  border-radius: 4px;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.badge-camino {
-  background-color: #cce5ff;
-  color: #004085;
-  font-weight: bold;
-  padding: 6px 10px;
-  border-radius: 4px;
+.mapa {
+  width: 80%;
+  background-color: white;
+  border-radius: 24px;
+  padding: 24px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  box-shadow: 0 10px 250px rgba(0, 0, 0, 0.06);
+  border-bottom: 5px solid var(--color-principal);
 }
 
-.badge-entregado {
-  background-color: #d4edda;
-  color: #155724;
-  font-weight: bold;
-  padding: 6px 10px;
-  border-radius: 4px;
+.resumenDia{
+    margin: auto;
+    background-color: var(--color-principal);
+    width: 570px;
+    height: 60px;
+    color: var(--color-claro);
+    border-radius: 20px;
+    
 }
 
-/* Tablas y botones */
-.table th {
-  font-weight: 600;
-  font-size: 0.9rem;
+.titulo-mapa{
+    color: var(--color-principal);
+    font-weight: 700;
+    
 }
 
-.table td {
-  font-size: 0.95rem;
+.btn-detalle {
+  color: var(--color-secundario);
+  background: #fffdf0;
+  border: 1px solid #f3ebd0;
+}
+.btn-detalle:hover {
+  background: #d4af37;
+  color: white;
 }
 
-.btn-group .btn {
-  transition: all 0.2s ease;
+--Modal
+
+.btn-actualizar-nav:hover{
+    background-color: var(--color-blanco);
+    color: var(--rojo);
+    border: 1px solid var(--rojo);
+}
+
+.modal-actualizar{
+    background-color: var(--color-blanco);
+    border-radius: 12px;
+}
+
+.modal-actualizar h2{
+    color: var(--negro);
+    font-weight: 700;
+}
+
+.btn-actualizar{
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.btn-actualizar:hover{
+    background-color: var(--color-principal);
+    color: #fffceb;
+}
+
+.detalles{
+    font-family: var(--fuente-principal);
 }
