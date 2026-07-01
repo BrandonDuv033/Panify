@@ -1,28 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panify distribuidora de oro pan</title>
-    <link   rel="icon" href="src/img/Icono Panify.png" type="image/png">
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autenticación - Oro Pan</title>
+    <link rel="icon" href="../src/img/Icono Panify.png" type="image/png" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    
-    <link rel="stylesheet" href="src/css/registro.css" />
-    <link rel="stylesheet" href="src/css/index.css" />
-</head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script
+      src="https://kit.fontawesome.com/a0994db117.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../src/css/registro.css" />
+    <link rel="stylesheet" href="../src/css/index.css" />
+  </head>
 
-<body>
+  <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-panify">
         <div class="container">
           <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-3">
-            <img src="src/img/Logo Panify.png" alt="Logo Panify" class="logo" />
+            <img
+              src="../src/img/Logo Panify.png"
+              alt="Logo Panify"
+              class="logo"
+            />
           </a>
           <button
             class="navbar-toggler"
@@ -61,70 +71,52 @@
       </nav>
     </header>
 
-
-
-
-
-
-<div class="contenedor">
-    <section class="banner"></section>
-    <div class="form">
-        
-    
-    <div class="modal-content modal-registro">
-        <form id="formRecuperar">
-
-        <div class="text-center mb-4">
-            <div class="icono-recuperar">
-                <i class="bi bi-shield-lock-fill"></i>
+    <div class="contenedor">
+      <section class="banner"></section>
+      <div class="formulario">
+        <div class="modal-content modal-registro">
+          <form id="formRecuperar">
+            <div class="text-center mb-4">
+              <h2 class="text-white">
+                <i class="bi bi-shield-lock-fill me-2"></i>Recuperar Contraseña
+              </h2>
+              <p class="texto-recuperar">
+                No te preocupes, todos olvidamos cosas.<br />
+                Ingresa tu correo electrónico y te enviaremos<br />
+                un enlace para restablecer tu contraseña.
+              </p>
             </div>
 
-            <h2>Recuperar Contraseña</h2>
-
-            <p class="texto-recuperar">
-                No te preocupes, todos olvidamos cosas.<br>
-                Ingresa tu correo electrónico y te enviaremos<br>
-                un enlace para restablecer tu contraseña.
-            </p>
-        </div>
-      
-        
-                   <div class="mb-3">
-                    <label for="">Correo Electronico</label>
-                    <div class="input-group">
-                      <span class="input-group-text">
-                        <i class="bi bi-envelope-fill"></i>
-                      </span>
-                    
-                  
-                    <input
-                    type="email"
-                    class="form-control "
-                    id="correo"
-                    placeholder="Correo usuario"
-                    required
-                  />
-                  </div>
-                  </div>
-        <button
-            type="submit"
-            class="btn btn-login-ingresar w-100 mb-3">
-            Enviar enlace de recuperacion
-        </button>
-
-          <div class="d-flex justify-content-between mt-3">
-            <a href="index.html" class="link-login">Volver al inicio</a>
+            <div class="mb-3">
+              <label for="correo" class="form-label">Correo Electrónico</label>
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-envelope-fill"></i>
+                </span>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="correo"
+                  placeholder="Correo usuario"
+                  required
+                />
               </div>
-          </div>
+            </div>
 
-        </form>
+            <button type="submit" class="btn btn-login-ingresar w-100 mb-3" id="recuperar">
+              Enviar enlace de recuperación
+            </button>
+
+            <div class="d-flex justify-content-between mt-3">
+              <a href="../index.html" class="link-login"
+                ><i class="fa-solid fa-house me-2"></i>Volver al inicio</a
+              >
+            </div>
+          </form>
+        </div>
       </div>
-
     </div>
-  </div>    
-             
-</div>
-        
+
     <footer id="contacto">
       <div class="container">
         <div class="row text-center g-4">
@@ -142,15 +134,14 @@
           </div>
         </div>
       </div>
-      
-    
-</body>
-<script
+    </footer>
+
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
-      
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="src/js/recuperar.js"></script>
+    <script src="../src/js/recuperar.js"></script>
+  </body>
 </html>

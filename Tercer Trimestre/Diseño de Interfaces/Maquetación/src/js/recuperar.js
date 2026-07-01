@@ -19,7 +19,7 @@ formulario.addEventListener("submit", function (e) {
         title: "Correo enviado",
         text: "Revisa tu correo para recuperar la contraseña."
     }).then(() => {
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
     });
 
 });

@@ -18,7 +18,7 @@ formulario.addEventListener("submit", function (e) {
             icon: "success",
             title: "Registro exitoso"
         }).then(() => {
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         });
     }
 });
