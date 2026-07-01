@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panify - Editar Perfil</title>
+    <link rel="icon" href="../src/img/Icono Panify.png" type="image/png" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+
+    
+    <style>
+      :root {
+        --panify-bg-warm: #fcf9f4;
+        --panify-primary: #e65c00;
+        --panify-primary-hover: #cc5200;
+        --panify-navbar: #f8efe0;
+        --panify-text: #2d2621;
+        --color-dorado: #e65c00; /* Tu variable personalizada */
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background-color: var(--panify-bg-warm);
+        color: var(--panify-text);
+      }
+
+      /* Estructura de Panel Lateral (Estilo GitHub) */
+      .sidebar-menu {
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        padding: 8px;
+      }
+
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        color: var(--panify-text);
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .sidebar-link:hover {
+        background-color: rgba(230, 92, 0, 0.05);
+        color: var(--panify-primary);
+      }
+
+      .sidebar-link.active {
+        background-color: var(--panify-primary);
+        color: white;
+      }
+
+      /* Tarjeta de Formulario Principal */
+      .profile-card {
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      }
+
+      /* Zona de Foto de Perfil */
+      .avatar-container {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+      }
+
+      .avatar-profile {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-edit-avatar {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        color: var(--panify-text);
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+      }
+
+      .btn-edit-avatar:hover {
+        background-color: #f8f9fa;
+        color: var(--panify-primary);
+        transform: scale(1.05);
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--panify-primary);
+        box-shadow: 0 0 0 0.25xlrem rgba(230, 92, 0, 0.15);
+      }
+
+      .btn-guardar {
+        background-color: var(--panify-primary);
+        color: white;
+        font-weight: 600;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .btn-guardar:hover {
+        background-color: var(--panify-primary-hover);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-panify py-3 shadow-sm">
+        <div class="container">
+          <a
+            href="../index-cliente.html"
+            class="navbar-brand d-flex align-items-center"
+          >
+            <img
+              src="../src/img/Logo Panify.png"
+              alt="Panify"
+              style="max-height: 45px"
+            />
+          </a>
+
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuPanify"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="menuPanify">
+            <ul
+              class="navbar-nav ms-auto align-items-center gap-2 mt-3 mt-lg-0"
+            >
+              <li class="nav-item">
+                <a class="nav-link-custom" href="../index-cliente.html"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link-custom" href="productos.html">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link-custom" href="#">Contáctenos</a>
+              </li>
+
+              <div
+                class="d-none d-lg-block border-start mx-2"
+                style="
+                  height: 24px;
+                  border-color: rgba(0, 0, 0, 0.1) !important;
+                "
+              ></div>
+
+              <li class="nav-item dropdown w-100 text-center text-lg-start">
+                <a
+                  class="nav-link dropdown-toggle nav-link-custom d-inline-flex align-items-center gap-2 show"
+                  href="#"
+                  id="userMenu"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="true"
+                >
+                  <i class="fa-regular fa-circle-user fs-5"></i>
+                  <span>Mi Cuenta</span>
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2 rounded-3"
+                  aria-labelledby="userMenu"
+                >
+                  <li class="px-3 py-2 border-bottom">
+                    <span class="d-block small text-muted"
+                      >Sesión iniciada</span
+                    >
+                    <strong class="text-dark">Cliente Mayorista</strong>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item py-2 active bg-light text-dark fw-bold"
+                      href="#"
+                    >
+                      <i class="fa-regular fa-id-card me-2 text-warning"></i>
+                      Datos Personales
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2" href="pedidos.html">
+                      <i class="fa-solid fa-boxes-stacked me-2 text-muted"></i>
+                      Todos mis Pedidos
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a
+                      class="dropdown-item py-2 text-danger"
+                      href="../index.html"
+                    >
+                      <i class="fa-solid fa-power-off me-2"></i> Cerrar Sesión
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-3">
+          <div class="sidebar-menu shadow-sm">
+            <div
+              class="px-3 py-2 mb-2 border-bottom text-muted small fw-bold text-uppercase"
+            >
+              Configuración
+            </div>
+            <a href="#" class="sidebar-link active">
+              <i class="fa-regular fa-user fs-5"></i>
+              <span>Perfil Público</span>
+            </a>
+            <a href="pedidos.html" class="sidebar-link">
+              <i class="fa-solid fa-clock-rotate-left fs-5"></i>
+              <span>Historial de Pedidos</span>
+            </a>
+            <a href="#" class="sidebar-link">
+              <i class="fa-solid fa-shield-halved fs-5"></i>
+              <span>Seguridad</span>
+            </a>
+            <a href="#" class="sidebar-link text-danger mt-2">
+              <i class="fa-solid fa-right-from-bracket fs-5"></i>
+              <span>Cerrar Sesión</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-9">
+          <div class="profile-card p-4 p-md-5">
+            <div class="border-bottom pb-3 mb-4">
+              <h3 class="fw-bold text-dark m-0">Perfil Público</h3>
+              <p class="text-muted small m-0 mt-1">
+                Gestiona la información de contacto de tu cuenta para la entrega
+                de pedidos de la Fábrica de Pan.
+              </p>
+            </div>
+
+            <div class="row g-5 flex-column-reverse flex-md-row">
+              <div class="col-md-8">
+                <form id="formPerfil" class="d-flex flex-column gap-3">
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label class="form-label fw-semibold text-dark small"
+                        >Nombres</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control p-2.5"
+                        placeholder="Tus nombres"
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label fw-semibold text-dark small"
+                        >Apellidos</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control p-2.5"
+                        placeholder="Tus apellidos"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="form-label fw-semibold text-dark small"
+                      >Correo Electrónico Público</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control p-2.5"
+                      placeholder="ejemplo@correo.com"
+                    />
+                    <div class="form-text text-muted small">
+                      Este correo se usará para el envío automático de los
+                      recibos de tus compras.
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label class="form-label fw-semibold text-dark small"
+                        >Número de Teléfono</label
+                      >
+                      <input
+                        type="tel"
+                        class="form-control p-2.5"
+                        placeholder="Celular de contacto"
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label fw-semibold text-dark small"
+                        >Tipo de Cliente</label
+                      >
+                      <select class="form-select p-2.5" disabled>
+                        <option value="mayorista" selected>
+                          Cliente Mayorista (Distribuidor)
+                        </option>
+                        <option value="frecuente">Cliente Frecuente</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="border-top pt-4 mt-2">
+                    <button type="submit" class="btn btn-guardar shadow-sm">
+                      Guardar Cambios
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="col-md-4 text-center">
+                <label
+                  class="form-label fw-semibold text-dark small d-block mb-3"
+                  >Foto de Perfil</label
+                >
+                <div class="avatar-container mb-3">
+                  <img
+                    src="../src/img/Avatar-Manga.png"
+                    alt="Foto de perfil"
+                    class="avatar-profile"
+                    id="vistaPrevia"
+                  />
+                  <label
+                    href="#"
+                    class="btn-edit-avatar"
+                    style="cursor: pointer"
+                    title="Editar foto"
+                  >
+                    <i class="fa-solid fa-camera"></i>
+                    <input
+                      type="file"
+                      id="inputAvatar"
+                      class="d-none"
+                      accept="image/*"
+                    />
+                  </label>
+                </div>
+                <span class="text-muted small d-block"
+                  >Haz clic en el icono de la cámara para cambiar la imagen de
+                  tu avatar.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="mt-5 py-4 bg-white border-top">
+      <div class="container text-center text-secondary small">
+        <p class="m-0 fw-semibold text-dark">Panify - Distribuciones Oro Pan</p>
+        <p class="m-0 text-muted mt-1">ADSO - Centro de Formación SENA</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

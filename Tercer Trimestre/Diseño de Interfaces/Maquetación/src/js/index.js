@@ -27,6 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }).then(() => {
           window.location.href = "admin/dashboard.html";
         });
+      } else if (email === "user@panify.com" && password === "12345") {
+        Swal.fire({
+          icon: "success",
+          title: "¡Bienvenido!",
+          text: "Redireccionando...",
+        }).then(() => {
+          window.location.href = "client/inicio.html";
+        });
       } else {
         Swal.fire({
           icon: "error",
