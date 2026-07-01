@@ -1,6 +1,6 @@
 $(document).ready(function () {
   // Inicializar DataTable en español
-  $("#tablaRecibos").DataTable({
+  $("#tablaRecibos, #tablaUsuarios").DataTable({
     language: {
       url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
     },
