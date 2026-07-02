@@ -10,7 +10,7 @@ $(document).ready(function () {
     $("#sidebarOverlay").fadeOut();
   });
 
-  // Inicializar DataTable (si no está ya inicializada)
+  // Inicializar DataTable
   if (!$.fn.DataTable.isDataTable("#tablaUsuarios")) {
     $("#tablaUsuarios").DataTable({
       pageLength: 10,
@@ -35,14 +35,11 @@ $(document).ready(function () {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Eliminar la fila con animación
         row.fadeOut(300, function () {
           $(this).remove();
-          // Redraw DataTable after row removal
           $("#tablaUsuarios").DataTable().row.remove().draw();
         });
 
-        // Mostrar mensaje de éxito
         Swal.fire({
           title: "Eliminado",
           text: `${userName} ha sido eliminado correctamente.`,

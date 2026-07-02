@@ -3,36 +3,37 @@
   --panify-primary: #e65c00;
   --panify-primary-hover: #cc5200;
   --panify-navbar: #f8efe0;
-  --panify-text: #2d2621;
-  --color-dorado: #e65c00;
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-dorado: #e5a93c;
+  --color-oscuro: #2b1e13;
+  --color-fondo: #33261d;
+  --color-claro: #3d2b1f;
+  --color-blanco: #ffffff;
+  --color-crema: #f5ebe0;
+  --color-texto: #fffaf4;
+  --fuente-principal:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 body {
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  font-family: var(--fuente-principal);
   background-color: var(--panify-bg-warm);
-  color: var(--panify-text);
 }
 
 main {
   margin-top: 10vh;
 }
 
-/* Estructura de Panel Lateral (Estilo GitHub) */
+.config {
+  color: #fffaf4;
+}
+
 .sidebar-menu {
-  background: #ffffff;
+  background: var(--color-fondo);
+  border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 12px;
   padding: 8px;
 }
 
@@ -41,29 +42,45 @@ main {
   align-items: center;
   gap: 10px;
   padding: 10px 16px;
-  color: var(--panify-text);
+  color: var(--color-texto);
   text-decoration: none;
   font-weight: 500;
-  border-radius: 8px;
   transition: all 0.2s ease;
 }
 
 .sidebar-link:hover {
-  background-color: rgba(230, 92, 0, 0.05);
-  color: var(--panify-primary);
+  background-color: var(--color-oscuro);
+  color: var(--color-blanco);
 }
 
 .sidebar-link.active {
-  background-color: var(--panify-primary);
-  color: white;
+  background-color: var(--color-oscuro);
+  color: var(--color-blanco);
 }
 
-/* Tarjeta de Formulario Principal */
+.logout-side {
+  color: var(--color-secundario);
+}
+
+.logout-side:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-blanco);
+}
+
+/* Formulario */
 .profile-card {
-  background: #ffffff;
+  background: var(--color-fondo);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.profile-card h3, p, label, .small, .alt-text{
+  color: var(--color-texto) !important;
+}
+
+.profile-card label {
+  font-weight: bold;
 }
 
 /* Zona de Foto de Perfil */
@@ -113,8 +130,8 @@ main {
 }
 
 .btn-guardar {
-  background-color: var(--panify-primary);
-  color: white;
+  background-color: #e5aa3c96;
+  color: var(--color-blanco);
   font-weight: 600;
   border: none;
   padding: 10px 24px;
@@ -123,6 +140,6 @@ main {
 }
 
 .btn-guardar:hover {
-  background-color: var(--panify-primary-hover);
-  color: white;
+  background-color: var(--color-dorado);
+  color: var(--color-blanco);
 }

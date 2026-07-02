@@ -17,6 +17,7 @@
       src="https://kit.fontawesome.com/a0994db117.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="../src/css/client/client.css" />
     <link rel="stylesheet" href="../src/css/client/inicio.css" />
     <link rel="stylesheet" href="../src/css/index.css" />
   </head>
@@ -79,10 +80,8 @@
                   aria-labelledby="userMenu"
                 >
                   <li class="px-3 py-2 border-bottom">
-                    <span class="d-block small text-muted"
-                      >Sesión iniciada</span
-                    >
-                    <strong class="text-dark">Juan Peréz</strong>
+                    <span class="d-block small">Sesión iniciada</span>
+                    <strong class="">Juan Peréz</strong>
                   </li>
                   <li>
                     <a class="dropdown-item py-2" href="perfil.html">
@@ -98,10 +97,7 @@
                   </li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
-                    <a
-                      class="dropdown-item py-2 text-danger"
-                      href="../index.html"
-                    >
+                    <a class="dropdown-item py-2 logout" href="../index.html">
                       <i class="fa-solid fa-power-off me-2"></i>Cerrar Sesión
                     </a>
                   </li>
@@ -126,11 +122,11 @@
         <div class="col-lg-5">
           <div class="custom-card p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
-              <h5 class="fw-bold m-0 text-dark">
+              <h5 class="fw-bold m-0">
                 <i class="fa-solid fa-basket-shopping me-2"></i>Tu Carrito
               </h5>
               <span
-                class="badge bg-light text-dark border rounded-pill px-3 py-2 fw-semibold"
+                class="badge border rounded-pill px-3 py-2 fw-semibold text-white"
                 >2 Productos</span
               >
             </div>
@@ -141,9 +137,9 @@
               >
                 <div>
                   <h6 class="m-0 fw-semibold">Pan Blandito (Paquete x10)</h6>
-                  <small class="text-muted">Cantidad: 2</small>
+                  <small>Cantidad: 2</small>
                 </div>
-                <span class="fw-bold text-dark">$6.000</span>
+                <span class="fw-bold">$6.000</span>
               </div>
 
               <div
@@ -151,24 +147,24 @@
               >
                 <div>
                   <h6 class="m-0 fw-semibold">Pan Rollo (Paquete x5)</h6>
-                  <small class="text-muted">Cantidad: 1</small>
+                  <small>Cantidad: 1</small>
                 </div>
-                <span class="fw-bold text-dark">$4.000</span>
+                <span class="fw-bold">$4.000</span>
               </div>
             </div>
 
-            <div class="bg-light p-3 rounded-3 mb-4">
+            <div class="precio-container p-3 rounded-3 mb-4">
               <div
                 class="d-flex align-items-center justify-content-between mb-2"
               >
-                <span class="text-muted small">Subtotal</span>
-                <span class="text-dark fw-semibold">$10.000</span>
+                <span class="text-light small">Subtotal</span>
+                <span class="fw-semibold text-white">$10.000</span>
               </div>
               <div
-                class="d-flex align-items-center justify-content-between border-top pt-2"
+                class="d-flex align-items-center justify-content-between border-top text-white pt-2"
               >
-                <span class="fw-bold text-dark">Total Estimado</span>
-                <span class="fw-bold text-dark fs-5">$10.000</span>
+                <span class="fw-bold">Total Estimado</span>
+                <span class="fw-bold fs-5">$10.000</span>
               </div>
             </div>
 
@@ -184,7 +180,7 @@
         <div class="col-lg-7">
           <div class="custom-card p-4 h-100">
             <div class="d-flex align-items-center justify-content-between mb-4">
-              <h5 class="fw-bold m-0 text-dark">
+              <h5 class="fw-bold m-0">
                 <i class="fa-regular fa-bell me-2"></i>Estado de Pedidos
                 Recientes
               </h5>
@@ -201,16 +197,15 @@
               >
                 <div class="d-flex align-items-center gap-3">
                   <div
-                    class="bg-warning bg-opacity-10 p-2 text-warning rounded-3 text-center d-none d-sm-block"
-                    style="width: 45px; height: 45px"
+                    class="bg-status bg-warning bg-opacity-10 p-2 text-warning rounded-3 text-center d-none d-sm-block"
                   >
                     <i class="fa-solid fa-fire-burner fs-5 mt-1"></i>
                   </div>
                   <div>
                     <div class="d-flex align-items-center gap-2">
-                      <h6 class="m-0 fw-bold text-dark">Pedido #002</h6>
+                      <h6 class="m-0 fw-bold">Pedido #002</h6>
                     </div>
-                    <span class="text-muted small"
+                    <span class="text-white small"
                       >Fábrica de Pan • Hoy, 11:15 AM</span
                     >
                   </div>
@@ -227,16 +222,15 @@
               >
                 <div class="d-flex align-items-center gap-3">
                   <div
-                    class="bg-success bg-opacity-10 p-2 text-success rounded-3 text-center d-none d-sm-block"
-                    style="width: 45px; height: 45px"
+                    class="bg-status bg-success bg-opacity-10 p-2 text-success rounded-3 text-center d-none d-sm-block"
                   >
-                    <i class="fa-solid fa-truck-ramp-box fs-5 mt-1"></i>
+                    <i class="fa-solid fa-truck-ramp-box fs-5 mt-1 text-white"></i>
                   </div>
                   <div>
                     <div class="d-flex align-items-center gap-2">
-                      <h6 class="m-0 fw-bold text-dark">Pedido #001</h6>
+                      <h6 class="m-0 fw-bold">Pedido #001</h6>
                     </div>
-                    <span class="text-muted small"
+                    <span class="text-white small"
                       >Entregado por domiciliario • Ayer</span
                     >
                   </div>

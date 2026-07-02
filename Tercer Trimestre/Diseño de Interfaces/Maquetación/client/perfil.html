@@ -17,9 +17,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
     <link rel="stylesheet" href="../src/css/client/perfil.css" />
+    <link rel="stylesheet" href="../src/css/client/client.css" />
     <link rel="stylesheet" href="../src/css/index.css" />
   </head>
+
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-panify">
@@ -42,7 +45,7 @@
           <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-5">
               <li class="nav-item">
-                <a class="nav-link opcion-menu" href="#">Inicio</a>
+                <a class="nav-link opcion-menu" href="inicio.html">Inicio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link opcion-menu" href="productos.html"
@@ -54,6 +57,7 @@
                   >Contáctenos</a
                 >
               </li>
+
               <div
                 class="d-none d-lg-block border-start mx-2"
                 style="
@@ -79,29 +83,25 @@
                   aria-labelledby="userMenu"
                 >
                   <li class="px-3 py-2 border-bottom">
-                    <span class="d-block small text-muted"
-                      >Sesión iniciada</span
-                    >
-                    <strong class="text-dark">Juan Peréz</strong>
+                    <span class="s-i d-block small">Sesión iniciada</span>
+                    <strong>Juan Pérez</strong>
                   </li>
                   <li>
                     <a class="dropdown-item py-2" href="perfil.html">
-                      <i class="fa-regular fa-id-card me-2"></i>
-                      Datos Personales
+                      <i class="fa-regular fa-id-card me-2"></i> Datos
+                      Personales
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item py-2" href="pedidos.html">
-                      <i class="fa-solid fa-dolly me-2"></i>
-                      Historia de Pedidos
+                      <i class="fa-solid fa-dolly me-2"></i> Historia de Pedidos
                     </a>
                   </li>
-                  <li><hr class="dropdown-divider" /></li>
                   <li>
-                    <a
-                      class="dropdown-item py-2 text-danger"
-                      href="/index.html"
-                    >
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 logout" href="/index.html">
                       <i class="fa-solid fa-power-off me-2"></i>Cerrar Sesión
                     </a>
                   </li>
@@ -118,7 +118,7 @@
         <div class="col-lg-3">
           <div class="sidebar-menu shadow-sm">
             <div
-              class="px-3 py-2 mb-2 border-bottom text-muted small fw-bold text-uppercase"
+              class="px-3 py-2 mb-2 border-bottom small fw-bold text-uppercase config"
             >
               Configuración
             </div>
@@ -134,7 +134,7 @@
               <i class="fa-solid fa-shield-halved fs-5"></i>
               <span>Seguridad</span>
             </a>
-            <a href="/index.html" class="sidebar-link text-danger mt-2">
+            <a href="/index.html" class="sidebar-link mt-2 logout-side">
               <i class="fa-solid fa-right-from-bracket fs-5"></i>
               <span>Cerrar Sesión</span>
             </a>
@@ -144,8 +144,8 @@
         <div class="col-lg-9">
           <div class="profile-card p-4 p-md-5">
             <div class="border-bottom pb-3 mb-4">
-              <h3 class="fw-bold text-dark m-0">Perfil Público</h3>
-              <p class="text-muted small m-0 mt-1">
+              <h3 class="fw-bold m-0">Perfil Público</h3>
+              <p class="small m-0 mt-1">
                 Gestiona la información de contacto de tu cuenta para la entrega
                 de pedidos de la Fábrica de Pan.
               </p>
@@ -156,9 +156,7 @@
                 <form id="formPerfil" class="d-flex flex-column gap-3">
                   <div class="row g-3">
                     <div class="col-sm-6">
-                      <label class="form-label fw-semibold text-dark small"
-                        >Nombres</label
-                      >
+                      <label class="form-label small">Nombres</label>
                       <input
                         type="text"
                         class="form-control p-2.5"
@@ -166,9 +164,7 @@
                       />
                     </div>
                     <div class="col-sm-6">
-                      <label class="form-label fw-semibold text-dark small"
-                        >Apellidos</label
-                      >
+                      <label class="form-label small">Apellidos</label>
                       <input
                         type="text"
                         class="form-control p-2.5"
@@ -178,7 +174,7 @@
                   </div>
 
                   <div>
-                    <label class="form-label fw-semibold text-dark small"
+                    <label class="form-label small"
                       >Correo Electrónico Público</label
                     >
                     <input
@@ -186,7 +182,7 @@
                       class="form-control p-2.5"
                       placeholder="ejemplo@correo.com"
                     />
-                    <div class="form-text text-muted small">
+                    <div class="form-text small">
                       Este correo se usará para el envío automático de los
                       recibos de tus compras.
                     </div>
@@ -194,9 +190,7 @@
 
                   <div class="row g-3">
                     <div class="col-sm-6">
-                      <label class="form-label fw-semibold text-dark small"
-                        >Número de Teléfono</label
-                      >
+                      <label class="form-label small">Número de Teléfono</label>
                       <input
                         type="tel"
                         class="form-control p-2.5"
@@ -204,9 +198,7 @@
                       />
                     </div>
                     <div class="col-sm-6">
-                      <label class="form-label fw-semibold text-dark small"
-                        >Tipo de Cliente</label
-                      >
+                      <label class="form-label small">Tipo de Cliente</label>
                       <select class="form-select p-2.5" disabled>
                         <option value="mayorista" selected>
                           Cliente Mayorista (Distribuidor)
@@ -225,24 +217,22 @@
               </div>
 
               <div class="col-md-4 text-center">
-                <label
-                  class="form-label fw-semibold text-dark small d-block mb-3"
+                <label class="form-label small d-block mb-3"
                   >Foto de Perfil</label
                 >
                 <div class="avatar-container mb-3">
                   <img
-                    src="../src/img/Avatar-Manga.png"
+                    src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Pic.png"
                     alt="Foto de perfil"
                     class="avatar-profile"
                     id="vistaPrevia"
                   />
                   <label
-                    href="#"
                     class="btn-edit-avatar"
                     style="cursor: pointer"
                     title="Editar foto"
                   >
-                    <i class="fa-solid fa-camera"></i>
+                    <i class="fa-solid fa-camera text-dark"></i>
                     <input
                       type="file"
                       id="inputAvatar"
@@ -251,10 +241,10 @@
                     />
                   </label>
                 </div>
-                <span class="text-muted small d-block"
-                  >Haz clic en el icono de la cámara para cambiar la imagen de
-                  tu avatar.</span
-                >
+                <span class="small d-block">
+                  Haz clic en el icono de la cámara para cambiar la imagen de tu
+                  avatar.
+                </span>
               </div>
             </div>
           </div>
