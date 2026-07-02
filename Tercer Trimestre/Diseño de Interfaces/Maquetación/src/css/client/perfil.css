@@ -4,7 +4,7 @@
   --panify-primary-hover: #cc5200;
   --panify-navbar: #f8efe0;
   --panify-text: #2d2621;
-  --color-dorado: #e65c00; /* Tu variable personalizada */
+  --color-dorado: #e65c00;
 }
 
 body {
@@ -22,6 +22,10 @@ body {
     sans-serif;
   background-color: var(--panify-bg-warm);
   color: var(--panify-text);
+}
+
+main {
+  margin-top: 10vh;
 }
 
 /* Estructura de Panel Lateral (Estilo GitHub) */

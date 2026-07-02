@@ -4,6 +4,16 @@
   --panify-primary-hover: #cc5200;
   --panify-navbar: #f8efe0;
   --panify-text: #2d2621;
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-dorado: #e5a93c;
+  --color-oscuro: #2b1e13;
+  --color-claro: #3d2b1f;
+  --color-blanco: #ffffff;
+  --color-crema: #f5ebe0;
+  --fuente-principal:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 body {
@@ -16,7 +26,7 @@ main {
   margin-top: 10vh;
 }
 
-.nav-link-custom:focus, 
+.nav-link-custom:focus,
 .nav-link-custom:active {
   color: #ffffff !important;
   background-color: transparent !important;
@@ -42,22 +52,31 @@ main {
 }
 
 .btn-finalizar {
-  background-color: var(--panify-primary);
-  color: white;
-  font-weight: 600;
+  border-radius: 20px;
+  background-color: var(--color-principal);
   border: none;
-  border-radius: 10px;
+  font-weight: 600;
+  color: var(--color-blanco);
   padding: 12px;
   transition: all 0.2s ease;
 }
 
 .btn-finalizar:hover {
-  background-color: var(--panify-primary-hover);
-  color: white;
+  background-color: var(--color-dorado);
+  color: var(--color-blanco);
   transform: translateY(-1px);
 }
 
 /* Historial y Estados */
+
+.btn-historial {
+  color: var(--color-principal);
+}
+
+.btn-historial:hover {
+  color: var(--color-dorado);;
+}
+
 .estado-badge {
   padding: 6px 12px;
   border-radius: 30px;

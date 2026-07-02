@@ -13,19 +13,23 @@
       crossorigin="anonymous"
     />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <script
+      src="https://kit.fontawesome.com/a0994db117.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../src/css/client/inicio.css" />
-    <link rel="stylesheet" href="../src/css/index.css">
+    <link rel="stylesheet" href="../src/css/index.css" />
   </head>
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-panify">
         <div class="container">
           <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-3">
-            <img src="/src/img/Logo Panify.png" alt="Logo Panify" class="logo" />
+            <img
+              src="/src/img/Logo Panify.png"
+              alt="Logo Panify"
+              class="logo"
+            />
           </a>
           <button
             class="navbar-toggler"
@@ -38,7 +42,7 @@
           <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-5">
               <li class="nav-item">
-                <a class="nav-link opcion-menu" href="#">Inicio</a>
+                <a class="nav-link opcion-menu" href="inicio.html">Inicio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link opcion-menu" href="productos.html"
@@ -46,7 +50,9 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link opcion-menu" href="contacto.html">Contáctenos</a>
+                <a class="nav-link opcion-menu" href="contacto.html"
+                  >Contáctenos</a
+                >
               </li>
               <div
                 class="d-none d-lg-block border-start mx-2"
@@ -80,14 +86,14 @@
                   </li>
                   <li>
                     <a class="dropdown-item py-2" href="perfil.html">
-                      <i class="fa-regular fa-id-card me-2 text-muted"></i>
+                      <i class="fa-regular fa-id-card me-2"></i>
                       Datos Personales
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item py-2" href="pedidos.html">
-                      <i class="fa-solid fa-boxes-stacked me-2 text-muted"></i>
-                      Todos mis Pedidos
+                      <i class="fa-solid fa-dolly me-2"></i>
+                      Historia de Pedidos
                     </a>
                   </li>
                   <li><hr class="dropdown-divider" /></li>
@@ -96,7 +102,7 @@
                       class="dropdown-item py-2 text-danger"
                       href="../index.html"
                     >
-                      <i class="fa-solid fa-power-off me-2"></i> Cerrar Sesión
+                      <i class="fa-solid fa-power-off me-2"></i>Cerrar Sesión
                     </a>
                   </li>
                 </ul>
@@ -110,7 +116,9 @@
     <main class="container py-5">
       <div class="row mb-4">
         <div class="col-12">
-          <h1 class="fw-bold text-white m-0">¡Bienvenido de nuevo, Juan Peréz!</h1>
+          <h1 class="fw-bold text-white m-0">
+            ¡Bienvenido de nuevo, Juan Peréz!
+          </h1>
         </div>
       </div>
 
@@ -119,8 +127,7 @@
           <div class="custom-card p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h5 class="fw-bold m-0 text-dark">
-                <i class="fa-solid fa-basket-shopping text-warning me-2"></i>Tu
-                Carrito
+                <i class="fa-solid fa-basket-shopping me-2"></i>Tu Carrito
               </h5>
               <span
                 class="badge bg-light text-dark border rounded-pill px-3 py-2 fw-semibold"
@@ -178,12 +185,12 @@
           <div class="custom-card p-4 h-100">
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h5 class="fw-bold m-0 text-dark">
-                <i class="fa-regular fa-bell text-danger me-2"></i>Estado de
-                Pedidos Recientes
+                <i class="fa-regular fa-bell me-2"></i>Estado de Pedidos
+                Recientes
               </h5>
               <a
                 href="client/pedidos.html"
-                class="btn btn-sm btn-link text-decoration-none p-0 text-warning fw-semibold"
+                class="btn btn-link btn-historial text-decoration-none p-0"
                 >Ver todo el historial</a
               >
             </div>
@@ -210,8 +217,7 @@
                 </div>
                 <div>
                   <span class="estado-badge estado-preparacion d-inline-block">
-                    <i class="fa-solid fa-spinner fa-spin me-1"></i> En
-                    preparación
+                    <i class="fa-solid fa-spinner fa-spin me-2"></i>Preparando
                   </span>
                 </div>
               </div>
@@ -237,8 +243,7 @@
                 </div>
                 <div>
                   <span class="estado-badge estado-entregado d-inline-block">
-                    <i class="fa-solid fa-circle-check me-1"></i> Entregado con
-                    éxito
+                    <i class="fa-solid fa-circle-check me-2"></i>Entregado
                   </span>
                 </div>
               </div>

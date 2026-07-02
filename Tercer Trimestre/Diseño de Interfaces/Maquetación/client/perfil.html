@@ -17,64 +17,59 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../src/css/client/perfil.css">
+    <link rel="stylesheet" href="../src/css/client/perfil.css" />
+    <link rel="stylesheet" href="../src/css/index.css" />
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-panify py-3 shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-panify">
         <div class="container">
-          <a
-            href="../index-cliente.html"
-            class="navbar-brand d-flex align-items-center"
-          >
+          <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-3">
             <img
-              src="../src/img/Logo Panify.png"
-              alt="Panify"
-              style="max-height: 45px"
+              src="/src/img/Logo Panify.png"
+              alt="Logo Panify"
+              class="logo"
             />
           </a>
-
           <button
-            class="navbar-toggler border-0"
+            class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#menuPanify"
+            data-bs-target="#menuPrincipal"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-
-          <div class="collapse navbar-collapse" id="menuPanify">
-            <ul
-              class="navbar-nav ms-auto align-items-center gap-2 mt-3 mt-lg-0"
-            >
+          <div class="collapse navbar-collapse" id="menuPrincipal">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-5">
               <li class="nav-item">
-                <a class="nav-link-custom" href="../index-cliente.html"
-                  >Inicio</a
+                <a class="nav-link opcion-menu" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="productos.html"
+                  >Productos</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link-custom" href="productos.html">Productos</a>
+                <a class="nav-link opcion-menu" href="contacto.html"
+                  >Contáctenos</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link-custom" href="#">Contáctenos</a>
-              </li>
-
               <div
                 class="d-none d-lg-block border-start mx-2"
                 style="
                   height: 24px;
-                  border-color: rgba(0, 0, 0, 0.1) !important;
+                  border-color: rgba(255, 255, 255, 0.799) !important;
                 "
               ></div>
 
               <li class="nav-item dropdown w-100 text-center text-lg-start">
                 <a
-                  class="nav-link dropdown-toggle nav-link-custom d-inline-flex align-items-center gap-2 show"
+                  class="nav-link dropdown-toggle nav-link-custom d-inline-flex align-items-center gap-2 backend-user"
                   href="#"
                   id="userMenu"
                   role="button"
                   data-bs-toggle="dropdown"
-                  aria-expanded="true"
+                  aria-expanded="false"
                 >
                   <i class="fa-regular fa-circle-user fs-5"></i>
                   <span>Mi Cuenta</span>
@@ -87,30 +82,27 @@
                     <span class="d-block small text-muted"
                       >Sesión iniciada</span
                     >
-                    <strong class="text-dark">Cliente Mayorista</strong>
+                    <strong class="text-dark">Juan Peréz</strong>
                   </li>
                   <li>
-                    <a
-                      class="dropdown-item py-2 active bg-light text-dark fw-bold"
-                      href="#"
-                    >
-                      <i class="fa-regular fa-id-card me-2 text-warning"></i>
+                    <a class="dropdown-item py-2" href="perfil.html">
+                      <i class="fa-regular fa-id-card me-2"></i>
                       Datos Personales
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item py-2" href="pedidos.html">
-                      <i class="fa-solid fa-boxes-stacked me-2 text-muted"></i>
-                      Todos mis Pedidos
+                      <i class="fa-solid fa-dolly me-2"></i>
+                      Historia de Pedidos
                     </a>
                   </li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
                     <a
                       class="dropdown-item py-2 text-danger"
-                      href="../index.html"
+                      href="/index.html"
                     >
-                      <i class="fa-solid fa-power-off me-2"></i> Cerrar Sesión
+                      <i class="fa-solid fa-power-off me-2"></i>Cerrar Sesión
                     </a>
                   </li>
                 </ul>
@@ -142,7 +134,7 @@
               <i class="fa-solid fa-shield-halved fs-5"></i>
               <span>Seguridad</span>
             </a>
-            <a href="#" class="sidebar-link text-danger mt-2">
+            <a href="/index.html" class="sidebar-link text-danger mt-2">
               <i class="fa-solid fa-right-from-bracket fs-5"></i>
               <span>Cerrar Sesión</span>
             </a>
@@ -270,10 +262,22 @@
       </div>
     </main>
 
-    <footer class="mt-5 py-4 bg-white border-top">
-      <div class="container text-center text-secondary small">
-        <p class="m-0 fw-semibold text-dark">Panify - Distribuciones Oro Pan</p>
-        <p class="m-0 text-muted mt-1">ADSO - Centro de Formación SENA</p>
+    <footer id="contacto">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md-9 footer-logo">
+            Panify - Distribuciones Oro Pan
+          </div>
+          <div class="col-md-3 foter-info">
+            <p>3315796 | ADSO - Grupo 4</p>
+            <p>SENA - Centro de Formación</p>
+          </div>
+        </div>
+        <div class="row text-center footer-rights">
+          <div class="col-md-12">
+            &copy; 2026 Panify. Todos los derechos reservados.
+          </div>
+        </div>
       </div>
     </footer>
 
