@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panify distribuidora de oro pan</title>
+    <link   rel="icon" href="src/img/Icono Panify.png" type="image/png">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/a0994db117.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="src/css/registro.css" />
+    <link rel="stylesheet" href="src/css/index.css" />
+</head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+<body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-panify">
+        <div class="container">
+          <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-3">
+            <img src="src/img/Logo Panify.png" alt="Logo Panify" class="logo" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuPrincipal"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="menuPrincipal">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-5">
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="/client/productos.html"
+                  >Productos</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="#">Contáctenos</a>
+              </li>
+              <li class="nav-item">
+                <button
+                  class="btn btn-login-nav"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                >
+                  <i class="fa-solid fa-right-from-bracket me-1"></i>
+                  Ingresar
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+
+
+
+
+<div class="contenedor">
+    <section class="banner"></section>
+    <div class="form">
+    <div class="modal-content modal-registro">
+
+      <div class="modal-header border-0">
+        
+        <h2 class="modal-title w-100 text-center">Registro</h2> 
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form action="">
+
+          <div class="mb-3">
+    <label for="text" class="form-label">Nombre</label>
+
+        <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            placeholder="Ingresa tu nombre"
+            required
+        >
+            </div>
+        </div>
+        
+            <div class="mb-3">
+     <label for="email" class="form-label">Direccion</label>
+
+        <input
+            type="text"
+            class="form-control"
+            id="direccion"
+            minlength="10"
+            maxlength="60"
+            placeholder="Ingresa tu direccion"
+            required
+            >
+         </div>
+         <div class="mb-3">
+            <label for="">Correo</label>
+             
+                
+                <input type="email"
+                  class="form-control "
+                  placeholder="Direccion"
+                  id="email"
+                  minlength="20"
+                  maxlength="80"
+                  required/>
+                  
+                  </div>
+
+    <div class="mb-4">
+            <label for="password" class="form-label" > Crea una contraseña </label>
+            <input type="password"  class="form-control" id="password" placeholder="Ingresa tu Contraseña" required>
+          </div>
+        <button
+            type="submit"
+            class="btn btn-login-ingresar w-100 mb-3">
+            Regístrate
+        </button>
+
+          <div class="d-flex justify-content-between mt-3">
+            <a href="index.html" class="link-login">Volver al inicio</a>
+              </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>    
+             
+</div>
+        
+    <footer id="contacto">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md-9 footer-logo">
+            Panify - Distribuciones Oro Pan
+          </div>
+          <div class="col-md-3 foter-info">
+            <p>3315796 | ADSO - Grupo 4</p>
+            <p>SENA - Centro de Formación</p>
+          </div>
+        </div>
+        <div class="row text-center footer-rights">
+          <div class="col-md-12">
+            &copy; 2026 Panify. Todos los derechos reservados.
+          </div>
+        </div>
+      </div>
+      
+    
+</body>
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+      
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="src/js/registro.js"></script>
+</html>

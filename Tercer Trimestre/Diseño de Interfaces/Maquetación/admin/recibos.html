@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Recibos - Dashboard Panify</title>
+    <link rel="icon" href="../src/img/Icono Panify.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/a0994db117.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../src/css/dashboard.css" />
+    <link rel="stylesheet" href="../src/css/recibos.css" />
+  </head>
+
+  <body>
+    <div
+      id="sidebarOverlay"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1030;
+        display: none;
+      "
+    ></div>
+
+    <div class="dashboard-layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+          <img src="../src/img/Icono Panify.png" alt="Logo" />
+          <h2>
+            <span class="marca"
+              >Pani<span class="marca marca-dos">fy</span></span
+            >
+          </h2>
+          <p>Distribuciones Oro Pan</p>
+        </div>
+        <nav class="sidebar-menu">
+          <a href="dashboard.html">
+            <i class="fa-solid fa-users"></i>
+            Usuarios
+          </a>
+          <a href="productos.html">
+            <i class="fa-solid fa-box"></i>
+            Productos
+          </a>
+          <a href="pedidos.html">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Pedidos
+          </a>
+          <a href="#" class="active">
+            <i class="fa-solid fa-receipt"></i>
+            Recibos
+          </a>
+          <a href="../index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Salir
+          </a>
+        </nav>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="topbar">
+          <button class="mobile-toggle-btn" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div>
+            <h1>Recibos</h1>
+            <p class="d-none d-sm-block">
+              Historial y consulta de comprobantes generados automáticamente.
+            </p>
+          </div>
+
+          <div class="admin-info">
+            <i class="fa-solid fa-circle-user"></i>
+            <span>Administrador</span>
+          </div>
+        </header>
+
+        <section class="panel tabla my-4 mx-3 p-4 bg-white rounded shadow-sm">
+          <div class="cabecera-tabla mb-4">
+            <div>
+              <h2>Gestión de Recibos</h2>
+              <p>Visualiza, filtra y descarga las facturas de venta.</p>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table
+              id="tablaRecibos"
+              class="table table-striped table-hover align-middle"
+              style="width: 100%"
+            >
+              <thead>
+                <tr>
+                  <th>Id Recibo</th>
+                  <th>Cliente</th>
+                  <th>Fecha</th>
+                  <th>Total</th>
+                  <th>Estado</th>
+                  <th>Recibo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#REC-2001</td>
+                  <td>Juan Pérez</td>
+                  <td>12/06/2026</td>
+                  <td>$45.000</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2002</td>
+                  <td>María Camila Restrepo</td>
+                  <td>12/06/2026</td>
+                  <td>$120.000</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2003</td>
+                  <td>Carlos Alberto Mendoza</td>
+                  <td>13/06/2026</td>
+                  <td>$32.500</td>
+                  <td>
+                    <span class="badge bg-warning text-dark">Pendiente</span>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2004</td>
+                  <td>Diana Marcela Gómez</td>
+                  <td>13/06/2026</td>
+                  <td>$78.900</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2005</td>
+                  <td>Andrés Felipe Castro</td>
+                  <td>14/06/2026</td>
+                  <td>$15.000</td>
+                  <td><span class="badge bg-danger">Cancelado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2006</td>
+                  <td>Laura Sofía Valentina</td>
+                  <td>14/06/2026</td>
+                  <td>$62.000</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2007</td>
+                  <td>Santiago Ospina</td>
+                  <td>15/06/2026</td>
+                  <td>$95.000</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2008</td>
+                  <td>Valentina Bermúdez</td>
+                  <td>15/06/2026</td>
+                  <td>$110.000</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2009</td>
+                  <td>Mateo Rodríguez</td>
+                  <td>16/06/2026</td>
+                  <td>$23.000</td>
+                  <td>
+                    <span class="badge bg-warning text-dark">Pendiente</span>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2010</td>
+                  <td>Paula Andrea Ortiz</td>
+                  <td>16/06/2026</td>
+                  <td>$54.000</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2011</td>
+                  <td>Alejandro Morales</td>
+                  <td>17/06/2026</td>
+                  <td>$87.000</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2012</td>
+                  <td>Estefanía Londoño</td>
+                  <td>17/06/2026</td>
+                  <td>$41.200</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2013</td>
+                  <td>Daniel Fernando Villa</td>
+                  <td>18/06/2026</td>
+                  <td>$135.000</td>
+                  <td><span class="badge bg-success">Pagado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2014</td>
+                  <td>Gabriela Gómez</td>
+                  <td>18/06/2026</td>
+                  <td>$18.500</td>
+                  <td><span class="badge bg-danger">Cancelado</span></td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#REC-2015</td>
+                  <td>Ricardo Jorge Restrepo</td>
+                  <td>19/06/2026</td>
+                  <td>$67.300</td>
+                  <td>
+                    <span class="badge bg-warning text-dark">Pendiente</span>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      title="Generar PDF"
+                    >
+                      <i class="fa-solid fa-file-pdf me-1"></i> Ver Recibo
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <hr class="mx-3 my-4" />
+
+        <section class="panel reporte my-4 mx-3 p-4 bg-white rounded shadow-sm">
+          <div class="mb-3">
+            <h2>
+              <i class="fa-solid fa-chart-line me-1"></i>
+              Reporte Ventas
+            </h2>
+            <p>
+              Configura los parámetros para exportar las estadísticas de
+              facturación.
+            </p>
+          </div>
+
+          <form id="formReporte" class="row g-3 align-items-end">
+            <div class="col-12 col-md-4">
+              <label for="tipo-reporte" class="form-label font-weight-bold"
+                >Tipo de Reporte</label
+              >
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><span class="material-symbols-outlined fs-5">
+                    <i class="fa-solid fa-calendar-day"></i> </span
+                ></span>
+                <select id="tipo-reporte" class="form-select">
+                  <option value="diario">Diario</option>
+                  <option value="semanal">Semanal</option>
+                  <option value="mensual">Mensual</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="fecha-reporte" class="form-label"
+                >Seleccionar Fecha</label
+              >
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><span class="material-symbols-outlined fs-5"
+                    ><i class="fa-regular fa-calendar-days"></i></span
+                ></span>
+                <input
+                  type="text"
+                  id="fecha-reporte"
+                  class="form-control"
+                  placeholder="Elija una fecha..."
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <button type="submit" class="btn btn-primary w-100 py-2">
+                <i class="fa-solid fa-file-invoice-dollar me-2"></i>Generar
+                Reporte
+              </button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+    <script src="../src/js/admin/dashboard.js"></script>
+    <script src="../src/js/admin/recibos.js"></script>
+  </body>
+</html>

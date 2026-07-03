@@ -1,0 +1,339 @@
+:root {
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-dorado: #e5a93c;
+  --color-oscuro: #2b1e13;
+  --color-claro: #3d2b1f;
+  --color-blanco: #ffffff;
+  --color-crema: #f5ebe0;
+  --fuente-principal:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-claro);
+  color: var(--color-oscuro);
+  line-height: 1.6;
+}
+
+/* Barra de Navegación */
+
+.logo {
+  height: 60px;
+}
+
+.navbar-panify {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2b1e13a8;
+  backdrop-filter: blur(4px);
+  border-bottom: solid #e5aa3c96 1px;
+  z-index: 1000;
+  transition: background-color 1s ease;
+}
+
+.nav-link {
+  font-weight: 620;
+  color: var(--color-blanco);
+  transition: color 0.5s;
+}
+
+.nav-link:hover {
+  color: var(--color-dorado);
+  font-weight: 600;
+  position: relative;
+}
+
+.btn-login-nav {
+  color: var(--color-blanco);
+  background-color: var(--color-principal);
+  padding: 5px 25px;
+  transition: 0.3s;
+}
+
+.btn-login-nav:hover {
+  transform: scale(1.05);
+  color: var(--color-blanco);
+  background-color: var(--color-dorado);
+}
+
+/* Modal */
+
+.modal-login {
+  background-color: var(--color-claro);
+  border-radius: 20px;
+  margin-top: 100px;
+}
+
+.modal-login h2 {
+  text-align: center;
+  align-items: center;
+  font-weight: 700;
+  color: var(--color-blanco);
+}
+
+.btn-login-ingresar {
+  border-radius: 20px;
+  background-color: var(--color-principal);
+  border: none;
+  font-weight: 600;
+  color: var(--color-blanco);
+}
+
+.btn-login-ingresar:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-blanco);
+}
+
+.link-login {
+  color: var(--color-blanco);
+  text-decoration: none;
+  margin-top: 20px;
+  transition: color 0.3s ease;
+}
+
+.link-login:hover {
+  text-decoration: underline;
+}
+
+/* Banner */
+
+.banner {
+  height: 80vh;
+  background-image:
+    linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)),
+    url("https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200");
+  color: var(--color-blanco);
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.banner h1 {
+  margin-top: 85px;
+  font-size: 48px;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner p {
+  font-size: 20px;
+  margin-bottom: 25px;
+  max-width: 600px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.btn-secondary {
+  background-color: var(--color-secundario);
+  color: var(--color-oscuro);
+  padding: 12px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s,
+    background-color 0.3s;
+  border: 2px solid #d4af37;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.638);
+}
+
+.btn-secondary:hover {
+  transform: scale(1.05);
+  background-color: #e5be3b;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.858);
+  color: var(--color-oscuro);
+  border: none;
+}
+
+/* Productos */
+.header-productos,
+.header-visita {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subtitulo-decorativo {
+  color: #ffc107;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.header-productos h2,
+.header-visita h2 {
+  color: #fffaf4;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.linea-divisoria {
+  width: 60px;
+  height: 3px;
+  background-color: #ffc107;
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+.lead-productos,
+.lead-visita {
+  color: #f7ebe1;
+  font-size: 17px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.tarjeta {
+  background-color: #33261d;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(43, 30, 19, 0.25);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.tarjeta-img {
+  height: 165px;
+  object-fit: cover;
+  width: 100%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 0 12px rgba(230, 172, 66, 0.35),
+    0 0 25px rgba(230, 172, 66, 0.15);
+}
+
+.tarjeta .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 39px 19px;
+  height: 100%;
+}
+
+.tarjeta-img {
+  height: 165px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.tarjeta:hover .tarjeta-img {
+  transform: scale(1.05);
+}
+
+.tarjeta h3 {
+  color: #fffaf4;
+  font-weight: 700;
+  font-size: 20.8px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  width: 100%;
+  text-transform: uppercase;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.tarjeta:hover h3 {
+  color: var(--color-dorado);
+  transform: translateY(-2px);
+}
+
+.tarjeta p {
+  color: #f7ebe1;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+/* Visitanos */
+
+.visita {
+  max-height: 107vh;
+  background-color: #33261d;
+}
+
+.visita h5 {
+  color: var(--color-dorado);
+  text-transform: uppercase;
+}
+
+.visita p {
+  color: #f7ebe1;
+}
+
+.mapa-container iframe{
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Footer */
+
+footer {
+  background-color: var(--color-oscuro);
+  color: #a19285;
+  padding: 40px 20px;
+  border-top: solid #e5aa3c96 1px;
+}
+
+.footer-logo {
+  color: var(--color-blanco);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  padding-top: 30px;
+}
+
+.footer-info p {
+  font-size: 14px;
+}
+
+.footer-rights {
+  border-top: 1px solid #3d2b1b;
+  padding-top: 20px;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  .navbar-nav.gap-5 {
+    gap: 24px !important;
+  }
+
+  .btn-login-nav {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
