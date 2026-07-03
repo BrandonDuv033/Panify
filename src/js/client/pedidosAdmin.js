@@ -1,95 +1,141 @@
-// Base de datos quemada por si el localStorage está vacío al inicio
-let pedidosPorDefecto = [
-  { id: "PAN-101", cliente: "Diego Alejandro", detalle: "3x Pan Francés, 1x Croissant", total: 7500, estado: "pendiente" },
-  { id: "PAN-102", cliente: "Valentina Restrepo", detalle: "2x Dona de Chocolate", total: 6000, estado: "preparacion" }
-];
-
-// Variable global que manejará los pedidos reales
-let colaPedidos = [];
-
 document.addEventListener("DOMContentLoaded", () => {
-  cargarPedidosDesdeStorage();
-});
 
-// Cargar datos reales creados por el cliente
-function cargarPedidosDesdeStorage() {
-  const guardados = localStorage.getItem("pedidosPanify");
-  
-  if (guardados) {
-    // Si el cliente ya hizo pedidos, los traemos
-    colaPedidos = JSON.parse(guardados);
-  } else {
-    // Si no hay nada en memoria, metemos los pedidos por defecto para que no se vea vacío
-    colaPedidos = pedidosPorDefecto;
-    localStorage.setItem("pedidosPanify", JSON.stringify(colaPedidos));
-  }
-  
-  listarPedidosAdmin();
-}
+  // =========================
+  // DATA SIMULADA
+  // =========================
+  let pedidos = [
+    {
+      id: "PAN-1045",
+      cliente: "Brayan Muñoz",
+      productos: "2 Pan Blandito, 1 Dona",
+      total: 24800,
+      estado: "En camino"
+    },
+    {
+      id: "PAN-1046",
+      cliente: "Laura Gómez",
+      productos: "5 Pan Integral",
+      total: 18000,
+      estado: "Pendiente"
+    },
+    {
+      id: "PAN-1047",
+      cliente: "Carlos Pérez",
+      productos: "3 Croissant",
+      total: 22000,
+      estado: "Preparación"
+    },
+    {
+      id: "PAN-1048",
+      cliente: "Ana Ruiz",
+      productos: "10 Pan Blandito",
+      total: 30000,
+      estado: "Entregado"
+    }
+  ];
 
-// Función para rellenar la tabla de administración
-function listarPedidosAdmin() {
+  // =========================
+  // ELEMENTOS
+  // =========================
   const tabla = document.getElementById("tabla-pedidos-admin");
+
+  const numPendientes = document.getElementById("num-pendientes");
+  const numPreparacion = document.getElementById("num-preparacion");
+  const numCamino = document.getElementById("num-camino");
+  const numEntregados = document.getElementById("num-entregados");
+
+  // =========================
+  // SEGURIDAD DOM
+  // =========================
   if (!tabla) return;
 
-  let lineasHTML = "";
+  // =========================
+  // RENDER TABLA
+  // =========================
+  function renderTabla() {
 
-  if (colaPedidos.length === 0) {
-    tabla.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-muted">No existen pedidos pendientes en cola.</td></tr>`;
-    calcularEstadisticas();
-    return;
+    tabla.innerHTML = "";
+
+    pedidos.forEach((p, index) => {
+
+      let color = "secondary";
+
+      switch (p.estado) {
+        case "Pendiente": color = "warning"; break;
+        case "Preparación": color = "info"; break;
+        case "En camino": color = "primary"; break;
+        case "Entregado": color = "success"; break;
+      }
+
+      tabla.innerHTML += `
+        <tr>
+          <td class="ps-3">${p.id}</td>
+          <td>${p.cliente}</td>
+          <td>${p.productos}</td>
+          <td>$${p.total.toLocaleString()}</td>
+          <td>
+            <span class="badge bg-${color}">
+              ${p.estado}
+            </span>
+          </td>
+          <td class="text-center pe-3">
+            <button class="btn btn-sm btn-outline-primary"
+              onclick="cambiarEstado(${index})">
+              Avanzar
+            </button>
+          </td>
+        </tr>
+      `;
+    });
+
+    actualizarContadores();
   }
 
-  colaPedidos.forEach(pedido => {
-    let claseBadge = "";
-    if (pedido.estado === "pendiente") claseBadge = "badge-pendiente";
-    else if (pedido.estado === "preparacion") claseBadge = "badge-preparacion";
-    else if (pedido.estado === "camino") claseBadge = "badge-camino";
-    else if (pedido.estado === "entregado") claseBadge = "badge-entregado";
+  // =========================
+  // CAMBIAR ESTADO
+  // =========================
+  window.cambiarEstado = function (index) {
 
-    lineasHTML += `
-      <tr>
-        <td class="ps-3 fw-bold text-secondary">${pedido.id}</td>
-        <td class="fw-semibold">${pedido.cliente}</td>
-        <td class="text-muted small">${pedido.detalle}</td>
-        <td class="fw-bold">$ ${pedido.total.toLocaleString('es-CO')}</td>
-        <td><span class="${claseBadge} text-uppercase small">${pedido.estado}</span></td>
-        <td class="text-center pe-3">
-          <div class="btn-group btn-group-sm">
-            <button class="btn btn-sm btn-light border text-warning" title="Recibido" onclick="cambiarEstadoFlujo('${pedido.id}', 'pendiente')"><i class="fa-solid fa-clock"></i></button>
-            <button class="btn btn-sm btn-light border text-info" title="Cocinar" onclick="cambiarEstadoFlujo('${pedido.id}', 'preparacion')"><i class="fa-solid fa-fire-burner"></i></button>
-            <button class="btn btn-sm btn-light border text-primary" title="Enviar" onclick="cambiarEstadoFlujo('${pedido.id}', 'camino')"><i class="fa-solid fa-motorcycle"></i></button>
-            <button class="btn btn-sm btn-light border text-success" title="Entregado" onclick="cambiarEstadoFlujo('${pedido.id}', 'entregado')"><i class="fa-solid fa-circle-check"></i></button>
-          </div>
-        </td>
-      </tr>
-    `;
-  });
+    const estados = ["Pendiente", "Preparación", "En camino", "Entregado"];
 
-  tabla.innerHTML = lineasHTML;
-  calcularEstadisticas();
-}
+    const actual = estados.indexOf(pedidos[index].estado);
 
-// Cambiar estado, actualizar el localStorage y refrescar la tabla
-function cambiarEstadoFlujo(id, nuevoEstado) {
-  const item = colaPedidos.find(p => p.id === id);
-  if (item) {
-    item.estado = nuevoEstado;
-    // Guardamos el cambio de estado para que persista
-    localStorage.setItem("pedidosPanify", JSON.stringify(colaPedidos));
-    listarPedidosAdmin();
+    if (actual !== -1 && actual < estados.length - 1) {
+      pedidos[index].estado = estados[actual + 1];
+    }
+
+    renderTabla();
+  };
+
+  // =========================
+  // CONTADORES
+  // =========================
+  function actualizarContadores() {
+
+    let pendientes = 0;
+    let preparacion = 0;
+    let camino = 0;
+    let entregados = 0;
+
+    pedidos.forEach(p => {
+
+      switch (p.estado) {
+        case "Pendiente": pendientes++; break;
+        case "Preparación": preparacion++; break;
+        case "En camino": camino++; break;
+        case "Entregado": entregados++; break;
+      }
+    });
+
+    if (numPendientes) numPendientes.textContent = pendientes;
+    if (numPreparacion) numPreparacion.textContent = preparacion;
+    if (numCamino) numCamino.textContent = camino;
+    if (numEntregados) numEntregados.textContent = entregados;
   }
-}
 
-// Actualizar los contadores superiores
-function calcularEstadisticas() {
-  const pen = colaPedidos.filter(p => p.estado === "pendiente").length;
-  const prep = colaPedidos.filter(p => p.estado === "preparacion").length;
-  const cam = colaPedidos.filter(p => p.estado === "camino").length;
-  const ent = colaPedidos.filter(p => p.estado === "entregado").length;
+  // =========================
+  // INIT
+  // =========================
+  renderTabla();
 
-  if (document.getElementById("num-pendientes")) document.getElementById("num-pendientes").innerText = pen;
-  if (document.getElementById("num-preparacion")) document.getElementById("num-preparacion").innerText = prep;
-  if (document.getElementById("num-camino")) document.getElementById("num-camino").innerText = cam;
-  if (document.getElementById("num-entregados")) document.getElementById("num-entregados").innerText = ent;
-}
+});
