@@ -1,24 +1,3 @@
-// Base de datos quemada por si el localStorage está vacío al inicio
-let pedidosPorDefecto = [
-  {
-    id: "PAN-101",
-    cliente: "Diego Alejandro",
-    detalle: "3x Pan Francés, 1x Croissant",
-    total: 7500,
-    estado: "pendiente",
-  },
-  {
-    id: "PAN-102",
-    cliente: "Valentina Restrepo",
-    detalle: "2x Dona de Chocolate",
-    total: 6000,
-    estado: "preparacion",
-  },
-];
-
-// Variable global que manejará los pedidos reales
-let colaPedidos = [];
-
 document.addEventListener("DOMContentLoaded", () => {
   cargarPedidosDesdeStorage();
 });
@@ -26,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Cargar datos reales creados por el cliente
 function cargarPedidosDesdeStorage() {
   const guardados = localStorage.getItem("pedidosPanify");
-
+  
   if (guardados) {
     // Si el cliente ya hizo pedidos, los traemos
     colaPedidos = JSON.parse(guardados);
@@ -35,13 +14,22 @@ function cargarPedidosDesdeStorage() {
     colaPedidos = pedidosPorDefecto;
     localStorage.setItem("pedidosPanify", JSON.stringify(colaPedidos));
   }
-
+  
   listarPedidosAdmin();
 }
 
 // Función para rellenar la tabla de administración
 function listarPedidosAdmin() {
   const tabla = document.getElementById("tabla-pedidos-admin");
+
+  const numPendientes = document.getElementById("num-pendientes");
+  const numPreparacion = document.getElementById("num-preparacion");
+  const numCamino = document.getElementById("num-camino");
+  const numEntregados = document.getElementById("num-entregados");
+
+  // =========================
+  // SEGURIDAD DOM
+  // =========================
   if (!tabla) return;
 
   let lineasHTML = "";
@@ -52,7 +40,7 @@ function listarPedidosAdmin() {
     return;
   }
 
-  colaPedidos.forEach((pedido) => {
+  colaPedidos.forEach(pedido => {
     let claseBadge = "";
     if (pedido.estado === "pendiente") claseBadge = "badge-pendiente";
     else if (pedido.estado === "preparacion") claseBadge = "badge-preparacion";
@@ -64,7 +52,7 @@ function listarPedidosAdmin() {
         <td class="ps-3 fw-bold text-secondary">${pedido.id}</td>
         <td class="fw-semibold">${pedido.cliente}</td>
         <td class="text-muted small">${pedido.detalle}</td>
-        <td class="fw-bold">$ ${pedido.total.toLocaleString("es-CO")}</td>
+        <td class="fw-bold">$ ${pedido.total.toLocaleString('es-CO')}</td>
         <td><span class="${claseBadge} text-uppercase small">${pedido.estado}</span></td>
         <td class="text-center pe-3">
           <div class="btn-group btn-group-sm">
@@ -84,7 +72,7 @@ function listarPedidosAdmin() {
 
 // Cambiar estado, actualizar el localStorage y refrescar la tabla
 function cambiarEstadoFlujo(id, nuevoEstado) {
-  const item = colaPedidos.find((p) => p.id === id);
+  const item = colaPedidos.find(p => p.id === id);
   if (item) {
     item.estado = nuevoEstado;
     // Guardamos el cambio de estado para que persista
@@ -95,48 +83,13 @@ function cambiarEstadoFlujo(id, nuevoEstado) {
 
 // Actualizar los contadores superiores
 function calcularEstadisticas() {
-  const pen = colaPedidos.filter((p) => p.estado === "pendiente").length;
-  const prep = colaPedidos.filter((p) => p.estado === "preparacion").length;
-  const cam = colaPedidos.filter((p) => p.estado === "camino").length;
-  const ent = colaPedidos.filter((p) => p.estado === "entregado").length;
+  const pen = colaPedidos.filter(p => p.estado === "pendiente").length;
+  const prep = colaPedidos.filter(p => p.estado === "preparacion").length;
+  const cam = colaPedidos.filter(p => p.estado === "camino").length;
+  const ent = colaPedidos.filter(p => p.estado === "entregado").length;
 
-  if (document.getElementById("num-pendientes"))
-    document.getElementById("num-pendientes").innerText = pen;
-  if (document.getElementById("num-preparacion"))
-    document.getElementById("num-preparacion").innerText = prep;
-  if (document.getElementById("num-camino"))
-    document.getElementById("num-camino").innerText = cam;
-  if (document.getElementById("num-entregados"))
-    document.getElementById("num-entregados").innerText = ent;
+  if (document.getElementById("num-pendientes")) document.getElementById("num-pendientes").innerText = pen;
+  if (document.getElementById("num-preparacion")) document.getElementById("num-preparacion").innerText = prep;
+  if (document.getElementById("num-camino")) document.getElementById("num-camino").innerText = cam;
+  if (document.getElementById("num-entregados")) document.getElementById("num-entregados").innerText = ent;
 }
-
-document.querySelectorAll(".btn-Guardar").forEach(function (boton) {
-  boton.addEventListener("click", function () {
-    Swal.fire({
-      title: "Cambios Guardados",
-      icon: "success",
-      draggable: true,
-    }).then(() => {
-      window.location.href = "pedidos.html";
-    });
-  });
-});
-
-$(document).ready(function () {
-  $("#tablaPedidos").DataTable({
-    language: {
-      search: "Buscar",
-      lengthMenu: "Mostrar _MENU_ Registros",
-      info: "Mostrar _START_ a _END_ de _TOTAL_ registros",
-      infoEmpty: "Mostrando 0 a 0 de 0 registros",
-      zeroRecords: "No se encontraron resultados",
-      emptyTable: "No hay datos disponibles en la tabla",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
-  });
-});
