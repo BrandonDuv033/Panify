@@ -5,27 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panify - Hacer Pedido</title>
     <link rel="icon" href="../src/img/Icono Panify.png" type="image/png" />
-    
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <link rel="stylesheet" href="../src/css/pedidos.css" />
+    <link rel="stylesheet" href="../src/css/client/client.css" />
+    <link rel="stylesheet" href="../src/css/client/pedidos.css" />
+    <link rel="stylesheet" href="../src/css/index.css" />
   </head>
+
   <body>
-    
     <header>
       <nav class="navbar navbar-expand-lg navbar-panify">
         <div class="container">
-          <a href="#" class="navbar-brand d-flex align-items-center gap-3">
-            <img src="../src/img/Logo Panify.png" alt="Logo Panify" class="logo" onerror="this.src='https://placehold.co/50x35?text=Pan'"/>
-            <span class="marca">Pani<span class="marca-dos">fy</span></span>
+          <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-3">
+            <img
+              src="../src/img/Logo Panify.png"
+              alt="Logo Panify"
+              class="logo"
+            />
           </a>
           <button
             class="navbar-toggler"
@@ -37,43 +42,317 @@
           </button>
           <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-5">
-              <li class="nav-item"><a class="nav-link opcion-menu" href="#">Inicio</a></li>
-              <li class="nav-item"><a class="nav-link opcion-menu" href="#">Productos</a></li>
-              <li class="nav-item"><a class="nav-link opcion-menu" href="#">Contáctenos</a></li>
               <li class="nav-item">
-                <button class="btn btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">Ingresar</button>
+                <a class="nav-link opcion-menu" href="inicio.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="productos.html"
+                  >Productos</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="contacto.html"
+                  >Contáctenos</a
+                >
+              </li>
+
+              <div
+                class="d-none d-lg-block border-start mx-2"
+                style="
+                  height: 24px;
+                  border-color: rgba(255, 255, 255, 0.799) !important;
+                "
+              ></div>
+
+              <li class="nav-item dropdown w-100 text-center text-lg-start">
+                <a
+                  class="nav-link dropdown-toggle nav-link-custom d-inline-flex align-items-center gap-2 backend-user"
+                  href="#"
+                  id="userMenu"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-regular fa-circle-user fs-5"></i>
+                  <span>Mi Cuenta</span>
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2 rounded-3"
+                  aria-labelledby="userMenu"
+                >
+                  <li class="px-3 py-2 border-bottom">
+                    <span class="s-i d-block small">Sesión iniciada</span>
+                    <strong>Juan Pérez</strong>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2" href="perfil.html">
+                      <i class="fa-regular fa-id-card me-2"></i> Datos
+                      Personales
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2" href="pedidos.html">
+                      <i class="fa-solid fa-dolly me-2"></i> Mis Pedidos
+                    </a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2 logout" href="/index.html">
+                      <i class="fa-solid fa-power-off me-2"></i>Cerrar Sesión
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-
-    <main class="container py-5" style="min-height: 70vh;">
-      
-      <div id="seccion-seguimiento"></div>
-
-      <div class="row g-4">
-        <div class="col-12 col-lg-7">
-          <div id="contenedor-productos"></div>
-        </div>
-
-        <div class="col-12 col-lg-5">
-          <div id="contenedor-carrito"></div>
+    <main class="container py-5">
+      <!-- Encabezado -->
+      <div
+        class="d-flex justify-content-between align-items-center mb-4 flex-wrap"
+      >
+        <div>
+          <h2 class="fw-bold text-white">
+            <i class="fa-solid fa-box-open text-warning me-2"></i>
+            Mis Pedidos
+          </h2>
+          <p class="text-light">
+            Consulta el estado de tus pedidos y revisa tu historial de compras.
+          </p>
         </div>
       </div>
 
+      <!-- Resumen -->
+      <div class="row g-3 mb-5">
+        <div class="col-md-3 col-6">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <i class="fa-solid fa-clock text-danger fs-2 mb-2"></i>
+            <h3 id="numPendientes">2</h3>
+            <small class="text-muted">Pendientes</small>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <i class="fa-solid fa-bread-slice text-warning fs-2 mb-2"></i>
+            <h3 id="numPreparacion">1</h3>
+            <small class="text-muted">Preparación</small>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <i class="fa-solid fa-truck text-primary fs-2 mb-2"></i>
+            <h3 id="numCamino">1</h3>
+            <small class="text-muted">En camino</small>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <i class="fa-solid fa-circle-check text-success fs-2 mb-2"></i>
+            <h3 id="numEntregados">8</h3>
+            <small class="text-muted">Entregados</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buscador -->
+
+      <div class="card shadow-sm border-0 mb-5">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Buscar pedido..."
+                id="buscarPedido"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <select class="form-select" id="filtroEstado">
+                <option>Todos</option>
+                <option>Pendiente</option>
+                <option>Preparación</option>
+                <option>En camino</option>
+                <option>Entregado</option>
+                <option>Cancelado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pedidos Activos -->
+
+      <h3 class="fw-bold mb-4 text-white">
+        <i class="fa-solid fa-cart-shopping text-warning me-2"></i>
+        Pedidos Activos
+      </h3>
+
+      <div class="row g-4 mb-5">
+        <!-- Pedido -->
+
+        <div class="col-lg-6">
+          <div class="card shadow border-0 h-100">
+            <div class="card-header bg-warning d-flex justify-content-between">
+              <strong>Pedido #PAN-1045</strong>
+
+              <span class="badge"> En camino </span>
+            </div>
+
+            <div class="card-body">
+              <div class="mb-3 pb-3 border-bottom">
+                <h5 class="fw-bold text-dark mb-1">Distribuiciones Oro Pan</h5>
+
+                <small class="text-muted">
+                  Pedido realizado el 02/07/2026
+                </small>
+
+                <br />
+
+                <small class="text-muted"> 2 productos • Pago aprobado </small>
+              </div>
+
+              <p><strong>Cliente:</strong> Brayan Muñoz</p>
+
+              <p><strong>Fecha:</strong> 02/07/2026</p>
+
+              <p><strong>Total:</strong> $24.800</p>
+
+              <p class="fw-bold mb-2">Productos</p>
+
+              <ul>
+                <li>2 Pan Blandito</li>
+
+                <li>1 Dona con Chispas</li>
+              </ul>
+
+              <div class="mt-4">
+                <div class="d-flex justify-content-between small fw-bold mb-2">
+                  <span class="text-success">
+                    <i class="fa-solid fa-check"></i>
+                    Pendiente
+                  </span>
+
+                  <span class="text-success">
+                    <i class="fa-solid fa-check"></i>
+                    Preparación
+                  </span>
+
+                  <span class="text-primary">
+                    <i class="fa-solid fa-truck"></i>
+                    En camino
+                  </span>
+
+                  <span class="text-muted"> Entregado </span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-bar bg-primary" style="width: 75%"></div>
+                </div>
+              </div>
+
+              <div class="mt-4 d-flex gap-2">
+                <button class="btn btn-outline-dark">Ver detalles</button>
+
+                <button class="btn btn-danger">Cancelar Pedido</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Historial -->
+
+      <h3 class="fw-bold mb-4 text-white">
+        <i class="fa-solid fa-clock-rotate-left me-2 text-secondary"></i>
+
+        Historial de Pedidos
+      </h3>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="card shadow-sm border-success">
+            <div
+              class="card-header bg-success text-white d-flex justify-content-between"
+            >
+              <strong>Pedido #PAN-1030</strong>
+
+              <span class="badge bg-light text-success"> Entregado </span>
+            </div>
+
+            <div class="card-body">
+              <p><strong>Fecha:</strong> 25/06/2026</p>
+
+              <p><strong>Total:</strong> $31.500</p>
+
+              <ul>
+                <li>5 Pan Blandito</li>
+
+                <li>2 Croissant</li>
+              </ul>
+
+              <button class="btn btn-outline-success">Ver detalles</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card shadow-sm border-danger">
+            <div
+              class="card-header bg-danger text-white d-flex justify-content-between"
+            >
+              <strong>Pedido #PAN-1024</strong>
+
+              <span class="badge bg-light text-danger"> Cancelado </span>
+            </div>
+
+            <div class="card-body">
+              <p><strong>Fecha:</strong> 18/06/2026</p>
+
+              <p><strong>Total:</strong> $18.000</p>
+
+              <ul>
+                <li>3 Pan Rollito</li>
+
+                <li>1 Dona</li>
+              </ul>
+
+              <button class="btn btn-outline-danger">Ver detalles</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
-    <footer class="bg-dark text-white py-4 mt-5">
-      <div class="container text-center">
-        <p class="mb-1">Panify - Distribuciones Oro Pan</p>
-        <small class="text-white-50">3315796 | ADSO - Grupo 4 — SENA 2026</small>
+    <footer id="contacto">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md-9 footer-logo">
+            Panify - Distribuciones Oro Pan
+          </div>
+          <div class="col-md-3 foter-info">
+            <p>3315796 | ADSO - Grupo 4</p>
+            <p>SENA - Centro de Formación</p>
+          </div>
+        </div>
+        <div class="row text-center footer-rights">
+          <div class="col-md-12">
+            &copy; 2026 Panify. Todos los derechos reservados.
+          </div>
+        </div>
       </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script src="../src/js/client/pedidos.js"></script>
   </body>
 </html>

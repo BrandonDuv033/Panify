@@ -26,6 +26,20 @@ body {
 
 /* Barra de Navegación */
 
+.navbar-toggler {
+  border: none;
+  color: none;
+  background-color: var(--color-blanco);
+  border: 1px solid white !important;
+}
+
+.navbar-toggler:hover {
+  border: none;
+  color: none;
+  background-color: var(--color-blanco);
+  border: 1px solid white !important;
+}
+
 .logo {
   height: 60px;
 }

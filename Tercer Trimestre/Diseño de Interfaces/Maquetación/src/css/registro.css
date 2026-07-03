@@ -1,9 +1,11 @@
 :root {
   --color-principal: #8b5a2b;
   --color-secundario: #d4af37;
+  --color-dorado: #e5a93c;
   --color-oscuro: #2b1e13;
-  --color-claro: #fdfbf7;
+  --color-claro: #3d2b1f;
   --color-blanco: #ffffff;
+  --color-crema: #f5ebe0;
   --fuente-principal:
     system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -14,66 +16,40 @@
   background-image:
     linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)),
     url("https://slidesdocs.com/es/fondo/deliciosa-ilustracion-de-pan-artesanal-recien-salido-del-horno-y-expuesto-en-una-tabla-de-madera-fondo-power-point_e86a71e8f8");
-  color:(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)) ;
-     background-repeat: no-repeat;
-    background-size: 50;
-    background-position: left center;
+  color: (rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65));
+  background-repeat: no-repeat;
+  background-size: 50;
+  background-position: left center;
   width: 50%;
   height: calc(100vh - 80px);
   top: 100%;
   position: relative;
   justify-content: flex-end;
   align-items: center;
-    margin-bottom: 0%;
-    padding-right: 8%;
-  
-  
+  margin-bottom: 0%;
+  padding-right: 8%;
 }
 
 .banner::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 75%;
-    width: 25%;
-    height: 100%;
-    background: linear-gradient(
-        to right,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.3) 30%,
-        rgba(255,255,255,0.7) 70%,
-        #ffffff 100%
-    );
-}
-
-.nav-link {
-  font-weight: 620;
-  color: var(--color-oscuro);
-  transition: color 0.5s;
-}
-
-.nav-link:hover {
-  color: var(--color-principal);
-}
-
-.btn-login-nav {
-  color: var(--color-blanco);
-  background-color: var(--color-principal);
-  padding: 5px 15px;
-  transition: 0.3s;
-}
-
-.btn-login-nav:hover {
-  transform: scale(1.1);
-  color: var(--color-blanco);
-  background-color: var(--color-oscuro);
-  padding: 5px 15px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 75%;
+  width: 25%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(61, 43, 31, 0) 0%,
+    rgba(61, 43, 31, 0.3) 30%,
+    rgba(61, 43, 31, 0.7) 70%,
+    #3d2b1f 100%
+  );
 }
 
 /* Banner */
 
 .banner {
-  margin-top: 10vh;
+  margin-top: 11vh;
   height: 80vh;
   background-image:
     linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)),
@@ -88,40 +64,32 @@
   padding: 0 70px;
 }
 
-.btn-login-ingresar{
-border-radius: 20px;
-background-color: var(--color-principal);
-border: solid var(--color-principal);
-font-weight: 600;
-color: white;
+.contenedor {
+  display: flex;
+  min-height: calc(100vh - 76px);
 }
-.link-login{
-  color: var(--color-oscuro);
-  text-decoration: none;
-  margin-top: 20px;
-}
-.contenedor{
-    display:flex;
-    min-height:calc(100vh - 76px);
-}
-.form{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    padding: 40px;
-    margin: solid black;
-    margin-top: 10vh;
+.formulario {
+  margin-top: 11vh !important;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-claro);
+  padding: 40px;
+  margin: solid black;
+  margin-top: 10vh;
+  max-height: 80vh;
 }
 
-.modal-login{
-    width: 100%;
-    max-width: 600px;
-    align-items: center;
-    text-align: center;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+.formulario label, .texto-recuperar {
+  color: #fffaf4;
 }
 
-
+.modal-login {
+  width: 100%;
+  max-width: 600px;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}

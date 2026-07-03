@@ -1,0 +1,424 @@
+:root {
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-oscuro: #2b1e13;
+  --color-claro: #fdfbf7;
+  --color-blanco: #ffffff;
+  --fuente-principal:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/*==================================================
+            PEDIDOS CLIENTE - PANIFY
+===================================================*/
+
+main{
+    padding-top:40px;
+    padding-bottom:70px;
+    margin-top: 10vh;
+}
+
+/* TITULOS */
+
+main h2,
+main h3{
+    color:var(--color-oscuro);
+    font-weight:700;
+}
+
+main p{
+    color:#666;
+}
+
+/*====================
+      CARDS
+=====================*/
+
+.card{
+
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.35s;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+
+}
+
+/*====================
+     RESUMEN
+=====================*/
+
+.card.text-center{
+
+    background:linear-gradient(145deg,#fff,#fdfbf7);
+
+}
+
+.card.text-center h3{
+
+    color:var(--color-principal);
+    font-size:2rem;
+    font-weight:bold;
+
+}
+
+.card.text-center i{
+
+    transition:.3s;
+
+}
+
+.card:hover i{
+
+    transform:scale(1.15);
+
+}
+
+/*====================
+   BUSCADOR
+=====================*/
+
+.form-control,
+.form-select{
+
+    border-radius:12px;
+    border:2px solid #ececec;
+    padding:12px;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:var(--color-secundario);
+
+    box-shadow:0 0 0 .2rem rgba(212,175,55,.25);
+
+}
+
+/*====================
+    HEADER TARJETA
+=====================*/
+
+.card-header{
+
+    background:linear-gradient(90deg,var(--color-principal),#6d421b);
+    color:white;
+    border:none;
+    padding:16px 20px;
+
+}
+
+.card-header strong{
+
+    font-size:1rem;
+
+}
+
+.badge{
+
+    padding:8px 15px;
+    border-radius:50px;
+    font-size:.8rem;
+
+}
+
+/*====================
+    BODY PEDIDO
+=====================*/
+
+.card-body{
+
+    padding:22px;
+
+}
+
+.card-body p{
+
+    margin-bottom:8px;
+
+}
+
+.card-body ul{
+
+    margin-top:12px;
+    margin-bottom:20px;
+    padding-left:20px;
+
+}
+
+.card-body li{
+
+    margin-bottom:6px;
+
+}
+
+/*====================
+ PANIFY EXPRESS
+=====================*/
+
+.card-body h5{
+
+    color:var(--color-principal);
+
+}
+
+.border-bottom{
+
+    border-color:#eee !important;
+
+}
+
+/*====================
+  PROGRESS BAR
+=====================*/
+
+.progress{
+
+    margin-top:15px;
+    height:10px;
+    border-radius:50px;
+    overflow:hidden;
+    background:#ececec;
+
+}
+
+.progress-bar{
+
+    transition:1s;
+
+}
+
+/*====================
+ ESTADOS
+=====================*/
+
+.text-warning{
+
+    font-weight:600;
+
+}
+
+.text-primary{
+
+    font-weight:600;
+
+}
+
+.text-success{
+
+    font-weight:600;
+
+}
+
+/*====================
+ BOTONES
+=====================*/
+
+.btn{
+
+    border-radius:12px;
+    font-weight:600;
+    transition:.3s;
+
+}
+
+.btn-outline-dark{
+
+    border:2px solid var(--color-principal);
+    color:var(--color-principal);
+
+}
+
+.btn-outline-dark:hover{
+
+    background:var(--color-principal);
+    color:white;
+    border-color:var(--color-principal);
+
+}
+
+.btn-danger{
+
+    background:#d9534f;
+    border:none;
+
+}
+
+.btn-danger:hover{
+
+    background:#bb2d3b;
+
+}
+
+.btn-outline-success:hover{
+
+    background:#198754;
+    color:white;
+
+}
+
+.btn-outline-danger:hover{
+
+    color:white;
+
+}
+
+/*====================
+ HISTORIAL
+=====================*/
+
+.border-success{
+
+    border-left:6px solid #198754 !important;
+
+}
+
+.border-danger{
+
+    border-left:6px solid #dc3545 !important;
+
+}
+
+/*====================
+ ANIMACIONES
+=====================*/
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+.card{
+
+    animation:aparecer .6s ease;
+
+}
+
+/*====================
+ SCROLL
+=====================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--color-principal);
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f4f4f4;
+
+}
+
+/*====================
+ RESPONSIVE
+=====================*/
+
+@media(max-width:991px){
+
+.card{
+
+margin-bottom:20px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+main{
+
+padding-top:25px;
+
+}
+
+.card-body{
+
+text-align:center;
+
+}
+
+.card-body ul{
+
+text-align:left;
+
+}
+
+.d-flex.gap-2{
+
+flex-direction:column;
+
+}
+
+.btn{
+
+width:100%;
+
+}
+
+.progress{
+
+margin-top:18px;
+
+}
+
+.card-header{
+
+flex-direction:column;
+gap:10px;
+align-items:flex-start !important;
+
+}
+
+}
+
+@media(max-width:576px){
+
+main h2{
+
+font-size:1.8rem;
+
+}
+
+.card.text-center h3{
+
+font-size:1.5rem;
+
+}
+
+.card-body{
+
+padding:18px;
+
+}
+
+}

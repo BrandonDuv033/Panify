@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panify - Panel de Cliente</title>
+    <link rel="icon" href="src/img/Icono Panify.png" type="image/png" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/a0994db117.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../src/css/client/client.css" />
+    <link rel="stylesheet" href="../src/css/client/inicio.css" />
+    <link rel="stylesheet" href="../src/css/index.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-panify">
+        <div class="container">
+          <a href="#" class="navbar-brand d-flex align-items-center gap-3 ms-3">
+            <img
+              src="../src/img/Logo Panify.png"
+              alt="Logo Panify"
+              class="logo"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuPrincipal"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="menuPrincipal">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-5">
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="inicio.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="productos.html"
+                  >Productos</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion-menu" href="contacto.html"
+                  >Contáctenos</a
+                >
+              </li>
+              <div
+                class="d-none d-lg-block border-start mx-2"
+                style="
+                  height: 24px;
+                  border-color: rgba(255, 255, 255, 0.799) !important;
+                "
+              ></div>
+
+              <li class="nav-item dropdown w-100 text-center text-lg-start">
+                <a
+                  class="nav-link dropdown-toggle nav-link-custom d-inline-flex align-items-center gap-2 backend-user"
+                  href="#"
+                  id="userMenu"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-regular fa-circle-user fs-5"></i>
+                  <span>Mi Cuenta</span>
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2 rounded-3"
+                  aria-labelledby="userMenu"
+                >
+                  <li class="px-3 py-2 border-bottom">
+                    <span class="d-block small">Sesión iniciada</span>
+                    <strong class="">Juan Peréz</strong>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2" href="perfil.html">
+                      <i class="fa-regular fa-id-card me-2"></i>
+                      Datos Personales
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2" href="pedidos.html">
+                      <i class="fa-solid fa-dolly me-2"></i>
+                      Mis Pedidos
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item py-2 logout" href="../index.html">
+                      <i class="fa-solid fa-power-off me-2"></i>Cerrar Sesión
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container py-5">
+      <div class="row mb-4">
+        <div class="col-12">
+          <h1 class="fw-bold text-white m-0">
+            ¡Bienvenido de nuevo, Juan Peréz!
+          </h1>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="custom-card p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h5 class="fw-bold m-0">
+                <i class="fa-solid fa-basket-shopping me-2"></i>Tu Carrito
+              </h5>
+              <span
+                class="badge border rounded-pill px-3 py-2 fw-semibold text-white"
+                >2 Productos</span
+              >
+            </div>
+
+            <div class="mb-4">
+              <div
+                class="d-flex align-items-center justify-content-between item-carrito"
+              >
+                <div>
+                  <h6 class="m-0 fw-semibold">Pan Blandito (Paquete x10)</h6>
+                  <small>Cantidad: 2</small>
+                </div>
+                <span class="fw-bold">$6.000</span>
+              </div>
+
+              <div
+                class="d-flex align-items-center justify-content-between item-carrito"
+              >
+                <div>
+                  <h6 class="m-0 fw-semibold">Pan Rollo (Paquete x5)</h6>
+                  <small>Cantidad: 1</small>
+                </div>
+                <span class="fw-bold">$4.000</span>
+              </div>
+            </div>
+
+            <div class="precio-container p-3 rounded-3 mb-4">
+              <div
+                class="d-flex align-items-center justify-content-between mb-2"
+              >
+                <span class="text-light small">Subtotal</span>
+                <span class="fw-semibold text-white">$10.000</span>
+              </div>
+              <div
+                class="d-flex align-items-center justify-content-between border-top text-white pt-2"
+              >
+                <span class="fw-bold">Total Estimado</span>
+                <span class="fw-bold fs-5">$10.000</span>
+              </div>
+            </div>
+
+            <button
+              class="btn btn-finalizar w-100 d-flex align-items-center justify-content-center gap-2"
+            >
+              <span>Proceder a pagar</span>
+              <i class="fa-solid fa-arrow-right fs-6"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="custom-card p-4 h-100">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h5 class="fw-bold m-0">
+                <i class="fa-regular fa-bell me-2"></i>Estado de Pedidos
+                Recientes
+              </h5>
+              <a
+                href="client/pedidos.html"
+                class="btn btn-link btn-historial text-decoration-none p-0"
+                >Ver todo el historial</a
+              >
+            </div>
+
+            <div class="d-flex flex-column gap-3">
+              <div
+                class="p-3 border rounded-3 pedido-row d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <div
+                    class="bg-status bg-warning bg-opacity-10 p-2 text-warning rounded-3 text-center d-none d-sm-block"
+                  >
+                    <i class="fa-solid fa-fire-burner fs-5 mt-1"></i>
+                  </div>
+                  <div>
+                    <div class="d-flex align-items-center gap-2">
+                      <h6 class="m-0 fw-bold">Pedido #002</h6>
+                    </div>
+                    <span class="text-white small"
+                      >Fábrica de Pan • Hoy, 11:15 AM</span
+                    >
+                  </div>
+                </div>
+                <div>
+                  <span class="estado-badge estado-preparacion d-inline-block">
+                    <i class="fa-solid fa-spinner fa-spin me-2"></i>Preparando
+                  </span>
+                </div>
+              </div>
+
+              <div
+                class="p-3 border rounded-3 pedido-row d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <div
+                    class="bg-status bg-success bg-opacity-10 p-2 text-success rounded-3 text-center d-none d-sm-block"
+                  >
+                    <i class="fa-solid fa-truck-ramp-box fs-5 mt-1 text-white"></i>
+                  </div>
+                  <div>
+                    <div class="d-flex align-items-center gap-2">
+                      <h6 class="m-0 fw-bold">Pedido #001</h6>
+                    </div>
+                    <span class="text-white small"
+                      >Entregado por domiciliario • Ayer</span
+                    >
+                  </div>
+                </div>
+                <div>
+                  <span class="estado-badge estado-entregado d-inline-block">
+                    <i class="fa-solid fa-circle-check me-2"></i>Entregado
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="contacto">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md-9 footer-logo">
+            Panify - Distribuciones Oro Pan
+          </div>
+          <div class="col-md-3 foter-info">
+            <p>3315796 | ADSO - Grupo 4</p>
+            <p>SENA - Centro de Formación</p>
+          </div>
+        </div>
+        <div class="row text-center footer-rights">
+          <div class="col-md-12">
+            &copy; 2026 Panify. Todos los derechos reservados.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

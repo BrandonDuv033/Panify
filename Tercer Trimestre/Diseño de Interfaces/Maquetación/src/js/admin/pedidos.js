@@ -1,12 +1,3 @@
-// Base de datos quemada por si el localStorage está vacío al inicio
-let pedidosPorDefecto = [
-  { id: "PAN-101", cliente: "Diego Alejandro", detalle: "3x Pan Francés, 1x Croissant", total: 7500, estado: "pendiente" },
-  { id: "PAN-102", cliente: "Valentina Restrepo", detalle: "2x Dona de Chocolate", total: 6000, estado: "preparacion" }
-];
-
-// Variable global que manejará los pedidos reales
-let colaPedidos = [];
-
 document.addEventListener("DOMContentLoaded", () => {
   cargarPedidosDesdeStorage();
 });
@@ -30,6 +21,15 @@ function cargarPedidosDesdeStorage() {
 // Función para rellenar la tabla de administración
 function listarPedidosAdmin() {
   const tabla = document.getElementById("tabla-pedidos-admin");
+
+  const numPendientes = document.getElementById("num-pendientes");
+  const numPreparacion = document.getElementById("num-preparacion");
+  const numCamino = document.getElementById("num-camino");
+  const numEntregados = document.getElementById("num-entregados");
+
+  // =========================
+  // SEGURIDAD DOM
+  // =========================
   if (!tabla) return;
 
   let lineasHTML = "";

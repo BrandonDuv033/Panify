@@ -1,0 +1,145 @@
+:root {
+  --panify-bg-warm: #fcf9f4;
+  --panify-primary: #e65c00;
+  --panify-primary-hover: #cc5200;
+  --panify-navbar: #f8efe0;
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-dorado: #e5a93c;
+  --color-oscuro: #2b1e13;
+  --color-fondo: #33261d;
+  --color-claro: #3d2b1f;
+  --color-blanco: #ffffff;
+  --color-crema: #f5ebe0;
+  --color-texto: #fffaf4;
+  --fuente-principal:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--panify-bg-warm);
+}
+
+main {
+  margin-top: 10vh;
+}
+
+.config {
+  color: #fffaf4;
+}
+
+.sidebar-menu {
+  background: var(--color-fondo);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--color-texto);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: var(--color-oscuro);
+  color: var(--color-blanco);
+}
+
+.sidebar-link.active {
+  background-color: var(--color-oscuro);
+  color: var(--color-blanco);
+}
+
+.logout-side {
+  color: var(--color-secundario);
+}
+
+.logout-side:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-blanco);
+}
+
+/* Formulario */
+.profile-card {
+  background: var(--color-fondo);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.profile-card h3, p, label, .small, .alt-text{
+  color: var(--color-texto) !important;
+}
+
+.profile-card label {
+  font-weight: bold;
+}
+
+/* Zona de Foto de Perfil */
+.avatar-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.avatar-profile {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit-avatar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  color: var(--panify-text);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.btn-edit-avatar:hover {
+  background-color: #f8f9fa;
+  color: var(--panify-primary);
+  transform: scale(1.05);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--panify-primary);
+  box-shadow: 0 0 0 0.25xlrem rgba(230, 92, 0, 0.15);
+}
+
+.btn-guardar {
+  background-color: #e5aa3c96;
+  color: var(--color-blanco);
+  font-weight: 600;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-guardar:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-blanco);
+}

@@ -1,0 +1,53 @@
+:root {
+  --panify-bg-warm: #fcf9f4;
+  --panify-primary: #e65c00;
+  --panify-primary-hover: #cc5200;
+  --panify-navbar: #f8efe0;
+  --panify-text: #2d2621;
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-dorado: #e5a93c;
+  --color-oscuro: #2b1e13;
+  --color-claro: #3d2b1f;
+  --color-blanco: #ffffff;
+  --color-crema: #f5ebe0;
+  --fuente-principal:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.nav-link-custom:focus,
+.nav-link-custom:active {
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+.dropdown-item:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-oscuro);
+}
+
+.logout {
+  color: #9e7b0b;
+}
+
+.logout:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-blanco);
+}
+
+.logout:focus,
+.logout:active {
+  background-color: var(--color-dorado);
+  color: var(--color-blanco) !important;
+}
+
+.dropdown-item:focus,
+.dropdown-item:active {
+  color: var(--color-oscuro);
+  background-color: var(--color-dorado);
+}
+
+.d-block {
+  color: gray !important;
+}
