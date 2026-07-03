@@ -9,79 +9,6 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--fuente-principal);
-  background-color: var(--color-claro);
-  color: var(--color-oscuro);
-  line-height: 1.6;
-}
-
-/* Barra de Navegación */
-.logo {
-  height: 35px;
-  width: 50px;
-}
-
-.marca {
-  font-weight: 640;
-  color: #411d11;
-}
-
-.marca-dos {
-  color: #ebbd65;
-}
-
-.navbar-panify {
-  position: sticky;
-  background-color: white;
-  padding: 10px 0;
-  top: 0;
-  border-bottom: solid var(--color-secundario) 1px;
-  z-index: 1000;
-}
-
-.nav-link {
-  font-weight: 620;
-  color: var(--color-oscuro);
-  transition: color 0.5s;
-}
-
-.nav-link:hover {
-  color: var(--color-principal);
-}
-
-.btn-login-nav {
-  color: var(--color-blanco);
-  background-color: var(--color-principal);
-  padding: 5px 15px;
-  transition: 0.3s;
-}
-
-.btn-login-nav:hover {
-  transform: scale(1.1);
-  color: var(--color-blanco);
-  background-color: var(--color-oscuro);
-}
-
-/* Tarjetas de Catálogo Minimalistas (Fieles a tu captura) */
-.card-producto-base {
-  background-color: #f4f4f6;
-  border: none;
-  border-radius: 4px;
-  padding: 15px;
-}
-
-.icono-pan-top {
-  color: var(--color-principal);
-  font-size: 3.5rem;
-}
-
 /*==================================================
             PEDIDOS CLIENTE - PANIFY
 ===================================================*/
@@ -89,6 +16,7 @@ body {
 main{
     padding-top:40px;
     padding-bottom:70px;
+    margin-top: 10vh;
 }
 
 /* TITULOS */
