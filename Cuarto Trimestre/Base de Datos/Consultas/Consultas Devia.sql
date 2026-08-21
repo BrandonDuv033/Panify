@@ -27,6 +27,7 @@ INNER JOIN usuario u ON m.panadero_idPanadero = u.panadero_idPanadero;
 ##Sub Consultas 
 ##Listar los productos vendidos junto con el cliente y el total facturado, filtrando únicamente aquellos ítems cuyo precio unitario registrado
 ## en el detalle del pedido sea mayor al promedio general de todos los recibos emitidos.
+
 select (pro.nombre) as nombre_Producto, concat(u.nombre," ",u.apellido) as cliente,(r.totalPagar) as totalPagar, (dp.precioFijo) as precioFijo
 from cliente c inner join usuario u
 on c.idCliente = u.cliente_idCliente
@@ -39,8 +40,9 @@ on c.idCliente = u.cliente_idCliente
     inner join producto pro
     on pro.idProducto = dp.producto_idProducto
  where dp.precioFijo > (select avg(totalPagar)from recibo) ;
-    ##Obtener la lista de productos asociados a pedidos con estado 'Entregado', detallando las unidades vendidas y el estado de la orden,
-    ##únicamente para aquellos productos cuyo stock actual en inventario sea inferior al promedio de stock global.
+    
+# Obtener la lista de productos asociados a pedidos con estado 'Entregado', detallando las unidades vendidas y el estado de la orden,
+# únicamente para aquellos productos cuyo stock actual en inventario sea inferior al promedio de stock global.
 
   SELECT 
     p.nombre AS producto,
@@ -56,18 +58,3 @@ WHERE ped.estadoPedido = 'Entregado'
       SELECT AVG(stockActual) 
       FROM inventario
   );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
