@@ -53,6 +53,10 @@
   background-color: var(--color-dorado);
 }
 
+.btn-login-nav:active {
+  background-color: #c27633 !important;
+  transform: scale(0.98) !important;
+}
 
 @media (max-width: 991.98px) {
   .navbar-nav {

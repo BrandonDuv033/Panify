@@ -49,3 +49,11 @@
   color: var(--color-oscuro);
   border: 2px solid #d4af37;
 }
+
+.btn-secondary:active {
+  background-color: #ee8f22 !important;
+  transform: scale(0.98) !important;
+  border: none;
+  border: 2px solid #ee8f22 !important;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.638);
+}
