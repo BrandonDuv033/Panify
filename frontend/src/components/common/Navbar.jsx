@@ -1,4 +1,3 @@
-import "../../assets/css/layout/navbar.css";
 import logoPanify from "../../assets/img/Logo Panify.png";
 
 export default function Navbar() {
@@ -41,11 +40,7 @@ export default function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <button
-                  className="btn btn-login-nav"
-                  data-bs-toggle="modal"
-                  data-bs-target="#loginModal"
-                >
+                <button className="btn btn-login-nav">
                   <i className="fa-solid fa-right-from-bracket me-1"></i>
                   Ingresar
                 </button>

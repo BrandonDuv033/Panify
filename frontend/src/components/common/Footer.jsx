@@ -1,5 +1,3 @@
-import "../../assets/css/layout/footer.css";
-
 export default function Footer() {
   return (
     <footer id="contacto">

@@ -1,5 +1,3 @@
-import "../../assets/css/layout/hero.css";
-
 export default function Hero() {
   return (
     <section className="banner">
@@ -8,8 +6,6 @@ export default function Hero() {
       <button
         type="button"
         className="btn btn-secondary"
-        data-bs-toggle="modal"
-        data-bs-target="#loginModal"
       >
         <i className="fa-solid fa-basket-shopping me-2"></i>Hacer Pedido
       </button>
