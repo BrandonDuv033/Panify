@@ -1,0 +1,109 @@
+.header-productos,
+.header-visita {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subtitulo-decorativo {
+  color: #ffc107;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.header-productos h2,
+.header-visita h2 {
+  color: #fffaf4;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.linea-divisoria {
+  width: 60px;
+  height: 3px;
+  background-color: #ffc107;
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+.lead-productos,
+.lead-visita {
+  color: #f7ebe1;
+  font-size: 17px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.tarjeta {
+  background-color: #33261d;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(43, 30, 19, 0.25);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.tarjeta-img {
+  height: 165px;
+  object-fit: cover;
+  width: 100%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 0 12px rgba(230, 172, 66, 0.35),
+    0 0 25px rgba(230, 172, 66, 0.15);
+}
+
+.tarjeta .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 39px 19px;
+  height: 100%;
+}
+
+.tarjeta-img {
+  height: 165px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.tarjeta:hover .tarjeta-img {
+  transform: scale(1.05);
+}
+
+.tarjeta h3 {
+  color: #fffaf4;
+  font-weight: 700;
+  font-size: 20.8px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  width: 100%;
+  text-transform: uppercase;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.tarjeta:hover h3 {
+  color: var(--color-dorado);
+  transform: translateY(-2px);
+}
+
+.tarjeta p {
+  color: #f7ebe1;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 0;
+  flex-grow: 1;
+}

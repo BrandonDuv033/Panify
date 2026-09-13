@@ -2,4 +2,5 @@
 @import "base/index.css";
 @import "layout/navbar.css";
 @import "layout/hero.css";
+@import "layout/cards.css";
 @import "layout/footer.css";
