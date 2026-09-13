@@ -53,6 +53,7 @@
   background-color: var(--color-dorado);
 }
 
+
 @media (max-width: 991.98px) {
   .navbar-nav {
     text-align: center;

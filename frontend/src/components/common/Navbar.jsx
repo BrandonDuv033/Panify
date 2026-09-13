@@ -1,3 +1,4 @@
+import "../../assets/css/layout/navbar.css";
 import logoPanify from "../../assets/img/Logo Panify.png";
 
 export default function Navbar() {
