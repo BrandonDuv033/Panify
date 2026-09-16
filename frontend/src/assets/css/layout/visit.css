@@ -1,0 +1,20 @@
+.visita {
+  max-height: 107vh;
+  background-color: #33261d;
+}
+
+.visita h5 {
+  color: var(--color-dorado);
+  text-transform: uppercase;
+}
+
+.visita p {
+  color: #f7ebe1;
+}
+
+.mapa-container iframe {
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
