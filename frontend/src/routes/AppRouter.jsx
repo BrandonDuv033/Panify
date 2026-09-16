@@ -1,31 +1,31 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import MainLayout from "../layouts/MainLayout";
-import AdminLayout from "../layouts/AdminLayout";
-import RutaProtegida from "../components/common/RutaProtegida";
+import PublicLayout from "../layouts/PublicLayout.jsx";
+import AdminLayout from "../layouts/AdminLayout.jsx";
+import ProtectedRoute from "../components/common/ProtectedRoute.jsx";
 
 // Públicas
-import Home from "../pages/public/Home";
-import Catalogo from "../pages/public/Catalogo";
-import Login from "../pages/public/Login";
-import Registro from "../pages/public/Registro";
-import Recuperacion from "../pages/public/Recuperacion";
+import Home from "../pages/public/Home.jsx";
+import Catalogo from "../pages/public/Catalogo.jsx";
+import Login from "../pages/public/Login.jsx";
+import Registro from "../pages/public/Register.jsx";
+import Recuperacion from "../pages/public/Recuperacion.jsx";
 
 // Cliente
-import MisPedidos from "../pages/cliente/MisPedidos";
-import PerfilCliente from "../pages/cliente/PerfilCliente";
+import MisPedidos from "../pages/client/MisPedidos.jsx";
+import PerfilCliente from "../pages/client/Profile.jsx";
 
 // Admin (Panadero + Domiciliario — Opción A)
-import Dashboard from "../pages/admin/Dashboard";
-import Recibos from "../pages/admin/Recibos";
-import Inventario from "../pages/admin/Inventario";
-import Pedidos from "../pages/admin/Pedidos";
+import Dashboard from "../pages/admin/Dashboard.jsx";
+import Recibos from "../pages/admin/Recibos.jsx";
+import Inventario from "../pages/admin/Inventario.jsx";
+import Pedidos from "../pages/admin/Pedidos.jsx";
 
 export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<MainLayout />}>
+        <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Catalogo />} />
           <Route path="/ingresar" element={<Login />} />
@@ -35,26 +35,26 @@ export default function AppRouter() {
           <Route
             path="/mis-pedidos"
             element={
-              <RutaProtegida rolesPermitidos={["cliente"]}>
+              <ProtectedRoute rolesPermitidos={["cliente"]}>
                 <MisPedidos />
-              </RutaProtegida>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/perfil"
             element={
-              <RutaProtegida rolesPermitidos={["cliente"]}>
+              <ProtectedRoute rolesPermitidos={["cliente"]}>
                 <PerfilCliente />
-              </RutaProtegida>
+              </ProtectedRoute>
             }
           />
         </Route>
 
         <Route
           element={
-            <RutaProtegida rolesPermitidos={["panadero", "domiciliario"]}>
+            <ProtectedRoute rolesPermitidos={["panadero", "domiciliario"]}>
               <AdminLayout />
-            </RutaProtegida>
+            </ProtectedRoute>
           }
         >
           <Route path="/admin" element={<Dashboard />} />
