@@ -6,7 +6,7 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-panify">
         <div className="container">
           <a
-            href=""
+            href="/"
             className="navbar-brand d-flex align-items-center gap-3 ms-3"
           >
             <img src={logoPanify} alt="Logo Panify" className="logo" />
@@ -25,23 +25,23 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="menuPrincipal">
             <ul className="navbar-nav ms-auto align-items-lg-center gap-5">
               <li className="nav-item">
-                <a className="nav-link opcion-menu" href="#">
+                <a className="nav-link opcion-menu" href="/">
                   Inicio
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link opcion-menu" href="/productos">
+                <a className="nav-link opcion-menu" href="#">
                   Productos
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link opcion-menu" href="/contacto">
+                <a className="nav-link opcion-menu" href="#">
                   Contáctenos
                 </a>
               </li>
               <li className="nav-item">
                 <button className="btn btn-login-nav">
-                  <i className="fa-solid fa-right-from-bracket me-1"></i>
+                  <i className="fa-solid fa-right-from-bracket me-2"></i>
                   Ingresar
                 </button>
               </li>
