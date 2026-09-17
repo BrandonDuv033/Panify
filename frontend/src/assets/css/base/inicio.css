@@ -1,0 +1,189 @@
+:root {
+  --color-principal: #8b5a2b;
+  --color-secundario: #d4af37;
+  --color-dorado: #e5a93c;
+  --color-oscuro: #2b1e13;
+  --color-claro: #3d2b1f;
+  --color-blanco: #ffffff;
+  --color-crema: #f5ebe0;
+  --fuente-principal: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-claro);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* NAVBAR Y HEADER */
+.navbar-panify {
+  background-color: var(--color-oscuro);
+  border-bottom: 2px solid var(--color-dorado);
+  padding: 1rem 0;
+}
+
+.logo-placeholder {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-dorado);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.opcion-menu {
+  color: var(--color-crema) !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.opcion-menu:hover {
+  color: var(--color-dorado) !important;
+}
+
+.btn-login-nav {
+  background-color: var(--color-dorado);
+  color: var(--color-oscuro);
+  border: none;
+  font-weight: bold;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+}
+
+/* CONTENEDOR DIVIDIDO (50/50) */
+.contenedor {
+  display: flex;
+  min-height: calc(100vh - 76px);
+  background: var(--color-claro);
+}
+
+/* SECCIÓN BANNER (IMAGEN) */
+.banner {
+  width: 50%;
+  position: relative;
+  background-image: linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)), url("https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* DEGRADADO DEL BANNER HACIA EL FORMULARIO */
+.banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 75%;
+  width: 25%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(61, 43, 31, 0) 0%,
+    rgba(61, 43, 31, 0.3) 30%,
+    rgba(61, 43, 31, 0.7) 70%,
+    #3d2b1f 100%
+  );
+}
+
+/* SECCIÓN FORMULARIO */
+.formulario {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-claro);
+  padding: 40px;
+}
+
+.formulario label, .texto-recuperar {
+  color: #fffaf4;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.modal-login {
+  width: 100%;
+  max-width: 450px;
+  align-items: center;
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+.titulo-registro {
+  color: var(--color-dorado);
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-control {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-principal);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.form-control:focus {
+  border-color: var(--color-dorado);
+  box-shadow: 0 0 0 0.25rem rgba(229, 169, 60, 0.25);
+}
+
+.btn-login-ingresar {
+  background-color: var(--color-principal);
+  color: var(--color-crema);
+  font-weight: bold;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-login-ingresar:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-oscuro);
+  transform: translateY(-2px);
+}
+
+.link-login {
+  color: var(--color-dorado);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link-login:hover {
+  color: var(--color-secundario);
+}
+
+/* FOOTER */
+footer {
+  background-color: var(--color-oscuro);
+  color: var(--color-crema);
+  border-top: 3px solid var(--color-principal);
+  padding: 2rem 0 1rem;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-dorado);
+}
+
+/* RESPONSIVE PARA CELULARES (Colapsa a una columna) */
+@media (max-width: 768px) {
+  .contenedor {
+    flex-direction: column;
+  }
+  .banner {
+    width: 100%;
+    height: 30vh;
+  }
+  .banner::after {
+    display: none;
+  }
+  .formulario {
+    width: 100%;
+    padding: 20px;
+  }
+}
