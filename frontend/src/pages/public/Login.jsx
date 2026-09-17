@@ -35,17 +35,26 @@ const Login = () => {
       return;
     }
 
+    // Credenciales del Administrador (Redirige al Dashboard /admin)
     if (email === 'admin@panify.com' && password === '12345') {
+      const datosUsuario = { rol: 'panadero', token: 'fake-token-admin' };
+      localStorage.setItem('usuario', JSON.stringify(datosUsuario));
+
       Swal.fire({
         icon: 'success',
         title: '¡Bienvenido!',
-        text: 'Redireccionando...',
+        text: 'Redireccionando al Dashboard...',
         timer: 1500,
         showConfirmButton: false,
       }).then(() => {
         navigate('/admin'); 
       });
-    } else if (email === 'user@panify.com' && password === '12345') {
+    } 
+    // Credenciales del Usuario / Cliente (Redirige al inicio)
+    else if (email === 'user@panify.com' && password === '12345') {
+      const datosUsuario = { rol: 'cliente', token: 'fake-token-user' };
+      localStorage.setItem('usuario', JSON.stringify(datosUsuario));
+
       Swal.fire({
         icon: 'success',
         title: '¡Bienvenido!',
@@ -55,7 +64,9 @@ const Login = () => {
       }).then(() => {
         navigate('/'); 
       });
-    } else {
+    } 
+    // Credenciales incorrectas
+    else {
       Swal.fire({
         icon: 'error',
         title: 'Error',

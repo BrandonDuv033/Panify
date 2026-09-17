@@ -1,68 +1,36 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import PublicLayout from "../layouts/PublicLayout.jsx";
-import AdminLayout from "../layouts/AdminLayout.jsx";
-import ProtectedRoute from "../components/common/ProtectedRoute.jsx";
+// Subimos un nivel (../) porque AppRouter está dentro de la carpeta 'routes'
+import Login from "../pages/public/Login";
+import Dashboard from "../pages/admin/Dashboard";
+import Inventario from "../pages/admin/Inventario";
+import ProtectedRoute from "../components/common/ProtectedRoute"; // O la ruta correcta donde tengas tu ProtectedRoute
 
-// Públicas
-import Home from "../pages/public/Home.jsx";
-import Catalogo from "../pages/public/Catalogo.jsx";
-import Login from "../pages/public/Login.jsx";
-import Registro from "../pages/public/Register.jsx";
-import Recuperacion from "../pages/public/Recuperacion.jsx";
-
-// Cliente
-import MisPedidos from "../pages/client/MisPedidos.jsx";
-import PerfilCliente from "../pages/client/Profile.jsx";
-
-// Admin (Panadero + Domiciliario — Opción A)
-import Dashboard from "../pages/admin/Dashboard.jsx";
-import Recibos from "../pages/admin/Recibos.jsx";
-import Inventario from "../pages/admin/Inventario.jsx";
-import Pedidos from "../pages/admin/Pedidos.jsx";
-
-export default function AppRouter() {
+const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/productos" element={<Catalogo />} />
-          <Route path="/ingresar" element={<Login />} />
-          <Route path="/registro" element={<Registro />} />
-          <Route path="/recuperacion" element={<Recuperacion />} />
-
-          <Route
-            path="/mis-pedidos"
-            element={
-              <ProtectedRoute rolesPermitidos={["cliente"]}>
-                <MisPedidos />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/perfil"
-            element={
-              <ProtectedRoute rolesPermitidos={["cliente"]}>
-                <PerfilCliente />
-              </ProtectedRoute>
-            }
-          />
-        </Route>
-
+        {/* Rutas Públicas */}
+        <Route path="/ingresar" element={<Login />} />
+        
+        {/* Rutas Protegidas de Administrador */}
         <Route
           element={
-            <ProtectedRoute rolesPermitidos={["panadero", "domiciliario"]}>
-              <AdminLayout />
+            <ProtectedRoute rolesPermitidos={["panadero"]}>
+              {/* Aquí puedes envolverlo con tu AdminLayout si lo usas */}
             </ProtectedRoute>
           }
         >
           <Route path="/admin" element={<Dashboard />} />
-          <Route path="/admin/recibos" element={<Recibos />} />
-          <Route path="/admin/inventario" element={<Inventario />} />
-          <Route path="/admin/pedidos" element={<Pedidos />} />
+          <Route path="/admin/productos" element={<Inventario />} />
         </Route>
+
+        {/* Ruta por defecto */}
+        <Route path="*" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
-}
+};
+
+export default AppRouter;
