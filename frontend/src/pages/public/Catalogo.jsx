@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import API from '../../services/api';
 
 // Importación del archivo principal de estilos basado en tu estructura
 import '../../assets/css/styles.css';
 
 const Catalogo = () => {
-  // Estado para almacenar los productos traídos de json-server
+  // Estado para almacenar los productos traídos de axios
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,12 +16,11 @@ const Catalogo = () => {
   const [carrito, setCarrito] = useState([]);
   const [reciboData, setReciboData] = useState(null);
 
-  // Cargar productos desde json-server usando el puerto correcto (1511)
+  // Cargar productos desde la API centralizada
   useEffect(() => {
-    fetch('http://localhost:1511/productos')
-      .then((res) => res.json())
-      .then((data) => {
-        setProductos(data);
+    API.get('/productos')
+      .then((res) => {
+        setProductos(res.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -124,7 +123,7 @@ const Catalogo = () => {
           <span className="subtitulo-decorativo">Distribuciones Oro Pan</span>
           <h2>Nuestros Productos</h2>
           <div className="linea-divisoria"></div>
-          <p className="lead-productos">Escoge tus productos favoritos y agrégalos al carrito.</p>
+          <p className="lead-productos">Escoge tus productos favoritos y agrégos al carrito.</p>
         </div>
 
         {/* Buscador y Filtro */}
@@ -153,7 +152,7 @@ const Catalogo = () => {
 
         {/* Lista de Productos y Carrito */}
         <div className="row">
-          {/* Productos Grid con datos de json-server */}
+          {/* Productos Grid con datos de la API */}
           <div className="col-lg-8 row g-4" id="listaProductos">
             {loading ? (
               <p className="text-white text-center">Cargando productos desde la base de datos...</p>
