@@ -1,3 +1,9 @@
+.productos {
+  background-color: var(--color-claro);
+  max-width: 100%;
+  padding: 40px;
+  max-height: 100%;
+}
 .header-productos,
 .header-visita {
   max-width: 600px;
