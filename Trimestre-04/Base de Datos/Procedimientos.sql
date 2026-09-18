@@ -64,7 +64,7 @@ BEGIN
 
 END//
 
-##4. 
+##4. Consultar historial de pedidos de un cliente
 
 DELIMITER // 
 CREATE  PROCEDURE `Historial`( IN clienteID INT
