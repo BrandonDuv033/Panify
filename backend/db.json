@@ -100,6 +100,13 @@
       "precio": 2500,
       "estado": "Disponible",
       "descripcion": "Croissant hojaldrado relleno de queso"
+    },
+        {
+      "idProducto": 3,
+      "nombre": "Pan Frances",
+      "precio": 3000,
+      "estado": "Disponible",
+      "descripcion": "Pan Frances relleno de queso"
     }
   ],
   "inventarios": [
