@@ -79,7 +79,7 @@ const Login = () => {
     <div className="contenedor">
       <section className="banner"></section>
       
-      <div className="formulario pb-5">
+      <div className="formulario">
         <div className="modal-content modal-login p-4">
           <div className="modal-header border-0 pb-0">
             <h2 className="modal-title w-100 text-center">Iniciar Sesión</h2>

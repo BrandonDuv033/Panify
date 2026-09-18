@@ -1,0 +1,23 @@
+.modal-registro {
+    background-color: #3d2b1f !important;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    border: 1px solid #d4af37 !important;
+    margin-bottom: 60px;
+    margin-top: -630px;
+}
+
+.modal-registro .modal-body {
+    background-color: transparent !important;
+    padding: 0;
+}
+
+.modal-registro .form-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: 500;
+}

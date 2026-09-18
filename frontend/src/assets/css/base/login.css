@@ -4,19 +4,25 @@
   border-radius: 20px;
   
   /* Margen negativo para subir el formulario sobre el banner */
-  margin-top: -350px; 
+  margin-top: -450px; 
   position: relative;
   z-index: 10;
   
   max-width: 450px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 40px;
   
   /* Sombra oscura y elegante en lugar del resplandor blanco */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid #5a4030 !important;
+  border: 1px solid #d8d8d8 !important;
 }
-
+.h2{
+  align-items: last baseline;
+}
+.modal-header border-0 pb-0{
+  background-color: #d8d8d8 ;
+}
 .modal-login h2 {
   text-align: center;
   align-items: center;
@@ -50,4 +56,8 @@
 .link-login:hover {
   text-decoration: underline;
   color: #e5a93c !important;
+}
+.formulario{
+  
+  background-color: transparent !important;
 }
