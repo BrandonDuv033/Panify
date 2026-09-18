@@ -47,7 +47,7 @@ const Login = () => {
         timer: 1500,
         showConfirmButton: false,
       }).then(() => {
-        navigate('/admin'); 
+        navigate('/admin/usuarios'); 
       });
     } 
     // Credenciales del Usuario / Cliente (Redirige al inicio)
