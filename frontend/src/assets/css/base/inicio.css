@@ -60,14 +60,23 @@ body {
 
 /* SECCIÓN BANNER (IMAGEN) */
 .banner {
-  width: 50%;
-  position: relative;
-  background-image: linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)), url("https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+    width: 50%;
+    position: relative;
+    height: 400px;
+    background-image: linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)), url("https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
+.footer {
+  background-color: var(--color-oscuro);
+  color: #a19285;
+  padding: 40px 20px;
+  border-top: solid #e5aa3c96 1px;
+  margin-top: -400px;
+  overflow: hidden;
 
+}
 /* DEGRADADO DEL BANNER HACIA EL FORMULARIO */
 .banner::after {
   content: "";

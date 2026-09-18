@@ -7,11 +7,36 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     border: 1px solid #d4af37 !important;
     margin-bottom: 60px;
-    margin-top: -630px;
+    margin-top: -440px;
 }
 
+.contenedorFORM {
+    position: relative;
+    overflow: hidden;
+}
+
+.contenedorFORM {
+    position: relative;
+    background-image: linear-gradient(rgba(43, 30, 19, 0.65)), url("https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contenedorFORM .banner {
+    background-image: none;
+}
+
+
+.contenedorFORM .banner {
+    min-height: 100%;
+    overflow: hidden;
+}
+
+
 .modal-registro .modal-body {
-    background-color: transparent !important;
+        background-color: transparent !important;
     padding: 0;
 }
 

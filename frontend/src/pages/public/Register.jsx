@@ -96,11 +96,11 @@ const Register = () => {
 
       <Navbar />
 
-      <div className="contenedor">
+      <div className="contenedorFORM">
 
         <section className="banner"></section>
 
-        <div className="formulario">
+        <div className="formulario2">
 
           <div className="modal-content modal-registro">
 
@@ -243,8 +243,6 @@ const Register = () => {
         </div>
 
       </div>
-
-      <Footer />
 
     </>
 
