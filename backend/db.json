@@ -84,6 +84,33 @@
       "cliente_idCliente": 2,
       "panadero_idPanadero": null,
       "domiciliario_idDomiciliario": null
+    },
+    
+    {
+      "nombre": "Brandon",
+      "apellido": "",
+      "correo": "brandon@panify.com",
+      "contraseña": "1234567",
+      "telefono": "3000000000",
+      "estado": "Activo",
+      "Rol_idRol": 1,
+      "cliente_idCliente": 2,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": null,
+      "id": 5
+    },
+    {
+      "nombre": "Martin",
+      "apellido": "",
+      "correo": "martin@panify.com",
+      "contraseña": "123456",
+      "telefono": "3000000000",
+      "estado": "Activo",
+      "Rol_idRol": 1,
+      "cliente_idCliente": 2,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": null,
+      "id": 6
     }
   ],
   "productos": [

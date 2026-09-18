@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import API from "../../services/api";
 
 // Importa el CSS correspondiente de administración
 import "../../assets/css/base/usuarios.css";
@@ -8,39 +9,59 @@ import "../../assets/css/base/usuarios.css";
 const Inventario = () => {
   const navigate = useNavigate();
 
-  // Estado inicial de productos
-  const [productos, setProductos] = useState([
-    {
-      id: 1,
-      nombre: "Pan Francés",
-      categoria: "Pan",
-      precio: 1500,
-      stock: 45,
-      estado: "Disponible",
-      imagen: "🍞",
-    },
-    {
-      id: 2,
-      nombre: "Croissant",
-      categoria: "Pastelería",
-      precio: 3000,
-      stock: 6,
-      estado: "Poco Stock",
-      imagen: "🥐",
-    },
-    {
-      id: 3,
-      nombre: "Pan Integral",
-      categoria: "Pan",
-      precio: 2500,
-      stock: 0,
-      estado: "Agotado",
-      imagen: "🍞",
-    },
-  ]);
+  // Estados para productos y control de carga
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [busqueda, setBusqueda] = useState("");
   const [categoriaFiltro, setCategoriaFiltro] = useState("Todas");
+
+  // Cargar productos e inventario desde axios usando la instancia centralizada
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [resProductos, resInventarios] = await Promise.all([
+          API.get('/productos'),
+          API.get('/inventarios')
+        ]);
+        
+        const dataProductos = resProductos.data;
+        const dataInventarios = resInventarios.data;
+
+        // Unimos los datos de productos con su respectivo stock e inventario
+        const productosCompletos = dataProductos.map((prod) => {
+          // Buscamos el inventario correspondiente usando idProducto
+          const inv = dataInventarios.find((i) => i.producto_idProducto === prod.idProducto) || { stockActual: 0 };
+          
+          // Determinamos el estado basado en el stock actual
+          let estado = "Disponible";
+          if (inv.stockActual === 0) {
+            estado = "Agotado";
+          } else if (inv.stockActual <= 10) {
+            estado = "Poco Stock";
+          }
+
+          return {
+            id: prod.idProducto,
+            nombre: prod.nombre,
+            categoria: prod.descripcion || "General",
+            precio: prod.precio,
+            stock: inv.stockActual,
+            estado: estado,
+            imagen: "🍞",
+          };
+        });
+
+        setProductos(productosCompletos);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al cargar el inventario:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Filtrado reactivo de productos
   const productosFiltrados = productos.filter((prod) => {
@@ -48,7 +69,7 @@ const Inventario = () => {
       .toLowerCase()
       .includes(busqueda.toLowerCase());
     const coincideCategoria =
-      categoriaFiltro === "Todas" || prod.categoria === categoriaFiltro;
+      categoriaFiltro === "Todas" || prod.categoria.toLowerCase().includes(categoriaFiltro.toLowerCase());
     return coincideBusqueda && coincideCategoria;
   });
 
@@ -145,7 +166,7 @@ const Inventario = () => {
             <div className="card-resumen">
               <i className="fa-solid fa-layer-group"></i>
               <div>
-                <h3>3</h3>
+                <h3>{new Set(productos.map(p => p.categoria)).size}</h3>
                 <p>Categorías</p>
               </div>
             </div>
@@ -184,8 +205,8 @@ const Inventario = () => {
                 onChange={(e) => setCategoriaFiltro(e.target.value)}
               >
                 <option value="Todas">Todas las categorías</option>
-                <option value="Pan">Pan</option>
-                <option value="Pastelería">Pastelería</option>
+                <option value="artesanal">Artesanal</option>
+                <option value="queso">Queso</option>
               </select>
             </div>
           </div>
@@ -199,7 +220,7 @@ const Inventario = () => {
                 <tr>
                   <th>Imagen</th>
                   <th>Producto</th>
-                  <th>Categoría</th>
+                  <th>Descripción</th>
                   <th>Precio</th>
                   <th>Stock</th>
                   <th>Estado</th>
@@ -207,45 +228,53 @@ const Inventario = () => {
                 </tr>
               </thead>
               <tbody>
-                {productosFiltrados.map((prod) => (
-                  <tr key={prod.id}>
-                    <td className="fs-4">{prod.imagen}</td>
-                    <td>{prod.nombre}</td>
-                    <td>{prod.categoria}</td>
-                    <td>$ {prod.precio.toLocaleString()}</td>
-                    <td>{prod.stock}</td>
-                    <td>
-                      <span
-                        className={`badge ${
-                          prod.estado === "Disponible"
-                            ? "bg-success"
-                            : prod.estado === "Poco Stock"
-                              ? "bg-warning text-dark"
-                              : "bg-danger"
-                        }`}
-                      >
-                        {prod.estado}
-                      </span>
-                    </td>
-                    <td>
-                      <button
-                        className="btn btn-sm btn-outline-primary me-2"
-                        title="Editar"
-                        onClick={() => handleEditar(prod.nombre)}
-                      >
-                        <i className="fa-solid fa-pen"></i>
-                      </button>
-                      <button
-                        className="btn btn-sm btn-outline-danger"
-                        title="Eliminar"
-                        onClick={() => handleEliminar(prod.nombre)}
-                      >
-                        <i className="fa-solid fa-trash"></i>
-                      </button>
+                {loading ? (
+                  <tr>
+                    <td colSpan="7" className="text-center py-4 text-muted">
+                      Cargando inventario desde el servidor...
                     </td>
                   </tr>
-                ))}
-                {productosFiltrados.length === 0 && (
+                ) : (
+                  productosFiltrados.map((prod) => (
+                    <tr key={prod.id}>
+                      <td className="fs-4">{prod.imagen}</td>
+                      <td>{prod.nombre}</td>
+                      <td>{prod.categoria}</td>
+                      <td>$ {prod.precio.toLocaleString()}</td>
+                      <td>{prod.stock}</td>
+                      <td>
+                        <span
+                          className={`badge ${
+                            prod.estado === "Disponible"
+                              ? "bg-success"
+                              : prod.estado === "Poco Stock"
+                              ? "bg-warning text-dark"
+                              : "bg-danger"
+                          }`}
+                        >
+                          {prod.estado}
+                        </span>
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-sm btn-outline-primary me-2"
+                          title="Editar"
+                          onClick={() => handleEditar(prod.nombre)}
+                        >
+                          <i className="fa-solid fa-pen"></i>
+                        </button>
+                        <button
+                          className="btn btn-sm btn-outline-danger"
+                          title="Eliminar"
+                          onClick={() => handleEliminar(prod.nombre)}
+                        >
+                          <i className="fa-solid fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+                {!loading && productosFiltrados.length === 0 && (
                   <tr>
                     <td colSpan="7" className="text-center py-4 text-muted">
                       No se encontraron productos registrados.
