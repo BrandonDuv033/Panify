@@ -61,7 +61,7 @@ CREATE TABLE
         idProducto INT NOT NULL AUTO_INCREMENT,
         nombre VARCHAR(45) NOT NULL,
         precio DECIMAL(10, 2) NOT NULL,
-        estado ENUM ('Disponbile', 'Agotado') NOT NULL,
+        estado ENUM ('Disponible', 'Agotado') NOT NULL,
         descripcion VARCHAR(100) NULL DEFAULT NULL,
         PRIMARY KEY (idProducto)
     );
@@ -197,7 +197,7 @@ VALUES
     ('Ocupado'),
     ('Inactivo');
 
--- 5. Insertar Usuarios (14 en total para cubrir exactamente a los 10 clientes, 3 domiciliarios y 1 panadero)
+-- 5. Insertar Usuarios (14 en total)
 INSERT INTO
     usuarios (
         nombre,
@@ -390,61 +390,66 @@ INSERT INTO
 VALUES
     (
         'Pan Aliñado',
-        2500.00,
-        'Disponbile',
-        'Pan suave con queso'
+        1500.00,
+        'Disponible',
+        'Paquete de 5 unidades'
     ),
     (
         'Pan Rollo',
         1500.00,
-        'Disponbile',
-        'Pan tradicional pequeño'
+        'Disponible',
+        'Paquete de 5 unidades'
     ),
     (
         'Roscon',
+        1500.00,
+        'Agotado',
+        'Paquete de 5 unidades rellenos de bocadillo o arequipe'
+    ),
+    (
+        'Pan de Queso',
         3000.00,
+        'Disponible',
+        'Unidad grande tradicional'
+    ),
+    (
+        'Pan Baguette',
+        2000.00,
+        'Disponible',
+        'Pan alargado y crujiente'
+    ),
+    (
+        'Pan Galleta',
+        2000.00,
         'Agotado',
-        'Roscón relleno de bocadillo'
-    ),
-    ('Pan de Queso', 2000.00, 'Disponbile', NULL),
-    (
-        'Croissant',
-        3500.00,
-        'Disponbile',
-        'Croissant de mantequilla'
+        'Pan tradicional con costra crujiente horneadas'
     ),
     (
-        'Galletas Choco',
-        1200.00,
+        'Pan Mani',
+        2500.00,
+        'Disponible',
+        'Pan con cubierta crujiente de maní'
+    ),
+    (
+        'Pan Campesino',
+        2500.00,
+        'Disponible',
+        'Cubierto con harina por encima'
+    ),
+    (
+        'Lenguas',
+        1500.00,
+        'Disponible',
+        'Paquete de 5 unidades'
+    ),
+    (
+        'Pan Hojaldre',
+        1500.00,
         'Agotado',
-        'Galletas horneadas'
-    ),
-    (
-        'Buñuelo',
-        1800.00,
-        'Disponbile',
-        'Buñuelo fresco'
-    ),
-    (
-        'Pan Integral',
-        3200.00,
-        'Disponbile',
-        'Alto en fibra'
-    ),
-    (
-        'Torta de Vainilla',
-        25000.00,
-        'Disponbile',
-        'Para 10 porciones'
-    ),
-    (
-        'Mantecada',
-        4000.00,
-        'Agotado',
-        'Porción individual'
+        'Paquete de 5 unidades'
     );
 
--- 7. Insertar Movimientos de Inventario (Todos registrados por el único panadero: ID 1)
+-- 7. Insertar Movimientos de Inventario (Originales + 20 nuevos variados)
 INSERT INTO
     movimientos (
         tipoMovimiento,
@@ -454,6 +459,7 @@ INSERT INTO
         producto_idProducto
     )
 VALUES
+    -- 10 Originales
     ('Entrada', 50, '2026-09-17 06:00:00', 1, 1),
     ('Salida', 10, '2026-09-17 07:30:00', 1, 1),
     ('Entrada', 30, '2026-09-17 06:15:00', 1, 2),
@@ -463,9 +469,30 @@ VALUES
     ('Entrada', 20, '2026-09-17 07:00:00', 1, 5),
     ('Salida', 20, '2026-09-17 10:00:00', 1, 3),
     ('Entrada', 15, '2026-09-17 07:15:00', 1, 8),
-    ('Ajuste', 1, '2026-09-17 11:00:00', 1, 5);
+    ('Ajuste', 1, '2026-09-17 11:00:00', 1, 5),
+    -- 20 Nuevos (Agosto - Octubre)
+    ('Entrada', 100, '2026-08-01 05:30:00', 1, 1),
+    ('Entrada', 80, '2026-08-02 06:00:00', 1, 2),
+    ('Salida', 25, '2026-08-05 10:15:00', 1, 1),
+    ('Ajuste', 5, '2026-08-10 12:00:00', 1, 4),
+    ('Entrada', 60, '2026-08-15 05:45:00', 1, 5),
+    ('Salida', 15, '2026-08-18 16:20:00', 1, 5),
+    ('Entrada', 50, '2026-08-25 06:10:00', 1, 7),
+    ('Salida', 20, '2026-08-28 09:30:00', 1, 7),
+    ('Entrada', 40, '2026-09-02 06:00:00', 1, 9),
+    ('Ajuste', 3, '2026-09-05 14:00:00', 1, 9),
+    ('Entrada', 70, '2026-09-10 05:50:00', 1, 10),
+    ('Salida', 30, '2026-09-14 11:15:00', 1, 10),
+    ('Entrada', 90, '2026-09-20 06:30:00', 1, 4),
+    ('Salida', 40, '2026-09-25 15:45:00', 1, 4),
+    ('Entrada', 65, '2026-10-01 06:00:00', 1, 3),
+    ('Ajuste', 4, '2026-10-05 08:30:00', 1, 2),
+    ('Entrada', 55, '2026-10-10 05:40:00', 1, 6),
+    ('Salida', 10, '2026-10-15 13:20:00', 1, 6),
+    ('Entrada', 45, '2026-10-20 06:15:00', 1, 8),
+    ('Salida', 22, '2026-10-25 17:00:00', 1, 8);
 
--- 8. Insertar Inventarios
+-- 8. Insertar Inventarios (No se agregan más para mantener la consistencia de 1 registro por producto)
 INSERT INTO
     inventarios (stockMinimo, stockActual, producto_idProducto)
 VALUES
@@ -480,7 +507,7 @@ VALUES
     (2, 5, 9),
     (5, 0, 10);
 
--- 9. Insertar Pedidos (Asignados a los domiciliarios 1, 2 y 3)
+-- 9. Insertar Pedidos (10 Originales + 20 nuevos con fechas variadas)
 INSERT INTO
     pedidos (
         fechaHoraCreacion,
@@ -490,6 +517,7 @@ INSERT INTO
         domiciliario_idDomiciliario
     )
 VALUES
+    -- 10 Originales
     (
         '2026-09-17 08:00:00',
         '2026-09-17 08:30:00',
@@ -559,9 +587,150 @@ VALUES
         'Listo',
         8,
         1
+    ),
+    -- 20 Nuevos (Variedad desde Agosto hasta Octubre)
+    (
+        '2026-08-05 08:30:00',
+        '2026-08-05 09:15:00',
+        'Entregado',
+        2,
+        1
+    ),
+    (
+        '2026-08-12 14:00:00',
+        '2026-08-12 14:45:00',
+        'Entregado',
+        5,
+        2
+    ),
+    (
+        '2026-08-18 09:15:00',
+        '2026-08-18 10:00:00',
+        'Cancelado',
+        8,
+        3
+    ),
+    (
+        '2026-08-25 18:45:00',
+        '2026-08-25 19:30:00',
+        'Entregado',
+        9,
+        1
+    ),
+    (
+        '2026-09-02 07:30:00',
+        '2026-09-02 08:00:00',
+        'Entregado',
+        3,
+        2
+    ),
+    (
+        '2026-09-05 11:20:00',
+        '2026-09-05 12:00:00',
+        'Entregado',
+        1,
+        3
+    ),
+    (
+        '2026-09-10 16:10:00',
+        '2026-09-10 16:50:00',
+        'Entregado',
+        7,
+        1
+    ),
+    (
+        '2026-09-14 19:00:00',
+        '2026-09-14 19:40:00',
+        'Cancelado',
+        10,
+        2
+    ),
+    (
+        '2026-09-20 10:05:00',
+        '2026-09-20 10:50:00',
+        'Entregado',
+        6,
+        3
+    ),
+    (
+        '2026-09-25 13:40:00',
+        '2026-09-25 14:15:00',
+        'Entregado',
+        4,
+        1
+    ),
+    (
+        '2026-09-28 08:50:00',
+        '2026-09-28 09:30:00',
+        'Entregado',
+        2,
+        2
+    ),
+    (
+        '2026-10-01 15:30:00',
+        '2026-10-01 16:15:00',
+        'Entregado',
+        5,
+        3
+    ),
+    (
+        '2026-10-05 12:15:00',
+        '2026-10-05 13:00:00',
+        'Entregado',
+        8,
+        1
+    ),
+    (
+        '2026-10-10 09:45:00',
+        '2026-10-10 10:30:00',
+        'Entregado',
+        9,
+        2
+    ),
+    (
+        '2026-10-12 17:20:00',
+        '2026-10-12 18:00:00',
+        'Entregado',
+        1,
+        3
+    ),
+    (
+        '2026-10-15 14:10:00',
+        '2026-10-15 14:50:00',
+        'Cancelado',
+        3,
+        1
+    ),
+    (
+        '2026-10-18 10:30:00',
+        '2026-10-18 11:15:00',
+        'Entregado',
+        7,
+        2
+    ),
+    (
+        '2026-10-20 11:00:00',
+        '2026-10-20 11:45:00',
+        'Entregado',
+        10,
+        3
+    ),
+    (
+        '2026-10-22 16:45:00',
+        '2026-10-22 17:30:00',
+        'Entregado',
+        4,
+        1
+    ),
+    (
+        '2026-10-25 08:00:00',
+        '2026-10-25 08:45:00',
+        'Entregado',
+        6,
+        2
     );
 
--- 10. Insertar Detalles de Pedidos
+-- 10. Insertar Detalles de Pedidos (10 Originales + 20 Nuevos)
 INSERT INTO
     detalle_pedidos (
         precioFijo,
@@ -570,6 +739,7 @@ INSERT INTO
         producto_idProducto
     )
 VALUES
+    -- 10 Originales
     (2500.00, 4, 1, 1),
     (1500.00, 2, 2, 2),
     (3500.00, 1, 3, 5),
@@ -579,12 +749,34 @@ VALUES
     (25000.00, 1, 7, 9),
     (2500.00, 2, 8, 1),
     (1500.00, 5, 9, 2),
-    (2000.00, 3, 10, 4);
+    (2000.00, 3, 10, 4),
+    -- 20 Nuevos (Asociados a los pedidos 11 al 30)
+    (1500.00, 3, 11, 1),
+    (3000.00, 2, 12, 4),
+    (2000.00, 4, 13, 5),
+    (1500.00, 5, 14, 2),
+    (2500.00, 2, 15, 7),
+    (2500.00, 3, 16, 8),
+    (1500.00, 6, 17, 9),
+    (1500.00, 2, 18, 1),
+    (3000.00, 1, 19, 4),
+    (2000.00, 2, 20, 5),
+    (1500.00, 4, 21, 2),
+    (2500.00, 3, 22, 7),
+    (1500.00, 5, 23, 9),
+    (2500.00, 2, 24, 8),
+    (1500.00, 3, 25, 1),
+    (3000.00, 2, 26, 4),
+    (2000.00, 3, 27, 5),
+    (1500.00, 4, 28, 2),
+    (2500.00, 2, 29, 7),
+    (1500.00, 5, 30, 9);
 
--- 11. Insertar Recibos
+-- 11. Insertar Recibos (10 Originales + 20 Nuevos correspondientes a sus pedidos)
 INSERT INTO
     recibos (totalPagar, fechaEmision, pedido_idPedido)
 VALUES
+    -- 10 Originales
     (10000.00, '2026-09-17 08:35:00', 1),
     (3000.00, '2026-09-17 09:50:00', 2),
     (3500.00, '2026-09-17 10:30:00', 3),
@@ -594,9 +786,30 @@ VALUES
     (25000.00, '2026-09-17 14:40:00', 7),
     (5000.00, '2026-09-17 15:00:00', 8),
     (7500.00, '2026-09-17 15:30:00', 9),
-    (6000.00, '2026-09-17 16:15:00', 10);
+    (6000.00, '2026-09-17 16:15:00', 10),
+    -- 20 Nuevos (Precios calculados base al detalle: precioFijo * cantidad)
+    (4500.00, '2026-08-05 08:35:00', 11),
+    (6000.00, '2026-08-12 14:10:00', 12),
+    (8000.00, '2026-08-18 09:20:00', 13),
+    (7500.00, '2026-08-25 18:50:00', 14),
+    (5000.00, '2026-09-02 07:40:00', 15),
+    (7500.00, '2026-09-05 11:30:00', 16),
+    (9000.00, '2026-09-10 16:20:00', 17),
+    (3000.00, '2026-09-14 19:10:00', 18),
+    (3000.00, '2026-09-20 10:15:00', 19),
+    (4000.00, '2026-09-25 13:50:00', 20),
+    (6000.00, '2026-09-28 09:00:00', 21),
+    (7500.00, '2026-10-01 15:40:00', 22),
+    (7500.00, '2026-10-05 12:25:00', 23),
+    (5000.00, '2026-10-10 09:55:00', 24),
+    (4500.00, '2026-10-12 17:30:00', 25),
+    (6000.00, '2026-10-15 14:15:00', 26),
+    (6000.00, '2026-10-18 10:40:00', 27),
+    (6000.00, '2026-10-20 11:10:00', 28),
+    (5000.00, '2026-10-22 16:55:00', 29),
+    (7500.00, '2026-10-25 08:10:00', 30);
 
--- 12. Insertar Rutas de Entrega
+-- 12. Insertar Rutas de Entrega (10 Originales + 20 Nuevas)
 INSERT INTO
     rutasEntrega (
         estadoRuta,
@@ -604,6 +817,7 @@ INSERT INTO
         domiciliarios_idDomiciliario
     )
 VALUES
+    -- 10 Originales
     ('Completada', 'https://maps.google.com/ruta1', 1),
     ('Completada', 'https://maps.google.com/ruta2', 2),
     ('Cancelada', 'https://maps.google.com/ruta3', 3),
@@ -613,9 +827,30 @@ VALUES
     ('Pendiente', 'https://maps.google.com/ruta7', 1),
     ('Pendiente', 'https://maps.google.com/ruta8', 2),
     ('Completada', 'https://maps.google.com/ruta9', 3),
-    ('Pendiente', 'https://maps.google.com/ruta10', 1);
+    ('Pendiente', 'https://maps.google.com/ruta10', 1),
+    -- 20 Nuevas (Mayoría 'Completada' o 'Cancelada' por ser fechas pasadas)
+    ('Completada', 'https://maps.google.com/ruta11', 1),
+    ('Completada', 'https://maps.google.com/ruta12', 2),
+    ('Cancelada', 'https://maps.google.com/ruta13', 3),
+    ('Completada', 'https://maps.google.com/ruta14', 1),
+    ('Completada', 'https://maps.google.com/ruta15', 2),
+    ('Completada', 'https://maps.google.com/ruta16', 3),
+    ('Completada', 'https://maps.google.com/ruta17', 1),
+    ('Cancelada', 'https://maps.google.com/ruta18', 2),
+    ('Completada', 'https://maps.google.com/ruta19', 3),
+    ('Completada', 'https://maps.google.com/ruta20', 1),
+    ('Completada', 'https://maps.google.com/ruta21', 2),
+    ('Completada', 'https://maps.google.com/ruta22', 3),
+    ('Completada', 'https://maps.google.com/ruta23', 1),
+    ('Completada', 'https://maps.google.com/ruta24', 2),
+    ('Completada', 'https://maps.google.com/ruta25', 3),
+    ('Cancelada', 'https://maps.google.com/ruta26', 1),
+    ('Completada', 'https://maps.google.com/ruta27', 2),
+    ('Completada', 'https://maps.google.com/ruta28', 3),
+    ('Completada', 'https://maps.google.com/ruta29', 1),
+    ('Completada', 'https://maps.google.com/ruta30', 2);
 
--- 13. Insertar Paradas de Ruta
+-- 13. Insertar Paradas de Ruta (10 Originales + 20 Nuevas)
 INSERT INTO
     rutasParada (
         rutasEntrega_idRutasEntrega,
@@ -624,6 +859,7 @@ INSERT INTO
         estadoParada
     )
 VALUES
+    -- 10 Originales
     (1, 1, 1, 'Entregado'),
     (2, 2, 1, 'Entregado'),
     (3, 3, 1, 'Fallido'),
@@ -633,4 +869,25 @@ VALUES
     (7, 7, 1, 'Pendiente'),
     (8, 8, 1, 'Pendiente'),
     (4, 9, 2, 'Pendiente'),
-    (5, 10, 2, 'Pendiente');
+    (5, 10, 2, 'Pendiente'),
+    -- 20 Nuevas (Mapeando rutas 11-30 con pedidos 11-30 respectivamente)
+    (11, 11, 1, 'Entregado'),
+    (12, 12, 1, 'Entregado'),
+    (13, 13, 1, 'Fallido'),
+    (14, 14, 1, 'Entregado'),
+    (15, 15, 1, 'Entregado'),
+    (16, 16, 1, 'Entregado'),
+    (17, 17, 1, 'Entregado'),
+    (18, 18, 1, 'Fallido'),
+    (19, 19, 1, 'Entregado'),
+    (20, 20, 1, 'Entregado'),
+    (21, 21, 1, 'Entregado'),
+    (22, 22, 1, 'Entregado'),
+    (23, 23, 1, 'Entregado'),
+    (24, 24, 1, 'Entregado'),
+    (25, 25, 1, 'Entregado'),
+    (26, 26, 1, 'Fallido'),
+    (27, 27, 1, 'Entregado'),
+    (28, 28, 1, 'Entregado'),
+    (29, 29, 1, 'Entregado'),
+    (30, 30, 1, 'Entregado');
