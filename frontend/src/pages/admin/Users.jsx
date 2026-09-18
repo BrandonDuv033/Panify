@@ -1,107 +1,85 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import API from "../../services/api.js";
 
-// Importación de estilos del admin
-import '../../assets/css/base/usuarios.css';
-
-const Dashboard = () => {
+export default function Users() {
   const navigate = useNavigate();
-  
-  // Lista inicial de usuarios
-  const [usuarios] = useState([
-    { id: 101, nombre: 'Martin Diaz', correo: 'juan@gmail.com', rol: 'Cliente' },
-    { id: 102, nombre: 'Brandon Devia', correo: 'maria.camila@gmail.com', rol: 'Administrador' },
-    { id: 103, nombre: 'Jeison Guevara', correo: 'jeison.guevara@hotmail.com', rol: 'Cliente' },
-    { id: 104, nombre: 'Sofia Diaz', correo: 'sofia.diaz@outlook.com', rol: 'Cliente' },
-    { id: 105, nombre: 'Juan Vazques', correo: 'juan.vazques@gmail.com', rol: 'Cliente' },
-    { id: 106, nombre: 'Maria Juana', correo: 'laura.juanita@gmail.com', rol: 'Cliente' },
-    { id: 107, nombre: 'Santiago Ortiz', correo: 'santiago.ortiz@yahoo.com', rol: 'Cliente' },
-    { id: 108, nombre: 'Pedro Lopez', correo: 'legend.pedro@gmail.com', rol: 'Administrador' },
-    { id: 109, nombre: 'Mateo Chavez', correo: 'mateo.chavez@hotmail.com', rol: 'Cliente' },
-    { id: 110, nombre: 'Paula Salas', correo: 'paula.salas@outlook.com', rol: 'Cliente' },
-  ]);
+  const [usuarios, setUsuarios] = useState([]);
+  const [busqueda, setBusqueda] = useState("");
+  const [cargando, setCargando] = useState(true);
 
-  const [busqueda, setBusqueda] = useState('');
+  useEffect(() => {
+    API.get("/usuarios")
+      .then((res) => setUsuarios(res.data))
+      .catch((err) => {
+        console.error("Error al cargar usuarios:", err);
+        Swal.fire("Error", "No se pudieron cargar los usuarios", "error");
+      })
+      .finally(() => setCargando(false));
+  }, []);
 
-  // Filtrado reactivo de usuarios por nombre o correo
-  const usuariosFiltrados = usuarios.filter((user) => 
-    user.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
-    user.correo.toLowerCase().includes(busqueda.toLowerCase())
+  const usuariosFiltrados = usuarios.filter(
+    (user) =>
+      user.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+      user.correo.toLowerCase().includes(busqueda.toLowerCase()),
   );
 
   const handleEditar = (nombre) => {
-    Swal.fire('Editar Usuario', `Abriendo panel de edición para ${nombre}`, 'info');
+    Swal.fire(
+      "Editar Usuario",
+      `Abriendo panel de edición para ${nombre}`,
+      "info",
+    );
   };
 
-  const handleEliminar = (nombre) => {
+  const handleEliminar = (id, nombre) => {
     Swal.fire({
-      title: '¿Estás seguro?',
+      title: "¿Estás seguro?",
       text: `Se eliminará al usuario ${nombre}`,
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#6c757d',
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar'
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#6c757d",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Eliminado!', 'El usuario ha sido eliminado.', 'success');
+        API.delete(`/usuarios/${id}`)
+          .then(() => {
+            Swal.fire(
+              "¡Eliminado!",
+              "El usuario ha sido eliminado.",
+              "success",
+            );
+            setUsuarios((prevUsuarios) =>
+              prevUsuarios.filter((u) => u.id !== id),
+            );
+          })
+          .catch((err) => {
+            console.error("Error al eliminar usuario:", err);
+            Swal.fire("Error", "No se pudo eliminar el usuario", "error");
+          });
       }
     });
   };
 
   const handleCerrarSesion = (e) => {
     e.preventDefault();
-    localStorage.removeItem('usuario'); // Limpia la sesión
-    navigate('/ingresar'); // Redirige al login
+    localStorage.removeItem("usuario"); // Limpia la sesión
+    navigate("/ingresar"); // Redirige al login
   };
 
   return (
     <div className="dashboard-layout">
-      {/* SIDEBAR */}
-      <aside className="sidebar" id="sidebar">
-        <div className="sidebar-logo">
-          <img src="../src/img/icono-panify.png" alt="Logo" onError={(e) => { e.target.style.display = 'none'; }} />
-          <h2>
-            <span className="marca">Pani<span className="marca marca-dos">fy</span></span>
-          </h2>
-          <p>Distribuciones Oro Pan</p>
-        </div>
-        <nav className="sidebar-menu">
-          <Link to="/admin" className="active">
-            <i className="fa-solid fa-users"></i>
-            Usuarios
-          </Link>
-
-          <Link to="/admin/productos">
-            <i className="fa-solid fa-box"></i>
-            Productos
-          </Link>
-
-          <Link to="/admin/pedidos">
-            <i className="fa-solid fa-cart-shopping"></i>
-            Pedidos
-          </Link>
-
-          <Link to="/admin/recibos">
-            <i className="fa-solid fa-receipt"></i>
-            Recibos
-          </Link>
-
-          <a href="#salir" onClick={handleCerrarSesion}>
-            <i className="fa-solid fa-right-from-bracket"></i>
-            Salir
-          </a>
-        </nav>
-      </aside>
-
       {/* CONTENIDO PRINCIPAL */}
       <main className="dashboard-main">
         <header className="topbar d-flex justify-content-between align-items-center mb-4">
           <div>
             <h1 className="m-0">Dashboard</h1>
-            <p className="m-0 text-muted">Bienvenido al panel administrativo de Panify.</p>
+            <p className="m-0 text-muted">
+              Bienvenido al panel administrativo de Panify.
+            </p>
           </div>
 
           <div className="admin-info d-flex align-items-center gap-2">
@@ -116,7 +94,7 @@ const Dashboard = () => {
             <div className="card-resumen">
               <i className="fa-solid fa-users"></i>
               <div>
-                <h3>50</h3>
+                <h3>{usuarios.length}</h3>
                 <p>Usuarios registrados</p>
               </div>
             </div>
@@ -148,10 +126,12 @@ const Dashboard = () => {
           <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
             <div>
               <h2>Gestión de Usuarios</h2>
-              <p className="text-muted m-0">Administra los usuarios registrados en la plataforma.</p>
+              <p className="text-muted m-0">
+                Administra los usuarios registrados en la plataforma.
+              </p>
             </div>
             {/* Barra de búsqueda integrada */}
-            <div style={{ width: '250px' }}>
+            <div style={{ width: "250px" }}>
               <input
                 type="text"
                 className="form-control"
@@ -163,7 +143,10 @@ const Dashboard = () => {
           </div>
 
           <div className="table-responsive">
-            <table className="table table-striped table-hover align-middle" style={{ width: '100%' }}>
+            <table
+              className="table table-striped table-hover align-middle"
+              style={{ width: "100%" }}
+            >
               <thead className="table-light">
                 <tr>
                   <th>ID</th>
@@ -177,11 +160,15 @@ const Dashboard = () => {
                 {usuariosFiltrados.map((user) => (
                   <tr key={user.id}>
                     <td>{user.id}</td>
-                    <td>{user.nombre}</td>
+                    <td>
+                      {user.nombre} {user.apellido}
+                    </td>
                     <td>{user.correo}</td>
                     <td>
-                      <span className={`badge ${user.rol === 'Administrador' ? 'bg-primary' : 'bg-secondary'}`}>
-                        {user.rol}
+                      <span
+                        className={`badge ${user.Rol_idRol === 2 ? "bg-primary" : "bg-secondary"}`}
+                      >
+                        {user.Rol_idRol}
                       </span>
                     </td>
                     <td>
@@ -195,7 +182,12 @@ const Dashboard = () => {
                       <button
                         className="btn btn-sm btn-outline-danger"
                         title="Eliminar usuario"
-                        onClick={() => handleEliminar(user.nombre)}
+                        onClick={() =>
+                          handleEliminar(
+                            user.id,
+                            `${user.nombre} ${user.apellido}`,
+                          )
+                        }
                       >
                         <i className="fa-solid fa-trash me-1"></i> Eliminar
                       </button>
@@ -216,6 +208,4 @@ const Dashboard = () => {
       </main>
     </div>
   );
-};
-
-export default Dashboard;
+}

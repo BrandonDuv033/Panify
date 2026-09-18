@@ -1,8 +1,17 @@
 {
   "roles": [
-    { "idRol": 1, "nombre": "Cliente" },
-    { "idRol": 2, "nombre": "Domiciliario" },
-    { "idRol": 3, "nombre": "Panadero" }
+    {
+      "idRol": 1,
+      "nombre": "Cliente"
+    },
+    {
+      "idRol": 2,
+      "nombre": "Domiciliario"
+    },
+    {
+      "idRol": 3,
+      "nombre": "Panadero"
+    }
   ],
   "clientes": [
     {
@@ -17,20 +26,32 @@
     }
   ],
   "domiciliarios": [
-    { "idDomiciliario": 1, "estadoDisponibilidad": "Disponible" },
-    { "idDomiciliario": 2, "estadoDisponibilidad": "Ocupado" }
+    {
+      "idDomiciliario": 1,
+      "estadoDisponibilidad": "Disponible"
+    },
+    {
+      "idDomiciliario": 2,
+      "estadoDisponibilidad": "Ocupado"
+    }
   ],
   "panaderos": [
-    { "idPanadero": 1, "estadoActividad": "Activo" },
-    { "idPanadero": 2, "estadoActividad": "Inactivo" }
+    {
+      "idPanadero": 1,
+      "estadoActividad": "Activo"
+    },
+    {
+      "idPanadero": 2,
+      "estadoActividad": "Inactivo"
+    }
   ],
   "usuarios": [
     {
-      "idUsuario": 1,
+      "id": 1,
       "nombre": "Carlos",
       "apellido": "Mendoza",
       "correo": "carlos.mendoza@email.com",
-      "contrase\u00f1a": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB1...",
+      "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB1...",
       "telefono": "3001234567",
       "estado": "Activo",
       "Rol_idRol": 1,
@@ -39,31 +60,44 @@
       "domiciliario_idDomiciliario": null
     },
     {
-      "idUsuario": 2,
-      "nombre": "Andr\u00e9s",
-      "apellido": "G\u00f3mez",
+      "id": 2,
+      "nombre": "Andrés",
+      "apellido": "Gómez",
       "correo": "andres.gomez@email.com",
-      "contrase\u00f1a": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB2...",
+      "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB2...",
       "telefono": "3119876543",
       "estado": "Activo",
       "Rol_idRol": 2,
       "cliente_idCliente": null,
       "panadero_idPanadero": null,
       "domiciliario_idDomiciliario": 1
+    },
+    {
+      "id": 3,
+      "nombre": "Jeison",
+      "apellido": "Guevara",
+      "correo": "jeison.guevara@email.com",
+      "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB3...",
+      "telefono": "3154567890",
+      "estado": "Activo",
+      "Rol_idRol": 1,
+      "cliente_idCliente": 2,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": null
     }
   ],
   "productos": [
     {
       "idProducto": 1,
       "nombre": "Pan Blandito",
-      "precio": 500.0,
+      "precio": 500,
       "estado": "Disponible",
       "descripcion": "Pan fresco artesanal por unidad"
     },
     {
       "idProducto": 2,
       "nombre": "Croissant de Queso",
-      "precio": 2500.0,
+      "precio": 2500,
       "estado": "Disponible",
       "descripcion": "Croissant hojaldrado relleno de queso"
     }
@@ -103,14 +137,14 @@
   "detalles_pedidos": [
     {
       "idDetalle_Pedido": 1,
-      "precioFijo": 500.0,
+      "precioFijo": 500,
       "cantidad": 10,
       "pedido_idPedido": 1,
       "producto_idProducto": 1
     },
     {
       "idDetalle_Pedido": 2,
-      "precioFijo": 2500.0,
+      "precioFijo": 2500,
       "cantidad": 2,
       "pedido_idPedido": 1,
       "producto_idProducto": 2
@@ -119,13 +153,13 @@
   "recibos": [
     {
       "idRecibo": 1,
-      "totalPagar": 10000.0,
+      "totalPagar": 10000,
       "fechaEmision": "2026-09-08T08:31:00",
       "pedido_idPedido": 1
     },
     {
       "idRecibo": 2,
-      "totalPagar": 5000.0,
+      "totalPagar": 5000,
       "fechaEmision": "2026-09-08T09:01:00",
       "pedido_idPedido": 2
     }
