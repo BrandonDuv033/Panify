@@ -1,0 +1,61 @@
+.sidebar {
+  background-color: var(--color-oscuro);
+  color: var(--color-blanco);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 1040;
+  transition: transform 0.3s ease;
+  width: 50vh;
+}
+
+.sidebar-logo {
+  text-align: center;
+}
+
+.sidebar-logo img {
+  max-width: 60px;
+  margin-bottom: 0.5rem;
+}
+
+.marca {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-blanco);
+  margin: 0;
+}
+
+.marca-dos {
+  color: var(--color-secundario);
+}
+
+.sidebar-logo p {
+  font-size: 0.85rem;
+  color: #c2b6a8;
+  margin: 0;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-menu a {
+  color: #c2b6a8;
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+}
