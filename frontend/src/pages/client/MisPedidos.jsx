@@ -1,3 +1,3 @@
 export default function MisPedidos() {
-	return <h1>Mis pedidos</h1>;
+	return <h1>Devia</h1>;
 }

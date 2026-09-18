@@ -1,3 +1,3 @@
 export default function Pedidos() {
-	return <h1>Pedidos</h1>;
+	return <h1>Jeison</h1>;
 }

@@ -15,45 +15,17 @@ Sistema web de gestión de pedidos, inventario y recibos para el caso de estudio
 
 ## 📑 Tabla de contenidos
 
-1. [Concepto clave: ¿qué es el AuthContext?](#-concepto-clave-qué-es-el-authcontext-y-por-qué-existe)
-2. [Stack tecnológico](#-stack-tecnológico)
-3. [Requisitos previos](#-requisitos-previos)
-4. [Instalación y arranque](#-instalación-y-arranque)
-5. [Estructura del proyecto](#-estructura-del-proyecto)
-6. [Qué va en cada carpeta](#️-qué-debo-poner-en-cada-carpeta-y-cómo-trabajar-en-ella)
-7. [Roles del sistema](#-roles-del-sistema)
-8. [Tutorial: cómo empezar un nuevo módulo](#️-tutorial-cómo-empezar-a-desarrollar-un-nuevo-módulo)
-9. [Convenciones de Git y commits](#-convenciones-de-git-y-commits)
-10. [Checklist antes de abrir un Pull Request](#-checklist-antes-de-abrir-un-pull-request)
-11. [Problemas comunes (Troubleshooting)](#-problemas-comunes-troubleshooting)
-12. [Equipo](#-equipo)
-
----
-
-## 💡 Concepto clave: ¿qué es el `AuthContext` y por qué existe?
-
-Imagina que **Panify** es un edificio con diferentes niveles de acceso:
-
-1. **La recepción (Zona Pública):** cualquier persona puede ver el catálogo de panes sin identificarse.
-2. **La zona de clientes (Zona Cliente):** requiere carnet de cliente para consultar compras e historial.
-3. **La oficina de administración (Zona Admin):** exclusiva para Panadero y Domiciliario, para ver recibos, inventario y el panel de prioridades.
-
-### El problema sin `AuthContext`
-
-Sin un contexto global, cada vez que cambias de página la aplicación "olvida" quién eres. Tendrías que preguntar al servidor a cada segundo: *"¿Quién está navegando? ¿Es un cliente o un miembro del staff?"*.
-
-### La solución con `AuthContext`
-
-El `AuthContext` es una **caja central en memoria**. Cuando un usuario inicia sesión, guardamos sus datos ahí. Cualquier componente puede preguntar:
-
-- *"¿Hay alguien con sesión abierta?"* → `true` / `false`
-- *"¿Quién es y qué rol tiene?"* → `{ idUsuario: 1, nombre: "Brandon", idRol: ... }`
-
-**¿Por qué existe desde el día uno, si el login real aún no está listo?**
-
-Porque mientras la persona de **Gestión de Usuarios** programa el login real, el resto del equipo puede maquetar sus vistas usando esta caja con **datos simulados**. Cuando el login quede listo, el resto de la app funciona automáticamente, sin rehacer nada — solo se reemplaza el interior de `login()`.
-
-> ⚠️ **Pendiente de confirmar:** los valores reales de `idRol` deben salir del **Diccionario de Datos**, no inventarse. El modelo entidad-relación define tres roles vía patrón ISA (`Cliente`, `Domiciliario`, `Panadero`); Panadero y Domiciliario comparten la interfaz `admin/` (Opción A) pero siguen siendo roles distintos en base de datos. Cualquier código que dependa de `idRol` debe usar el valor exacto documentado, no un número supuesto.
+1. [Stack tecnológico](#-stack-tecnológico)
+2. [Requisitos previos](#-requisitos-previos)
+3. [Instalación y arranque](#-instalación-y-arranque)
+4. [Estructura del proyecto](#-estructura-del-proyecto)
+5. [Qué va en cada carpeta](#️-qué-debo-poner-en-cada-carpeta-y-cómo-trabajar-en-ella)
+6. [Roles del sistema](#-roles-del-sistema)
+7. [Tutorial: cómo empezar un nuevo módulo](#️-tutorial-cómo-empezar-a-desarrollar-un-nuevo-módulo)
+8. [Convenciones de Git y commits](#-convenciones-de-git-y-commits)
+9. [Checklist antes de abrir un Pull Request](#-checklist-antes-de-abrir-un-pull-request)
+10. [Problemas comunes (Troubleshooting)](#-problemas-comunes-troubleshooting)
+11. [Equipo](#-equipo)
 
 ---
 
@@ -95,7 +67,7 @@ cd Panify/panify-app
 ```bash
 cd backend
 npm install
-npm run dev
+npm run server
 ```
 
 Esto levanta JSON Server en `http://localhost:1511` (o el puerto configurado en `package.json`).

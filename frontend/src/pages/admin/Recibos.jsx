@@ -1,3 +1,3 @@
 export default function Recibos() {
-	return <h1>Recibos</h1>;
+	return <h1>Brandon</h1>;
 }
