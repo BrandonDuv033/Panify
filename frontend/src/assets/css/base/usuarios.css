@@ -1,86 +1,8 @@
-:root {
-  --color-principal: #8b5a2b;
-  --color-secundario: #d4af37;
-  --color-oscuro: #2b1e13;
-  --color-claro: #fdfbf7;
-  --color-blanco: #ffffff;
-  --fuente-principal: "Lato", system-ui, -apple-system, sans-serif;
-}
-
-body {
-  font-family: var(--fuente-principal);
-  background-color: var(--color-claro);
-  color: var(--color-oscuro);
-  margin: 0;
-}
-
 /* Contenedor Grid Principal */
 .dashboard-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
+  display: flex;
   min-height: 100vh;
-}
-
-/* SIDEBAR Fijo en Escritorio */
-.sidebar {
-  background-color: var(--color-oscuro);
-  color: var(--color-blanco);
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  z-index: 1040;
-  transition: transform 0.3s ease;
-}
-
-.sidebar-logo {
-  text-align: center;
-}
-
-.sidebar-logo img {
-  max-width: 60px;
-  margin-bottom: 0.5rem;
-}
-
-.marca {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--color-blanco);
-  margin: 0;
-}
-
-.marca-dos {
-  color: var(--color-secundario);
-}
-
-.sidebar-logo p {
-  font-size: 0.85rem;
-  color: #c2b6a8;
-  margin: 0;
-}
-
-.sidebar-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.sidebar-menu a {
-  color: #c2b6a8;
-  text-decoration: none;
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 400;
-  transition: all 0.2s ease;
-}
-
-.sidebar-menu a:hover,
-.sidebar-menu a.active {
-  background-color: var(--color-principal);
-  color: var(--color-blanco);
+  box-sizing: border-box;
 }
 
 /* CONTENIDO PRINCIPAL */
@@ -88,6 +10,8 @@ body {
   padding: 2rem;
   background-color: var(--color-claro);
   overflow-x: hidden;
+  min-width: 0; /* <-- CLAVE para CSS Grid: evita que los hijos anchos rompan la columna 1fr */
+  width: 100%;
 }
 
 /* TOPBAR */
