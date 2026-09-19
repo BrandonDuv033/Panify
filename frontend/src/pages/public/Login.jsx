@@ -3,10 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import API from "../../services/api";
 
-// Importaciones de estilos
-import "../../assets/css/base/index.css";
-import "../../assets/css/base/login.css";
-
 const Login = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({

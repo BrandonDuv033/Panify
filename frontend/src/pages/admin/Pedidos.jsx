@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import API from "../../services/api";
 
 // Importación de estilos específicos del panel de administración
-import "../../assets/css/base/usuarios.css";
+import "../../assets/css/pages/usuarios.css";
 
 
 const Pedidos = () => {

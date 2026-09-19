@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import API from '../../services/api';
 
-// Importación del archivo principal de estilos basado en tu estructura
-import '../../assets/css/styles.css';
-
 const Catalogo = () => {
   // Estado para almacenar los productos traídos de axios
   const [productos, setProductos] = useState([]);

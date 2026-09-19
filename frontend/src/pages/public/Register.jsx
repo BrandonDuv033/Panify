@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import API from "../../services/api";
 
 // Importaciones de CSS y assets
-import "../../assets/css/base/register.css";
+import "../../assets/css/pages/register.css";
 
 const Register = () => {
   const navigate = useNavigate();

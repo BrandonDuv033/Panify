@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import API from "../../services/api";
 
 // Importa el CSS correspondiente de administración
-import "../../assets/css/base/usuarios.css";
+import "../../assets/css/pages/usuarios.css";
 
 const Inventario = () => {
   const navigate = useNavigate();
