@@ -3,9 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import API from "../../services/api";
 
-// Importaciones de CSS y assets
-import "../../assets/css/pages/register.css";
-
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
