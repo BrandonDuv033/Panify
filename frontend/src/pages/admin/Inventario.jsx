@@ -1,38 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import API from "../../services/api";
 
-// Importa el CSS correspondiente de administración
-import "../../assets/css/pages/usuarios.css";
-
-const Inventario = () => {
+export default function Inventario() {
   const navigate = useNavigate();
-
-  // Estados para productos y control de carga
   const [productos, setProductos] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   const [busqueda, setBusqueda] = useState("");
-  const [categoriaFiltro, setCategoriaFiltro] = useState("Todas");
+  const [categoriaFiltro, setCategoriaFiltro] = useState("");
+  const [cargando, setCargando] = useState(true);
 
-  // Cargar productos e inventario desde axios usando la instancia centralizada
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [resProductos, resInventarios] = await Promise.all([
-          API.get('/productos'),
-          API.get('/inventarios')
+          API.get("/productos"),
+          API.get("/inventarios"),
         ]);
-        
+
         const dataProductos = resProductos.data;
         const dataInventarios = resInventarios.data;
 
         // Unimos los datos de productos con su respectivo stock e inventario
         const productosCompletos = dataProductos.map((prod) => {
-          // Buscamos el inventario correspondiente usando idProducto
-          const inv = dataInventarios.find((i) => i.producto_idProducto === prod.idProducto) || { stockActual: 0 };
-          
+          // Buscamos el inventario correspondiente usando id
+          const inv = dataInventarios.find(
+            (i) => i.producto_id === prod.id,
+          ) || { stockActual: 0 };
+
           // Determinamos el estado basado en el stock actual
           let estado = "Disponible";
           if (inv.stockActual === 0) {
@@ -42,7 +37,7 @@ const Inventario = () => {
           }
 
           return {
-            id: prod.idProducto,
+            id: prod.id,
             nombre: prod.nombre,
             categoria: prod.descripcion || "General",
             precio: prod.precio,
@@ -53,10 +48,10 @@ const Inventario = () => {
         });
 
         setProductos(productosCompletos);
-        setLoading(false);
+        setCargando(false);
       } catch (error) {
         console.error("Error al cargar el inventario:", error);
-        setLoading(false);
+        setCargando(false);
       }
     };
 
@@ -68,8 +63,11 @@ const Inventario = () => {
     const coincideBusqueda = prod.nombre
       .toLowerCase()
       .includes(busqueda.toLowerCase());
+
     const coincideCategoria =
-      categoriaFiltro === "Todas" || prod.categoria.toLowerCase().includes(categoriaFiltro.toLowerCase());
+      categoriaFiltro === "Todas" ||
+      prod.categoria.toLowerCase().includes(categoriaFiltro.toLowerCase());
+
     return coincideBusqueda && coincideCategoria;
   });
 
@@ -92,10 +90,10 @@ const Inventario = () => {
     Swal.fire("Editar Producto", `Modificando el producto: ${nombre}`, "info");
   };
 
-  const handleEliminar = (nombre) => {
+  const handleEliminar = (producto) => {
     Swal.fire({
       title: "¿Estás seguro?",
-      text: `Se eliminará el producto ${nombre}`,
+      text: `Se eliminará el producto ${producto.nombre}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -104,20 +102,32 @@ const Inventario = () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("¡Eliminado!", "El producto ha sido eliminado.", "success");
+        API.delete(`/productos/${producto.id}`)
+          .then(() => {
+            Swal.fire(
+              "¡Eliminado!",
+              "El producto ha sido eliminado.",
+              "success",
+            );
+            setProductos((prevProductos) =>
+              prevProductos.filter((p) => p.id !== producto.id),
+            );
+          })
+          .catch((err) => {
+            console.error("Error al eliminar producto:", err);
+            Swal.fire("Error", "No se pudo eliminar el producto", "error");
+          });
       }
     });
   };
 
   return (
     <div className="dashboard-layout">
-      {/* SIDEBAR */}
-
       {/* CONTENIDO PRINCIPAL */}
       <main className="dashboard-main">
         <header className="topbar d-flex justify-content-between align-items-center mb-4">
           <div>
-            <h1 className="m-0">Productos</h1>
+            <h1 className="m-0">Inventario</h1>
             <p className="m-0 text-muted">
               Gestión de catálogo e inventario de panadería.
             </p>
@@ -166,7 +176,7 @@ const Inventario = () => {
             <div className="card-resumen">
               <i className="fa-solid fa-layer-group"></i>
               <div>
-                <h3>{new Set(productos.map(p => p.categoria)).size}</h3>
+                <h3>{new Set(productos.map((p) => p.categoria)).size}</h3>
                 <p>Categorías</p>
               </div>
             </div>
@@ -228,7 +238,7 @@ const Inventario = () => {
                 </tr>
               </thead>
               <tbody>
-                {loading ? (
+                {cargando ? (
                   <tr>
                     <td colSpan="7" className="text-center py-4 text-muted">
                       Cargando inventario desde el servidor...
@@ -248,8 +258,8 @@ const Inventario = () => {
                             prod.estado === "Disponible"
                               ? "bg-success"
                               : prod.estado === "Poco Stock"
-                              ? "bg-warning text-dark"
-                              : "bg-danger"
+                                ? "bg-warning text-dark"
+                                : "bg-danger"
                           }`}
                         >
                           {prod.estado}
@@ -266,7 +276,7 @@ const Inventario = () => {
                         <button
                           className="btn btn-sm btn-outline-danger"
                           title="Eliminar"
-                          onClick={() => handleEliminar(prod.nombre)}
+                          onClick={() => handleEliminar(prod)}
                         >
                           <i className="fa-solid fa-trash"></i>
                         </button>
@@ -274,7 +284,7 @@ const Inventario = () => {
                     </tr>
                   ))
                 )}
-                {!loading && productosFiltrados.length === 0 && (
+                {!cargando && productosFiltrados.length === 0 && (
                   <tr>
                     <td colSpan="7" className="text-center py-4 text-muted">
                       No se encontraron productos registrados.
@@ -288,6 +298,4 @@ const Inventario = () => {
       </main>
     </div>
   );
-};
-
-export default Inventario;
+}
