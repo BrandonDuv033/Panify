@@ -84,52 +84,25 @@
       "cliente_idCliente": 2,
       "panadero_idPanadero": null,
       "domiciliario_idDomiciliario": null
-    },
-    
-    {
-      "nombre": "Brandon",
-      "apellido": "",
-      "correo": "brandon@panify.com",
-      "contraseña": "1234567",
-      "telefono": "3000000000",
-      "estado": "Activo",
-      "Rol_idRol": 1,
-      "cliente_idCliente": 2,
-      "panadero_idPanadero": null,
-      "domiciliario_idDomiciliario": null,
-      "id": 5
-    },
-    {
-      "nombre": "Martin",
-      "apellido": "",
-      "correo": "martin@panify.com",
-      "contraseña": "123456",
-      "telefono": "3000000000",
-      "estado": "Activo",
-      "Rol_idRol": 1,
-      "cliente_idCliente": 2,
-      "panadero_idPanadero": null,
-      "domiciliario_idDomiciliario": null,
-      "id": 6
     }
   ],
   "productos": [
     {
-      "idProducto": 1,
+      "id": 1,
       "nombre": "Pan Blandito",
       "precio": 500,
       "estado": "Disponible",
       "descripcion": "Pan fresco artesanal por unidad"
     },
     {
-      "idProducto": 2,
+      "id": 2,
       "nombre": "Croissant de Queso",
       "precio": 2500,
       "estado": "Disponible",
       "descripcion": "Croissant hojaldrado relleno de queso"
     },
-        {
-      "idProducto": 3,
+    {
+      "id": 3,
       "nombre": "Pan Frances",
       "precio": 3000,
       "estado": "Disponible",
@@ -141,13 +114,19 @@
       "idInventario": 1,
       "stockMinimo": 20,
       "stockActual": 150,
-      "producto_idProducto": 1
+      "producto_id": 1
     },
     {
       "idInventario": 2,
       "stockMinimo": 10,
       "stockActual": 45,
-      "producto_idProducto": 2
+      "producto_id": 2
+    },
+    {
+      "idInventario": 3,
+      "stockMinimo": 10,
+      "stockActual": 10,
+      "producto_id": 2
     }
   ],
   "pedidos": [
@@ -174,14 +153,14 @@
       "precioFijo": 500,
       "cantidad": 10,
       "pedido_idPedido": 1,
-      "producto_idProducto": 1
+      "producto_id": 1
     },
     {
       "idDetalle_Pedido": 2,
       "precioFijo": 2500,
       "cantidad": 2,
       "pedido_idPedido": 1,
-      "producto_idProducto": 2
+      "producto_id": 2
     }
   ],
   "recibos": [
@@ -235,7 +214,7 @@
       "cantidad": 100,
       "fechaHora": "2026-09-08T06:00:00",
       "panadero_idPanadero": 1,
-      "producto_idProducto": 1
+      "producto_id": 1
     },
     {
       "idMovimiento": 2,
@@ -243,7 +222,7 @@
       "cantidad": 10,
       "fechaHora": "2026-09-08T08:30:00",
       "panadero_idPanadero": null,
-      "producto_idProducto": 1
+      "producto_id": 1
     }
   ]
 }
