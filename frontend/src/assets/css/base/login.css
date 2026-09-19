@@ -1,28 +1,17 @@
-/* Contenedor del Formulario Login */
+/* Tarjeta del modal */
 .modal-login {
-  background-color: #3d2b1f !important; /* Fondo café oscuro sólido forzado */
+  min-width: 60vh;
+  margin-top: 12vh;
+  background-color: #3d2b1f !important;
   border-radius: 20px;
-  
-  /* Margen negativo para subir el formulario sobre el banner */
-  margin-top: -510px; 
   position: relative;
   z-index: 10;
-  
+  width: 100%; /* Permite que tome el espacio hasta llegar al max-width */
   max-width: 450px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 115px;
-  
-  /* Sombra oscura y elegante en lugar del resplandor blanco */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
   border: 1px solid #d8d8d8 !important;
 }
-.h2{
-  align-items: last baseline;
-}
-.modal-header border-0 pb-0{
-  background-color: #d8d8d8 ;
-}
+
 .modal-login h2 {
   text-align: center;
   align-items: center;
@@ -33,7 +22,7 @@
 /* Botón de Ingresar */
 .btn-login-ingresar {
   border-radius: 20px !important;
-  background-color: #8b5a2b !important; /* Color principal */
+  background-color: #8b5a2b !important;
   border: none !important;
   font-weight: 600 !important;
   color: #ffffff !important;
@@ -41,7 +30,7 @@
 }
 
 .btn-login-ingresar:hover {
-  background-color: #e5a93c !important; /* Color dorado al pasar el mouse */
+  background-color: #e5a93c !important;
   color: #ffffff !important;
 }
 
@@ -57,7 +46,9 @@
   text-decoration: underline;
   color: #e5a93c !important;
 }
-.formulario{
-  
-  background-color: transparent !important;
+
+@media (max-width: 500px) {
+  .modal-login {
+  min-width: 40vh !important;
+}
 }

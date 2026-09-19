@@ -1,48 +1,40 @@
+.banner-register {
+  height: 100vh;
+  background-image:
+    linear-gradient(rgba(43, 30, 19, 0.65), rgba(43, 30, 19, 0.65)),
+    url("https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200");
+  color: var(--color-blanco);
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 20px;
+}
+/* 3. Tarjeta de Registro */
 .modal-registro {
-    background-color: #3d2b1f !important;
-    border-radius: 10px;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    border: 1px solid #ffffff !important;
-    margin-bottom: 60px;
-    margin-top: -610px !important;
+  margin-top: 12vh;
+  background-color: #3d2b1f !important;
+  border-radius: 10px;
+  max-width: 70vh;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid #ffffff !important;
+  position: relative;
+  z-index: 10;
+  max-height: 90vh;
+  overflow-y: auto;
 }
-
-.contenedorFORM {
-    position: relative;
-    overflow: hidden;
-}
-
-.contenedorFORM {
-    position: relative;
-    background-image: linear-gradient(rgba(43, 30, 19, 0.65)), url("https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.contenedorFORM .banner {
-    background-image: none;
-}
-
-
-.contenedorFORM .banner {
-    min-height: 100%;
-    overflow: hidden;
-}
-
 
 .modal-registro .modal-body {
-        background-color: transparent !important;
-    padding: 0;
+  background-color: transparent !important;
+  padding: 0;
 }
 
 .modal-registro .form-label {
-    display: block;
-    margin-bottom: 10px;
-    color: #ffffff;
-    font-weight: 500;
+  display: block;
+  margin-bottom: 10px;
+  color: #ffffff;
+  font-weight: 500;
 }
