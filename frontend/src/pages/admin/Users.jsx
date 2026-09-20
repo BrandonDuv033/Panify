@@ -33,10 +33,10 @@ export default function Users() {
     );
   };
 
-  const handleEliminar = (id, nombre) => {
+  const handleEliminar = (user) => {
     Swal.fire({
       title: "¿Estás seguro?",
-      text: `Se eliminará al usuario ${nombre}`,
+      text: `Se eliminará al usuario ${user.nombre}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -45,7 +45,7 @@ export default function Users() {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        API.delete(`/usuarios/${id}`)
+        API.delete(`/usuarios/${user.id}`)
           .then(() => {
             Swal.fire(
               "¡Eliminado!",
@@ -53,7 +53,7 @@ export default function Users() {
               "success",
             );
             setUsuarios((prevUsuarios) =>
-              prevUsuarios.filter((u) => u.id !== id),
+              prevUsuarios.filter((u) => u.id !== user.id),
             );
           })
           .catch((err) => {
@@ -182,12 +182,7 @@ export default function Users() {
                       <button
                         className="btn btn-sm btn-outline-danger"
                         title="Eliminar usuario"
-                        onClick={() =>
-                          handleEliminar(
-                            user.id,
-                            `${user.nombre} ${user.apellido}`,
-                          )
-                        }
+                        onClick={() => handleEliminar(user)}
                       >
                         <i className="fa-solid fa-trash me-1"></i> Eliminar
                       </button>

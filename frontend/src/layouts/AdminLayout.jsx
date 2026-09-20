@@ -1,6 +1,5 @@
-import Sidebar from "../components/admin/Sidebar.jsx";
 import { Outlet } from "react-router-dom";
-import "../assets/css/base/usuarios.css";
+import Sidebar from "../components/admin/Sidebar.jsx";
 
 export default function AdminLayout() {
   return (

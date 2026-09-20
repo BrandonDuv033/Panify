@@ -1,6 +1,7 @@
 export default function ProductsCard() {
   const products = [
-    {
+    { 
+      id: 1,
       nombre: "Blandito",
       descripcion:
         "El infaltable de la mañana. Masa extra suave, esponjosa y con un delicioso toque de mantequilla fresca.",
@@ -8,6 +9,7 @@ export default function ProductsCard() {
         "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop",
     },
     {
+      id: 2,
       nombre: "Rollo",
       descripcion:
         "Dorado por fuera y tierno por dentro. Corteza crujiente con el sabor tradicional de siempre.",
@@ -15,6 +17,7 @@ export default function ProductsCard() {
         "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=600&auto=format&fit=crop",
     },
     {
+      id: 3,
       nombre: "Hojaldre",
       descripcion:
         "Capas crujientes y livianas. El balance perfecto horneado hasta lograr un dorado ideal.",

@@ -47,19 +47,6 @@
   ],
   "usuarios": [
     {
-      "id": 1,
-      "nombre": "Carlos",
-      "apellido": "Mendoza",
-      "correo": "carlos.mendoza@email.com",
-      "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB1...",
-      "telefono": "3001234567",
-      "estado": "Activo",
-      "Rol_idRol": 1,
-      "cliente_idCliente": 1,
-      "panadero_idPanadero": null,
-      "domiciliario_idDomiciliario": null
-    },
-    {
       "id": 2,
       "nombre": "Andrés",
       "apellido": "Gómez",
@@ -88,18 +75,25 @@
   ],
   "productos": [
     {
-      "idProducto": 1,
+      "id": 1,
       "nombre": "Pan Blandito",
       "precio": 500,
       "estado": "Disponible",
       "descripcion": "Pan fresco artesanal por unidad"
     },
     {
-      "idProducto": 2,
+      "id": 2,
       "nombre": "Croissant de Queso",
       "precio": 2500,
       "estado": "Disponible",
       "descripcion": "Croissant hojaldrado relleno de queso"
+    },
+    {
+      "id": 3,
+      "nombre": "Pan Frances",
+      "precio": 3000,
+      "estado": "Disponible",
+      "descripcion": "Pan Frances relleno de queso"
     }
   ],
   "inventarios": [
@@ -107,47 +101,53 @@
       "idInventario": 1,
       "stockMinimo": 20,
       "stockActual": 150,
-      "producto_idProducto": 1
+      "producto_id": 1
     },
     {
       "idInventario": 2,
       "stockMinimo": 10,
       "stockActual": 45,
-      "producto_idProducto": 2
+      "producto_id": 2
+    },
+    {
+      "idInventario": 3,
+      "stockMinimo": 10,
+      "stockActual": 10,
+      "producto_id": 2
     }
   ],
   "pedidos": [
     {
-      "idPedido": 1,
+      "id": 1,
       "fechaHoraCreacion": "2026-09-08T08:30:00",
       "fechaHoraEntregaEstimada": "2026-09-08T09:15:00",
       "estadoPedido": "En Camino",
-      "cliente_idCliente": 1,
+      "cliente_idCliente": 2,
       "domiciliario_idDomiciliario": 1
     },
     {
-      "idPedido": 2,
+      "id": 2,
       "fechaHoraCreacion": "2026-09-08T09:00:00",
       "fechaHoraEntregaEstimada": "2026-09-08T09:45:00",
       "estadoPedido": "Pendiente",
       "cliente_idCliente": 2,
-      "domiciliario_idDomiciliario": null
+      "domiciliario_idDomiciliario": 1
     }
   ],
   "detalles_pedidos": [
     {
-      "idDetalle_Pedido": 1,
+      "id": 1,
       "precioFijo": 500,
       "cantidad": 10,
       "pedido_idPedido": 1,
-      "producto_idProducto": 1
+      "producto_id": 1
     },
     {
-      "idDetalle_Pedido": 2,
+      "id": 2,
       "precioFijo": 2500,
       "cantidad": 2,
       "pedido_idPedido": 1,
-      "producto_idProducto": 2
+      "producto_id": 2
     }
   ],
   "recibos": [
@@ -201,7 +201,7 @@
       "cantidad": 100,
       "fechaHora": "2026-09-08T06:00:00",
       "panadero_idPanadero": 1,
-      "producto_idProducto": 1
+      "producto_id": 1
     },
     {
       "idMovimiento": 2,
@@ -209,7 +209,7 @@
       "cantidad": 10,
       "fechaHora": "2026-09-08T08:30:00",
       "panadero_idPanadero": null,
-      "producto_idProducto": 1
+      "producto_id": 1
     }
   ]
 }

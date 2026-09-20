@@ -1,0 +1,23 @@
+/* Base */
+
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "base/index.css";
+
+/* Layout */
+
+@import "layout/navbar.css";
+@import "layout/footer.css";
+@import "layout/sidebar.css";
+
+/* Components */
+
+@import "components/hero.css";
+@import "components/cards.css";
+@import "components/visit.css";
+
+/* Pages */
+
+@import "pages/login.css";
+@import "pages/register.css";
+@import "pages/usuarios.css";
+@import "pages/pedidos.css";
