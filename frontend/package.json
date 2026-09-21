@@ -6,7 +6,7 @@
   "description": "Sistema web de gestión para panaderías - Proyecto Formativo SENA ADSO",
   "main": "index.html",
   "scripts": {
-    "dev": "vite",
+    "server": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

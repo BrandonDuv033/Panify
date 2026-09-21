@@ -1,0 +1,157 @@
+.table-responsive {
+  border-radius: 8px;
+  overflow-x: auto !important;
+  display: block;
+  width: 100%;
+}
+
+/* 1. Márgenes simplificados */
+#tablaUsuarios,
+#tablaRecibos {
+  margin: 15px 0 !important;
+}
+
+#tablaUsuarios thead th,
+#tablaRecibos thead th {
+  background-color: #3d2314;
+  color: white;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 14px;
+}
+
+#tablaUsuarios tbody td,
+#tablaRecibos tbody td {
+  background-color: #fdfbf7;
+  padding: 12px 14px;
+  color: black;
+  font-size: 0.95rem;
+}
+
+#tablaUsuarios tbody tr:hover td,
+#tablaRecibos tbody tr:hover td {
+  background-color: rgba(212, 175, 55, 0.12);
+  transition: background-color 0.3s ease;
+}
+
+/* 2. Botones de Acción - Se extraen propiedades repetidas */
+.btn-outline-primary,
+.btn-outline-danger {
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-primary {
+  border-color: #e67e22;
+  color: #e67e22;
+}
+
+.btn-outline-primary:hover {
+  background-color: #e67e22;
+  border-color: #e67e22;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(230, 126, 34, 0.2);
+}
+
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+}
+
+/* Customización estética de DataTables */
+.dataTables_wrapper .dataTables_filter input,
+.dt-container .dt-search input {
+  padding: 6px 12px;
+  outline: none;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus,
+.dt-container .dt-search input:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+}
+
+.page-item.active .page-link,
+.dt-container .dt-paging .dt-paging-button.current {
+  background-color: #e67e22 !important;
+  border-color: #e67e22 !important;
+  color: white !important;
+}
+
+.page-link,
+.dt-container .dt-paging .dt-paging-button {
+  color: #2c3e50;
+}
+
+.dataTables_length select,
+.dt-length select {
+  min-width: 70px !important;
+  font-size: 1rem !important;
+  height: auto !important;
+  display: inline-block !important;
+  cursor: pointer;
+  margin-left: 10px;
+  text-align: left;
+}
+
+/* Formulario del Reporte y Flatpickr */
+.reporte-label {
+  font-weight: 800;
+  color: var(--color-oscuro);
+  font-size: 0.9rem;
+}
+
+.reporte-select,
+.reporte-input {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 10px 12px;
+  transition: all 0.2s ease;
+}
+
+.reporte-select:focus,
+.reporte-input:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+}
+
+.reporte-icon-box {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #7f8c8d;
+}
+
+.reporte-icon {
+  vertical-align: middle;
+  color: var(--color-principal);
+}
+
+.reporte-btn {
+  background-color: var(--color-principal);
+  border-color: #8b5a2b;
+  transition: all 0.3s ease;
+  padding: 10px 12px !important;
+}
+
+.reporte-btn:hover {
+  background-color: #e48226;
+  border-color: #e48226;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.25);
+}
+
+.reporte-btn:active, .btn-recibo:active {
+  background-color: #ee8f22 !important;
+  transform: scale(0.98) !important;
+  border: none;
+  border: 1px solid #ee8f22 !important;
+}

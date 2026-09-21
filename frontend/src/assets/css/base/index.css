@@ -17,9 +17,11 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  width: 100%;
   font-family: var(--fuente-principal);
   background-color: var(--color-claro);
   color: var(--color-oscuro);
   line-height: 1.6;
+  overflow-x: hidden;
 }

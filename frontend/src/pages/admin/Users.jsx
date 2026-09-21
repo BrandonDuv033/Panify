@@ -1,22 +1,26 @@
+import { obtenerUsuarios, eliminarUsuario } from "../../services/users";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import API from "../../services/api.js";
 
 export default function Users() {
-  const navigate = useNavigate();
   const [usuarios, setUsuarios] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    API.get("/usuarios")
-      .then((res) => setUsuarios(res.data))
-      .catch((err) => {
+    async function cargarUsuarios() {
+      try {
+        const usuarios = await obtenerUsuarios();
+        setUsuarios(usuarios);
+      } catch (err) {
         console.error("Error al cargar usuarios:", err);
         Swal.fire("Error", "No se pudieron cargar los usuarios", "error");
-      })
-      .finally(() => setCargando(false));
+      } finally {
+        setCargando(false);
+      }
+    }
+
+    cargarUsuarios();
   }, []);
 
   const usuariosFiltrados = usuarios.filter(
@@ -33,41 +37,30 @@ export default function Users() {
     );
   };
 
-  const handleEliminar = (id, nombre) => {
-    Swal.fire({
+  const handleEliminar = async (user) => {
+    const result = await Swal.fire({
       title: "¿Estás seguro?",
-      text: `Se eliminará al usuario ${nombre}`,
+      text: `Se eliminará al usuario ${user.nombre}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#6c757d",
       confirmButtonText: "Sí, eliminar",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        API.delete(`/usuarios/${id}`)
-          .then(() => {
-            Swal.fire(
-              "¡Eliminado!",
-              "El usuario ha sido eliminado.",
-              "success",
-            );
-            setUsuarios((prevUsuarios) =>
-              prevUsuarios.filter((u) => u.id !== id),
-            );
-          })
-          .catch((err) => {
-            console.error("Error al eliminar usuario:", err);
-            Swal.fire("Error", "No se pudo eliminar el usuario", "error");
-          });
-      }
     });
-  };
 
-  const handleCerrarSesion = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("usuario"); // Limpia la sesión
-    navigate("/ingresar"); // Redirige al login
+    if (!result.isConfirmed) return;
+
+    try {
+      await eliminarUsuario(user.id);
+      Swal.fire("¡Eliminado!", "El usuario ha sido eliminado.", "success");
+      setUsuarios((prevUsuarios) =>
+        prevUsuarios.filter((u) => u.id !== user.id),
+      );
+    } catch (err) {
+      console.error("Error al eliminar usuario:", err);
+      Swal.fire("Error", "No se pudo eliminar el usuario", "error");
+    }
   };
 
   return (
@@ -182,12 +175,7 @@ export default function Users() {
                       <button
                         className="btn btn-sm btn-outline-danger"
                         title="Eliminar usuario"
-                        onClick={() =>
-                          handleEliminar(
-                            user.id,
-                            `${user.nombre} ${user.apellido}`,
-                          )
-                        }
+                        onClick={() => handleEliminar(user)}
                       >
                         <i className="fa-solid fa-trash me-1"></i> Eliminar
                       </button>
