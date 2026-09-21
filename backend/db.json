@@ -1,25 +1,30 @@
 {
   "roles": [
     {
+      "id": 1,
       "idRol": 1,
       "nombre": "Cliente"
     },
     {
+      "id": 2,
       "idRol": 2,
       "nombre": "Domiciliario"
     },
     {
+      "id": 3,
       "idRol": 3,
       "nombre": "Panadero"
     }
   ],
   "clientes": [
     {
+      "id": 1,
       "idCliente": 1,
       "tipoCliente": "Frecuente",
       "direccion": "Calle 10 # 15-20, Soacha"
     },
     {
+      "id": 2,
       "idCliente": 2,
       "tipoCliente": "Ocasional",
       "direccion": "Carrera 7 # 45-12, Bogotá"
@@ -27,20 +32,24 @@
   ],
   "domiciliarios": [
     {
+      "id": 1,
       "idDomiciliario": 1,
       "estadoDisponibilidad": "Disponible"
     },
     {
+      "id": 2,
       "idDomiciliario": 2,
       "estadoDisponibilidad": "Ocupado"
     }
   ],
   "panaderos": [
     {
+      "id": 1,
       "idPanadero": 1,
       "estadoActividad": "Activo"
     },
     {
+      "id": 2,
       "idPanadero": 2,
       "estadoActividad": "Inactivo"
     }
@@ -48,6 +57,7 @@
   "usuarios": [
     {
       "id": 1,
+      "idUsuario": 1,
       "nombre": "Carlos",
       "apellido": "Mendoza",
       "correo": "carlos.mendoza@email.com",
@@ -61,6 +71,7 @@
     },
     {
       "id": 2,
+      "idUsuario": 2,
       "nombre": "Andrés",
       "apellido": "Gómez",
       "correo": "andres.gomez@email.com",
@@ -74,6 +85,7 @@
     },
     {
       "id": 3,
+      "idUsuario": 3,
       "nombre": "Jeison",
       "apellido": "Guevara",
       "correo": "jeison.guevara@email.com",
@@ -89,6 +101,7 @@
   "productos": [
     {
       "id": 1,
+      "idProducto": 1,
       "nombre": "Pan Blandito",
       "precio": 500,
       "estado": "Disponible",
@@ -96,6 +109,7 @@
     },
     {
       "id": 2,
+      "idProducto": 2,
       "nombre": "Croissant de Queso",
       "precio": 2500,
       "estado": "Disponible",
@@ -103,6 +117,7 @@
     },
     {
       "id": 3,
+      "idProducto": 3,
       "nombre": "Pan Frances",
       "precio": 3000,
       "estado": "Disponible",
@@ -111,18 +126,21 @@
   ],
   "inventarios": [
     {
+      "id": 1,
       "idInventario": 1,
       "stockMinimo": 20,
       "stockActual": 150,
       "producto_id": 1
     },
     {
+      "id": 2,
       "idInventario": 2,
       "stockMinimo": 10,
       "stockActual": 45,
       "producto_id": 2
     },
     {
+      "id": 3,
       "idInventario": 3,
       "stockMinimo": 10,
       "stockActual": 10,
@@ -131,6 +149,7 @@
   ],
   "pedidos": [
     {
+      "id": 1,
       "idPedido": 1,
       "fechaHoraCreacion": "2026-09-08T08:30:00",
       "fechaHoraEntregaEstimada": "2026-09-08T09:15:00",
@@ -139,52 +158,59 @@
       "domiciliario_idDomiciliario": 1
     },
     {
+      "id": 2,
       "idPedido": 2,
       "fechaHoraCreacion": "2026-09-08T09:00:00",
       "fechaHoraEntregaEstimada": "2026-09-08T09:45:00",
       "estadoPedido": "Pendiente",
       "cliente_idCliente": 2,
-      "domiciliario_idDomiciliario": null
+      "domiciliario_idDomiciliario": 1
     }
   ],
   "detalles_pedidos": [
     {
+      "id": 1,
       "idDetalle_Pedido": 1,
       "precioFijo": 500,
       "cantidad": 10,
-      "pedido_idPedido": 1,
+      "pedido_id": 1,
       "producto_id": 1
     },
     {
+      "id": 2,
       "idDetalle_Pedido": 2,
       "precioFijo": 2500,
       "cantidad": 2,
-      "pedido_idPedido": 1,
+      "pedido_id": 1,
       "producto_id": 2
     }
   ],
   "recibos": [
     {
+      "id": 1,
       "idRecibo": 1,
       "totalPagar": 10000,
       "fechaEmision": "2026-09-08T08:31:00",
-      "pedido_idPedido": 1
+      "pedido_id": 1
     },
     {
+      "id": 2,
       "idRecibo": 2,
       "totalPagar": 5000,
       "fechaEmision": "2026-09-08T09:01:00",
-      "pedido_idPedido": 2
+      "pedido_id": 2
     }
   ],
   "rutasEntrega": [
     {
+      "id": 1,
       "idRutasEntrega": 1,
       "estadoRuta": "En Progreso",
       "urlRutaGoogle": "https://maps.google.com/?q=route1",
       "domiciliarios_idDomiciliario": 1
     },
     {
+      "id": 2,
       "idRutasEntrega": 2,
       "estadoRuta": "Pendiente",
       "urlRutaGoogle": "https://maps.google.com/?q=route2",
@@ -193,22 +219,25 @@
   ],
   "rutasParada": [
     {
+      "id": 1,
       "idRutasParada": 1,
       "rutasEntrega_idRutasEntrega": 1,
-      "pedidos_idPedido": 1,
+      "pedidos_id": 1,
       "ordenEntrega": 1,
       "estadoParada": "Pendiente"
     },
     {
+      "id": 2,
       "idRutasParada": 2,
       "rutasEntrega_idRutasEntrega": 1,
-      "pedidos_idPedido": 2,
+      "pedidos_id": 2,
       "ordenEntrega": 2,
       "estadoParada": "Pendiente"
     }
   ],
   "movimientos": [
     {
+      "id": 1,
       "idMovimiento": 1,
       "tipoMovimiento": "Salida",
       "cantidad": 100,
@@ -217,6 +246,7 @@
       "producto_id": 1
     },
     {
+      "id": 2,
       "idMovimiento": 2,
       "tipoMovimiento": "Entrada",
       "cantidad": 10,
