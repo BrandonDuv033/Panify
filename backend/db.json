@@ -130,21 +130,21 @@
       "idInventario": 1,
       "stockMinimo": 20,
       "stockActual": 150,
-      "producto_id": 1
+      "producto_idProducto": 1
     },
     {
       "id": 2,
       "idInventario": 2,
       "stockMinimo": 10,
       "stockActual": 45,
-      "producto_id": 2
+      "producto_idProducto": 2
     },
     {
       "id": 3,
       "idInventario": 3,
       "stockMinimo": 10,
       "stockActual": 10,
-      "producto_id": 2
+      "producto_idProducto": 3
     }
   ],
   "pedidos": [
@@ -174,7 +174,7 @@
       "precioFijo": 500,
       "cantidad": 10,
       "pedido_id": 1,
-      "producto_id": 1
+      "producto_idProducto": 1
     },
     {
       "id": 2,
@@ -182,7 +182,7 @@
       "precioFijo": 2500,
       "cantidad": 2,
       "pedido_id": 1,
-      "producto_id": 2
+      "producto_idProducto": 2
     }
   ],
   "recibos": [
@@ -243,7 +243,7 @@
       "cantidad": 100,
       "fechaHora": "2026-09-08T06:00:00",
       "panadero_idPanadero": 1,
-      "producto_id": 1
+      "producto_idProducto": 1
     },
     {
       "id": 2,
@@ -252,7 +252,7 @@
       "cantidad": 10,
       "fechaHora": "2026-09-08T08:30:00",
       "panadero_idPanadero": null,
-      "producto_id": 1
+      "producto_idProducto": 1
     }
   ]
 }
