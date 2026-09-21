@@ -1,9 +1,9 @@
+import { iniciarSesion } from "../../services/auth.js";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import API from "../../services/api";
 
-const Login = () => {
+export default function Login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     email: "",
@@ -32,72 +32,30 @@ const Login = () => {
       return;
     }
 
-    // 1. Validar credenciales fijas del Administrador (Rol "panadero" según AppRouter)
-    if (email === "admin@panify.com" && password === "12345") {
-      const datosUsuario = {
-        nombre: "Administrador",
-        correo: "admin@panify.com",
-        rol: "panadero", // Coincide con rolesPermitidos={["panadero", "domiciliario"]}
-        Rol_idRol: 3,
-        token: "fake-token-admin",
-      };
-      localStorage.setItem("usuario", JSON.stringify(datosUsuario));
-
-      Swal.fire({
-        icon: "success",
-        title: "¡Bienvenido Administrador!",
-        text: "Redireccionando al Dashboard...",
-        timer: 1500,
-        showConfirmButton: false,
-      }).then(() => {
-        navigate("/admin/usuarios"); // Redirige a la vista de usuarios en el dashboard
-      });
-      return;
-    }
-
     try {
-      // 2. Consulta de usuarios desde el json-server en el puerto 1511
-      const response = await API.get("/usuarios");
-      const usuarios = response.data;
+      const usuario = await iniciarSesion(email, password);
 
-      const usuarioEncontrado = usuarios.find(
-        (u) => u.correo === email && u.contraseña === password,
-      );
-
-      if (usuarioEncontrado) {
-        // Asignamos el texto del rol de acuerdo a su ID (1: cliente, 2: domiciliario, 3: panadero)
-        let rolTexto = "cliente";
-        if (usuarioEncontrado.Rol_idRol === 3) rolTexto = "panadero";
-        if (usuarioEncontrado.Rol_idRol === 2) rolTexto = "domiciliario";
-
-        const usuarioConRol = { ...usuarioEncontrado, rol: rolTexto };
-        localStorage.setItem("usuario", JSON.stringify(usuarioConRol));
-
-        Swal.fire({
-          icon: "success",
-          title: `¡Bienvenido ${usuarioEncontrado.nombre}!`,
-          text: "Has iniciado sesión correctamente.",
-          timer: 1500,
-          showConfirmButton: false,
-        }).then(() => {
-          // Validar redirección según el rol
-          if (
-            usuarioEncontrado.Rol_idRol === 3 ||
-            usuarioEncontrado.Rol_idRol === 2
-          ) {
-            navigate("/admin/usuarios"); // Dashboard de administrador
-          } else {
-            navigate("/productos"); // Vista de cliente (Catálogo)
-          }
-        });
-      } else {
+      if (!usuario) {
         Swal.fire({
           icon: "error",
           title: "Error",
           text: "Correo o contraseña incorrectos",
           confirmButtonColor: "#e5a93c",
         });
+        return;
       }
+
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+
+      await Swal.fire({
+        icon: "success",
+        title: `¡Bienvenido ${usuario.nombre}!`,
+        text: "Has iniciado sesión correctamente.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      navigate(usuario.rol === "cliente" ? "/productos" : "/admin/usuarios");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       Swal.fire({
@@ -181,6 +139,4 @@ const Login = () => {
       </section>
     </div>
   );
-};
-
-export default Login;
+}
