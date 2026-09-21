@@ -4,6 +4,7 @@ import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 import { obtenerRecibos } from "../../services/recibos.js";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { obtenerNombreUsuarioActual } from "../../services/auth.js";
 
 export default function recibos() {
   DataTable.use(DT);
@@ -103,7 +104,7 @@ export default function recibos() {
 
         <div className="admin-info">
           <i className="fa-solid fa-circle-user"></i>
-          <span>Administrador</span>
+          <span>{obtenerNombreUsuarioActual()}</span>
         </div>
       </header>
 

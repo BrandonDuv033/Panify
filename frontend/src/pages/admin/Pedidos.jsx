@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import API from "../../services/api";
+import { obtenerNombreUsuarioActual } from "../../services/auth.js";
 
 // Importación de estilos específicos del panel de administración
 import "../../assets/css/pages/usuarios.css";
@@ -155,7 +156,7 @@ const Pedidos = () => {
 
           <div className="admin-info">
             <i className="fa-solid fa-circle-user"></i>
-            <span>Administrador</span>
+            <span>{obtenerNombreUsuarioActual()}</span>
           </div>
         </header>
 

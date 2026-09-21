@@ -1,10 +1,15 @@
 import { obtenerUsuarios, eliminarUsuario } from "../../services/users";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { obtenerNombreUsuarioActual } from "../../services/auth.js";
+import DataTable from "datatables.net-react";
+import DT from "datatables.net-bs5";
+import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 
 export default function Users() {
+  DataTable.use(DT);
+
   const [usuarios, setUsuarios] = useState([]);
-  const [busqueda, setBusqueda] = useState("");
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
@@ -23,12 +28,6 @@ export default function Users() {
     cargarUsuarios();
   }, []);
 
-  const usuariosFiltrados = usuarios.filter(
-    (user) =>
-      user.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
-      user.correo.toLowerCase().includes(busqueda.toLowerCase()),
-  );
-
   const handleEditar = (nombre) => {
     Swal.fire(
       "Editar Usuario",
@@ -36,6 +35,36 @@ export default function Users() {
       "info",
     );
   };
+
+  const columnas = [
+    { title: "ID", data: "id" },
+    {
+      title: "Nombre",
+      data: null,
+      render: (_, __, usuario) =>
+        `${usuario.nombre ?? ""} ${usuario.apellido ?? ""}`.trim(),
+    },
+    { title: "Correo", data: "correo" },
+    {
+      title: "Rol",
+      data: "Rol_idRol",
+      render: (data) =>
+        `<span class="badge ${data === 2 ? "bg-primary" : "bg-secondary"}">${data}</span>`,
+    },
+    {
+      title: "Acciones",
+      data: null,
+      orderable: false,
+      searchable: false,
+      render: () => `
+        <button class="btn btn-sm btn-outline-primary me-2 btn-editar-usuario" title="Editar usuario">
+          <i class="fa-solid fa-pen me-1"></i> Editar
+        </button>
+        <button class="btn btn-sm btn-outline-danger btn-eliminar-usuario" title="Eliminar usuario">
+          <i class="fa-solid fa-trash me-1"></i> Eliminar
+        </button>`,
+    },
+  ];
 
   const handleEliminar = async (user) => {
     const result = await Swal.fire({
@@ -77,7 +106,7 @@ export default function Users() {
 
           <div className="admin-info d-flex align-items-center gap-2">
             <i className="fa-solid fa-circle-user fs-4"></i>
-            <span>Administrador</span>
+            <span>{obtenerNombreUsuarioActual()}</span>
           </div>
         </header>
 
@@ -123,74 +152,45 @@ export default function Users() {
                 Administra los usuarios registrados en la plataforma.
               </p>
             </div>
-            {/* Barra de búsqueda integrada */}
-            <div style={{ width: "250px" }}>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Buscar usuario..."
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-              />
-            </div>
           </div>
 
           <div className="table-responsive">
-            <table
+            <DataTable
+              id="tablaUsuarios"
+              data={usuarios}
+              columns={columnas}
               className="table table-striped table-hover align-middle"
-              style={{ width: "100%" }}
-            >
-              <thead className="table-light">
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                  <th>Rol</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {usuariosFiltrados.map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td>
-                      {user.nombre} {user.apellido}
-                    </td>
-                    <td>{user.correo}</td>
-                    <td>
-                      <span
-                        className={`badge ${user.Rol_idRol === 2 ? "bg-primary" : "bg-secondary"}`}
-                      >
-                        {user.Rol_idRol}
-                      </span>
-                    </td>
-                    <td>
-                      <button
-                        className="btn btn-sm btn-outline-primary me-2"
-                        title="Editar usuario"
-                        onClick={() => handleEditar(user.nombre)}
-                      >
-                        <i className="fa-solid fa-pen me-1"></i> Editar
-                      </button>
-                      <button
-                        className="btn btn-sm btn-outline-danger"
-                        title="Eliminar usuario"
-                        onClick={() => handleEliminar(user)}
-                      >
-                        <i className="fa-solid fa-trash me-1"></i> Eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-                {usuariosFiltrados.length === 0 && (
-                  <tr>
-                    <td colSpan="5" className="text-center py-4 text-muted">
-                      No se encontraron usuarios coincidentes.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+              options={{
+                responsive: true,
+                paging: true,
+                searching: true,
+                ordering: true,
+                pageLength: 10,
+                language: {
+                  search: "Buscar:",
+                  lengthMenu: "Mostrar _MENU_ registros",
+                  info: "Mostrando _START_ a _END_ de _TOTAL_ usuarios",
+                  infoEmpty: "No hay usuarios disponibles",
+                  zeroRecords: "No se encontraron usuarios",
+                  paginate: {
+                    first: "Primero",
+                    last: "Último",
+                    next: "Siguiente",
+                    previous: "Anterior",
+                  },
+                },
+                createdRow: (row, usuario) => {
+                  row
+                    .querySelector(".btn-editar-usuario")
+                    ?.addEventListener("click", () =>
+                      handleEditar(usuario.nombre),
+                    );
+                  row
+                    .querySelector(".btn-eliminar-usuario")
+                    ?.addEventListener("click", () => handleEliminar(usuario));
+                },
+              }}
+            />
           </div>
         </section>
       </main>
