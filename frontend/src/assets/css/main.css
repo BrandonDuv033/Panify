@@ -17,6 +17,13 @@
 
 /* Pages */
 
+/* Public */
 @import "pages/login.css";
 @import "pages/register.css";
 @import "pages/usuarios.css";
+
+/* Admin */
+
+@import "pages/recibos.css";
+
+/* Client */
