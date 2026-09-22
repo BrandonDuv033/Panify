@@ -195,13 +195,13 @@
       "estado": "Cancelado"
     }
   ],
-  "detalles_pedidos": [
+  "detalle_pedidos": [
     {
       "id": 1,
       "idDetalle_Pedido": 1,
       "precioFijo": 500,
       "cantidad": 10,
-      "pedido_id": 1,
+      "idPedido": 1,
       "producto_idProducto": 1
     },
     {
@@ -209,7 +209,7 @@
       "idDetalle_Pedido": 2,
       "precioFijo": 2500,
       "cantidad": 2,
-      "pedido_id": 1,
+      "idPedido": 1,
       "producto_idProducto": 2
     }
   ],
@@ -219,14 +219,14 @@
       "idRecibo": 1,
       "totalPagar": 10000,
       "fechaEmision": "2026-09-08T08:31:00",
-      "pedido_id": 1
+      "idPedido": 1
     },
     {
       "id": 2,
       "idRecibo": 2,
       "totalPagar": 5000,
       "fechaEmision": "2026-09-08T09:01:00",
-      "pedido_id": 2
+      "idPedido": 2
     }
   ],
   "rutasEntrega": [
