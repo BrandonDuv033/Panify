@@ -25,5 +25,7 @@
 /* Admin */
 
 @import "pages/recibos.css";
+@import "pages/pedidosC.css";
 
 /* Client */
+@import "pages/profile.css";
