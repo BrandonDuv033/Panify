@@ -12,7 +12,7 @@ import Registro from "../pages/public/Register.jsx";
 import Recuperacion from "../pages/public/Recuperacion.jsx";
 
 // Cliente
-import MisPedidos from "../pages/client/MisPedidos.jsx";
+import MisPedidos from "../pages/client/Pedidos.jsx";
 import PerfilCliente from "../pages/client/Profile.jsx";
 
 // Admin (Panadero + Domiciliario — Opción A)

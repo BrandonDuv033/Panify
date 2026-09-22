@@ -70,7 +70,12 @@ const Login = () => {
         if (usuarioEncontrado.Rol_idRol === 3) rolTexto = "panadero";
         if (usuarioEncontrado.Rol_idRol === 2) rolTexto = "domiciliario";
 
-        const usuarioConRol = { ...usuarioEncontrado, rol: rolTexto };
+        const usuarioConRol = {
+          ...usuarioEncontrado,
+          rol: rolTexto,
+          idCliente: usuarioEncontrado.cliente_idCliente ?? null,
+          cliente_idCliente: usuarioEncontrado.cliente_idCliente ?? null,
+        };
         localStorage.setItem("usuario", JSON.stringify(usuarioConRol));
 
         Swal.fire({
