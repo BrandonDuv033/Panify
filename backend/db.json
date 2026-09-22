@@ -47,11 +47,6 @@
       "id": 1,
       "idPanadero": 1,
       "estadoActividad": "Activo"
-    },
-    {
-      "id": 2,
-      "idPanadero": 2,
-      "estadoActividad": "Inactivo"
     }
   ],
   "usuarios": [
@@ -86,15 +81,43 @@
     {
       "id": 3,
       "idUsuario": 3,
-      "nombre": "Jeison",
+      "nombre": "Brayan",
+      "apellido": "Devia",
+      "correo": "brayan@panify.com",
+      "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB3...",
+      "telefono": "3108761260",
+      "estado": "Activo",
+      "Rol_idRol": 2,
+      "cliente_idCliente": null,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": 1
+    },
+    {
+      "id": 4,
+      "idUsuario": 4,
+      "nombre": "Brandon",
       "apellido": "Guevara",
-      "correo": "jeison.guevara@email.com",
+      "correo": "brandon@panify.com",
       "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB3...",
       "telefono": "3154567890",
       "estado": "Activo",
-      "Rol_idRol": 1,
-      "cliente_idCliente": 2,
+      "Rol_idRol": 2,
+      "cliente_idCliente": null,
       "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": 2
+    },
+    {
+      "id": 5,
+      "idUsuario": 5,
+      "nombre": "Jose",
+      "apellido": "Bautista",
+      "correo": "josebautista@panify.com",
+      "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB3...",
+      "telefono": "3223875891",
+      "estado": "Activo",
+      "Rol_idRol": 3,
+      "cliente_idCliente": null,
+      "panadero_idPanadero": 1,
       "domiciliario_idDomiciliario": null
     }
   ],
@@ -155,7 +178,8 @@
       "fechaHoraEntregaEstimada": "2026-09-08T09:15:00",
       "estadoPedido": "En Camino",
       "cliente_idCliente": 1,
-      "domiciliario_idDomiciliario": 1
+      "domiciliario_idDomiciliario": 1,
+      "estado": "Cancelado"
     },
     {
       "id": 2,
