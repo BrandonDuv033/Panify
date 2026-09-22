@@ -62,7 +62,7 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="menuPrincipal">
             <ul className="navbar-nav ms-auto align-items-lg-center gap-5">
               <li className="nav-item">
-                <Link className="nav-link opcion-menu" to="/">
+                <Link className="nav-link opcion-menu" to="/inicio">
                   Inicio
                 </Link>
               </li>
@@ -73,7 +73,7 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link opcion-menu" href="#contacto">
+                <a className="nav-link opcion-menu" href="/contacto">
                   Contáctenos
                 </a>
               </li>

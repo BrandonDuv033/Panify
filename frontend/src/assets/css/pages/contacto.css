@@ -1,0 +1,327 @@
+.contacto-page {
+  min-height: 100vh;
+  padding: 35px 7% 0;
+  color: white;
+}
+
+/* HERO */
+
+.contacto-hero {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contacto-hero h1 {
+  font-family: Georgia, serif;
+  font-size: 54px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.linea-dorada {
+  width: 45px;
+  height: 3px;
+  background: #d4af37;
+  margin: 10px auto;
+}
+
+.contacto-hero h2 {
+  color: #d4af37;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  margin: 0 0 6px;
+}
+
+.contacto-hero p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* CONTENIDO */
+
+.contacto-contenido {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto 16px;
+}
+
+.contacto-card {
+  background: rgba(43, 30, 19, 0.94);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* TÍTULOS */
+
+.contacto-titulo {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.contacto-titulo > i {
+  color: #d4af37;
+  font-size: 28px;
+  margin-top: 3px;
+}
+
+.contacto-titulo h3 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.contacto-titulo p {
+  margin: 5px 0 0;
+  color: #ddd;
+  font-size: 14px;
+}
+
+/* DATOS */
+
+.dato-contacto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 17px;
+}
+
+.icono-contacto {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  background: #a9782e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icono-contacto i {
+  color: white;
+  font-size: 19px;
+}
+
+.dato-contacto strong {
+  display: block;
+  font-size: 14px;
+}
+
+.dato-contacto span {
+  display: block;
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.dato-contacto small {
+  display: block;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+.frase-contacto {
+  border-top: 1px solid rgba(212, 175, 55, 0.5);
+  margin-top: 8px;
+  padding-top: 10px;
+  color: #b99157;
+  font-family: Georgia, serif;
+  font-style: italic;
+  text-align: right;
+  font-size: 18px;
+}
+
+/* FORMULARIO */
+
+.campo-contacto {
+  margin-bottom: 10px;
+}
+
+.campo-contacto label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.campo-contacto input,
+.campo-contacto textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #777;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 11px;
+  outline: none;
+  font-size: 14px;
+}
+
+.campo-contacto input::placeholder,
+.campo-contacto textarea::placeholder {
+  color: #999;
+}
+
+.campo-contacto input:focus,
+.campo-contacto textarea:focus {
+  border-color: #d4af37;
+}
+
+.campo-contacto textarea {
+  resize: vertical;
+}
+
+/* BOTÓN */
+
+.btn-enviar-contacto {
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background: #eeb52f;
+  color: #2b1e13;
+  padding: 11px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-enviar-contacto:hover {
+  background: #d4af37;
+}
+
+.btn-enviar-contacto i {
+  margin-right: 8px;
+}
+
+/* VISÍTANOS */
+
+.visitanos {
+  max-width: 1100px;
+  margin: 0 auto 10px;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 20px;
+  background: rgba(43, 30, 19, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 14px;
+  padding: 8px;
+}
+
+.mapa-falso {
+  min-height: 150px;
+  border-radius: 10px;
+  background:
+    linear-gradient(
+      rgba(60, 45, 30, 0.5),
+      rgba(60, 45, 30, 0.5)
+    ),
+    #3c3025;
+  position: relative;
+  overflow: hidden;
+}
+
+.mapa-falso::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(35deg, transparent 48%, #66533f 49%, #66533f 51%, transparent 52%),
+    linear-gradient(145deg, transparent 48%, #66533f 49%, #66533f 51%, transparent 52%);
+  opacity: 0.7;
+}
+
+.marcador-mapa {
+  position: absolute;
+  left: 45%;
+  top: 42%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2b1e13;
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  padding: 10px 14px;
+  z-index: 2;
+}
+
+.marcador-mapa > i {
+  color: #d4af37;
+  font-size: 28px;
+}
+
+.marcador-mapa strong {
+  display: block;
+}
+
+.marcador-mapa span {
+  display: block;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.visitanos-info {
+  padding: 15px 25px;
+}
+
+.titulo-visitanos {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.titulo-visitanos i {
+  color: #d4af37;
+  font-size: 25px;
+}
+
+.titulo-visitanos h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.visitanos-info p {
+  max-width: 500px;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.btn-como-llegar {
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-weight: bold;
+}
+
+.btn-como-llegar:hover {
+  background: #d4af37;
+  color: #2b1e13;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .contacto-page {
+    padding: 25px 20px;
+  }
+
+  .contacto-hero h1 {
+    font-size: 40px;
+  }
+
+  .contacto-contenido {
+    grid-template-columns: 1fr;
+  }
+
+  .visitanos {
+    grid-template-columns: 1fr;
+  }
+
+}

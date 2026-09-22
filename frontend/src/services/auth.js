@@ -48,3 +48,12 @@ export async function iniciarSesion(email, password) {
     token: respuesta.data.accessToken,
   };
 }
+
+export async function recuperarPassword(correo) {
+  
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ mensaje: "Enlace de recuperación enviado (simulado)." });
+    }, 800); 
+  });
+}

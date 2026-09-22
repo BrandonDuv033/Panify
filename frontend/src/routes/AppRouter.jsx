@@ -14,6 +14,10 @@ import Recuperacion from "../pages/public/Recuperacion.jsx";
 // Cliente
 import MisPedidos from "../pages/client/Pedidos.jsx";
 import PerfilCliente from "../pages/client/Profile.jsx";
+import InicioCliente from "../pages/client/inicio.jsx";
+import Contacto  from "../pages/client/contacto.jsx";
+
+
 
 // Admin (Panadero + Domiciliario — Opción A)
 import Users from "../pages/admin/Users.jsx";
@@ -48,7 +52,27 @@ export default function AppRouter() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/inicio"
+            element={
+              <ProtectedRoute rolesPermitidos={["cliente"]}>
+                <InicioCliente />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/contacto"
+            element={
+              <ProtectedRoute rolesPermitidos={["cliente"]}>
+                <Contacto />
+              </ProtectedRoute>
+            }
+          />
+           
+       
         </Route>
+
+        
 
         <Route
           element={
