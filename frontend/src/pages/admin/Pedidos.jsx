@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { obtenerNombreUsuarioActual } from "../../services/auth.js";
 import Swal from "sweetalert2";
 import API from "../../services/api";
 
-const Pedidos = () => {
-  const navigate = useNavigate();
-
+export default function Pedidos() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +23,7 @@ const Pedidos = () => {
         ] = await Promise.all([
           API.get("/pedidos"),
           API.get("/clientes"),
-          API.get("/usuarios"),
+          API.get("/users"),
           API.get("/detalles_pedidos"),
           API.get("/productos"),
         ]);
@@ -33,8 +31,7 @@ const Pedidos = () => {
         const pedidosCompletos = resPedidos.data.map((pedido) => {
           const cliente =
             resClientes.data.find(
-              (c) =>
-                String(c.idCliente) === String(pedido.cliente_idCliente),
+              (c) => String(c.idCliente) === String(pedido.cliente_idCliente),
             ) || {};
 
           const domiciliario =
@@ -48,8 +45,7 @@ const Pedidos = () => {
 
           const usuario =
             resUsuarios.data.find(
-              (u) =>
-                String(u.cliente_idCliente) === String(cliente.idCliente),
+              (u) => String(u.cliente_idCliente) === String(cliente.idCliente),
             ) || {};
 
           const detallesDelPedido = resDetalles.data.filter(
@@ -79,9 +75,7 @@ const Pedidos = () => {
             pedidoRealizado: nombresProductos || "Productos variados",
 
             domiciliario: domiciliario.nombre
-              ? `${domiciliario.nombre} ${
-                  domiciliario.apellido || ""
-                }`.trim()
+              ? `${domiciliario.nombre} ${domiciliario.apellido || ""}`.trim()
               : "Sin domiciliario",
 
             estado: pedido.estadoPedido || "Pendiente",
@@ -101,12 +95,6 @@ const Pedidos = () => {
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
-  };
-
-  const handleCerrarSesion = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("usuario");
-    navigate("/ingresar");
   };
 
   const abrirDetalle = (pedido) => {
@@ -174,12 +162,7 @@ const Pedidos = () => {
 
   return (
     <div className="dashboard-layout">
-      {sidebarOpen && (
-        <div
-          id="sidebarOverlay"
-          onClick={toggleSidebar}
-        ></div>
-      )}
+      {sidebarOpen && <div id="sidebarOverlay" onClick={toggleSidebar}></div>}
 
       <main className="dashboard-main">
         <header className="topbar">
@@ -203,19 +186,11 @@ const Pedidos = () => {
           <div className="admin-info">
             <i className="fa-solid fa-circle-user"></i>
 
-            <span>Administrador</span>
+            <span>{obtenerNombreUsuarioActual()}</span>
           </div>
         </header>
 
-        <br />
-
         <section className="row g-4 mb-4">
-          <div>
-            <h1 className="resumenDia text-center">
-              Resumen de Entregas del dia
-            </h1>
-          </div>
-
           <div className="col-lg-3 col-md-6">
             <div className="card-resumen">
               <i className="fa-solid fa-clipboard-list"></i>
@@ -271,8 +246,6 @@ const Pedidos = () => {
           </div>
         </section>
 
-        <br />
-
         <section className="panel tabla">
           <div className="cabecera-tabla">
             <div>
@@ -287,12 +260,12 @@ const Pedidos = () => {
             >
               <thead>
                 <tr>
-                  <th>ID Pedido</th>
-                  <th>Nombre del Cliente</th>
+                  <th>ID</th>
+                  <th>Cliente</th>
                   <th>Dirección</th>
-                  <th>Pedido Realizado</th>
+                  <th>Productos</th>
                   <th>Domiciliario</th>
-                  <th>Estado del pedido</th>
+                  <th>Estado</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -357,10 +330,7 @@ const Pedidos = () => {
         </section>
 
         {pedidoSeleccionado && (
-          <div
-            className="modal-detalle-overlay"
-            onClick={cerrarDetalle}
-          >
+          <div className="modal-detalle-overlay" onClick={cerrarDetalle}>
             <div
               className="modal-actualizar"
               onClick={(e) => e.stopPropagation()}
@@ -381,22 +351,16 @@ const Pedidos = () => {
                 <form onSubmit={guardarCambiosEstado}>
                   <div className="detalles mb-3">
                     <p>
-                      <strong>ID del pedido:</strong>{" "}
-                      {pedidoSeleccionado.id}
+                      <strong>ID del pedido:</strong> {pedidoSeleccionado.id}
                       <br />
-
                       <strong>Nombre del Cliente:</strong>{" "}
                       {pedidoSeleccionado.nombreCliente}
                       <br />
-
-                      <strong>Dirección:</strong>{" "}
-                      {pedidoSeleccionado.direccion}
+                      <strong>Dirección:</strong> {pedidoSeleccionado.direccion}
                       <br />
-
                       <strong>Pedido:</strong>{" "}
                       {pedidoSeleccionado.pedidoRealizado}
                       <br />
-
                       <strong>Estado Actual:</strong>{" "}
                       {pedidoSeleccionado.estado}
                     </p>
@@ -410,17 +374,11 @@ const Pedidos = () => {
                   >
                     <option value="">--Seleccione un Estado--</option>
 
-                    <option value="Pendiente">
-                      Pendiente
-                    </option>
+                    <option value="Pendiente">Pendiente</option>
 
-                    <option value="Entregado">
-                      Entregado
-                    </option>
+                    <option value="Entregado">Entregado</option>
 
-                    <option value="En Camino">
-                      En Camino
-                    </option>
+                    <option value="En Camino">En Camino</option>
                   </select>
 
                   <button
@@ -436,14 +394,8 @@ const Pedidos = () => {
         )}
 
         {pedidoRuta && (
-          <div
-            className="modal-ruta-overlay"
-            onClick={cerrarRuta}
-          >
-            <div
-              className="modal-ruta"
-              onClick={(e) => e.stopPropagation()}
-            >
+          <div className="modal-ruta-overlay" onClick={cerrarRuta}>
+            <div className="modal-ruta" onClick={(e) => e.stopPropagation()}>
               <div className="modal-header border-0">
                 <h2 className="modal-title w-100 text-center rutaEntrega">
                   Ruta de Entrega
@@ -459,13 +411,11 @@ const Pedidos = () => {
               <div className="modal-body">
                 <div className="ruta-info">
                   <p>
-                    <strong>Cliente:</strong>{" "}
-                    {pedidoRuta.nombreCliente}
+                    <strong>Cliente:</strong> {pedidoRuta.nombreCliente}
                   </p>
 
                   <p>
-                    <strong>Dirección:</strong>{" "}
-                    {pedidoRuta.direccion}
+                    <strong>Dirección:</strong> {pedidoRuta.direccion}
                   </p>
                 </div>
 
@@ -487,6 +437,4 @@ const Pedidos = () => {
       </main>
     </div>
   );
-};
-
-export default Pedidos;
+}
