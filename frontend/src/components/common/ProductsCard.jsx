@@ -1,6 +1,6 @@
 export default function ProductsCard() {
   const products = [
-    { 
+    {
       id: 1,
       nombre: "Blandito",
       descripcion:
@@ -37,9 +37,9 @@ export default function ProductsCard() {
           mejor frescura y tradición directamente a tu mesa.
         </p>
       </div>
-      <div class="row g-4 tarjetas">
+      <div className="row g-4 tarjetas">
         {products.map((product) => (
-          <div className="col-md-4">
+          <div className="col-md-4" key={product.id}>
             <div className="card tarjeta h-100 text-center">
               <img
                 src={product.imagen}
