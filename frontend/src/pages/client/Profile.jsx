@@ -55,9 +55,10 @@ export default function Profile() {
 
     try {
       const usuarioGuardado = JSON.parse(localStorage.getItem("usuario") || "null");
-      const userId = perfil?.clienteId ?? perfil?.id ?? usuarioGuardado?.cliente_idCliente ?? 1;
+      const usuarioId = perfil?.usuarioId ?? usuarioGuardado?.idUsuario ?? usuarioGuardado?.id;
+      const clienteId = perfil?.clienteId ?? usuarioGuardado?.cliente_idCliente;
 
-      await actualizarPerfilUsuario(userId, formData);
+      await actualizarPerfilUsuario(usuarioId, clienteId, formData);
 
       const perfilActualizado = {
         ...perfil,

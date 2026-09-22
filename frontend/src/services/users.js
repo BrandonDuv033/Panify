@@ -63,24 +63,15 @@ export async function obtenerPerfilUsuario(userId = null) {
   };
 }
 
-// Actualizar datos personales del cliente y sincronizarlos con la tabla clientes
-export async function actualizarPerfilUsuario(userId, datosActualizados) {
-  const [usuarios, clientes] = await Promise.all([
-    API.get("/users"),
-    API.get("/clientes"),
+// Actualizar datos personales del usuario y sincronizarlos con su cliente
+export async function actualizarPerfilUsuario(usuarioId, clienteId, datosActualizados) {
+  const [usuarioResponse, clienteResponse] = await Promise.all([
+    API.get(`/users/${usuarioId}`),
+    API.get(`/clientes/${clienteId}`),
   ]);
 
-  const usuario = usuarios.data.find(
-    (item) =>
-      Number(item.cliente_idCliente ?? item.idUsuario ?? item.id) === Number(userId) ||
-      Number(item.id) === Number(userId)
-  );
-
-  const cliente = clientes.data.find(
-    (item) =>
-      Number(item.idCliente ?? item.id) === Number(userId) ||
-      Number(item.usuario_idUsuario ?? item.idUsuario) === Number(usuario?.idUsuario ?? userId)
-  );
+  const usuario = usuarioResponse.data;
+  const cliente = clienteResponse.data;
 
   const payloadUsuario = {
     nombre: datosActualizados.nombre,
@@ -107,7 +98,7 @@ export async function actualizarPerfilUsuario(userId, datosActualizados) {
     peticiones.push(API.patch(`/clientes/${cliente.id}`, payloadCliente));
   }
 
-  if (!usuario && !cliente) {
+  if (peticiones.length === 0) {
     throw new Error("No se encontró el usuario o cliente para actualizar");
   }
 
