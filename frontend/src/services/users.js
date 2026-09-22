@@ -26,7 +26,7 @@ export async function obtenerPerfilUsuario(userId = null) {
   );
 
   const [usuarios, clientes, pedidos] = await Promise.all([
-    API.get(`/usuarios?cliente_idCliente=${clienteIdActual}`),
+    API.get(`/users?cliente_idCliente=${clienteIdActual}`),
     API.get("/clientes"),
     API.get(`/pedidos?cliente_idCliente=${clienteIdActual}`),
   ]);
@@ -66,7 +66,7 @@ export async function obtenerPerfilUsuario(userId = null) {
 // Actualizar datos personales del cliente y sincronizarlos con la tabla clientes
 export async function actualizarPerfilUsuario(userId, datosActualizados) {
   const [usuarios, clientes] = await Promise.all([
-    API.get("/usuarios"),
+    API.get("/users"),
     API.get("/clientes"),
   ]);
 
@@ -100,7 +100,7 @@ export async function actualizarPerfilUsuario(userId, datosActualizados) {
   const peticiones = [];
 
   if (usuario) {
-    peticiones.push(API.patch(`/usuarios/${usuario.id}`, payloadUsuario));
+    peticiones.push(API.patch(`/users/${usuario.id}`, payloadUsuario));
   }
 
   if (cliente) {

@@ -16,7 +16,9 @@ function getClienteIdActual() {
   const clienteId =
     usuario.cliente_idCliente ?? usuario.idCliente ?? usuario.clienteId ?? null;
 
-  return clienteId === null || clienteId === undefined ? null : Number(clienteId);
+  return clienteId === null || clienteId === undefined
+    ? null
+    : Number(clienteId);
 }
 
 export class PedidoAccesoError extends Error {
@@ -32,7 +34,10 @@ export async function obtenerPedidoDetalle(idPedido) {
   const clienteId = getClienteIdActual();
 
   if (!usuario || !clienteId) {
-    throw new PedidoAccesoError("Debes iniciar sesión como cliente para ver este pedido.", 401);
+    throw new PedidoAccesoError(
+      "Debes iniciar sesión como cliente para ver este pedido.",
+      401,
+    );
   }
 
   try {
@@ -44,7 +49,10 @@ export async function obtenerPedidoDetalle(idPedido) {
     }
 
     if (Number(pedido.cliente_idCliente) !== Number(clienteId)) {
-      throw new PedidoAccesoError("No tienes permisos para ver este pedido.", 403);
+      throw new PedidoAccesoError(
+        "No tienes permisos para ver este pedido.",
+        403,
+      );
     }
 
     return pedido;
@@ -59,10 +67,16 @@ export async function obtenerPedidoDetalle(idPedido) {
     }
 
     if (status === 403) {
-      throw new PedidoAccesoError("No tienes permisos para ver este pedido.", 403);
+      throw new PedidoAccesoError(
+        "No tienes permisos para ver este pedido.",
+        403,
+      );
     }
 
-    throw new PedidoAccesoError("No se pudo cargar el detalle del pedido.", 500);
+    throw new PedidoAccesoError(
+      "No se pudo cargar el detalle del pedido.",
+      500,
+    );
   }
 }
 
@@ -72,12 +86,15 @@ export async function obtenerPedidos() {
   const clienteId = getClienteIdActual();
 
   if (!usuario || !clienteId) {
-    throw new PedidoAccesoError("Debes iniciar sesión como cliente para ver tus pedidos.", 401);
+    throw new PedidoAccesoError(
+      "Debes iniciar sesión como cliente para ver tus pedidos.",
+      401,
+    );
   }
 
   const [pedidos, usuarios, detallesPedidos, productos] = await Promise.all([
     API.get("/pedidos"),
-    API.get("/usuarios"),
+    API.get("/users"),
     API.get("/detalles_pedidos"),
     API.get("/productos"),
   ]);
@@ -86,7 +103,7 @@ export async function obtenerPedidos() {
     .filter((pedido) => Number(pedido.cliente_idCliente) === Number(clienteId))
     .map((pedido) => {
       const usuarioPedido = usuarios.data.find(
-        (u) => Number(u.cliente_idCliente) === Number(pedido.cliente_idCliente)
+        (u) => Number(u.cliente_idCliente) === Number(pedido.cliente_idCliente),
       );
 
       const cliente = usuarioPedido
@@ -94,11 +111,13 @@ export async function obtenerPedidos() {
         : "Cliente no encontrado";
 
       const detalles = detallesPedidos.data.filter(
-        (dp) => Number(dp.pedido_idPedido) === Number(pedido.id)
+        (dp) => Number(dp.pedido_idPedido) === Number(pedido.id),
       );
 
       const listaProductos = detalles.map((dp) => {
-        const prod = productos.data.find((p) => Number(p.id) === Number(dp.producto_idProducto));
+        const prod = productos.data.find(
+          (p) => Number(p.id) === Number(dp.producto_idProducto),
+        );
         const precioUnitario = dp.precioFijo || (prod ? prod.precio : 0);
         return {
           idProducto: dp.producto_idProducto,
@@ -111,7 +130,7 @@ export async function obtenerPedidos() {
 
       const totalCalculado = listaProductos.reduce(
         (acc, item) => acc + item.subtotal,
-        0
+        0,
       );
 
       return {
@@ -130,14 +149,20 @@ export async function cancelarPedidoService(id) {
   const clienteId = getClienteIdActual();
 
   if (!usuario || !clienteId) {
-    throw new PedidoAccesoError("Debes iniciar sesión para cancelar pedidos.", 401);
+    throw new PedidoAccesoError(
+      "Debes iniciar sesión para cancelar pedidos.",
+      401,
+    );
   }
 
   try {
     const pedido = await obtenerPedidoDetalle(id);
 
     if (Number(pedido.cliente_idCliente) !== Number(clienteId)) {
-      throw new PedidoAccesoError("No tienes permisos para cancelar este pedido.", 403);
+      throw new PedidoAccesoError(
+        "No tienes permisos para cancelar este pedido.",
+        403,
+      );
     }
 
     const res = await API.patch(`/pedidos/${id}`, {
@@ -155,7 +180,10 @@ export async function cancelarPedidoService(id) {
     }
 
     if (status === 403) {
-      throw new PedidoAccesoError("No tienes permisos para cancelar este pedido.", 403);
+      throw new PedidoAccesoError(
+        "No tienes permisos para cancelar este pedido.",
+        403,
+      );
     }
 
     throw new PedidoAccesoError("No se pudo cancelar el pedido.", 500);
