@@ -1,45 +1,53 @@
-import { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
-import API from '../../services/api';
+import { obtenerProductos } from "../../services/inventario.js";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const Catalogo = () => {
-  // Estado para almacenar los productos traídos de axios
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Estados para búsqueda, filtro, carrito y recibo
-  const [busqueda, setBusqueda] = useState('');
-  const [categoriaFiltro, setCategoriaFiltro] = useState('');
+  const [busqueda, setBusqueda] = useState("");
+  const [categoriaFiltro, setCategoriaFiltro] = useState("");
   const [carrito, setCarrito] = useState([]);
   const [reciboData, setReciboData] = useState(null);
 
-  // Cargar productos desde la API centralizada
   useEffect(() => {
-    API.get('/productos')
-      .then((res) => {
-        setProductos(res.data);
+    async function cargarProductos() {
+      try {
+        const productos = await obtenerProductos();
+        setProductos(productos);
+      } catch (error) {
+        console.error("Error al cargar los productos:", error);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error al cargar los productos:', error);
-        setLoading(false);
-      });
+      }
+    }
+
+    cargarProductos();
   }, []);
 
   // Filtrar productos reactivamente
   const productosFiltrados = productos.filter((prod) => {
-    const coincideBusqueda = prod.nombre.toLowerCase().includes(busqueda.toLowerCase());
-    const coincideCategoria = categoriaFiltro === '' || (prod.descripcion && prod.descripcion.toLowerCase().includes(categoriaFiltro.toLowerCase()));
+    const coincideBusqueda = prod.nombre
+      .toLowerCase()
+      .includes(busqueda.toLowerCase());
+    const coincideCategoria =
+      categoriaFiltro === "" ||
+      (prod.descripcion &&
+        prod.descripcion.toLowerCase().includes(categoriaFiltro.toLowerCase()));
     return coincideBusqueda && coincideCategoria;
   });
 
   // Agregar producto al carrito
   const agregarAlCarrito = (producto) => {
     setCarrito((prevCarrito) => {
-      const existe = prevCarrito.find((item) => item.idProducto === producto.idProducto);
+      const existe = prevCarrito.find(
+        (item) => item.id === producto.id,
+      );
       if (existe) {
         return prevCarrito.map((item) =>
-          item.idProducto === producto.idProducto ? { ...item, cantidad: item.cantidad + 1 } : item
+          item.id === producto.id
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item,
         );
       }
       return [...prevCarrito, { ...producto, cantidad: 1 }];
@@ -47,17 +55,19 @@ const Catalogo = () => {
   };
 
   // Cambiar cantidad de un producto en el carrito (+ / -)
-  const cambiarCantidad = (idProducto, delta) => {
+  const cambiarCantidad = (id, delta) => {
     setCarrito((prevCarrito) =>
       prevCarrito
         .map((item) => {
-          if (item.idProducto === idProducto) {
+          if (item.id === id) {
             const nuevaCantidad = item.cantidad + delta;
-            return nuevaCantidad > 0 ? { ...item, cantidad: nuevaCantidad } : null;
+            return nuevaCantidad > 0
+              ? { ...item, cantidad: nuevaCantidad }
+              : null;
           }
           return item;
         })
-        .filter(Boolean)
+        .filter(Boolean),
     );
   };
 
@@ -76,18 +86,18 @@ const Catalogo = () => {
   const finalizarCompra = () => {
     if (carrito.length === 0) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Carrito vacío',
-        text: 'Agrega productos antes de finalizar la compra.',
-        confirmButtonColor: '#e5a93c',
+        icon: "warning",
+        title: "Carrito vacío",
+        text: "Agrega productos antes de finalizar la compra.",
+        confirmButtonColor: "#e5a93c",
       });
       return;
     }
     Swal.fire({
-      icon: 'success',
-      title: '¡Compra exitosa!',
-      text: 'Tu pedido ha sido registrado correctamente.',
-      confirmButtonColor: '#e5a93c',
+      icon: "success",
+      title: "¡Compra exitosa!",
+      text: "Tu pedido ha sido registrado correctamente.",
+      confirmButtonColor: "#e5a93c",
     });
     setCarrito([]);
   };
@@ -96,31 +106,33 @@ const Catalogo = () => {
   const generarRecibo = () => {
     if (carrito.length === 0) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Carrito vacío',
-        text: 'No hay productos para generar un recibo.',
-        confirmButtonColor: '#e5a93c',
+        icon: "warning",
+        title: "Carrito vacío",
+        text: "No hay productos para generar un recibo.",
+        confirmButtonColor: "#e5a93c",
       });
       return;
     }
     setReciboData([...carrito]);
     Swal.fire({
-      icon: 'success',
-      title: 'Recibo Generado',
-      text: 'Consulta el detalle al final de la página.',
-      confirmButtonColor: '#e5a93c',
+      icon: "success",
+      title: "Recibo Generado",
+      text: "Consulta el detalle al final de la página.",
+      confirmButtonColor: "#e5a93c",
     });
   };
 
   return (
     <div>
       {/* CONTENIDO PRINCIPAL */}
-      <main className="productos container py-5" style={{ marginTop: '80px' }}>
+      <main className="productos container py-5" style={{ marginTop: "80px" }}>
         <div className="header-productos text-center mb-5">
           <span className="subtitulo-decorativo">Distribuciones Oro Pan</span>
           <h2>Nuestros Productos</h2>
           <div className="linea-divisoria"></div>
-          <p className="lead-productos">Escoge tus productos favoritos y agrégos al carrito.</p>
+          <p className="lead-productos">
+            Escoge tus productos favoritos y agrégos al carrito.
+          </p>
         </div>
 
         {/* Buscador y Filtro */}
@@ -152,32 +164,41 @@ const Catalogo = () => {
           {/* Productos Grid con datos de la API */}
           <div className="col-lg-8 row g-4" id="listaProductos">
             {loading ? (
-              <p className="text-white text-center">Cargando productos desde la base de datos...</p>
+              <p className="text-white text-center">
+                Cargando productos desde la base de datos...
+              </p>
             ) : (
               productosFiltrados.map((prod) => (
-                <div className="col-md-6" key={prod.idProducto}>
+                <div className="col-md-6" key={prod.id}>
                   <div className="tarjeta h-100 d-flex flex-column justify-content-between p-3">
                     <div>
                       <div className="text-center pt-2 fs-1">🍞</div>
                       <div className="card-body px-0">
                         <h3 className="text-white">{prod.nombre}</h3>
-                        <p className="text-light opacity-75 mb-2">{prod.descripcion}</p>
-                        <p className="fw-bold text-warning fs-5 mb-3">$ {prod.precio.toLocaleString()}</p>
+                        <p className="text-light opacity-75 mb-2">
+                          {prod.descripcion}
+                        </p>
+                        <p className="fw-bold text-warning fs-5 mb-3">
+                          $ {prod.precio.toLocaleString()}
+                        </p>
                       </div>
                     </div>
                     <button
                       className="btn w-100 mt-2 text-dark fw-bold py-2"
-                      style={{ backgroundColor: '#e5a93c', border: 'none' }}
+                      style={{ backgroundColor: "#e5a93c", border: "none" }}
                       onClick={() => agregarAlCarrito(prod)}
                     >
-                      <i className="fa-solid fa-cart-plus me-1"></i> Agregar al carrito
+                      <i className="fa-solid fa-cart-plus me-1"></i> Agregar al
+                      carrito
                     </button>
                   </div>
                 </div>
               ))
             )}
             {!loading && productosFiltrados.length === 0 && (
-              <p className="text-white text-center">No se encontraron productos.</p>
+              <p className="text-white text-center">
+                No se encontraron productos.
+              </p>
             )}
           </div>
 
@@ -190,20 +211,37 @@ const Catalogo = () => {
                 </h4>
               </div>
 
-              <div className="tarjeta-body p-0" style={{ minHeight: '150px' }}>
+              <div className="tarjeta-body p-0" style={{ minHeight: "150px" }}>
                 {carrito.length === 0 ? (
-                  <p className="text-center text-muted">El carrito está vacío.</p>
+                  <p className="text-center text-muted">
+                    El carrito está vacío.
+                  </p>
                 ) : (
                   carrito.map((item) => (
-                    <div key={item.idProducto} className="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2">
+                    <div
+                      key={item.id}
+                      className="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2"
+                    >
                       <div>
                         <h6 className="m-0 text-dark">{item.nombre}</h6>
-                        <small className="text-muted">$ {item.precio} c/u</small>
+                        <small className="text-muted">
+                          $ {item.precio} c/u
+                        </small>
                       </div>
                       <div className="d-flex align-items-center gap-2">
-                        <button className="btn btn-sm btn-outline-secondary" onClick={() => cambiarCantidad(item.idProducto, -1)}>-</button>
+                        <button
+                          className="btn btn-sm btn-outline-secondary"
+                          onClick={() => cambiarCantidad(item.id, -1)}
+                        >
+                          -
+                        </button>
                         <span>{item.cantidad}</span>
-                        <button className="btn btn-sm btn-outline-secondary" onClick={() => cambiarCantidad(item.idProducto, 1)}>+</button>
+                        <button
+                          className="btn btn-sm btn-outline-secondary"
+                          onClick={() => cambiarCantidad(item.id, 1)}
+                        >
+                          +
+                        </button>
                       </div>
                     </div>
                   ))
@@ -211,16 +249,26 @@ const Catalogo = () => {
               </div>
 
               <div className="tarjeta-footer border-top pt-3 mt-3">
-                <button className="btn btn-danger w-100 mb-2" onClick={vaciarCarrito}>
+                <button
+                  className="btn btn-danger w-100 mb-2"
+                  onClick={vaciarCarrito}
+                >
                   Vaciar carrito
                 </button>
                 <h5 className="text-dark">
-                  Total: <span id="total">$ {calcularTotal().toLocaleString()}</span>
+                  Total:{" "}
+                  <span id="total">$ {calcularTotal().toLocaleString()}</span>
                 </h5>
-                <button className="btn btn-success w-100 mt-2" onClick={finalizarCompra}>
+                <button
+                  className="btn btn-success w-100 mt-2"
+                  onClick={finalizarCompra}
+                >
                   Finalizar compra
                 </button>
-                <button className="btn btn-primary w-100 mt-2" onClick={generarRecibo}>
+                <button
+                  className="btn btn-primary w-100 mt-2"
+                  onClick={generarRecibo}
+                >
                   Generar recibo
                 </button>
               </div>
@@ -230,18 +278,31 @@ const Catalogo = () => {
 
         {/* Sección de Recibo Dinámico */}
         {reciboData && (
-          <div id="recibo" className="tarjeta mt-4 p-4 bg-light rounded shadow-sm text-dark">
+          <div
+            id="recibo"
+            className="tarjeta mt-4 p-4 bg-light rounded shadow-sm text-dark"
+          >
             <h4 className="border-bottom pb-2 mb-3">Recibo de compra</h4>
             <ul className="list-group mb-3">
               {reciboData.map((item, idx) => (
-                <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
-                  <span>{item.nombre} (x{item.cantidad})</span>
-                  <span>$ {(item.precio * item.cantidad).toLocaleString()}</span>
+                <li
+                  key={idx}
+                  className="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span>
+                    {item.nombre} (x{item.cantidad})
+                  </span>
+                  <span>
+                    $ {(item.precio * item.cantidad).toLocaleString()}
+                  </span>
                 </li>
               ))}
             </ul>
             <h5 id="reciboTotal" className="fw-bold">
-              Total Pagado: $ {reciboData.reduce((acc, i) => acc + i.precio * i.cantidad, 0).toLocaleString()}
+              Total Pagado: ${" "}
+              {reciboData
+                .reduce((acc, i) => acc + i.precio * i.cantidad, 0)
+                .toLocaleString()}
             </h5>
           </div>
         )}
