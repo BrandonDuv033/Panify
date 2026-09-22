@@ -3,6 +3,10 @@ import { NavLink } from "react-router-dom";
 import "../../assets/css/layout/sidebar.css";
 
 export default function Sidebar() {
+  const handleLogout = () => {
+    localStorage.clear();
+  };
+
   return (
     <aside className="sidebar" id="sidebar">
       <div className="sidebar-logo">
@@ -36,7 +40,7 @@ export default function Sidebar() {
           Recibos
         </NavLink>
 
-        <NavLink to="/">
+        <NavLink to="/" onClick={handleLogout}>
           <i className="fa-solid fa-right-from-bracket"></i>
           Salir
         </NavLink>
