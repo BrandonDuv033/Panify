@@ -67,20 +67,6 @@
     {
       "id": 2,
       "idUsuario": 2,
-      "nombre": "Andrés",
-      "apellido": "Gómez",
-      "correo": "andres.gomez@email.com",
-      "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB2...",
-      "telefono": "3119876543",
-      "estado": "Activo",
-      "Rol_idRol": 2,
-      "cliente_idCliente": null,
-      "panadero_idPanadero": null,
-      "domiciliario_idDomiciliario": 1
-    },
-    {
-      "id": 3,
-      "idUsuario": 3,
       "nombre": "Brayan",
       "apellido": "Devia",
       "correo": "brayan@panify.com",
@@ -93,8 +79,8 @@
       "domiciliario_idDomiciliario": 1
     },
     {
-      "id": 4,
-      "idUsuario": 4,
+      "id": 3,
+      "idUsuario": 3,
       "nombre": "Brandon",
       "apellido": "Guevara",
       "correo": "brandon@panify.com",
@@ -107,8 +93,8 @@
       "domiciliario_idDomiciliario": 2
     },
     {
-      "id": 5,
-      "idUsuario": 5,
+      "id": 4,
+      "idUsuario": 4,
       "nombre": "Jose",
       "apellido": "Bautista",
       "correo": "josebautista@panify.com",
