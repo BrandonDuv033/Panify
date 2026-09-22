@@ -3,7 +3,8 @@ import {
   eliminarProducto,
 } from "../../services/inventario.js";
 import { obtenerNombreUsuarioActual } from "../../services/auth.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Swal from "sweetalert2";
 import DataTable from "datatables.net-react";
 import DT from "datatables.net-bs5";
@@ -15,6 +16,8 @@ export default function Inventario() {
   const [productos, setProductos] = useState([]);
   const [categoriaFiltro, setCategoriaFiltro] = useState("Todas");
   const [, setCargando] = useState(true);
+  const tablaRef = useRef(null);
+  const [contenedorFiltro, setContenedorFiltro] = useState(null);
 
   useEffect(() => {
     async function cargarProductos() {
@@ -31,14 +34,15 @@ export default function Inventario() {
     cargarProductos();
   }, []);
 
-  // El buscador queda a cargo de DataTables; este filtro conserva la categoría.
-  const productosFiltrados = productos.filter((prod) => {
-    const coincideCategoria =
-      categoriaFiltro === "Todas" ||
-      prod.categoria.toLowerCase().includes(categoriaFiltro.toLowerCase());
-
-    return coincideCategoria;
-  });
+  const handleCategoriaChange = (event) => {
+    const categoria = event.target.value;
+    setCategoriaFiltro(categoria);
+    tablaRef.current
+      ?.dt()
+      .column(2)
+      .search(categoria === "Todas" ? "" : categoria)
+      .draw();
+  };
 
   const handleAgregar = () => {
     Swal.fire({
@@ -81,10 +85,10 @@ export default function Inventario() {
 
   const columnas = [
     {
-      title: "Imagen",
-      data: "imagen",
-      orderable: false,
-      render: (data) => `<span class="fs-4">${data}</span>`,
+      title: "ID",
+      data: "id",
+      orderable: true,
+      render: (data) => `${data}`,
     },
     { title: "Producto", data: "nombre" },
     { title: "Descripción", data: "categoria" },
@@ -196,24 +200,11 @@ export default function Inventario() {
             </button>
           </div>
 
-          <div className="row g-3 mb-4">
-            <div className="col-md-6">
-              <select
-                className="form-select"
-                value={categoriaFiltro}
-                onChange={(e) => setCategoriaFiltro(e.target.value)}
-              >
-                <option value="Todas">Todas las categorías</option>
-                <option value="artesanal">Artesanal</option>
-                <option value="queso">Queso</option>
-              </select>
-            </div>
-          </div>
-
           <div className="table-responsive">
             <DataTable
+              ref={tablaRef}
               id="tablaInventario"
-              data={productosFiltrados}
+              data={productos}
               columns={columnas}
               className="table table-striped table-hover align-middle"
               options={{
@@ -235,6 +226,13 @@ export default function Inventario() {
                     previous: "Anterior",
                   },
                 },
+                initComplete() {
+                  const contenedorBusqueda = this.api()
+                    .table()
+                    .container()
+                    .querySelector(".dt-search");
+                  setContenedorFiltro(contenedorBusqueda);
+                },
                 createdRow: (row, producto) => {
                   row
                     .querySelector(".btn-editar-producto")
@@ -250,6 +248,20 @@ export default function Inventario() {
               }}
             />
           </div>
+          {contenedorFiltro &&
+            createPortal(
+              <select
+                className="form-select filtro-categoria-datatable"
+                value={categoriaFiltro}
+                onChange={handleCategoriaChange}
+                aria-label="Filtrar por categoría"
+              >
+                <option value="Todas">Todas las categorías</option>
+                <option value="artesanal">Artesanal</option>
+                <option value="queso">Queso</option>
+              </select>,
+              contenedorFiltro,
+            )}
         </section>
       </main>
     </div>

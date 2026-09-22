@@ -71,6 +71,18 @@ select.dt-input {
   margin: 12px 0;
 }
 
+.dt-container .dt-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dt-container .filtro-categoria-datatable {
+  width: auto;
+  min-width: 190px;
+  margin: 0;
+}
+
 .dt-container .dt-layout-cell {
   color: #7a6b5e;
 }
