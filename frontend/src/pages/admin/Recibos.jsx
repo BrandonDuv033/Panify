@@ -5,10 +5,16 @@ import { obtenerRecibos } from "../../services/recibos.js";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { obtenerNombreUsuarioActual } from "../../services/auth.js";
+import { formatearFechaHora } from "../../utils/formatearFechaHora.js";
+import { formatearMoneda } from "../../utils/formatearMoneda.js";
+import ModalDetalleRecibo from "../../components/admin/ModalDetalleRecibos.jsx";
+import useDetallePedido from "../../hooks/useDetallePedido.js";
 
 export default function recibos() {
-  DataTable.use(DT);
+  const { detalle, abrirDetalle, cerrarDetalle } = useDetallePedido();
+  const [recibos, setRecibos] = useState([]);
 
+  DataTable.use(DT);
   const columnas = [
     { title: "ID", data: "id" },
     { title: "Cliente", data: "nombreCliente" },
@@ -31,16 +37,32 @@ export default function recibos() {
       title: "Recibo",
       data: null,
       orderable: false,
-      render: () =>
-        `<button class="btn btn-sm btn-outline-primary btn-recibo">
-          <i class="fa-solid fa-file-pdf me-1"></i> Ver recibo
-        </button>`,
+      render: (_, __, row) => `
+    <button
+      class="btn btn-sm btn-outline-primary btn-recibo"
+      data-id-pedido="${row.idPedido}"
+    >
+      <i class="fa-solid fa-file-pdf me-1"></i> Ver recibo
+    </button>
+  `,
     },
   ];
 
-  const [recibos, setRecibos] = useState([]);
-  const [busqueda, setBusqueda] = useState("");
-  const [cargando, setCargando] = useState(true);
+  useEffect(() => {
+    const tabla = document.querySelector("#tablaRecibos");
+    if (!tabla) return;
+
+    const manejarClick = (evento) => {
+      const boton = evento.target.closest(".btn-recibo");
+      if (!boton) return;
+
+      const idPedido = boton.dataset.idPedido;
+      abrirDetalle(idPedido);
+    };
+
+    tabla.addEventListener("click", manejarClick);
+    return () => tabla.removeEventListener("click", manejarClick);
+  }, [abrirDetalle]);
 
   useEffect(() => {
     async function cargarRecibos() {
@@ -50,43 +72,11 @@ export default function recibos() {
       } catch (error) {
         console.error("Error al cargar recibos:", error);
         Swal.fire("Error", "No se pudieron cargar los recibos.", "error");
-      } finally {
-        setCargando(false);
       }
     }
 
     cargarRecibos();
   }, []);
-
-  const formatearFechaHora = (fecha) => {
-    if (!fecha) return "Sin fecha";
-
-    const fechaHora = new Date(fecha);
-
-    if (Number.isNaN(fechaHora.getTime())) {
-      return fecha;
-    }
-
-    return fechaHora.toLocaleString("es-CO", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
-  };
-
-  const formatearMoneda = (moneda) => {
-    if (!moneda) return "$0";
-
-    return new Intl.NumberFormat("es-CO", {
-      style: "currency",
-      currency: "COP",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(moneda);
-  };
 
   return (
     <main className="dashboard-main">
@@ -143,6 +133,7 @@ export default function recibos() {
               },
             }}
           />
+          <ModalDetalleRecibo detalle={detalle} onClose={cerrarDetalle} />
         </div>
       </section>
 

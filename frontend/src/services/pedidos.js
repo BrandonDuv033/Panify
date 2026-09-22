@@ -95,7 +95,7 @@ export async function obtenerPedidos() {
   const [pedidos, usuarios, detallesPedidos, productos] = await Promise.all([
     API.get("/pedidos"),
     API.get("/users"),
-    API.get("/detalles_pedidos"),
+    API.get("/detalle_pedidos"),
     API.get("/productos"),
   ]);
 

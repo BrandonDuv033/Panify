@@ -24,7 +24,7 @@ export default function Pedidos() {
           API.get("/pedidos"),
           API.get("/clientes"),
           API.get("/users"),
-          API.get("/detalles_pedidos"),
+          API.get("/detalle_pedidos"),
           API.get("/productos"),
         ]);
 
@@ -49,13 +49,13 @@ export default function Pedidos() {
             ) || {};
 
           const detallesDelPedido = resDetalles.data.filter(
-            (d) => String(d.pedido_idPedido) === String(pedido.id),
+            (d) => String(d.idPedido) === String(pedido.id),
           );
 
           const nombresProductos = detallesDelPedido
             .map((det) => {
               const prod = resProductos.data.find(
-                (p) => String(p.id) === String(det.producto_id),
+                (p) => String(p.id) === String(det.pedido_idPedido),
               );
 
               return prod ? `${prod.nombre} (x${det.cantidad})` : "";
