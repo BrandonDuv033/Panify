@@ -27,7 +27,10 @@
       "id": 2,
       "idCliente": 2,
       "tipoCliente": "Ocasional",
-      "direccion": "Carrera 7 # 45-12, Bogotá"
+      "direccion": "Carrera 7 # 45-12, Bogotá",
+      "email": "jeison.guevara@email.com",
+      "ciudad": "Soacha",
+      "telefono": "3154567890"
     }
   ],
   "domiciliarios": [
@@ -67,21 +70,28 @@
       "Rol_idRol": 1,
       "cliente_idCliente": 1,
       "panadero_idPanadero": null,
-      "domiciliario_idDomiciliario": null
+      "domiciliario_idDomiciliario": null,
+      "visibilidad": {
+        "mostrarEmail": true,
+        "mostrarTelefono": true,
+        "mostrarActividad": true,
+        "perfilPublico": true
+      }
     },
     {
       "id": 2,
       "idUsuario": 2,
-      "nombre": "Andrés",
-      "apellido": "Gómez",
-      "correo": "andres.gomez@email.com",
+      "nombre": "Jeison",
+      "apellido": "Guevara",
+      "correo": "jeison.guevara@email.com",
       "contraseña": "$2a$12$eImiTXuWVxfM37uY4JANjOL.88T9q7X62N.21h25eB2...",
-      "telefono": "3119876543",
+      "telefono": "3154567890",
       "estado": "Activo",
       "Rol_idRol": 2,
       "cliente_idCliente": null,
       "panadero_idPanadero": null,
-      "domiciliario_idDomiciliario": 1
+      "domiciliario_idDomiciliario": 1,
+      "email": "jeison.guevara@email.com"
     },
     {
       "id": 3,
@@ -155,7 +165,8 @@
       "fechaHoraEntregaEstimada": "2026-09-08T09:15:00",
       "estadoPedido": "En Camino",
       "cliente_idCliente": 1,
-      "domiciliario_idDomiciliario": 1
+      "domiciliario_idDomiciliario": 1,
+      "estado": "Cancelado"
     },
     {
       "id": 2,
@@ -164,7 +175,8 @@
       "fechaHoraEntregaEstimada": "2026-09-08T09:45:00",
       "estadoPedido": "Pendiente",
       "cliente_idCliente": 2,
-      "domiciliario_idDomiciliario": 1
+      "domiciliario_idDomiciliario": 1,
+      "estado": "Cancelado"
     }
   ],
   "detalles_pedidos": [
