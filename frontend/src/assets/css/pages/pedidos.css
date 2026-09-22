@@ -1,25 +1,10 @@
-:root {
-  --color-principal: #8b5a2b;
-  --color-secundario: #d4af37;
-  --color-oscuro: #2b1e13;
-  --color-claro: #fdfbf7;
-  --color-blanco: #ffffff;
-  --fuente-principal:
-    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 
--- resumen del dia
+/*  resumen del dia */
 
 .resumenDia{
     margin: auto;
-    background-color: var(--color-principal);
+    background-color: var(--color-crema);
     width: 570px;
     height: 60px;
     color: var(--color-claro);
@@ -27,36 +12,15 @@
     
 }
 
--- contenedor de mapa
-
-.mapa {
-  width: 80%;
-  background-color: white;
-  border-radius: 24px;
-  padding: 24px 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  box-shadow: 0 10px 250px rgba(0, 0, 0, 0.06);
-  border-bottom: 5px solid var(--color-principal);
-}
-
-.titulo-mapa{
-    color: var(--color-principal);
-    font-weight: 700;
-    
-}
-
--- botones de acciones
+/* botones de acciones */
 
 .btn-detalle {
-  color: var(--color-secundario);
+  color: var(--color-secundario) ;
   background: #fffdf0;
   border: 1px solid #f3ebd0;
 }
 .btn-detalle:hover {
-  background: #d4af37;
+  background: var(--color-secundario);
   color: white;
 }
 
@@ -76,29 +40,9 @@
     display: flex;
 }
 
---Modal
 
-.modal-actualizar h2{
-    color: var(--negro);
-    font-weight: 700;
-}
 
-.btn-actualizar{
-    background-color: var(--color-secundario);
-    color: var(--color-blanco);
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.btn-actualizar:hover{
-    background-color: var(--color-principal);
-    color: #fffceb;
-}
-
-.detalles{
-    font-family: var(--fuente-principal);
-    width: 400px;
-}
+/* MODAL DE DETALLE */
 
 
 .modal-detalle-overlay {
@@ -119,9 +63,310 @@
 }
 
 .modal-actualizar {
+    background: var(--color-blanco);
+    border-radius: 18px;
+    width: 26%;
+    min-width: 380px;
+    padding: 0;
+
+    overflow: hidden;
+
+    box-shadow: 0 20px 60px rgba(43, 30, 19, 0.35);
+
+    border: 2px solid var(--color-secundario);
+
+    animation: aparecerModal 0.25s ease;
+}
+
+
+/* ENCABEZADO MODAL DETALLE */
+
+
+.modal-actualizar .modal-header {
+    background: linear-gradient(
+        135deg,
+        var(--color-principal),
+        var(--color-secundario)
+    );
+
+    padding: 18px 20px;
+
+    color: var(--color-blanco);
+}
+
+.modal-actualizar h2 {
+    color: var(--color-blanco);
+    font-weight: 700;
+    margin: 0;
+}
+
+
+
+/* BOTÓN CERRAR */
+
+
+.modal-actualizar .btn-close {
     background-color: var(--color-blanco);
+    border-radius: 50%;
+    padding: 8px;
+}
+
+
+
+/* CUERPO MODAL DETALLE */
+
+
+.modal-actualizar .modal-body {
+    padding: 25px;
+}
+
+
+/* INFORMACIÓN DEL PEDIDO */
+
+
+.detalles {
+    font-family: var(--fuente-principal);
+    width: 100%;
+
+    background-color: #fffaf0;
+
+    border-left: 5px solid var(--color-secundario);
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    box-shadow: 0 4px 12px rgba(43, 30, 19, 0.08);
+}
+
+.detalles p {
+    margin: 0;
+    line-height: 1.8;
+    color: var(--color-oscuro);
+}
+
+.detalles strong {
+    color: var(--color-principal);
+}
+
+
+
+/* SELECT DE ESTADO */
+
+
+.modal-actualizar .form-select {
+    border: 2px solid #e6d8bd;
+    border-radius: 10px;
+
+    padding: 12px;
+
+    color: var(--color-oscuro);
+
+    transition: 0.2s;
+}
+
+.modal-actualizar .form-select:focus {
+    border-color: var(--color-secundario);
+
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.20);
+}
+
+
+/* BOTÓN GUARDAR CAMBIOS */
+
+
+.btn-actualizar {
+    background: #fffdf0;
+
+    color: #d4af37 !important;
+
+    border: 1px solid #f3ebd0;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    border-radius: 10px;
+
+    padding: 12px;
+
+    transition: all 0.25s ease;
+}
+
+.btn-actualizar:hover {
+    background: #d4af37;
+
+    color: white !important;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.25);
+}
+
+/* MODAL DE RUTA */
+
+.modal-ruta-overlay {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+    padding: 20px;
+}
+
+
+.modal-ruta {
+    background-color: var(--color-blanco);
+
+    border-radius: 18px;
+
+    width: 70%;
+    max-width: 950px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 2px solid var(--color-secundario);
+
+    box-shadow: 0 20px 60px rgba(43, 30, 19, 0.35);
+
+    animation: aparecerModal 0.25s ease;
+}
+
+
+/* ENCABEZADO MODAL RUTA */
+
+.modal-ruta .modal-header {
+    background: linear-gradient(
+        135deg,
+        var(--color-principal),
+        var(--color-secundario)
+    );
+
+    padding: 18px 20px;
+
+    color: var(--color-blanco);
+}
+
+.modal-ruta h2 {
+    color: var(--color-blanco);
+    font-weight: 700;
+    margin: 0;
+}
+
+
+/* BOTÓN CERRAR MODAL RUTA */
+
+.modal-ruta .btn-close {
+    background-color: var(--color-blanco);
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.modal-ruta .btn-close:hover {
+    transform: rotate(90deg);
+    background-color: #fff3cd;
+}
+
+
+/* CUERPO MODAL RUTA */
+
+
+.modal-ruta .modal-body {
+    padding: 25px;
+}
+
+
+/* INFORMACIÓN DE RUTA */
+
+
+.ruta-info {
+    background-color: #fffaf0;
+
+    border-left: 5px solid var(--color-secundario);
+
+    border-radius: 10px;
+
+    padding: 15px 18px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 4px 12px rgba(43, 30, 19, 0.08);
+
+    font-family: var(--fuente-principal);
+}
+
+.ruta-info p {
+    margin-bottom: 8px;
+
+    color: var(--color-oscuro);
+}
+
+.ruta-info p:last-child {
+    margin-bottom: 0;
+}
+
+.ruta-info strong {
+    color: var(--color-principal);
+}
+
+
+/* MAPA */
+
+
+.mapa-modal {
+    width: 100%;
+
+    overflow: hidden;
+
     border-radius: 12px;
-    width: 26% ;
-    padding: 10px;
-    
+
+    border: 3px solid #eadfca;
+
+    box-shadow: 0 6px 20px rgba(43, 30, 19, 0.15);
+
+    background-color: #f8f8f8;
+}
+
+.mapa-modal iframe {
+    width: 100%;
+
+    height: 400px;
+
+    display: block;
+
+    border: 0;
+}
+
+
+/* RESPONSIVE */
+
+
+@media (max-width: 768px) {
+
+    .modal-actualizar {
+        width: 95%;
+        min-width: auto;
+    }
+
+    .modal-ruta {
+        width: 95%;
+    }
+
+    .modal-ruta .modal-body {
+        padding: 15px;
+    }
+
+    .mapa-modal iframe {
+        height: 300px;
+    }
 }

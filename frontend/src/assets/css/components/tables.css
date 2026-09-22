@@ -1,0 +1,111 @@
+.table-responsive {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  width: 100%;
+}
+
+#tablaUsuarios,
+#tablaInventario,
+#tablapedidosAdmin,
+#tablaRecibos {
+  width: 100% !important;
+  margin: 15px 0 !important;
+}
+
+#tablaUsuarios thead th,
+#tablaInventario thead th,
+#tablapedidosAdmin thead th,
+#tablaRecibos thead th {
+  background-color: #3d2314;
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 14px;
+}
+
+#tablaUsuarios tbody td,
+#tablaInventario tbody td,
+#tablapedidosAdmin tbody td,
+#tablaRecibos tbody td {
+  background-color: #fdfbf7;
+  padding: 12px 14px;
+  color: #000;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+#tablaUsuarios tbody tr:hover td,
+#tablaInventario tbody tr:hover td,
+#tablapedidosAdmin tbody tr:hover td,
+#tablaRecibos tbody tr:hover td {
+  background-color: rgba(212, 175, 55, 0.12);
+  transition: background-color 0.3s ease;
+}
+
+.dataTables_wrapper .dataTables_filter input,
+.dt-container .dt-search input {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-left: 0.5em;
+  outline: none;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus,
+.dt-container .dt-search input:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dt-container .dt-length select,
+select.dt-input {
+  min-width: 70px !important;
+  border-radius: 6px;
+  padding: 6px 30px 6px 12px;
+  font-size: 1rem !important;
+  height: auto !important;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.dt-container .dt-layout-row {
+  align-items: center;
+  margin: 12px 0;
+}
+
+.dt-container .dt-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dt-container .filtro-categoria-datatable {
+  width: auto;
+  min-width: 190px;
+  margin: 0;
+}
+
+.dt-container .dt-layout-cell {
+  color: #7a6b5e;
+}
+
+.page-item.active .page-link,
+.dt-container .dt-paging .dt-paging-button.current {
+  background-color: #e67e22 !important;
+  border-color: #e67e22 !important;
+  color: #fff !important;
+}
+
+.page-link,
+.dt-container .dt-paging .dt-paging-button {
+  color: #2c3e50;
+}
+
+.table-data-loading,
+.table-data-empty {
+  padding: 1.5rem !important;
+  text-align: center;
+  color: #7a6b5e !important;
+}

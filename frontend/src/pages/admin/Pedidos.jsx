@@ -124,6 +124,10 @@ const Pedidos = () => {
     setPedidoRuta(pedido);
   };
 
+  const cerrarRuta = () => {
+    setPedidoRuta(null);
+  };
+
   const direccionMapa = pedidoRuta
     ? encodeURIComponent(pedidoRuta.direccion)
     : "";
@@ -206,6 +210,70 @@ const Pedidos = () => {
 
         <br />
 
+        <section className="row g-4 mb-4">
+          <div>
+            <h1 className="resumenDia text-center">
+              Resumen de Entregas del dia
+            </h1>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="card-resumen">
+              <i className="fa-solid fa-clipboard-list"></i>
+
+              <div>
+                <h3>{pedidos.length}</h3>
+
+                <p>Total de Pedidos</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="card-resumen">
+              <i className="fa-solid fa-circle-check"></i>
+
+              <div>
+                <h3>
+                  {pedidos.filter((p) => p.estado === "Entregado").length}
+                </h3>
+
+                <p>Entregadas</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="card-resumen">
+              <i className="fa-solid fa-truck-fast"></i>
+
+              <div>
+                <h3>
+                  {pedidos.filter((p) => p.estado === "En Camino").length}
+                </h3>
+
+                <p>En camino</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="card-resumen">
+              <i className="fa-solid fa-spinner"></i>
+
+              <div>
+                <h3>
+                  {pedidos.filter((p) => p.estado === "Pendiente").length}
+                </h3>
+
+                <p>Pendientes</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <br />
+
         <section className="panel tabla">
           <div className="cabecera-tabla">
             <div>
@@ -215,7 +283,7 @@ const Pedidos = () => {
 
           <div className="table-responsive">
             <table
-              id="tablaPedidos"
+              id="tablapedidosAdmin"
               className="table align-middle text-center"
             >
               <thead>
@@ -233,7 +301,7 @@ const Pedidos = () => {
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan="6" className="py-4 text-muted">
+                    <td colSpan="7" className="py-4 text-muted">
                       Cargando pedidos desde el servidor...
                     </td>
                   </tr>
@@ -279,7 +347,7 @@ const Pedidos = () => {
 
                 {!loading && pedidos.length === 0 && (
                   <tr>
-                    <td colSpan="6" className="py-4 text-muted">
+                    <td colSpan="7" className="py-4 text-muted">
                       No se encontraron pedidos registrados.
                     </td>
                   </tr>
@@ -368,93 +436,55 @@ const Pedidos = () => {
           </div>
         )}
 
-        <br />
+        {pedidoRuta && (
+          <div
+            className="modal-ruta-overlay"
+            onClick={cerrarRuta}
+          >
+            <div
+              className="modal-ruta"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="modal-header border-0">
+                <h2 className="modal-title w-100 text-center rutaEntrega">
+                  Ruta de Entrega
+                </h2>
 
-        <section className="row g-4 mb-4">
-          <div>
-            <h1 className="resumenDia text-center">
-              Resumen de Entregas del dia
-            </h1>
-          </div>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={cerrarRuta}
+                ></button>
+              </div>
 
-          <div className="col-lg-3 col-md-6">
-            <div className="card-resumen">
-              <i className="fa-solid fa-clipboard-list"></i>
+              <div className="modal-body">
+                <div className="ruta-info">
+                  <p>
+                    <strong>Cliente:</strong>{" "}
+                    {pedidoRuta.nombreCliente}
+                  </p>
 
-              <div>
-                <h3>{pedidos.length}</h3>
+                  <p>
+                    <strong>Dirección:</strong>{" "}
+                    {pedidoRuta.direccion}
+                  </p>
+                </div>
 
-                <p>Total de Pedidos</p>
+                <div className="mapa-modal">
+                  <iframe
+                    src={`https://www.google.com/maps?q=${direccionMapa}&output=embed`}
+                    width="100%"
+                    height="400"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    title="Mapa de ruta de entrega"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>
-
-          <div className="col-lg-3 col-md-6">
-            <div className="card-resumen">
-              <i className="fa-solid fa-circle-check"></i>
-
-              <div>
-                <h3>
-                  {pedidos.filter((p) => p.estado === "Entregado").length}
-                </h3>
-
-                <p>Entregadas</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-6">
-            <div className="card-resumen">
-              <i className="fa-solid fa-truck-fast"></i>
-
-              <div>
-                <h3>
-                  {pedidos.filter((p) => p.estado === "En Camino").length}
-                </h3>
-
-                <p>En camino</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-6">
-            <div className="card-resumen">
-              <i className="fa-solid fa-spinner"></i>
-
-              <div>
-                <h3>
-                  {pedidos.filter((p) => p.estado === "Pendiente").length}
-                </h3>
-
-                <p>Pendientes</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <br />
-
-        <section className="mapa d-flex justify-content-center">
-          <div className="col-md-10">
-            <h2 className="titulo-mapa text-center">
-              Ruta de Entrega
-            </h2>
-
-            <br />
-
-            <div className="mapa-contenedor">
-              <iframe
-                src={
-                  pedidoRuta
-                    ? `https://www.google.com/maps?q=${direccionMapa}&output=embed`
-                    : "https://www.google.com/maps?q=Bogotá, Colombia&output=embed"
-                }
-                width="100%"
-                height="400"
-              ></iframe>
-            </div>
-          </div>
-        </section>
+        )}
       </main>
     </div>
   );
