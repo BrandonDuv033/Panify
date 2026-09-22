@@ -4,7 +4,7 @@ export async function obtenerRecibos() {
   const [recibos, pedidos, usuarios] = await Promise.all([
     API.get("/recibos"),
     API.get("/pedidos"),
-    API.get("/usuarios"),
+    API.get("/users"),
   ]);
 
   return recibos.data.map((recibo) => {

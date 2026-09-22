@@ -1,4 +1,4 @@
-import { obtenerUsuarios } from "./users.js";
+import API from "./api.js";
 
 const ROLES = {
   2: "domiciliario",
@@ -8,11 +8,6 @@ const ROLES = {
 export function obtenerUsuarioActual() {
   try {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
-
-    if (usuario?.token?.startsWith("fake-token")) {
-      localStorage.removeItem("usuario");
-      return null;
-    }
 
     return usuario || null;
   } catch {
@@ -34,14 +29,22 @@ export function obtenerNombreUsuarioActual() {
 }
 
 export async function iniciarSesion(email, password) {
-  const usuarios = await obtenerUsuarios();
+  let respuesta;
 
-  const usuario = usuarios.find(
-    (u) => u.correo === email && u.contraseña === password,
-  );
+  try {
+    respuesta = await API.post("/login", { email, password });
+  } catch (error) {
+    if (error.response?.status === 400) return null;
+    throw error;
+  }
 
-  if (!usuario) return null;
+  const usuario = respuesta.data.user;
 
   // Si su Rol_idRol no está en ROLES, es cliente
-  return { ...usuario, rol: ROLES[usuario.Rol_idRol] ?? "cliente" };
+  return {
+    ...usuario,
+    correo: usuario.correo || usuario.email,
+    rol: ROLES[usuario.Rol_idRol] ?? "cliente",
+    token: respuesta.data.accessToken,
+  };
 }

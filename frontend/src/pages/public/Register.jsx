@@ -44,8 +44,9 @@ const Register = () => {
       const nuevoUsuario = {
         nombre: nombre,
         apellido: "", // Si no lo pides en el form, lo dejamos vacío o lo puedes separar
+        email,
+        password,
         correo: email,
-        contraseña: password, // En producción se cifraría, aquí queda plano para que el login lo valide tal como lo tienes
         telefono: "3000000000", // Valor por defecto o puedes agregarlo al form si deseas
         estado: "Activo",
         Rol_idRol: 1, // 1: Cliente
@@ -54,8 +55,8 @@ const Register = () => {
         domiciliario_idDomiciliario: null,
       };
 
-      // Petición POST al backend (json-server en puerto 1511)
-      await API.post("/usuarios", nuevoUsuario);
+      // json-server-auth cifra password al registrar el usuario.
+      await API.post("/register", nuevoUsuario);
 
       Swal.fire({
         icon: "success",
