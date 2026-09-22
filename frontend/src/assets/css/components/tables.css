@@ -7,6 +7,7 @@
 
 #tablaUsuarios,
 #tablaInventario,
+#tablapedidosAdmin,
 #tablaRecibos {
   width: 100% !important;
   margin: 15px 0 !important;
@@ -14,6 +15,7 @@
 
 #tablaUsuarios thead th,
 #tablaInventario thead th,
+#tablapedidosAdmin thead th,
 #tablaRecibos thead th {
   background-color: #3d2314;
   color: #fff;
@@ -24,6 +26,7 @@
 
 #tablaUsuarios tbody td,
 #tablaInventario tbody td,
+#tablapedidosAdmin tbody td,
 #tablaRecibos tbody td {
   background-color: #fdfbf7;
   padding: 12px 14px;
@@ -34,6 +37,7 @@
 
 #tablaUsuarios tbody tr:hover td,
 #tablaInventario tbody tr:hover td,
+#tablapedidosAdmin tbody tr:hover td,
 #tablaRecibos tbody tr:hover td {
   background-color: rgba(212, 175, 55, 0.12);
   transition: background-color 0.3s ease;

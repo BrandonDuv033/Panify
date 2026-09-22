@@ -26,5 +26,9 @@
 /* Admin */
 
 @import "pages/recibos.css";
+@import "pages/pedidos.css";
 
 /* Client */
+@import "components/tables.css";
+@import "components/visit.css";
+@import "pages/pedidos.css";
