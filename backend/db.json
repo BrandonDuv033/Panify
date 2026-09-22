@@ -28,9 +28,9 @@
       "idCliente": 2,
       "tipoCliente": "Ocasional",
       "direccion": "Carrera 7 # 45-12, Bogotá",
-      "email": "jeison.guevara@email.com",
+      "email": "jeison.diaz@gmail.com",
       "ciudad": "Soacha",
-      "telefono": "3154567890"
+      "telefono": "3001234567"
     }
   ],
   "domiciliarios": [
@@ -58,8 +58,8 @@
       "idUsuario": 1,
       "nombre": "Carlos",
       "apellido": "Mendoza",
-      "correo": "carlos.mendoza@email.com",
-      "email": "carlos.mendoza@email.com",
+      "correo": "carlos.mendoza@gmail.com",
+      "email": "carlos.mendoza@gmail.com",
       "contraseña": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
       "password": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
       "telefono": "3001234567",
@@ -84,7 +84,7 @@
       "email": "brayan@panify.com",
       "contraseña": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
       "password": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
-      "telefono": "3108761260",
+      "telefono": "3001234567",
       "estado": "Activo",
       "Rol_idRol": 2,
       "cliente_idCliente": null,
@@ -122,6 +122,28 @@
       "cliente_idCliente": null,
       "panadero_idPanadero": 1,
       "domiciliario_idDomiciliario": null
+    },
+    {
+      "id": 5,
+      "idUsuario": 5,
+      "nombre": "Jeison",
+      "apellido": "Diaz",
+      "correo": "jeison.diaz@gmail.com",
+      "email": "jeison.diaz@gmail.com",
+      "contraseña": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "password": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "telefono": "3001234567",
+      "estado": "Activo",
+      "Rol_idRol": 1,
+      "cliente_idCliente": 2,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": null,
+      "visibilidad": {
+        "mostrarEmail": true,
+        "mostrarTelefono": true,
+        "mostrarActividad": true,
+        "perfilPublico": true
+      }
     }
   ],
   "productos": [
