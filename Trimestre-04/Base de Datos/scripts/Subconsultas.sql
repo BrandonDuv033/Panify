@@ -102,6 +102,3 @@ FROM productos
 WHERE precio = (
 SELECT MAX(precio)
 FROM productos);
-cio)
-FROM productos
-);
