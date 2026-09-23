@@ -457,7 +457,6 @@ export default function Pedidos() {
 
         </section>
 
-        {/* MODAL DETALLE */}
 
         {pedidoSeleccionado && (
 
@@ -563,8 +562,6 @@ export default function Pedidos() {
           </div>
 
         )}
-
-        {/* MODAL RUTA */}
 
         {pedidoRuta && (
 
