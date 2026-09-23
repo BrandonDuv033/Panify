@@ -1004,4 +1004,92 @@ BEGIN
     END IF; 
 END //
 
+-- TRIGGERS
+
+CREATE TRIGGER actualizarStockMovimiento
+AFTER INSERT ON movimientos
+FOR EACH ROW
+BEGIN
+    IF NEW.tipoMovimiento = 'Entrada' THEN
+        UPDATE inventarios 
+        SET stockActual = stockActual + NEW.cantidad
+        WHERE producto_idProducto = NEW.producto_idProducto;
+    ELSEIF NEW.tipoMovimiento = 'Salida' THEN
+        UPDATE inventarios 
+        SET stockActual = stockActual - NEW.cantidad
+        WHERE producto_idProducto = NEW.producto_idProducto;
+    ELSEIF NEW.tipoMovimiento = 'Ajuste' THEN
+        UPDATE inventarios 
+        SET stockActual = NEW.cantidad
+        WHERE producto_idProducto = NEW.producto_idProducto;
+    END IF;
+END //
+
+CREATE TRIGGER congelarPrecioDetalle
+BEFORE INSERT ON detalle_pedidos
+FOR EACH ROW
+BEGIN
+    DECLARE v_precio DECIMAL(10, 2);
+    
+    SELECT precio INTO v_precio
+    FROM productos
+    WHERE idProducto = NEW.producto_idProducto;
+    
+    SET NEW.precioFijo = v_precio;
+END //
+
+CREATE TRIGGER actualizarTotalRecibo
+AFTER INSERT ON detalle_pedidos
+FOR EACH ROW
+BEGIN
+    DECLARE v_total DECIMAL(10, 2);
+    
+    SELECT SUM(precioFijo * cantidad) INTO v_total
+    FROM detalle_pedidos
+    WHERE pedido_idPedido = NEW.pedido_idPedido;
+    
+    UPDATE recibos
+    SET totalPagar = v_total
+    WHERE pedido_idPedido = NEW.pedido_idPedido;
+END //
+
+CREATE TRIGGER validarExclusividadRol
+BEFORE INSERT ON usuarios
+FOR EACH ROW
+BEGIN
+    DECLARE v_roles_contados INT DEFAULT 0;
+    
+    IF NEW.cliente_idCliente IS NOT NULL THEN
+        SET v_roles_contados = v_roles_contados + 1;
+    END IF;
+    
+    IF NEW.panadero_idPanadero IS NOT NULL THEN
+        SET v_roles_contados = v_roles_contados + 1;
+    END IF;
+
+    IF NEW.domiciliario_idDomiciliario IS NOT NULL THEN
+        SET v_roles_contados = v_roles_contados + 1;
+    END IF;
+    
+    IF v_roles_contados > 1 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Error: Un usuario no puede tener mas de un subtipo de rol asignado.';
+    END IF;
+END //
+
+CREATE TRIGGER actualizarEstadoProducto
+AFTER UPDATE ON inventarios
+FOR EACH ROW
+BEGIN
+    IF NEW.stockActual <= 0 THEN
+        UPDATE productos
+        SET estado = 'Agotado'
+        WHERE idProducto = NEW.producto_idProducto;
+    ELSE
+        UPDATE productos
+        SET estado = 'Disponible'
+        WHERE idProducto = NEW.producto_idProducto;
+    END IF;
+END //
+
 DELIMITER ;

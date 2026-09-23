@@ -1,4 +1,8 @@
 -- ==========================================
+-- 				PROCEDIMIENTOS
+-- ==========================================
+
+-- ==========================================
 -- 1. Asignar domiciliario
 -- ==========================================
 DELIMITER //
@@ -18,10 +22,6 @@ BEGIN
 END //
 
 DELIMITER ;
-
--- =================================================================
--- 						Asignar domiciliario
--- =================================================================
 
 -- Asigna el pedido 7 al domiciliario 1 (Pedro Diaz)
 CALL Asignadomiciliario(7, 1); 
@@ -61,10 +61,6 @@ END //
 
 DELIMITER ;
 
--- =================================================================
--- 							Ruta de entrega
--- =================================================================
-
 -- Registra ruta para el pedido 7
 CALL RutaDeEntrega(1, 'https://maps.google.com/?q=Cra+7+%23+12-34+Soacha', 7); 
 
@@ -100,11 +96,6 @@ END //
 
 DELIMITER ;
 
--- =========================================================================================
--- 									Actualizar pedido
--- Estados: 1=Pendiente, 2=En preparación, 3=Listo, 4=En camino, 5=Entregado, 6=Cancelado
--- =========================================================================================
-
 -- Transición del pedido 7 de 'Pendiente' a 'En preparación'
 CALL ActualizarPedido(7, 2); 
 
@@ -139,10 +130,6 @@ BEGIN
 END //
 
 DELIMITER ;
-
--- =================================================================
--- 						Historial del cliente
--- =================================================================
 
 -- Historial de compras del Cliente 1 (Ana Gomez)
 CALL Historial(1); 
@@ -196,10 +183,6 @@ END //
 
 DELIMITER ;
 
--- =================================================================
--- 						Bloqueo de horario
--- =================================================================
-
 -- 1. Caso Exitoso: Pedido programado para el día de mañana
 CALL BloqueoHorario(1, 1, DATE_ADD(NOW(), INTERVAL 1 DAY)); 
 
@@ -208,3 +191,213 @@ CALL BloqueoHorario(2, 2, CONCAT(CURDATE(), ' 14:00:00'));
 
 -- 3. Caso Excepción (Dispara SIGNAL 45000 por ser hoy a las 7:00 PM)
 CALL BloqueoHorario(3, 1, CONCAT(CURDATE(), ' 19:00:00'));
+
+-- ==========================================
+-- 					TRIGGERS
+-- ==========================================
+
+
+-- =================================================================
+-- 1. Actualización Automática de stockActual en inventarios
+-- =================================================================
+DELIMITER //
+
+CREATE TRIGGER actualizarStockMovimiento
+AFTER INSERT ON movimientos
+FOR EACH ROW
+BEGIN
+    IF NEW.tipoMovimiento = 'Entrada' THEN
+        UPDATE inventarios 
+        SET stockActual = stockActual + NEW.cantidad
+        WHERE producto_idProducto = NEW.producto_idProducto;
+    ELSEIF NEW.tipoMovimiento = 'Salida' THEN
+        UPDATE inventarios 
+        SET stockActual = stockActual - NEW.cantidad
+        WHERE producto_idProducto = NEW.producto_idProducto;
+    ELSEIF NEW.tipoMovimiento = 'Ajuste' THEN
+        UPDATE inventarios 
+        SET stockActual = NEW.cantidad
+        WHERE producto_idProducto = NEW.producto_idProducto;
+    END IF;
+END //
+
+DELIMITER ;
+
+-- Verificar stock actual del producto 1 (Pan Aliñado, stockActual = 40)
+SELECT producto_idProducto, stockActual 
+FROM inventarios 
+WHERE producto_idProducto = 1;
+
+-- 1.1. Registrar una Entrada de 20 unidades (El stock pasará a 60)
+INSERT INTO movimientos (tipoMovimiento, cantidad, fechaHora, panadero_idPanadero, producto_idProducto) 
+VALUES ('Entrada', 20, NOW(), 1, 1);
+
+-- 1.2. Registrar una Salida de 15 unidades (El stock pasará a 45)
+INSERT INTO movimientos (tipoMovimiento, cantidad, fechaHora, panadero_idPanadero, producto_idProducto) 
+VALUES ('Salida', 15, NOW(), 1, 1);
+
+-- 1.3. Registrar un Ajuste directo a 50 unidades
+INSERT INTO movimientos (tipoMovimiento, cantidad, fechaHora, panadero_idPanadero, producto_idProducto) 
+VALUES ('Ajuste', 50, NOW(), 1, 1);
+
+-- Comprobar el resultado final del stock
+SELECT producto_idProducto, stockActual 
+FROM inventarios 
+WHERE producto_idProducto = 1;
+
+
+-- =================================================================
+-- 2. Congelación Automática del Precio del Producto (precioFijo)
+-- =================================================================
+DELIMITER //
+
+CREATE TRIGGER congelarPrecioDetalle
+BEFORE INSERT ON detalle_pedidos
+FOR EACH ROW
+BEGIN
+    DECLARE v_precio DECIMAL(10, 2);
+    
+    SELECT precio INTO v_precio
+    FROM productos
+    WHERE idProducto = NEW.producto_idProducto;
+    
+    SET NEW.precioFijo = v_precio;
+END //
+
+DELIMITER ;
+
+-- Consultar precio del producto 2 (Pan Rollo, precio = 1500.00)
+SELECT idProducto, nombre, precio 
+FROM productos 
+WHERE idProducto = 2;
+
+-- Insertar un detalle enviando precioFijo en 0 (el trigger asignará automáticamente 1500.00)
+INSERT INTO detalle_pedidos (precioFijo, cantidad, pedido_idPedido, producto_idProducto) 
+VALUES (0, 4, 7, 2);
+
+-- Verificar que precioFijo tomó el valor 1500.00 automáticamente
+SELECT * 
+FROM detalle_pedidos 
+WHERE pedido_idPedido = 7 AND producto_idProducto = 2;
+
+-- =================================================================
+-- 3. Recálculo Automático del Total en recibos
+-- =================================================================
+DELIMITER //
+
+CREATE TRIGGER actualizarTotalRecibo
+AFTER INSERT ON detalle_pedidos
+FOR EACH ROW
+BEGIN
+    DECLARE v_total DECIMAL(10, 2);
+    
+    SELECT SUM(precioFijo * cantidad) INTO v_total
+    FROM detalle_pedidos
+    WHERE pedido_idPedido = NEW.pedido_idPedido;
+    
+    UPDATE recibos
+    SET totalPagar = v_total
+    WHERE pedido_idPedido = NEW.pedido_idPedido;
+END //
+
+DELIMITER ;
+
+-- Verificar total actual del recibo para el pedido 8
+SELECT * 
+FROM recibos 
+WHERE pedido_idPedido = 8;
+
+-- Agregar un nuevo producto al pedido 8 (2 unidades de Pan Aliñado a 2500.00 = +5000.00)
+INSERT INTO detalle_pedidos (precioFijo, cantidad, pedido_idPedido, producto_idProducto) 
+VALUES (2500.00, 2, 8, 1);
+
+-- Comprobar que el total del recibo se actualizó automáticamente sumando el nuevo ítem
+SELECT * 
+FROM recibos 
+WHERE pedido_idPedido = 8;
+
+-- =================================================================
+-- 4. Validación de Exclusividad de Rol (Triángulo ISA en usuarios)
+-- =================================================================
+DELIMITER //
+
+CREATE TRIGGER validarExclusividadRol
+BEFORE INSERT ON usuarios
+FOR EACH ROW
+BEGIN
+    DECLARE v_roles_contados INT DEFAULT 0;
+    
+    IF NEW.cliente_idCliente IS NOT NULL THEN
+        SET v_roles_contados = v_roles_contados + 1;
+    END IF;
+    
+    IF NEW.panadero_idPanadero IS NOT NULL THEN
+        SET v_roles_contados = v_roles_contados + 1;
+    END IF;
+
+    IF NEW.domiciliario_idDomiciliario IS NOT NULL THEN
+        SET v_roles_contados = v_roles_contados + 1;
+    END IF;
+    
+    IF v_roles_contados > 1 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Error: Un usuario no puede tener mas de un subtipo de rol asignado.';
+    END IF;
+END //
+
+DELIMITER ;
+
+-- 4.1. Inserción Válida: Usuario asignado únicamente a Cliente (idCliente = 10)
+INSERT INTO usuarios (nombre, apellido, correo, contrasena, telefono, estado, Rol_idRol, cliente_idCliente, panadero_idPanadero, domiciliario_idDomiciliario) 
+VALUES ('Usuario', 'Prueba1', 'prueba1@mail.com', 'hash123', '3000000001', 'Activo', 1, 10, NULL, NULL);
+
+-- 4.2. Inserción Inválida (Lanzará error por asignar Cliente y Domiciliario)
+INSERT INTO usuarios (nombre, apellido, correo, contrasena, telefono, estado, Rol_idRol, cliente_idCliente, panadero_idPanadero, domiciliario_idDomiciliario) 
+VALUES ('Usuario', 'Error', 'error@mail.com', 'hash123', '3000000002', 'Activo', 1, 1, NULL, 1);
+
+-- =================================================================
+-- 5. Cambio Automático del Estado del Producto a 'Agotado'
+-- =================================================================
+DELIMITER //
+
+CREATE TRIGGER actualizarEstadoProducto
+AFTER UPDATE ON inventarios
+FOR EACH ROW
+BEGIN
+    IF NEW.stockActual <= 0 THEN
+        UPDATE productos
+        SET estado = 'Agotado'
+        WHERE idProducto = NEW.producto_idProducto;
+    ELSE
+        UPDATE productos
+        SET estado = 'Disponbile'
+        WHERE idProducto = NEW.producto_idProducto;
+    END IF;
+END //
+
+DELIMITER ;
+
+-- Verificar estado inicial del producto 1 (Pan Aliñado)
+SELECT idProducto, nombre, estado 
+FROM productos 
+WHERE idProducto = 1;
+
+-- 5.1. Agotar el inventario del producto 1
+UPDATE inventarios 
+SET stockActual = 0 
+WHERE producto_idProducto = 1;
+
+-- Comprobar que el producto cambió automáticamente a 'Agotado'
+SELECT idProducto, nombre, estado 
+FROM productos 
+WHERE idProducto = 1;
+
+-- 5.2. Restablecer el inventario del producto 1 a 40 unidades
+UPDATE inventarios 
+SET stockActual = 40 
+WHERE producto_idProducto = 1;
+
+-- Comprobar que el producto volvió automáticamente a 'Disponible'
+SELECT idProducto, nombre, estado 
+FROM productos 
+WHERE idProducto = 1;
