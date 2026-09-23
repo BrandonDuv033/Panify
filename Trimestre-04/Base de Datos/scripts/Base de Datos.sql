@@ -12,7 +12,7 @@ CREATE TABLE
 
 CREATE TABLE
     IF NOT EXISTS clientes (
-        idCliente INT NOT NULL AUTO_INCREMENT,
+        idCliente INT NOT NULL,
         tipoCliente ENUM ('Nuevo', 'Frecuente', 'Ocasional') NOT NULL,
         direccion VARCHAR(150) NOT NULL,
         PRIMARY KEY (idCliente)
@@ -20,14 +20,14 @@ CREATE TABLE
 
 CREATE TABLE
     IF NOT EXISTS panaderos (
-        idPanadero INT NOT NULL AUTO_INCREMENT,
-        estadoActivdad ENUM ('En turno', 'Descanso', 'Inactivo') NOT NULL,
+        idPanadero INT NOT NULL,
+        estadoActividad ENUM ('En turno', 'Descanso', 'Inactivo') NOT NULL,
         PRIMARY KEY (idPanadero)
     );
 
 CREATE TABLE
     IF NOT EXISTS domiciliarios (
-        idDomiciliario INT NOT NULL AUTO_INCREMENT,
+        idDomiciliario INT NOT NULL,
         estadoDisponibilidad ENUM ('Libre', 'Ocupado', 'Inactivo') NOT NULL,
         PRIMARY KEY (idDomiciliario)
     );
@@ -168,34 +168,34 @@ VALUES
     ('Domiciliario'),
     ('Panadero');
 
--- 2. Insertar Clientes (10 clientes)
+-- 2. Insertar Clientes (10 clientes con su ID explícito)
 INSERT INTO
-    clientes (tipoCliente, direccion)
+    clientes (idCliente, tipoCliente, direccion)
 VALUES
-    ('Nuevo', 'Calle 13 # 4-50, Soacha'),
-    ('Frecuente', 'Cra 7 # 12-34, Soacha'),
-    ('Ocasional', 'Calle 22 # 9-10, Soacha'),
-    ('Nuevo', 'Cra 4 # 15-20, Soacha'),
-    ('Frecuente', 'Calle 10 # 5-60, Soacha'),
-    ('Ocasional', 'Cra 8 # 11-11, Soacha'),
-    ('Nuevo', 'Calle 1 # 2-3, Soacha'),
-    ('Frecuente', 'Cra 9 # 14-22, Soacha'),
-    ('Ocasional', 'Calle 5 # 7-8, Soacha'),
-    ('Nuevo', 'Cra 3 # 1-15, Soacha');
+    (1, 'Nuevo', 'Calle 13 # 4-50, Soacha'),
+    (2, 'Frecuente', 'Cra 7 # 12-34, Soacha'),
+    (3, 'Ocasional', 'Calle 22 # 9-10, Soacha'),
+    (4, 'Nuevo', 'Cra 4 # 15-20, Soacha'),
+    (5, 'Frecuente', 'Calle 10 # 5-60, Soacha'),
+    (6, 'Ocasional', 'Cra 8 # 11-11, Soacha'),
+    (7, 'Nuevo', 'Calle 1 # 2-3, Soacha'),
+    (8, 'Frecuente', 'Cra 9 # 14-22, Soacha'),
+    (9, 'Ocasional', 'Calle 5 # 7-8, Soacha'),
+    (10, 'Nuevo', 'Cra 3 # 1-15, Soacha');
 
--- 3. Insertar Panaderos (Exactamente 1 panadero)
+-- 3. Insertar Panaderos (Exactamente 1 panadero con su ID explícito)
 INSERT INTO
-    panaderos (estadoActivdad)
+    panaderos (idPanadero, estadoActividad)
 VALUES
-    ('En turno');
+    (1, 'En turno');
 
--- 4. Insertar Domiciliarios (Máximo 3 domiciliarios)
+-- 4. Insertar Domiciliarios (Máximo 3 domiciliarios con su ID explícito)
 INSERT INTO
-    domiciliarios (estadoDisponibilidad)
+    domiciliarios (idDomiciliario, estadoDisponibilidad)
 VALUES
-    ('Libre'),
-    ('Ocupado'),
-    ('Inactivo');
+    (1, 'Libre'),
+    (2, 'Ocupado'),
+    (3, 'Inactivo');
 
 -- 5. Insertar Usuarios (14 en total)
 INSERT INTO
