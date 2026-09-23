@@ -1,13 +1,5 @@
 import API from "./api";
-
-function obtenerUsuarioActual() {
-  try {
-    const usuario = JSON.parse(localStorage.getItem("usuario") || "null");
-    return usuario;
-  } catch {
-    return null;
-  }
-}
+import { obtenerUsuarioActual } from "./auth.js";
 
 export async function obtenerUsuarios() {
   const res = await API.get("/users");

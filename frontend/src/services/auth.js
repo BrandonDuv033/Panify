@@ -5,6 +5,25 @@ const ROLES = {
   3: "panadero",
 };
 
+export const registrarUsuario = async ({ nombre, email, password }) => {
+  const nuevoUsuario = {
+    nombre,
+    apellido: "",
+    email,
+    correo: email,
+    password,
+    telefono: "3000000000",
+    estado: "Activo",
+    Rol_idRol: 1, // 1: Cliente
+    cliente_idCliente: 2,
+    panadero_idPanadero: null,
+    domiciliario_idDomiciliario: null,
+  };
+
+  const { data } = await API.post("/register", nuevoUsuario);
+  return data;
+};
+
 export function obtenerUsuarioActual() {
   try {
     const usuario = JSON.parse(localStorage.getItem("usuario"));

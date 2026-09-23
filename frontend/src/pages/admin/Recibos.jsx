@@ -87,7 +87,7 @@ export default function recibos() {
 
         <div>
           <h1>Recibos</h1>
-          <p className="d-none d-sm-block">
+          <p className="m-0 text-muted">
             Historial y consulta de comprobantes generados automáticamente.
           </p>
         </div>

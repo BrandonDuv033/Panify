@@ -21,7 +21,10 @@
       "id": 1,
       "idCliente": 1,
       "tipoCliente": "Frecuente",
-      "direccion": "Calle 10 # 15-20, Soacha"
+      "direccion": "Calle 10 # 15-20, Soacha",
+      "email": "carlos.mendoza@gmail.com",
+      "ciudad": "Soacha",
+      "telefono": "3001234567"
     },
     {
       "id": 2,
@@ -232,6 +235,22 @@
       "precioFijo": 2500,
       "cantidad": 2,
       "idPedido": 1,
+      "producto_idProducto": 2
+    },
+    {
+      "id": 3,
+      "idDetalle_Pedido": 3,
+      "precioFijo": 500,
+      "cantidad": 10,
+      "idPedido": 2,
+      "producto_idProducto": 1
+    },
+    {
+      "id": 4,
+      "idDetalle_Pedido": 4,
+      "precioFijo": 2500,
+      "cantidad": 2,
+      "idPedido": 2,
       "producto_idProducto": 2
     }
   ],

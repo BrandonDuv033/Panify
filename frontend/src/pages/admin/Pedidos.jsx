@@ -246,7 +246,7 @@ export default function Pedidos() {
 
       <main className="dashboard-main">
 
-        <header className="topbar">
+        <header className="topbar d-flex justify-content-between align-items-center mb-4topbar">
 
           <button
             className="mobile-toggle-btn"
@@ -256,10 +256,10 @@ export default function Pedidos() {
             <i className="fa-solid fa-bars"></i>
           </button>
 
-          <div>
+          <div className="m-0">
             <h1>Pedidos</h1>
 
-            <p className="d-none d-sm-block">
+            <p className="m-0 text-muted">
               Consulta y gestiona pedidos, revisa sus detalles y
               estados, y visualiza las rutas de entrega.
             </p>
