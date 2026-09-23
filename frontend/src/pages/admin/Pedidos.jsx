@@ -5,6 +5,8 @@ import API from "../../services/api.js";
 import DataTable from "datatables.net-react";
 import DT from "datatables.net-bs5";
 import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+import ModalDetallePedido from "../../components/admin/ModalDetallePedido.jsx";
+import ModalRuta from "../../components/admin/ModalRuta.jsx";
 
 
 export default function Pedidos() {
@@ -457,175 +459,18 @@ export default function Pedidos() {
 
         </section>
 
+        <ModalDetallePedido pedidoSeleccionado={pedidoSeleccionado}
+        cerrarDetalle={cerrarDetalle}
+        guardarCambiosEstado={guardarCambiosEstado}
+        nuevoEstado={nuevoEstado}
+        setNuevoEstado={setNuevoEstado}
+        />
 
-        {pedidoSeleccionado && (
-
-          <div
-            className="modal-detalle-overlay"
-            onClick={cerrarDetalle}
-          >
-
-            <div
-              className="modal-actualizar"
-              onClick={(e) => e.stopPropagation()}
-            >
-
-              <div className="modal-header border-0">
-
-                <h2 className="modal-title w-100 text-center">
-                  Detalle del Pedido
-                </h2>
-
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={cerrarDetalle}
-                ></button>
-
-              </div>
-
-              <div className="modal-body">
-
-                <form onSubmit={guardarCambiosEstado}>
-
-                  <div className="detalles mb-3">
-
-                    <p>
-
-                      <strong>ID del pedido:</strong>{" "}
-                      {pedidoSeleccionado.id}
-
-                      <br />
-
-                      <strong>Nombre del Cliente:</strong>{" "}
-                      {pedidoSeleccionado.nombreCliente}
-
-                      <br />
-
-                      <strong>Dirección:</strong>{" "}
-                      {pedidoSeleccionado.direccion}
-
-                      <br />
-
-                      <strong>Pedido:</strong>{" "}
-                      {pedidoSeleccionado.pedidoRealizado}
-
-                      <br />
-
-                      <strong>Estado Actual:</strong>{" "}
-                      {pedidoSeleccionado.estado}
-
-                    </p>
-
-                  </div>
-
-                  <select
-                    className="form-select mb-4"
-                    value={nuevoEstado}
-                    onChange={(e) =>
-                      setNuevoEstado(e.target.value)
-                    }
-                    required
-                  >
-
-                    <option value="">
-                      --Seleccione un Estado--
-                    </option>
-
-                    <option value="Pendiente">
-                      Pendiente
-                    </option>
-
-                    <option value="Entregado">
-                      Entregado
-                    </option>
-
-                    <option value="En Camino">
-                      En Camino
-                    </option>
-
-                  </select>
-
-                  <button
-                    type="submit"
-                    className="btn btn-actualizar btn-Guardar w-100"
-                  >
-                    Guardar Cambios
-                  </button>
-
-                </form>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        )}
-
-        {pedidoRuta && (
-
-          <div
-            className="modal-ruta-overlay"
-            onClick={cerrarRuta}
-          >
-
-            <div
-              className="modal-ruta"
-              onClick={(e) => e.stopPropagation()}
-            >
-
-              <div className="modal-header border-0">
-
-                <h2 className="modal-title w-100 text-center rutaEntrega">
-                  Ruta de Entrega
-                </h2>
-
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={cerrarRuta}
-                ></button>
-
-              </div>
-
-              <div className="modal-body">
-
-                <div className="ruta-info">
-
-                  <p>
-                    <strong>Cliente:</strong>{" "}
-                    {pedidoRuta.nombreCliente}
-                  </p>
-
-                  <p>
-                    <strong>Dirección:</strong>{" "}
-                    {pedidoRuta.direccion}
-                  </p>
-
-                </div>
-
-                <div className="mapa-modal">
-
-                  <iframe
-                    src={`https://www.google.com/maps?q=${direccionMapa}&output=embed`}
-                    width="100%"
-                    height="400"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    title="Mapa de ruta de entrega"
-                  ></iframe>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        )}
+        <ModalRuta
+        pedidoRuta={pedidoRuta}
+        cerrarRuta={cerrarRuta}
+        direccionMapa={direccionMapa}
+        />
 
       </main>
 
