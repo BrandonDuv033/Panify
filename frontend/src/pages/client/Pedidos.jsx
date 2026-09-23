@@ -1,13 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { obtenerPedidos, cancelarPedidoService } from "../../services/pedidos";
+import DetallePedidoModal from "../../components/client/ModalDetallePedido";
+import DataTable from "datatables.net-react";
+import DT from "datatables.net-bs5";
+import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 
 export default function Pedidos() {
+  DataTable.use(DT);
+
   const [pedidos, setPedidos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
-  const [busqueda, setBusqueda] = useState("");
-  const [filtroEstado, setFiltroEstado] = useState("Todos");
+  const [filtroEstadoActivos, setFiltroEstadoActivos] = useState("Todos");
+  const [filtroEstadoHistorial, setFiltroEstadoHistorial] = useState("Todos");
 
   // Estado para el modal de detalle de pedido
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
@@ -17,6 +23,8 @@ export default function Pedidos() {
     async function cargar() {
       try {
         setCargando(true);
+        setError(null);
+
         const data = await obtenerPedidos();
         setPedidos(data);
       } catch (err) {
@@ -49,26 +57,24 @@ export default function Pedidos() {
     }
   }
 
-  // --- Filtrado por texto y estado ---
-  const pedidosFiltrados = useMemo(() => {
-    return pedidos.filter((p) => {
-      const coincideTexto =
-        busqueda.trim() === "" ||
-        String(p.id).toLowerCase().includes(busqueda.toLowerCase()) ||
-        (p.cliente || "").toLowerCase().includes(busqueda.toLowerCase());
-
-      const coincideEstado =
-        filtroEstado === "Todos" || p.estado === filtroEstado;
-
-      return coincideTexto && coincideEstado;
-    });
-  }, [pedidos, busqueda, filtroEstado]);
-
-  const activos = pedidosFiltrados.filter(
-    (p) => p.estado !== "Entregado" && p.estado !== "Cancelado"
+  const activos = useMemo(
+    () =>
+      pedidos.filter(
+        (p) =>
+          (p.estado !== "Entregado" && p.estado !== "Cancelado") &&
+          (filtroEstadoActivos === "Todos" || p.estado === filtroEstadoActivos)
+      ),
+    [pedidos, filtroEstadoActivos]
   );
-  const historial = pedidosFiltrados.filter(
-    (p) => p.estado === "Entregado" || p.estado === "Cancelado"
+
+  const historial = useMemo(
+    () =>
+      pedidos.filter(
+        (p) =>
+          (p.estado === "Entregado" || p.estado === "Cancelado") &&
+          (filtroEstadoHistorial === "Todos" || p.estado === filtroEstadoHistorial)
+      ),
+    [pedidos, filtroEstadoHistorial]
   );
 
   const contar = (estado) => pedidos.filter((p) => p.estado === estado).length;
@@ -99,6 +105,154 @@ export default function Pedidos() {
     if (total == null) return "—";
     return `$${total.toLocaleString("es-CO")}`;
   }
+
+  const columnasActivas = [
+    {
+      title: "Pedido",
+      data: null,
+      render: (_, __, pedido) => `<strong>#${pedido.id}</strong>`,
+    },
+    {
+      title: "Cliente",
+      data: null,
+      render: (_, __, pedido) => pedido.cliente || "—",
+    },
+    {
+      title: "Fecha",
+      data: null,
+      render: (_, __, pedido) => pedido.fecha || "—",
+    },
+    {
+      title: "Productos",
+      data: null,
+      render: (_, __, pedido) => formatearProductos(pedido.productos),
+    },
+    {
+      title: "Total",
+      data: null,
+      render: (_, __, pedido) => formatearTotal(pedido.total),
+    },
+    {
+      title: "Estado",
+      data: null,
+      render: (_, __, pedido) =>
+        `<span class="badge pedidos-cliente-badge ${badgeClase(pedido.estado)}">${pedido.estado}</span>`,
+    },
+    {
+      title: "",
+      data: null,
+      orderable: false,
+      searchable: false,
+      render: (_, __, pedido) => `
+        <div class="d-flex gap-2 pedidos-cliente-actions">
+          <button class="btn btn-sm btn-outline-dark pedidos-cliente-btn btn-detalle-pedido" data-id="${pedido.id}">Ver detalles</button>
+          <button class="btn btn-sm btn-danger pedidos-cliente-btn btn-cancelar-pedido" data-id="${pedido.id}">Cancelar</button>
+        </div>
+      `,
+    },
+  ];
+
+  const columnasHistorial = [
+    {
+      title: "Pedido",
+      data: null,
+      render: (_, __, pedido) => `<strong>#${pedido.id}</strong>`,
+    },
+    {
+      title: "Fecha",
+      data: null,
+      render: (_, __, pedido) => pedido.fecha || "—",
+    },
+    {
+      title: "Productos",
+      data: null,
+      render: (_, __, pedido) => formatearProductos(pedido.productos),
+    },
+    {
+      title: "Total",
+      data: null,
+      render: (_, __, pedido) => formatearTotal(pedido.total),
+    },
+    {
+      title: "Estado",
+      data: null,
+      render: (_, __, pedido) =>
+        `<span class="badge pedidos-cliente-badge ${badgeClase(pedido.estado)}">${pedido.estado}</span>`,
+    },
+    {
+      title: "",
+      data: null,
+      orderable: false,
+      searchable: false,
+      render: (_, __, pedido) => `
+        <button class="btn btn-sm btn-outline-secondary pedidos-cliente-btn btn-detalle-pedido" data-id="${pedido.id}">Ver detalles</button>
+      `,
+    },
+  ];
+
+  const crearOpcionesTabla = (estadoActual, setEstadoActual) => ({
+    responsive: true,
+    paging: true,
+    searching: true,
+    ordering: true,
+    pageLength: 5,
+    lengthChange: false,
+    info: true,
+    destroy: true,
+    initComplete: function () {
+      const api = this.api();
+      const container = api.table().container();
+      const existing = container.querySelector(".dt-custom-status-filter");
+
+      if (existing) return;
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "dt-custom-status-filter mb-3 d-flex justify-content-end";
+
+      const label = document.createElement("label");
+      label.className = "d-flex align-items-center gap-2 mb-0 text-white";
+      label.innerHTML = "<span>Estado</span>";
+
+      const select = document.createElement("select");
+      select.className = "form-select pedidos-cliente-select";
+      select.innerHTML = `
+        <option value="Todos">Todos</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Preparación">Preparación</option>
+        <option value="En camino">En camino</option>
+        <option value="Entregado">Entregado</option>
+        <option value="Cancelado">Cancelado</option>
+      `;
+      select.value = estadoActual;
+      select.onchange = (event) => setEstadoActual(event.target.value);
+
+      label.appendChild(select);
+      wrapper.appendChild(label);
+
+      const target =
+        container.querySelector(".dt-search") ||
+        container.querySelector(".dataTables_filter");
+
+      if (target) {
+        target.insertAdjacentElement("afterend", wrapper);
+      } else {
+        container.prepend(wrapper);
+      }
+    },
+    language: {
+      search: "Buscar:",
+      lengthMenu: "Mostrar _MENU_ registros",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ pedidos",
+      infoEmpty: "No hay pedidos disponibles",
+      zeroRecords: "No hay pedidos disponibles",
+      paginate: {
+        first: "Primero",
+        last: "Último",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
 
   if (cargando) {
     return (
@@ -166,103 +320,34 @@ export default function Pedidos() {
         </div>
       </div>
 
-      {/* Buscador */}
-      <div className="card shadow-sm border-0 mb-5">
-        <div className="card-body">
-          <div className="row g-3">
-            <div className="col-md-8">
-              <input
-                type="text"
-                className="form-control pedidos-cliente-input"
-                placeholder="Buscar pedido..."
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-              />
-            </div>
-
-            <div className="col-md-4">
-              <select
-                className="form-select pedidos-cliente-select"
-                value={filtroEstado}
-                onChange={(e) => setFiltroEstado(e.target.value)}
-              >
-                <option>Todos</option>
-                <option>Pendiente</option>
-                <option>Preparación</option>
-                <option>En camino</option>
-                <option>Entregado</option>
-                <option>Cancelado</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Pedidos Activos */}
       <h3 className="fw-bold mb-4 text-white">
         <i className="fa-solid fa-cart-shopping text-warning me-2"></i>
         Pedidos Activos
       </h3>
 
-      {activos.length === 0 ? (
-        <p className="text-light mb-5 pedidos-cliente-empty-text">
-          No tienes pedidos activos por ahora.
-        </p>
-      ) : (
-        <div className="card shadow-sm border-0 mb-5">
-          <div className="table-responsive pedidos-cliente-table-wrapper">
-            <table className="table table-hover align-middle mb-0 pedidos-cliente-table">
-              <thead>
-                <tr>
-                  <th>Pedido</th>
-                  <th>Cliente</th>
-                  <th>Fecha</th>
-                  <th>Productos</th>
-                  <th>Total</th>
-                  <th>Estado</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {activos.map((pedido) => (
-                  <tr key={pedido.id}>
-                    <td>
-                      <strong>#{pedido.id}</strong>
-                    </td>
-                    <td>{pedido.cliente || "—"}</td>
-                    <td>{pedido.fecha || "—"}</td>
-                    <td>{formatearProductos(pedido.productos)}</td>
-                    <td>{formatearTotal(pedido.total)}</td>
-                    <td>
-                      <span
-                        className={`badge pedidos-cliente-badge ${badgeClase(pedido.estado)}`}
-                      >
-                        {pedido.estado}
-                      </span>
-                    </td>
-                    <td>
-                      <div className="d-flex gap-2 pedidos-cliente-actions">
-                        <button
-                          className="btn btn-sm btn-outline-dark pedidos-cliente-btn"
-                          onClick={() => setPedidoSeleccionado(pedido)}
-                        >
-                          Ver detalles
-                        </button>
-                        <button
-                          className="btn btn-sm btn-danger pedidos-cliente-btn"
-                          onClick={() => handleCancelar(pedido.id)}
-                        >
-                          Cancelar
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <div className="card shadow-sm border-0 mb-5">
+        <div className="table-responsive pedidos-cliente-table-wrapper">
+          <DataTable
+            key={`activos-${filtroEstadoActivos}-${activos.length}`}
+            id="tablaPedidosActivosCliente"
+            data={activos}
+            columns={columnasActivas}
+            className="table table-hover align-middle mb-0 pedidos-cliente-table"
+            options={{
+              ...crearOpcionesTabla(filtroEstadoActivos, setFiltroEstadoActivos),
+              createdRow: (row, pedido) => {
+                row
+                  .querySelector(".btn-detalle-pedido")
+                  ?.addEventListener("click", () => setPedidoSeleccionado(pedido));
+                row
+                  .querySelector(".btn-cancelar-pedido")
+                  ?.addEventListener("click", () => handleCancelar(pedido.id));
+              },
+            }}
+          />
         </div>
-      )}
+      </div>
 
       {/* Historial */}
       <h3 className="fw-bold mb-4 text-white">
@@ -270,157 +355,31 @@ export default function Pedidos() {
         Historial de Pedidos
       </h3>
 
-      {historial.length === 0 ? (
-        <p className="text-light pedidos-cliente-empty-text">
-          Aún no tienes pedidos en tu historial.
-        </p>
-      ) : (
-        <div className="card shadow-sm border-0">
-          <div className="table-responsive pedidos-cliente-table-wrapper">
-            <table className="table table-hover align-middle mb-0 pedidos-cliente-table">
-              <thead>
-                <tr>
-                  <th>Pedido</th>
-                  <th>Fecha</th>
-                  <th>Productos</th>
-                  <th>Total</th>
-                  <th>Estado</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {historial.map((pedido) => (
-                  <tr key={pedido.id}>
-                    <td>
-                      <strong>#{pedido.id}</strong>
-                    </td>
-                    <td>{pedido.fecha || "—"}</td>
-                    <td>{formatearProductos(pedido.productos)}</td>
-                    <td>{formatearTotal(pedido.total)}</td>
-                    <td>
-                      <span
-                        className={`badge pedidos-cliente-badge ${badgeClase(pedido.estado)}`}
-                      >
-                        {pedido.estado}
-                      </span>
-                    </td>
-                    <td>
-                      <button
-                        className="btn btn-sm btn-outline-secondary pedidos-cliente-btn"
-                        onClick={() => setPedidoSeleccionado(pedido)}
-                      >
-                        Ver detalles
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <div className="card shadow-sm border-0">
+        <div className="table-responsive pedidos-cliente-table-wrapper">
+          <DataTable
+            key={`historial-${filtroEstadoHistorial}-${historial.length}`}
+            id="tablaPedidosHistorialCliente"
+            data={historial}
+            columns={columnasHistorial}
+            className="table table-hover align-middle mb-0 pedidos-cliente-table"
+            options={{
+              ...crearOpcionesTabla(filtroEstadoHistorial, setFiltroEstadoHistorial),
+              createdRow: (row, pedido) => {
+                row
+                  .querySelector(".btn-detalle-pedido")
+                  ?.addEventListener("click", () => setPedidoSeleccionado(pedido));
+              },
+            }}
+          />
         </div>
-      )}
+      </div>
 
       {/* MODAL DETALLE DEL PEDIDO */}
-      {pedidoSeleccionado && (
-        <div
-          className="modal fade show d-block"
-          tabIndex="-1"
-          style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
-        >
-          <div className="modal-dialog modal-lg modal-dialog-centered">
-            <div className="modal-content bg-dark text-white border-secondary">
-              <div className="modal-header border-secondary">
-                <h5 className="modal-title fw-bold">
-                  <i className="fa-solid fa-receipt text-warning me-2"></i>
-                  Detalle del Pedido #{pedidoSeleccionado.id}
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close btn-close-white"
-                  onClick={() => setPedidoSeleccionado(null)}
-                ></button>
-              </div>
-
-              <div className="modal-body">
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <p className="mb-1">
-                      <strong>Cliente:</strong> {pedidoSeleccionado.cliente}
-                    </p>
-                    <p className="mb-1">
-                      <strong>Teléfono:</strong> {pedidoSeleccionado.telefono}
-                    </p>
-                  </div>
-                  <div className="col-md-6 text-md-end">
-                    <p className="mb-1">
-                      <strong>Fecha:</strong> {pedidoSeleccionado.fecha || "—"}
-                    </p>
-                    <p className="mb-1">
-                      <strong>Estado: </strong>
-                      <span
-                        className={`badge ${badgeClase(pedidoSeleccionado.estado)}`}
-                      >
-                        {pedidoSeleccionado.estado}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                <h6 className="fw-bold mt-4 text-warning">Productos Solicitados</h6>
-                <div className="table-responsive">
-                  <table className="table table-dark table-striped align-middle mt-2 mb-0">
-                    <thead>
-                      <tr>
-                        <th>Producto</th>
-                        <th className="text-center">Cantidad</th>
-                        <th className="text-end">Precio Unit.</th>
-                        <th className="text-end">Subtotal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {pedidoSeleccionado.productos &&
-                      pedidoSeleccionado.productos.length > 0 ? (
-                        pedidoSeleccionado.productos.map((prod, index) => (
-                          <tr key={index}>
-                            <td>{prod.nombre}</td>
-                            <td className="text-center">{prod.cantidad}</td>
-                            <td className="text-end">
-                              {formatearTotal(prod.precioUnitario)}
-                            </td>
-                            <td className="text-end fw-semibold">
-                              {formatearTotal(prod.subtotal)}
-                            </td>
-                          </tr>
-                        ))
-                      ) : (
-                        <tr>
-                          <td colSpan="4" className="text-center text-muted">
-                            No hay productos detallados.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="text-end mt-3 fw-bold fs-5 text-warning">
-                  Total Pedido: {formatearTotal(pedidoSeleccionado.total)}
-                </div>
-              </div>
-
-              <div className="modal-footer border-secondary">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => setPedidoSeleccionado(null)}
-                >
-                  Cerrar
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <DetallePedidoModal
+        pedido={pedidoSeleccionado}
+        onClose={() => setPedidoSeleccionado(null)}
+      />
     </main>
   );
 }
