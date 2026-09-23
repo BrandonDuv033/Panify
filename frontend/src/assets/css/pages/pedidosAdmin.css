@@ -1,6 +1,4 @@
-
-
-/*  resumen del dia */
+/*  RESUMEN DEL DIA */
 
 .resumenDia{
     margin: auto;
@@ -9,10 +7,9 @@
     height: 60px;
     color: var(--color-claro);
     border-radius: 20px;
-    
 }
 
-/* botones de acciones */
+/* BOTNES DE ACCIONES */
 
 .btn-detalle {
   color: var(--color-secundario) ;
@@ -125,28 +122,21 @@
 
 
 .detalles {
-    font-family: var(--fuente-principal);
     width: 100%;
-
-    background-color: #fffaf0;
-
-    border-left: 5px solid var(--color-secundario);
-
-    border-radius: 10px;
-
-    padding: 18px;
-
-    box-shadow: 0 4px 12px rgba(43, 30, 19, 0.08);
+    padding: 5px 5px 10px;
+    font-family: var(--fuente-principal);
 }
 
 .detalles p {
     margin: 0;
-    line-height: 1.8;
+    line-height: 2;
     color: var(--color-oscuro);
+    font-size: 16px;
 }
 
 .detalles strong {
     color: var(--color-principal);
+    font-weight: 700;
 }
 
 
@@ -289,35 +279,10 @@
 /* INFORMACIÓN DE RUTA */
 
 
-.ruta-info {
-    background-color: #fffaf0;
-
-    border-left: 5px solid var(--color-secundario);
-
-    border-radius: 10px;
-
-    padding: 15px 18px;
-
-    margin-bottom: 20px;
-
-    box-shadow: 0 4px 12px rgba(43, 30, 19, 0.08);
-
-    font-family: var(--fuente-principal);
-}
-
 .ruta-info p {
-    margin-bottom: 8px;
-
     color: var(--color-oscuro);
 }
 
-.ruta-info p:last-child {
-    margin-bottom: 0;
-}
-
-.ruta-info strong {
-    color: var(--color-principal);
-}
 
 
 /* MAPA */
@@ -325,25 +290,17 @@
 
 .mapa-modal {
     width: 100%;
-
     overflow: hidden;
-
     border-radius: 12px;
-
     border: 3px solid #eadfca;
-
     box-shadow: 0 6px 20px rgba(43, 30, 19, 0.15);
-
     background-color: #f8f8f8;
 }
 
 .mapa-modal iframe {
     width: 100%;
-
     height: 400px;
-
     display: block;
-
     border: 0;
 }
 
