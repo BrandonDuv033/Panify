@@ -1,0 +1,101 @@
+/* ==========================================================
+   DetallePedidoModal.css
+   Estilos del modal de detalle de pedido con colores directos (Panify).
+   ========================================================== */
+
+/* --- Fondo oscurecido detrás del modal --- */
+.detalle-pedido-modal {
+  background-color: rgba(43, 30, 19, 0.75);
+}
+
+/* --- Caja principal del modal --- */
+.detalle-pedido-modal .modal-content {
+  background-color: #2b1e13;
+  color: #f5ebe0;
+  border: 1px solid #8b5a2b;
+}
+
+.detalle-pedido-modal .modal-header,
+.detalle-pedido-modal .modal-footer {
+  border-color: #8b5a2b !important;
+}
+
+/* --- Título y encabezados --- */
+.detalle-pedido-modal .modal-title,
+.detalle-pedido-modal .modal-title i {
+  color: #e5a93c;
+}
+
+.detalle-pedido-modal h6.text-warning {
+  color: #d4af37 !important;
+}
+
+/* --- Botón de cerrar (la "X") --- */
+.detalle-pedido-modal .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+  opacity: 0.8;
+}
+
+.detalle-pedido-modal .btn-close:hover {
+  opacity: 1;
+}
+
+/* --- Tabla de productos --- */
+.detalle-pedido-modal .table {
+  --bs-table-bg: #3d2b1f;
+  --bs-table-striped-bg: #2b1e13;
+  --bs-table-color: #f5ebe0;
+  --bs-table-striped-color: #f5ebe0;
+  --bs-table-border-color: #8b5a2b;
+}
+
+.detalle-pedido-modal .table thead th {
+  background-color: #8b5a2b;
+  color: #ffffff;
+  border-color: #8b5a2b;
+}
+
+/* --- Total del pedido --- */
+.detalle-pedido-modal .total-pedido {
+  color: #e5a93c;
+}
+
+/* --- Botón "Cerrar" del footer --- */
+.detalle-pedido-modal .btn-cerrar {
+  background-color: #8b5a2b;
+  border-color: #8b5a2b;
+  color: #ffffff;
+}
+
+.detalle-pedido-modal .btn-cerrar:hover {
+  background-color: #3d2b1f;
+  border-color: #d4af37;
+  color: #f5ebe0;
+}
+
+/* --- Badges de estado --- */
+.detalle-pedido-modal .badge-pendiente {
+  background-color: #e5a93c;
+  color: #2b1e13;
+}
+
+.detalle-pedido-modal .badge-preparacion {
+  background-color: #d4af37;
+  color: #2b1e13;
+}
+
+.detalle-pedido-modal .badge-camino {
+  background-color: #8b5a2b;
+  color: #ffffff;
+}
+
+.detalle-pedido-modal .badge-entregado {
+  background-color: #4a7c3f;
+  color: #ffffff;
+}
+
+.detalle-pedido-modal .badge-cancelado {
+  background-color: #3d2b1f;
+  color: #f5ebe0;
+  border: 1px solid #8b5a2b;
+}
