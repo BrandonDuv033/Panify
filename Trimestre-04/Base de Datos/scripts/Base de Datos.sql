@@ -891,3 +891,117 @@ VALUES
     (28, 28, 1, 'Entregado'),
     (29, 29, 1, 'Entregado'),
     (30, 30, 1, 'Entregado');
+    
+-- OPERATIONS
+
+DELIMITER //
+
+CREATE PROCEDURE `Asignadomiciliario`(
+    IN p_idPedido INT, 
+    IN p_idDomiciliario INT
+) 
+BEGIN 
+    UPDATE pedidos 
+    SET domiciliario_idDomiciliario = p_idDomiciliario 
+    WHERE idPedido = p_idPedido; 
+    
+    UPDATE domiciliarios 
+    SET estadoDisponibilidad = 'Ocupado' 
+    WHERE idDomiciliario = p_idDomiciliario; 
+END //
+
+CREATE PROCEDURE `RutaDeEntrega`(
+    IN p_idDomiciliario INT, 
+    IN p_urlRutaGoogle VARCHAR(500), 
+    IN p_idPedido INT
+) 
+BEGIN 
+    INSERT INTO rutasEntrega(
+        estadoRuta, 
+        urlRutaGoogle, 
+        domiciliarios_idDomiciliario
+    ) 
+    VALUES(
+        'Pendiente', 
+        p_urlRutaGoogle, 
+        p_idDomiciliario
+    ); 
+    
+    UPDATE pedidos 
+    SET domiciliario_idDomiciliario = p_idDomiciliario 
+    WHERE idPedido = p_idPedido; 
+END //
+
+CREATE PROCEDURE `ActualizarPedido`(
+    IN pedidoID INT, 
+    IN nuevoEstado INT
+) 
+BEGIN 
+    UPDATE pedidos 
+    SET estadoPedido = CASE nuevoEstado 
+        WHEN 1 THEN 'Pendiente' 
+        WHEN 2 THEN 'En preparación' 
+        WHEN 3 THEN 'Listo' 
+        WHEN 4 THEN 'En camino' 
+        WHEN 5 THEN 'Entregado' 
+        WHEN 6 THEN 'Cancelado' 
+        ELSE estadoPedido 
+    END 
+    WHERE idPedido = pedidoID;
+END //
+
+CREATE PROCEDURE `Historial`(
+    IN clienteID INT
+) 
+BEGIN 
+    SELECT 
+        u.nombre, 
+        u.apellido, 
+        p.idPedido, 
+        p.fechaHoraCreacion, 
+        p.estadoPedido, 
+        IFNULL(r.totalPagar, 0) AS totalFacturado, 
+        r.fechaEmision 
+    FROM clientes c 
+    INNER JOIN usuarios u ON u.cliente_idCliente = c.idCliente 
+    INNER JOIN pedidos p ON p.cliente_idCliente = c.idCliente 
+    LEFT JOIN recibos r ON r.pedido_idPedido = p.idPedido 
+    WHERE c.idCliente = clienteID; 
+END //
+
+CREATE PROCEDURE `BloqueoHorario`(
+    IN clienteID INT, 
+    IN domiciliarioID INT, 
+    IN fechaHoraEntregaEstimada DATETIME
+) 
+BEGIN 
+    DECLARE horaActual TIME; 
+    DECLARE fechaEntrega DATE; 
+    DECLARE fechaHoy DATE; 
+    
+    SET horaActual = CURTIME(); 
+    SET fechaEntrega = DATE(fechaHoraEntregaEstimada); 
+    SET fechaHoy = CURDATE(); 
+    
+    IF fechaEntrega = fechaHoy AND horaActual > '18:00:00' THEN 
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'Después de las 6:00 PM no se permiten pedidos para el mismo día.'; 
+    ELSE 
+        INSERT INTO pedidos ( 
+            fechaHoraCreacion, 
+            fechaHoraEntregaEstimada, 
+            estadoPedido, 
+            cliente_idCliente, 
+            domiciliario_idDomiciliario 
+        ) 
+        VALUES ( 
+            NOW(), 
+            fechaHoraEntregaEstimada, 
+            'Pendiente', 
+            clienteID, 
+            domiciliarioID 
+        ); 
+    END IF; 
+END //
+
+DELIMITER ;
