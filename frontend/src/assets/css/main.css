@@ -15,8 +15,9 @@
 @import "components/cards.css";
 @import "components/visit.css";
 @import "components/tables.css";
-@import "components/modaldetallepedidoadmin.css";
-@import "components/modalruta.css";
+@import "components/modalDetallePedidoAdmin.css";
+@import "components/modalRuta.css";
+@import "components/modalDetallePedido.css";
 
 /* Pages */
 

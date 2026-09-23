@@ -8,7 +8,9 @@
 #tablaUsuarios,
 #tablaInventario,
 #tablapedidosAdmin,
-#tablaRecibos {
+#tablaRecibos,
+#tablaPedidosActivosCliente,
+#tablaPedidosHistorialCliente {
   width: 100% !important;
   margin: 15px 0 !important;
 }
@@ -16,7 +18,9 @@
 #tablaUsuarios thead th,
 #tablaInventario thead th,
 #tablapedidosAdmin thead th,
-#tablaRecibos thead th {
+#tablaRecibos thead th,
+#tablaPedidosActivosCliente thead th,
+#tablaPedidosHistorialCliente thead th {
   background-color: #3d2314;
   color: #fff;
   font-weight: 600;
@@ -27,7 +31,9 @@
 #tablaUsuarios tbody td,
 #tablaInventario tbody td,
 #tablapedidosAdmin tbody td,
-#tablaRecibos tbody td {
+#tablaRecibos tbody td,
+#tablaPedidosActivosCliente tbody td,
+#tablaPedidosHistorialCliente tbody td {
   background-color: #fdfbf7;
   padding: 12px 14px;
   color: #000;
@@ -38,29 +44,37 @@
 #tablaUsuarios tbody tr:hover td,
 #tablaInventario tbody tr:hover td,
 #tablapedidosAdmin tbody tr:hover td,
-#tablaRecibos tbody tr:hover td {
+#tablaRecibos tbody tr:hover td,
+#tablaPedidosActivosCliente tbody tr:hover td,
+#tablaPedidosHistorialCliente tbody tr:hover td {
   background-color: rgba(212, 175, 55, 0.12);
   transition: background-color 0.3s ease;
 }
 
 .dataTables_wrapper .dataTables_filter input,
-.dt-container .dt-search input {
+.dt-container .dt-search input,
+.dt-custom-filter .form-select,
+.dt-custom-filter .form-control {
   border: 1px solid #ced4da;
   border-radius: 6px;
   padding: 6px 12px;
   margin-left: 0.5em;
   outline: none;
+  background-color: #fff;
 }
 
 .dataTables_wrapper .dataTables_filter input:focus,
-.dt-container .dt-search input:focus {
+.dt-container .dt-search input:focus,
+.dt-custom-filter .form-select:focus,
+.dt-custom-filter .form-control:focus {
   border-color: #e67e22;
   box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
 }
 
 .dataTables_wrapper .dataTables_length select,
 .dt-container .dt-length select,
-select.dt-input {
+select.dt-input,
+.dt-custom-filter .form-select {
   min-width: 70px !important;
   border-radius: 6px;
   padding: 6px 30px 6px 12px;
@@ -79,6 +93,24 @@ select.dt-input {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.dt-custom-filter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.dt-custom-filter label {
+  color: #fff;
+  font-weight: 600;
+  gap: 0.5rem;
+}
+
+.dt-custom-filter .form-select {
+  min-width: 170px;
+  max-width: 200px;
 }
 
 .dt-container .filtro-categoria-datatable {
