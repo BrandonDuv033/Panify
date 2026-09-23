@@ -2,9 +2,18 @@
   min-height: 100vh;
   padding: 35px 7% 0;
   color: white;
+  background-image:
+    linear-gradient(
+      rgba(45, 28, 18, 0.35),
+      rgba(45, 28, 18, 0.35)
+    ),
+    url("../../img/fondo.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin-top: 10vh;
 }
-
-/* HERO */
 
 .contacto-hero {
   text-align: center;
@@ -38,8 +47,6 @@
   line-height: 1.5;
 }
 
-/* CONTENIDO */
-
 .contacto-contenido {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -55,8 +62,6 @@
   padding: 22px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
-
-/* TÍTULOS */
 
 .contacto-titulo {
   display: flex;
@@ -82,8 +87,6 @@
   color: #ddd;
   font-size: 14px;
 }
-
-/* DATOS */
 
 .dato-contacto {
   display: flex;
@@ -136,8 +139,6 @@
   font-size: 18px;
 }
 
-/* FORMULARIO */
-
 .campo-contacto {
   margin-bottom: 10px;
 }
@@ -159,6 +160,7 @@
   padding: 9px 11px;
   outline: none;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
 .campo-contacto input::placeholder,
@@ -174,8 +176,6 @@
 .campo-contacto textarea {
   resize: vertical;
 }
-
-/* BOTÓN */
 
 .btn-enviar-contacto {
   width: 100%;
@@ -197,8 +197,6 @@
 .btn-enviar-contacto i {
   margin-right: 8px;
 }
-
-/* VISÍTANOS */
 
 .visitanos {
   max-width: 1100px;
@@ -230,8 +228,20 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(35deg, transparent 48%, #66533f 49%, #66533f 51%, transparent 52%),
-    linear-gradient(145deg, transparent 48%, #66533f 49%, #66533f 51%, transparent 52%);
+    linear-gradient(
+      35deg,
+      transparent 48%,
+      #66533f 49%,
+      #66533f 51%,
+      transparent 52%
+    ),
+    linear-gradient(
+      145deg,
+      transparent 48%,
+      #66533f 49%,
+      #66533f 51%,
+      transparent 52%
+    );
   opacity: 0.7;
 }
 
@@ -304,10 +314,7 @@
   color: #2b1e13;
 }
 
-/* RESPONSIVE */
-
 @media (max-width: 768px) {
-
   .contacto-page {
     padding: 25px 20px;
   }
@@ -323,5 +330,4 @@
   .visitanos {
     grid-template-columns: 1fr;
   }
-
 }

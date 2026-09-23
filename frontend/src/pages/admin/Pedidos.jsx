@@ -49,13 +49,13 @@ export default function Pedidos() {
             ) || {};
 
           const detallesDelPedido = resDetalles.data.filter(
-            (d) => String(d.pedido_idPedido) === String(pedido.id),
+            (d) => String(d.pedido_id) === String(pedido.id),
           );
 
           const nombresProductos = detallesDelPedido
             .map((det) => {
               const prod = resProductos.data.find(
-                (p) => String(p.id) === String(det.producto_id),
+                (p) => String(p.id) === String(det.producto_idProducto),
               );
 
               return prod ? `${prod.nombre} (x${det.cantidad})` : "";

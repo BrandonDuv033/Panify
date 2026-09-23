@@ -41,8 +41,8 @@ export default function Contacto() {
 
             <div>
               <strong>Teléfono</strong>
-              <span>+57 310 123 4567</span>
-              <small>Lunes a sábado de 7:00 a.m. a 6:00 p.m.</small>
+              <span>+57 310 1176 1270 </span>
+              <small>Lunes a sábado de 7:00 a.m. a 2:00 p.m.</small>
             </div>
           </div>
 
@@ -53,7 +53,7 @@ export default function Contacto() {
 
             <div>
               <strong>Correo electrónico</strong>
-              <span>ventas@oropan.com</span>
+              <span>brayan@panify.com</span>
               <small>Te responderemos lo más pronto posible.</small>
             </div>
           </div>
@@ -65,8 +65,8 @@ export default function Contacto() {
 
             <div>
               <strong>Dirección</strong>
-              <span>Cra. 25 # 72 - 15</span>
-              <small>Bogotá, Colombia</small>
+              <span>Cl. 15a #10-26</span>
+              <small>Soacha, Cundinamarca</small>
             </div>
           </div>
 
@@ -78,12 +78,12 @@ export default function Contacto() {
             <div>
               <strong>Horario de atención</strong>
               <span>Lunes a sábado</span>
-              <small>7:00 a.m. - 6:00 p.m.</small>
+              <small>7:00 a.m. - 2:00 p.m.</small>
             </div>
           </div>
 
           <div className="frase-contacto">
-            Pan que une personas ♥
+            Horneamos calidad, entregamos confianza y unimos lazos
           </div>
 
         </div>
@@ -157,15 +157,22 @@ export default function Contacto() {
       {/* VISÍTANOS */}
       <section className="visitanos">
 
-        <div className="mapa-falso">
-          <div className="marcador-mapa">
-            <i className="fa-solid fa-location-dot"></i>
+        <div className="">
+         <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.2614857367814!2d-74.21789329908684!3d4.585776308800547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9fd5f8329ebf%3A0xe24729a4d3b22890!2sCl.%2015a%20%23%2011A-68%2C%20Soacha%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1782761193677!5m2!1ses-419!2sco"
+                  width="100%"
+                  height="250px"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
 
             <div>
               <strong>Oro Pan</strong>
-              <span>Cra. 25 # 72 - 15</span>
+              <span>Cl. 15a #10-26</span>
             </div>
-          </div>
+          
         </div>
 
         <div className="visitanos-info">
@@ -185,6 +192,7 @@ export default function Contacto() {
             <i className="fa-solid fa-map-location-dot"></i>
             Cómo llegar
           </button>
+          
 
         </div>
 
