@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { obtenerNombreUsuarioActual } from "../../services/auth";
+import {obtenerPedidosAdmin, actualizarEstadoPedido} from "../../services/pedidos.js";
 import Swal from "sweetalert2";
-import API from "../../services/api.js";
 import DataTable from "datatables.net-react";
 import DT from "datatables.net-bs5";
 import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 import ModalDetallePedido from "../../components/admin/ModalDetallePedido.jsx";
 import ModalRuta from "../../components/admin/ModalRuta.jsx";
+
 
 
 export default function Pedidos() {
@@ -21,83 +22,7 @@ export default function Pedidos() {
   useEffect(() => {
     const fetchPedidosData = async () => {
       try {
-        const [
-          resPedidos,
-          resClientes,
-          resUsuarios,
-          resDetalles,
-          resProductos,
-        ] = await Promise.all([
-          API.get("/pedidos"),
-          API.get("/clientes"),
-          API.get("/users"),
-          API.get("/detalle_pedidos"),
-          API.get("/productos"),
-        ]);
-
-        const pedidosCompletos = resPedidos.data.map((pedido) => {
-          const cliente =
-            resClientes.data.find(
-              (c) =>
-                String(c.idCliente) === String(pedido.cliente_idCliente)
-            ) || {};
-
-          const domiciliario =
-            pedido.domiciliario_idDomiciliario !== null
-              ? resUsuarios.data.find(
-                  (u) =>
-                    String(u.domiciliario_idDomiciliario) ===
-                    String(pedido.domiciliario_idDomiciliario)
-                ) || {}
-              : {};
-
-          const usuario =
-            resUsuarios.data.find(
-              (u) =>
-                String(u.cliente_idCliente) ===
-                String(cliente.idCliente)
-            ) || {};
-
-          const detallesDelPedido = resDetalles.data.filter(
-            (d) => String(d.idPedido) === String(pedido.id)
-          );
-
-          const nombresProductos = detallesDelPedido
-            .map((det) => {
-              const prod = resProductos.data.find(
-                (p) =>
-                  String(p.id) === String(det.producto_idProducto)
-              );
-
-              return prod
-                ? `${prod.nombre} (x${det.cantidad})`
-                : "";
-            })
-            .filter(Boolean)
-            .join(", ");
-
-          return {
-            id: pedido.id,
-
-            nombreCliente: usuario.nombre
-              ? `${usuario.nombre} ${usuario.apellido || ""}`.trim()
-              : "Cliente no registrado",
-
-            direccion:
-              cliente.direccion || "Dirección no registrada",
-
-            pedidoRealizado:
-              nombresProductos || "Productos variados",
-
-            domiciliario: domiciliario.nombre
-              ? `${domiciliario.nombre} ${
-                  domiciliario.apellido || ""
-                }`.trim()
-              : "Sin domiciliario",
-
-            estado: pedido.estadoPedido || "Pendiente",
-          };
-        });
+        const pedidosCompletos = await obtenerPedidosAdmin();
 
         setPedidos(pedidosCompletos);
         setLoading(false);
@@ -185,9 +110,10 @@ export default function Pedidos() {
     if (!pedidoSeleccionado) return;
 
     try {
-      await API.patch(`/pedidos/${pedidoSeleccionado.id}`, {
-        estadoPedido: nuevoEstado,
-      });
+      await actualizarEstadoPedido(
+        pedidoSeleccionado.id,
+        nuevoEstado
+      );
 
       setPedidos(
         pedidos.map((p) =>
@@ -459,17 +385,18 @@ export default function Pedidos() {
 
         </section>
 
-        <ModalDetallePedido pedidoSeleccionado={pedidoSeleccionado}
-        cerrarDetalle={cerrarDetalle}
-        guardarCambiosEstado={guardarCambiosEstado}
-        nuevoEstado={nuevoEstado}
-        setNuevoEstado={setNuevoEstado}
+        <ModalDetallePedido
+          pedidoSeleccionado={pedidoSeleccionado}
+          cerrarDetalle={cerrarDetalle}
+          guardarCambiosEstado={guardarCambiosEstado}
+          nuevoEstado={nuevoEstado}
+          setNuevoEstado={setNuevoEstado}
         />
 
         <ModalRuta
-        pedidoRuta={pedidoRuta}
-        cerrarRuta={cerrarRuta}
-        direccionMapa={direccionMapa}
+          pedidoRuta={pedidoRuta}
+          cerrarRuta={cerrarRuta}
+          direccionMapa={direccionMapa}
         />
 
       </main>
