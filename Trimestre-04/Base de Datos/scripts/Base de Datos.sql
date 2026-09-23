@@ -1092,4 +1092,86 @@ BEGIN
     END IF;
 END //
 
+-- FUNCIONES
+
+CREATE FUNCTION calcularSubtotalLinea(
+    p_cantidad INT,
+    p_precioFijo DECIMAL(10,2)
+) 
+RETURNS DECIMAL(10,2) 
+DETERMINISTIC
+BEGIN
+    RETURN (p_cantidad * p_precioFijo);
+END //
+
+CREATE FUNCTION calcularTotalPedido(
+    p_idPedido INT
+) 
+RETURNS DECIMAL(10,2) 
+READS SQL DATA
+BEGIN
+    DECLARE v_total DECIMAL(10,2);
+    
+    SELECT IFNULL(SUM(cantidad * precioFijo), 0.00) INTO v_total
+    FROM detalle_pedidos
+    WHERE pedido_idPedido = p_idPedido;
+    
+    RETURN v_total;
+END //
+
+CREATE FUNCTION contarPedidosActivosCliente(
+    p_idCliente INT
+) 
+RETURNS INT 
+READS SQL DATA
+BEGIN
+    DECLARE v_conteo INT DEFAULT 0;
+    
+    SELECT COUNT(*) INTO v_conteo
+    FROM pedidos
+    WHERE cliente_idCliente = p_idCliente 
+      AND estadoPedido IN ('Pendiente', 'En preparación', 'Listo', 'En camino');
+      
+    RETURN v_conteo;
+END //
+
+CREATE FUNCTION obtenerTotalUnidadesPedido(
+    p_idPedido INT
+) 
+RETURNS INT 
+READS SQL DATA
+BEGIN
+    DECLARE v_totalUnidades INT DEFAULT 0;
+    
+    SELECT IFNULL(SUM(cantidad), 0) INTO v_totalUnidades
+    FROM detalle_pedidos
+    WHERE pedido_idPedido = p_idPedido;
+    
+    RETURN v_totalUnidades;
+END //
+
+CREATE FUNCTION obtenerDescuentoCliente(
+    p_idCliente INT
+) 
+RETURNS DECIMAL(5,2) 
+READS SQL DATA
+BEGIN
+    DECLARE v_tipoCliente VARCHAR(20);
+    DECLARE v_descuento DECIMAL(5,2) DEFAULT 0.00;
+    
+    SELECT tipoCliente INTO v_tipoCliente
+    FROM clientes
+    WHERE idCliente = p_idCliente;
+    
+    IF v_tipoCliente = 'Frecuente' THEN
+        SET v_descuento = 10.00;
+    ELSEIF v_tipoCliente = 'Nuevo' THEN
+        SET v_descuento = 5.00;
+    ELSE
+        SET v_descuento = 0.00;
+    END IF;
+    
+    RETURN v_descuento;
+END //
+
 DELIMITER ;

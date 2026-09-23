@@ -2,6 +2,7 @@
 -- 				PROCEDIMIENTOS
 -- ==========================================
 
+
 -- ==========================================
 -- 1. Asignar domiciliario
 -- ==========================================
@@ -191,6 +192,7 @@ CALL BloqueoHorario(2, 2, CONCAT(CURDATE(), ' 14:00:00'));
 
 -- 3. Caso Excepción (Dispara SIGNAL 45000 por ser hoy a las 7:00 PM)
 CALL BloqueoHorario(3, 1, CONCAT(CURDATE(), ' 19:00:00'));
+
 
 -- ==========================================
 -- 					TRIGGERS
@@ -401,3 +403,174 @@ WHERE producto_idProducto = 1;
 SELECT idProducto, nombre, estado 
 FROM productos 
 WHERE idProducto = 1;
+
+
+-- ==========================================
+-- 				FUNCIONES
+-- ==========================================
+
+
+-- =================================================================
+-- 1. Calcular Subtotal de Línea (Cantidad x Precio)
+-- =================================================================
+DELIMITER //
+
+CREATE FUNCTION calcularSubtotalLinea(
+    p_cantidad INT,
+    p_precioFijo DECIMAL(10,2)
+) 
+RETURNS DECIMAL(10,2) 
+DETERMINISTIC
+BEGIN
+    RETURN (p_cantidad * p_precioFijo);
+END //
+
+DELIMITER ;
+
+-- Ejemplo 1: 4 unidades a $2.500 COP
+SELECT calcularSubtotalLinea(4, 2500.00) AS Subtotal_Calculado;
+
+-- Ejemplo 2: 10 unidades a $1.800 COP
+SELECT calcularSubtotalLinea(10, 1800.00) AS Subtotal_Calculado;
+
+-- Ejemplo 3: Cálculo directo sobre los datos de la tabla de productos
+SELECT 
+    nombre, 
+    precio, 
+    calcularSubtotalLinea(6, precio) AS Subtotal_6_Unidades
+FROM productos
+WHERE idProducto = 1;
+
+-- =================================================================
+-- 2. Calcular Total a Pagar de un Pedido
+-- =================================================================
+DELIMITER //
+
+CREATE FUNCTION calcularTotalPedido(
+    p_idPedido INT
+) 
+RETURNS DECIMAL(10,2) 
+READS SQL DATA
+BEGIN
+    DECLARE v_total DECIMAL(10,2);
+    
+    SELECT IFNULL(SUM(cantidad * precioFijo), 0.00) INTO v_total
+    FROM detalle_pedidos
+    WHERE pedido_idPedido = p_idPedido;
+    
+    RETURN v_total;
+END //
+
+DELIMITER ;
+
+-- Ejemplo 1: Total del Pedido 1 (4 Pan Aliñado = $10.000.00)
+SELECT calcularTotalPedido(1) AS Total_Pedido_1;
+
+-- Ejemplo 2: Total del Pedido 6 (10 Buñuelos = $18.000.00)
+SELECT calcularTotalPedido(6) AS Total_Pedido_6;
+
+-- Ejemplo 3: Total del Pedido 7 (1 Torta de Vainilla = $25.000.00)
+SELECT calcularTotalPedido(7) AS Total_Pedido_7;
+
+-- =================================================================
+-- 3. Contar Pedidos Activos (en curso) de un Cliente
+-- =================================================================
+DELIMITER //
+
+CREATE FUNCTION contarPedidosActivosCliente(
+    p_idCliente INT
+) 
+RETURNS INT 
+READS SQL DATA
+BEGIN
+    DECLARE v_conteo INT DEFAULT 0;
+    
+    SELECT COUNT(*) INTO v_conteo
+    FROM pedidos
+    WHERE cliente_idCliente = p_idCliente 
+      AND estadoPedido IN ('Pendiente', 'En preparación', 'Listo', 'En camino');
+      
+    RETURN v_conteo;
+END //
+
+DELIMITER ;
+
+-- Ejemplo 1: Pedidos activos de Ana Gómez (Cliente 1: tiene el pedido 6 en preparación)
+SELECT contarPedidosActivosCliente(1) AS Pedidos_Activos_Cliente_1;
+
+-- Ejemplo 2: Pedidos activos de Luis Pérez (Cliente 2: tiene el pedido 7 pendiente)
+SELECT contarPedidosActivosCliente(2) AS Pedidos_Activos_Cliente_2;
+
+-- Ejemplo 3: Pedidos activos de Carlos Ruíz (Cliente 3: solo tiene el pedido 3 cancelado)
+SELECT contarPedidosActivosCliente(3) AS Pedidos_Activos_Cliente_3;
+
+-- =================================================================
+-- 4. Obtener Total de Unidades Físicas por Pedido
+-- =================================================================
+DELIMITER //
+
+CREATE FUNCTION obtenerTotalUnidadesPedido(
+    p_idPedido INT
+) 
+RETURNS INT 
+READS SQL DATA
+BEGIN
+    DECLARE v_totalUnidades INT DEFAULT 0;
+    
+    SELECT IFNULL(SUM(cantidad), 0) INTO v_totalUnidades
+    FROM detalle_pedidos
+    WHERE pedido_idPedido = p_idPedido;
+    
+    RETURN v_totalUnidades;
+END //
+
+DELIMITER ;
+
+-- Ejemplo 1: Unidades totales del Pedido 1 (4 unidades)
+SELECT obtenerTotalUnidadesPedido(1) AS Unidades_Pedido_1;
+
+-- Ejemplo 2: Unidades totales del Pedido 6 (10 unidades)
+SELECT obtenerTotalUnidadesPedido(6) AS Unidades_Pedido_6;
+
+-- Ejemplo 3: Unidades totales del Pedido 9 (5 unidades)
+SELECT obtenerTotalUnidadesPedido(9) AS Unidades_Pedido_9;
+
+-- =================================================================
+-- 5. Obtener Descuento Según Categoría de Cliente (Fidelización)
+-- =================================================================
+DELIMITER //
+
+CREATE FUNCTION obtenerDescuentoCliente(
+    p_idCliente INT
+) 
+RETURNS DECIMAL(5,2) 
+READS SQL DATA
+BEGIN
+    DECLARE v_tipoCliente VARCHAR(20);
+    DECLARE v_descuento DECIMAL(5,2) DEFAULT 0.00;
+    
+    SELECT tipoCliente INTO v_tipoCliente
+    FROM clientes
+    WHERE idCliente = p_idCliente;
+    
+    IF v_tipoCliente = 'Frecuente' THEN
+        SET v_descuento = 10.00;
+    ELSEIF v_tipoCliente = 'Nuevo' THEN
+        SET v_descuento = 5.00;
+    ELSE
+        SET v_descuento = 0.00;
+    END IF;
+    
+    RETURN v_descuento;
+END //
+
+DELIMITER ;
+
+-- Ejemplo 1: Descuento para el Cliente 1 ('Nuevo' -> 5%)
+SELECT obtenerDescuentoCliente(1) AS Porcentaje_Descuento;
+
+-- Ejemplo 2: Descuento para el Cliente 2 ('Frecuente' -> 10%)
+SELECT obtenerDescuentoCliente(2) AS Porcentaje_Descuento;
+
+-- Ejemplo 3: Descuento para el Cliente 3 ('Ocasional' -> 0%)
+SELECT obtenerDescuentoCliente(3) AS Porcentaje_Descuento;
