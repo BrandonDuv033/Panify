@@ -18,7 +18,7 @@ import MisPedidos from "../pages/client/Pedidos.jsx";
 import PerfilCliente from "../pages/client/Profile.jsx";
 import InicioCliente from "../pages/client/Inicio.jsx";
 
-// Admin (Panadero + Domiciliario — Opción A)
+// Admin (Panadero + Domiciliario)
 import Users from "../pages/admin/Users.jsx";
 import Recibos from "../pages/admin/Recibos.jsx";
 import Inventario from "../pages/admin/Inventario.jsx";

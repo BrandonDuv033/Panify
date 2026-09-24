@@ -1,7 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { obtenerUsuarioActual } from "../../services/auth.js";
+import { formatearMoneda } from "../../utils/formatearMoneda.js";
 import logoPanify from "../../assets/img/Logo Panify.png";
+
+function obtenerCarritoGuardado() {
+  try {
+    const carrito = JSON.parse(localStorage.getItem("carrito"));
+    return Array.isArray(carrito) ? carrito : [];
+  } catch (error) {
+    console.error("Error al cargar el carrito:", error);
+    return [];
+  }
+}
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -9,22 +20,30 @@ export default function Navbar() {
   const [usuario, setUsuario] = useState(obtenerUsuarioActual);
   const [menuPerfilAbierto, setMenuPerfilAbierto] = useState(false);
   const [menuMovilAbierto, setMenuMovilAbierto] = useState(false);
+  const [carrito, setCarrito] = useState(obtenerCarritoGuardado);
+  const [carritoAbierto, setCarritoAbierto] = useState(false);
 
   useEffect(() => {
     setUsuario(obtenerUsuarioActual());
     setMenuPerfilAbierto(false);
     setMenuMovilAbierto(false);
+    setCarritoAbierto(false);
   }, [location]);
 
   useEffect(() => {
     const actualizarUsuario = () => setUsuario(obtenerUsuarioActual());
+    const actualizarCarrito = () => setCarrito(obtenerCarritoGuardado());
 
     window.addEventListener("storage", actualizarUsuario);
     window.addEventListener("usuarioActualizado", actualizarUsuario);
+    window.addEventListener("storage", actualizarCarrito);
+    window.addEventListener("carritoActualizado", actualizarCarrito);
 
     return () => {
       window.removeEventListener("storage", actualizarUsuario);
       window.removeEventListener("usuarioActualizado", actualizarUsuario);
+      window.removeEventListener("storage", actualizarCarrito);
+      window.removeEventListener("carritoActualizado", actualizarCarrito);
     };
   }, []);
 
@@ -42,6 +61,14 @@ export default function Navbar() {
   };
 
   const cerrarMenuMovil = () => setMenuMovilAbierto(false);
+  const totalProductos = carrito.reduce(
+    (total, item) => total + item.cantidad,
+    0,
+  );
+  const subtotal = carrito.reduce(
+    (total, item) => total + item.precio * item.cantidad,
+    0,
+  );
 
   return (
     <header>
@@ -101,15 +128,21 @@ export default function Navbar() {
               {esCliente ? (
                 <>
                   <li className="nav-item">
-                    <Link
-                      to="/productos"
+                    <button
+                      type="button"
                       className="nav-cart-link"
                       aria-label="Abrir carrito"
                       title="Carrito"
-                      onClick={cerrarMenuMovil}
+                      onClick={() => {
+                        cerrarMenuMovil();
+                        setCarritoAbierto(true);
+                      }}
                     >
                       <i className="fa-solid fa-cart-shopping"></i>
-                    </Link>
+                      {totalProductos > 0 && (
+                        <span className="nav-cart-count">{totalProductos}</span>
+                      )}
+                    </button>
                   </li>
                   <li className="nav-item profile-menu-wrapper">
                     <button
@@ -178,6 +211,66 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      {esCliente && carritoAbierto && (
+        <>
+          <button
+            type="button"
+            className="cart-sidebar-backdrop"
+            aria-label="Cerrar carrito"
+            onClick={() => setCarritoAbierto(false)}
+          />
+          <aside className="cart-sidebar" aria-label="Carrito de compras">
+            <div className="cart-sidebar-header">
+              <div>
+                <span className="cart-sidebar-eyebrow">Tu compra</span>
+                <h2>Carrito</h2>
+              </div>
+              <button
+                type="button"
+                className="cart-sidebar-close"
+                aria-label="Cerrar carrito"
+                onClick={() => setCarritoAbierto(false)}
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <div className="cart-sidebar-body">
+              {carrito.length === 0 ? (
+                <p className="cart-sidebar-empty">Tu carrito está vacío.</p>
+              ) : (
+                carrito.map((item) => (
+                  <div className="cart-sidebar-item" key={item.id}>
+                    <div>
+                      <h3>{item.nombre}</h3>
+                      <span>
+                        {item.cantidad} x {formatearMoneda(item.precio)}
+                      </span>
+                    </div>
+                    <strong>
+                      {formatearMoneda(item.precio * item.cantidad)}
+                    </strong>
+                  </div>
+                ))
+              )}
+            </div>
+
+            <div className="cart-sidebar-footer">
+              <div className="cart-sidebar-total">
+                <span>Total estimado</span>
+                <strong>{formatearMoneda(subtotal)}</strong>
+              </div>
+              <Link
+                to="/productos"
+                className="btn btn-finalizar w-100"
+                onClick={() => setCarritoAbierto(false)}
+              >
+                Ver productos
+              </Link>
+            </div>
+          </aside>
+        </>
+      )}
     </header>
   );
 }

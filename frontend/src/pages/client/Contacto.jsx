@@ -16,9 +16,7 @@ export default function Contacto() {
         </p>
       </section>
 
-      {/* INFORMACIÓN + FORMULARIO */}
       <section className="contacto-contenido">
-        {/* INFORMACIÓN DE CONTACTO */}
         <div className="contacto-card">
           <div className="contacto-titulo">
             <i className="fa-solid fa-phone"></i>
@@ -82,7 +80,6 @@ export default function Contacto() {
           </div>
         </div>
 
-        {/* FORMULARIO */}
         <div className="contacto-card">
           <div className="contacto-titulo">
             <i className="fa-regular fa-comment-dots"></i>
@@ -132,8 +129,7 @@ export default function Contacto() {
         </div>
       </section>
 
-      {/* VISÍTANOS */}
-      <section className="visitanos">
+w      <section className="visitanos">
         <div className="">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.2614857367814!2d-74.21789329908684!3d4.585776308800547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9fd5f8329ebf%3A0xe24729a4d3b22890!2sCl.%2015a%20%23%2011A-68%2C%20Soacha%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1782761193677!5m2!1ses-419!2sco"

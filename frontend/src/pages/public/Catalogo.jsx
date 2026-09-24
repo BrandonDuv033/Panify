@@ -7,7 +7,15 @@ const Catalogo = () => {
   const [loading, setLoading] = useState(true);
   const [busqueda, setBusqueda] = useState("");
   const [categoriaFiltro, setCategoriaFiltro] = useState("");
-  const [carrito, setCarrito] = useState([]);
+  const [carrito, setCarrito] = useState(() => {
+    try {
+      const carritoGuardado = JSON.parse(localStorage.getItem("carrito"));
+      return Array.isArray(carritoGuardado) ? carritoGuardado : [];
+    } catch (error) {
+      console.error("Error al cargar el carrito:", error);
+      return [];
+    }
+  });
   const [reciboData, setReciboData] = useState(null);
 
   useEffect(() => {
@@ -26,8 +34,9 @@ const Catalogo = () => {
   }, []);
   
   useEffect(() => {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-}, [carrito]);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    window.dispatchEvent(new Event("carritoActualizado"));
+  }, [carrito]);
 
   // Filtrar productos reactivamente
   const productosFiltrados = productos.filter((prod) => {
