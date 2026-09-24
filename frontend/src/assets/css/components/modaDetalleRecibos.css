@@ -1,0 +1,141 @@
+/* ==========================================================
+   ModalDetalleRecibo.css
+   Detalle de pedido sobre Bootstrap, con la paleta de Panify.
+   ========================================================== */
+
+/* --- Fondo oscurecido --- */
+.detalle-pedido-modal {
+  background-color: rgba(43, 30, 19, 0.75);
+  backdrop-filter: blur(3px);
+}
+
+/* --- Caja principal --- */
+.detalle-pedido-modal .modal-content {
+  background-color: #2b1e13;
+  color: #f5ebe0;
+  border: 1px solid #8b5a2b;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: detalle-subir 0.25s ease-out;
+}
+
+.detalle-pedido-modal .modal-header,
+.detalle-pedido-modal .modal-footer {
+  border-color: #8b5a2b;
+}
+
+.detalle-pedido-modal .modal-header {
+  padding: 1rem 1.25rem;
+}
+
+/* --- Título --- */
+.detalle-pedido-modal .modal-title {
+  font-weight: 700;
+  color: #e5a93c;
+}
+
+/* --- Botón cerrar (X) en blanco --- */
+.detalle-pedido-modal .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+  opacity: 0.8;
+}
+
+.detalle-pedido-modal .btn-close:hover {
+  opacity: 1;
+}
+
+/* --- Cuerpo --- */
+.detalle-pedido-modal .modal-body {
+  padding: 1.25rem;
+}
+
+.detalle-cargando {
+  margin: 0;
+  text-align: center;
+  color: #c9b8a6;
+}
+
+/* --- Tabla --- */
+.detalle-pedido-modal .table-responsive {
+  border: 1px solid #8b5a2b;
+  border-radius: 10px;
+}
+
+.detalle-pedido-modal .table {
+  --bs-table-bg: #3d2b1f;
+  --bs-table-color: #f5ebe0;
+  --bs-table-striped-bg: #2b1e13;
+  --bs-table-striped-color: #f5ebe0;
+  --bs-table-hover-bg: rgba(229, 169, 60, 0.15);
+  --bs-table-hover-color: #f5ebe0;
+  --bs-table-border-color: #8b5a2b;
+  font-variant-numeric: tabular-nums; /* números alineados */
+}
+
+.detalle-pedido-modal .table thead th {
+  padding: 0.75rem 0.9rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background-color: #8b5a2b;
+  border-color: #8b5a2b;
+}
+
+.detalle-pedido-modal .table tbody td {
+  padding: 0.7rem 0.9rem;
+}
+
+/* --- Total --- */
+.detalle-pedido-modal .total-pedido {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  color: #c9b8a6;
+}
+
+.detalle-pedido-modal .total-pedido strong {
+  font-size: 1.4rem;
+  color: #e5a93c;
+}
+
+/* --- Botón "Cerrar" --- */
+.detalle-pedido-modal .btn-cerrar {
+  padding: 0.5rem 1.4rem;
+  font-weight: 600;
+  color: #2b1e13;
+  background-color: #e5a93c;
+  border: 1px solid #e5a93c;
+  border-radius: 8px;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.detalle-pedido-modal .btn-cerrar:hover,
+.detalle-pedido-modal .btn-cerrar:focus-visible {
+  background-color: #d4af37;
+  border-color: #d4af37;
+  color: #2b1e13;
+}
+
+/* --- Animación --- */
+@keyframes detalle-subir {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detalle-pedido-modal .modal-content {
+    animation: none;
+  }
+}
