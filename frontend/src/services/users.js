@@ -10,6 +10,11 @@ export async function eliminarUsuario(id) {
   await API.delete(`/users/${id}`);
 }
 
+export async function actualizarUsuario(id, datosActualizados) {
+  const res = await API.patch(`/users/${id}`, datosActualizados);
+  return res.data;
+}
+
 // Obtener la información del perfil privado del usuario logueado
 export async function obtenerPerfilUsuario(userId = null) {
   const usuarioLogueado = obtenerUsuarioActual();
