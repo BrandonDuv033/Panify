@@ -4,7 +4,6 @@ import "../../assets/css/components/modaDetalleRecibos.css";
 export default function ModalDetalleRecibo({ detalle, onClose }) {
   if (!detalle.idPedido) return null;
 
-  // Total_Pagar = suma de subtotales (opcional, puedes quitarlo)
   const total = (detalle.productos ?? []).reduce(
     (suma, p) => suma + Number(p.subtotal || 0),
     0,

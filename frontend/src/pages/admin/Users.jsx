@@ -38,10 +38,10 @@ export default function Users() {
       searchable: false,
       render: () => `
         <button class="btn btn-sm btn-outline-primary me-2 btn-editar-usuario" title="Editar usuario">
-          <i class="fa-solid fa-pen me-1"></i> Editar
+          <i class="fa-solid fa-pen"></i>
         </button>
-        <button class="btn btn-sm btn-outline-danger btn-eliminar-usuario" title="Eliminar usuario">
-          <i class="fa-solid fa-trash me-1"></i> Eliminar
+        <button class="btn btn-sm btn-outline-danger btn-editar-usuario" title="Eliminar usuario">
+          <i class="fa-solid fa-trash"></i>
         </button>`,
     },
   ];
@@ -93,7 +93,6 @@ export default function Users() {
   const handleGuardarEdicion = async (datosActualizados) => {
     const usuario = modalEditar.datos;
 
-    // Si falla, lanza el error y el modal muestra el mensaje sin cerrarse
     const usuarioGuardado = await actualizarUsuario(
       usuario.id,
       datosActualizados,

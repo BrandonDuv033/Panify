@@ -27,7 +27,6 @@ export default function EditarUsuarioModal({
   const [error, setError] = useState("");
   const [guardando, setGuardando] = useState(false);
 
-  // Cada vez que se abre con otro usuario, se reinicia el formulario
   useEffect(() => {
     if (abierto) {
       setForm(estadoInicial(usuario));

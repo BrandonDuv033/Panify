@@ -7,7 +7,6 @@ export default function Hero() {
       <h1>Distribuidora Oro Pan</h1>
       <p>Horneamos Calidad, Entregamos Confianza y unimos lazos</p>
       
-      {/* Botón convertido en Link para navegar al catálogo/productos */}
       <Link
         to="/productos"
         className="btn btn-secondary text-decoration-none"
