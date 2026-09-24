@@ -1,33 +1,23 @@
 .inicio-cliente {
+  margin-top: 10vh !important;
   position: relative;
   z-index: 1;
-  margin-top: 10vh;
+  margin: 0 auto;
   color: var(--color-texto) !important;
 }
 
-.inicio-cliente::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 100vw;
-  height: 100%;
-  transform: translateX(-50%);
-
+.dashboard-main.client {
+  position: relative;
+  width: 100%;
+  flex: 1 0 auto;
   background-image:
-    linear-gradient(
-      rgba(45, 28, 18, 0.35),
-      rgba(45, 28, 18, 0.35)
-    ),
+    linear-gradient(rgba(45, 28, 18, 0.35), rgba(45, 28, 18, 0.35)),
     url("../../img/fondo.png");
-
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-
-  z-index: -1;
+  background-attachment: fixed;
 }
-
 
 .inicio-cliente .total {
   background: var(--color-dorado);
@@ -132,24 +122,24 @@
   border: 1px solid #a5d6a7;
 }
 
-.letra-cantidad{
-  color:white ;
-}
-.letra-Listo{
+.letra-cantidad {
   color: white;
 }
-.producto-cliente{
+.letra-Listo {
   color: white;
 }
-.carrito-inicio{
+.producto-cliente {
   color: white;
 }
-.numero-pedido{
+.carrito-inicio {
   color: white;
 }
-.estado-inicio{
-color: white;
+.numero-pedido {
+  color: white;
 }
-.pagar-inicio{
+.estado-inicio {
+  color: white;
+}
+.pagar-inicio {
   color: white;
 }
