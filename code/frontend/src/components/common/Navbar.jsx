@@ -8,10 +8,12 @@ export default function Navbar() {
   const location = useLocation();
   const [usuario, setUsuario] = useState(obtenerUsuarioActual);
   const [menuPerfilAbierto, setMenuPerfilAbierto] = useState(false);
+  const [menuMovilAbierto, setMenuMovilAbierto] = useState(false);
 
   useEffect(() => {
     setUsuario(obtenerUsuarioActual());
     setMenuPerfilAbierto(false);
+    setMenuMovilAbierto(false);
   }, [location]);
 
   useEffect(() => {
@@ -35,8 +37,11 @@ export default function Navbar() {
     localStorage.removeItem("usuario");
     setUsuario(null);
     setMenuPerfilAbierto(false);
+    setMenuMovilAbierto(false);
     navigate("/");
   };
+
+  const cerrarMenuMovil = () => setMenuMovilAbierto(false);
 
   return (
     <header>
@@ -51,29 +56,45 @@ export default function Navbar() {
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menuPrincipal"
             aria-controls="menuPrincipal"
-            aria-expanded="false"
+            aria-expanded={menuMovilAbierto}
             aria-label="Toggle navigation"
+            onClick={() => setMenuMovilAbierto((abierto) => !abierto)}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="menuPrincipal">
+          <div
+            className={`collapse navbar-collapse ${
+              menuMovilAbierto ? "show" : ""
+            }`}
+            id="menuPrincipal"
+          >
             <ul className="navbar-nav ms-auto align-items-lg-center gap-5">
               <li className="nav-item">
-                <Link className="nav-link opcion-menu" to="/inicio">
+                <Link
+                  className="nav-link opcion-menu"
+                  to={esCliente ? "/cliente/inicio" : "/"}
+                  onClick={cerrarMenuMovil}
+                >
                   Inicio
                 </Link>
               </li>
               <li className="nav-item">
                 {/* Coincide con path="/productos" de tu AppRouter */}
-                <Link className="nav-link opcion-menu" to="/productos">
+                <Link
+                  className="nav-link opcion-menu"
+                  to="/productos"
+                  onClick={cerrarMenuMovil}
+                >
                   Productos
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link opcion-menu" href="/contacto">
+                <a
+                  className="nav-link opcion-menu"
+                  href="/contacto"
+                  onClick={cerrarMenuMovil}
+                >
                   Contáctenos
                 </a>
               </li>
@@ -85,6 +106,7 @@ export default function Navbar() {
                       className="nav-cart-link"
                       aria-label="Abrir carrito"
                       title="Carrito"
+                      onClick={cerrarMenuMovil}
                     >
                       <i className="fa-solid fa-cart-shopping"></i>
                     </Link>
@@ -114,11 +136,19 @@ export default function Navbar() {
                           <span className="profile-menu-label">Mi cuenta</span>
                           <strong>{nombreUsuario}</strong>
                         </div>
-                        <Link to="/mis-pedidos" className="profile-menu-link">
+                        <Link
+                          to="/cliente/pedidos"
+                          className="profile-menu-link"
+                          onClick={cerrarMenuMovil}
+                        >
                           <i className="fa-solid fa-box-open"></i>
                           Mis Pedidos
                         </Link>
-                        <Link to="/perfil" className="profile-menu-link">
+                        <Link
+                          to="/cliente/perfil"
+                          className="profile-menu-link"
+                          onClick={cerrarMenuMovil}
+                        >
                           <i className="fa-solid fa-user-gear"></i>
                           Perfil
                         </Link>
@@ -134,7 +164,10 @@ export default function Navbar() {
                 <li className="nav-item">
                   <button
                     className="btn btn-login-nav"
-                    onClick={() => navigate("/ingresar")}
+                    onClick={() => {
+                      cerrarMenuMovil();
+                      navigate("/ingresar");
+                    }}
                   >
                     <i className="fa-solid fa-right-to-bracket me-2"></i>
                     Ingresar

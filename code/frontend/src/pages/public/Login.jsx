@@ -55,7 +55,7 @@ export default function Login() {
         showConfirmButton: false,
       });
 
-      navigate(usuario.rol === "cliente" ? "/inicio" : "/admin/usuarios");
+      navigate(usuario.rol === "cliente" ? "/cliente/inicio" : "/admin/usuarios");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       Swal.fire({

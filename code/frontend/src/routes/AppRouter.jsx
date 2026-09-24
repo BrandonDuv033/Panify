@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import PublicLayout from "../layouts/PublicLayout.jsx";
+import ClientLayout from "../layouts/ClientLayout.jsx";
 import AdminLayout from "../layouts/AdminLayout.jsx";
 import ProtectedRoute from "../components/common/ProtectedRoute.jsx";
 
 // Públicas
 import Home from "../pages/public/Home.jsx";
 import Catalogo from "../pages/public/Catalogo.jsx";
+import Contacto from "../pages/client/Contacto.jsx";
 import Login from "../pages/public/Login.jsx";
 import Registro from "../pages/public/Register.jsx";
 import Recuperacion from "../pages/public/Recuperacion.jsx";
@@ -15,9 +17,6 @@ import Recuperacion from "../pages/public/Recuperacion.jsx";
 import MisPedidos from "../pages/client/Pedidos.jsx";
 import PerfilCliente from "../pages/client/Profile.jsx";
 import InicioCliente from "../pages/client/Inicio.jsx";
-import Contacto  from "../pages/client/Contacto.jsx";
-
-
 
 // Admin (Panadero + Domiciliario — Opción A)
 import Users from "../pages/admin/Users.jsx";
@@ -35,44 +34,20 @@ export default function AppRouter() {
           <Route path="/ingresar" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/recuperacion" element={<Recuperacion />} />
-
-          <Route
-            path="/mis-pedidos"
-            element={
-              <ProtectedRoute rolesPermitidos={["cliente"]}>
-                <MisPedidos />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/perfil"
-            element={
-              <ProtectedRoute rolesPermitidos={["cliente"]}>
-                <PerfilCliente />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/inicio"
-            element={
-              <ProtectedRoute rolesPermitidos={["cliente"]}>
-                <InicioCliente />
-              </ProtectedRoute>
-            }
-          />
-           <Route
-            path="/contacto"
-            element={
-              <ProtectedRoute rolesPermitidos={["cliente"]}>
-                <Contacto />
-              </ProtectedRoute>
-            }
-          />
-           
-       
+          <Route path="/contacto" element={<Contacto />} />
         </Route>
 
-        
+        <Route
+          element={
+            <ProtectedRoute rolesPermitidos={["cliente"]}>
+              <ClientLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/cliente/inicio" element={<InicioCliente />} />
+          <Route path="/cliente/pedidos" element={<MisPedidos />} />
+          <Route path="/cliente/perfil" element={<PerfilCliente />} />
+        </Route>
 
         <Route
           element={
