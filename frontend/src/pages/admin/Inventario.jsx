@@ -2,10 +2,16 @@ import {
   obtenerProductos,
   eliminarProducto,
 } from "../../services/inventario.js";
+import {
+  crearProducto,
+  actualizarProducto,
+} from "../../services/producto.js";
 import { obtenerNombreUsuarioActual } from "../../services/auth.js";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Swal from "sweetalert2";
+import useModal from "../../hooks/useModal.js";
+import ProductoModal from "../../components/admin/ProductoModal.jsx";
 import DataTable from "datatables.net-react";
 import DT from "datatables.net-bs5";
 import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
@@ -18,6 +24,7 @@ export default function Inventario() {
   const [, setCargando] = useState(true);
   const tablaRef = useRef(null);
   const [contenedorFiltro, setContenedorFiltro] = useState(null);
+  const modalProducto = useModal();
 
   useEffect(() => {
     async function cargarProductos() {
@@ -45,16 +52,29 @@ export default function Inventario() {
   };
 
   const handleAgregar = () => {
-    Swal.fire({
-      title: "Agregar Producto",
-      text: "Función para registrar un nuevo producto en desarrollo.",
-      icon: "info",
-      confirmButtonColor: "#e5a93c",
-    });
+    modalProducto.abrir();
   };
 
-  const handleEditar = (nombre) => {
-    Swal.fire("Editar Producto", `Modificando el producto: ${nombre}`, "info");
+  const handleEditar = (producto) => {
+    modalProducto.abrir(producto);
+  };
+
+  const handleGuardarProducto = async (datosProducto) => {
+    if (modalProducto.datos) {
+      await actualizarProducto(modalProducto.datos.id, datosProducto);
+    } else {
+      await crearProducto(datosProducto);
+    }
+
+    const productosActualizados = await obtenerProductos();
+    setProductos(productosActualizados);
+    modalProducto.cerrar();
+
+    await Swal.fire(
+      modalProducto.datos ? "Producto actualizado" : "Producto agregado",
+      "Los cambios se guardaron correctamente.",
+      "success",
+    );
   };
 
   const handleEliminar = async (producto) => {
@@ -237,7 +257,7 @@ export default function Inventario() {
                   row
                     .querySelector(".btn-editar-producto")
                     ?.addEventListener("click", () =>
-                      handleEditar(producto.nombre),
+                      handleEditar(producto),
                     );
                   row
                     .querySelector(".btn-eliminar-producto")
@@ -264,6 +284,12 @@ export default function Inventario() {
             )}
         </section>
       </main>
+      <ProductoModal
+        abierto={modalProducto.abierto}
+        producto={modalProducto.datos}
+        onCerrar={modalProducto.cerrar}
+        onGuardar={handleGuardarProducto}
+      />
     </div>
   );
 }
