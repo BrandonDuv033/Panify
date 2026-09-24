@@ -24,14 +24,32 @@ END //
 
 DELIMITER ;
 
+SELECT 
+    p.idPedido, 
+    p.estadoPedido, 
+    p.domiciliario_idDomiciliario AS idDomiciliario, 
+    CONCAT(u.nombre, ' ', u.apellido) AS domiciliarioACargo 
+FROM 
+    pedidos p 
+INNER JOIN 
+    domiciliarios d 
+    ON p.domiciliario_idDomiciliario = d.idDomiciliario 
+INNER JOIN 
+    usuarios u 
+    ON u.domiciliario_idDomiciliario = d.idDomiciliario 
+WHERE 
+    p.idPedido IN (6, 7, 8) 
+ORDER BY 
+    p.idPedido ASC;
+
+-- Asigna el pedido 6 al domiciliario 3 (Mateo Gil)
+CALL Asignadomiciliario(6, 3);
+
 -- Asigna el pedido 7 al domiciliario 1 (Pedro Diaz)
 CALL Asignadomiciliario(7, 1); 
 
 -- Asigna el pedido 8 al domiciliario 2 (Jorge Vega)
 CALL Asignadomiciliario(8, 2); 
-
--- Asigna el pedido 6 al domiciliario 3 (Mateo Gil)
-CALL Asignadomiciliario(6, 3);
 
 -- ==========================================
 -- 2. Ruta de entrega
@@ -61,6 +79,23 @@ BEGIN
 END //
 
 DELIMITER ;
+
+SELECT 
+    rp.pedidos_idPedido AS idPedido, 
+    re.idRutasEntrega, 
+    re.domiciliarios_idDomiciliario AS idDomiciliario, 
+    re.urlRutaGoogle AS enlaceMapa, 
+    re.estadoRuta, 
+    rp.estadoParada 
+FROM 
+    rutasEntrega re 
+INNER JOIN 
+    rutasParada rp 
+    ON rp.rutasEntrega_idRutasEntrega = re.idRutasEntrega 
+WHERE 
+    rp.pedidos_idPedido IN (4, 7, 8) 
+ORDER BY 
+    rp.pedidos_idPedido ASC;
 
 -- Registra ruta para el pedido 7
 CALL RutaDeEntrega(1, 'https://maps.google.com/?q=Cra+7+%23+12-34+Soacha', 7); 
@@ -97,6 +132,24 @@ END //
 
 DELIMITER ;
 
+SELECT 
+    p.idPedido, 
+    p.estadoPedido AS nuevoEstado, 
+    p.domiciliario_idDomiciliario AS idDomiciliario, 
+    CONCAT(u.nombre, ' ', u.apellido) AS domiciliarioACargo 
+FROM 
+    pedidos p 
+INNER JOIN 
+    domiciliarios d 
+    ON p.domiciliario_idDomiciliario = d.idDomiciliario 
+INNER JOIN 
+    usuarios u 
+    ON u.domiciliario_idDomiciliario = d.idDomiciliario 
+WHERE 
+    p.idPedido IN (6, 7, 8) 
+ORDER BY 
+    p.idPedido ASC;
+
 -- Transición del pedido 7 de 'Pendiente' a 'En preparación'
 CALL ActualizarPedido(7, 2); 
 
@@ -131,6 +184,27 @@ BEGIN
 END //
 
 DELIMITER ;
+
+SELECT 
+    c.idCliente, 
+    CONCAT(u.nombre, ' ', u.apellido) AS cliente, 
+    p.idPedido, 
+    p.fechaHoraCreacion AS fechaPedido, 
+    p.estadoPedido, 
+    p.totalPagar 
+FROM 
+    clientes c 
+INNER JOIN 
+    usuarios u 
+    ON u.cliente_idCliente = c.idCliente 
+INNER JOIN 
+    pedidos p 
+    ON p.cliente_idCliente = c.idCliente 
+WHERE 
+    c.idCliente IN (1, 2, 5) 
+ORDER BY 
+    c.idCliente ASC, 
+    p.fechaHoraCreacion DESC;
 
 -- Historial de compras del Cliente 1 (Ana Gomez)
 CALL Historial(1); 

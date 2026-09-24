@@ -50,10 +50,10 @@ CREATE TABLE
         UNIQUE (cliente_idCliente),
         UNIQUE (panadero_idPanadero),
         UNIQUE (domiciliario_idDomiciliario),
-        CONSTRAINT fk_usuarios_roles1 FOREIGN KEY (Rol_idRol) REFERENCES roles (idRol),
-        CONSTRAINT fk_usuarios_clientes1 FOREIGN KEY (cliente_idCliente) REFERENCES clientes (idCliente),
-        CONSTRAINT fk_usuarios_panaderos1 FOREIGN KEY (panadero_idPanadero) REFERENCES panaderos (idPanadero),
-        CONSTRAINT fk_usuarios_domiciliarios1 FOREIGN KEY (domiciliario_idDomiciliario) REFERENCES domiciliarios (idDomiciliario)
+        FOREIGN KEY (Rol_idRol) REFERENCES roles (idRol),
+        FOREIGN KEY (cliente_idCliente) REFERENCES clientes (idCliente),
+        FOREIGN KEY (panadero_idPanadero) REFERENCES panaderos (idPanadero),
+        FOREIGN KEY (domiciliario_idDomiciliario) REFERENCES domiciliarios (idDomiciliario)
     );
 
 CREATE TABLE
@@ -75,8 +75,8 @@ CREATE TABLE
         panadero_idPanadero INT NOT NULL,
         producto_idProducto INT NOT NULL,
         PRIMARY KEY (idMovimiento),
-        CONSTRAINT fk_movimientos_panaderos1 FOREIGN KEY (panadero_idPanadero) REFERENCES panaderos (idPanadero),
-        CONSTRAINT fk_movimientos_productos1 FOREIGN KEY (producto_idProducto) REFERENCES productos (idProducto)
+        FOREIGN KEY (panadero_idPanadero) REFERENCES panaderos (idPanadero),
+        FOREIGN KEY (producto_idProducto) REFERENCES productos (idProducto)
     );
 
 CREATE TABLE
@@ -87,7 +87,7 @@ CREATE TABLE
         producto_idProducto INT NOT NULL,
         PRIMARY KEY (idInventario),
         UNIQUE (producto_idProducto),
-        CONSTRAINT fk_inventarios_productos1 FOREIGN KEY (producto_idProducto) REFERENCES productos (idProducto)
+        FOREIGN KEY (producto_idProducto) REFERENCES productos (idProducto)
     );
 
 CREATE TABLE
@@ -106,8 +106,8 @@ CREATE TABLE
         cliente_idCliente INT NOT NULL,
         domiciliario_idDomiciliario INT NOT NULL,
         PRIMARY KEY (idPedido),
-        CONSTRAINT fk_pedidos_clientes1 FOREIGN KEY (cliente_idCliente) REFERENCES clientes (idCliente),
-        CONSTRAINT fk_pedidos_domiciliarios1 FOREIGN KEY (domiciliario_idDomiciliario) REFERENCES domiciliarios (idDomiciliario)
+        FOREIGN KEY (cliente_idCliente) REFERENCES clientes (idCliente),
+        FOREIGN KEY (domiciliario_idDomiciliario) REFERENCES domiciliarios (idDomiciliario)
     );
 
 CREATE TABLE
@@ -118,8 +118,8 @@ CREATE TABLE
         pedido_idPedido INT NOT NULL,
         producto_idProducto INT NOT NULL,
         PRIMARY KEY (idDetalle_Pedido),
-        CONSTRAINT fk_detalle_pedidos_pedidos1 FOREIGN KEY (pedido_idPedido) REFERENCES pedidos (idPedido),
-        CONSTRAINT fk_detalle_pedidos_productos1 FOREIGN KEY (producto_idProducto) REFERENCES productos (idProducto)
+        FOREIGN KEY (pedido_idPedido) REFERENCES pedidos (idPedido),
+        FOREIGN KEY (producto_idProducto) REFERENCES productos (idProducto)
     );
 
 CREATE TABLE
@@ -130,7 +130,7 @@ CREATE TABLE
         pedido_idPedido INT NOT NULL,
         PRIMARY KEY (idRecibo),
         UNIQUE (pedido_idPedido),
-        CONSTRAINT fk_recibos_pedidos1 FOREIGN KEY (pedido_idPedido) REFERENCES pedidos (idPedido)
+        FOREIGN KEY (pedido_idPedido) REFERENCES pedidos (idPedido)
     );
 
 CREATE TABLE
@@ -145,7 +145,7 @@ CREATE TABLE
         urlRutaGoogle VARCHAR(500) NOT NULL,
         domiciliarios_idDomiciliario INT NOT NULL,
         PRIMARY KEY (idRutasEntrega),
-        CONSTRAINT fk_rutasEntrega_domiciliarios1 FOREIGN KEY (domiciliarios_idDomiciliario) REFERENCES domiciliarios (idDomiciliario)
+        FOREIGN KEY (domiciliarios_idDomiciliario) REFERENCES domiciliarios (idDomiciliario)
     );
 
 CREATE TABLE
@@ -156,8 +156,8 @@ CREATE TABLE
         ordenEntrega INT NOT NULL,
         estadoParada ENUM ('Pendiente', 'Entregado', 'Fallido') NOT NULL DEFAULT 'Pendiente',
         PRIMARY KEY (idRutasParada),
-        CONSTRAINT fk_rutasParada_rutasEntrega1 FOREIGN KEY (rutasEntrega_idRutasEntrega) REFERENCES rutasEntrega (idRutasEntrega),
-        CONSTRAINT fk_rutasParada_pedidos1 FOREIGN KEY (pedidos_idPedido) REFERENCES pedidos (idPedido)
+        FOREIGN KEY (rutasEntrega_idRutasEntrega) REFERENCES rutasEntrega (idRutasEntrega),
+        FOREIGN KEY (pedidos_idPedido) REFERENCES pedidos (idPedido)
     );
 
 -- 1. Insertar Roles (Exactamente 3 roles en el orden solicitado)

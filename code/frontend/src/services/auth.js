@@ -14,7 +14,7 @@ export const registrarUsuario = async ({ nombre, email, password }) => {
     password,
     telefono: "3000000000",
     estado: "Activo",
-    Rol_idRol: 1, // 1: Cliente
+    Rol_idRol: 1,
     cliente_idCliente: 2,
     panadero_idPanadero: null,
     domiciliario_idDomiciliario: null,
@@ -59,7 +59,6 @@ export async function iniciarSesion(email, password) {
 
   const usuario = respuesta.data.user;
 
-  // Si su Rol_idRol no está en ROLES, es cliente
   return {
     ...usuario,
     correo: usuario.correo || usuario.email,

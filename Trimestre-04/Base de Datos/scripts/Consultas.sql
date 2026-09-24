@@ -8,9 +8,9 @@ SELECT
     p.nombre,
     SUM(dp.cantidad) AS total_unidades_vendidas,
     SUM(dp.cantidad * dp.precioFijo) AS total_recaudado,
-    ROUND((SUM(dp.cantidad * dp.precioFijo) / (SELECT SUM(cantidad * precioFijo) FROM detalles_pedidos)) * 100, 2) AS porcentaje_ventas_global
+    ROUND((SUM(dp.cantidad * dp.precioFijo) / (SELECT SUM(cantidad * precioFijo) FROM detalle_pedidos)) * 100, 2) AS porcentaje_ventas_global
 FROM productos p
-INNER JOIN detalles_pedidos dp ON p.idProducto = dp.producto_idProducto
+INNER JOIN detalle_pedidos dp ON p.idProducto = dp.producto_idProducto
 GROUP BY p.idProducto, p.nombre
 ORDER BY total_recaudado DESC
 LIMIT 3;
@@ -76,7 +76,7 @@ WHERE p.idProducto NOT IN (
 )
 AND p.idProducto NOT IN (
     SELECT DISTINCT dp.producto_idProducto 
-    FROM detalles_pedidos dp
+    FROM detalle_pedidos dp
     INNER JOIN pedidos ped ON dp.pedido_idPedido = ped.idPedido
     WHERE ped.fechaHoraCreacion >= DATE_SUB(NOW(), INTERVAL 30 DAY)
 );
@@ -86,8 +86,8 @@ SELECT
     p1.nombre AS producto_1,
     p2.nombre AS producto_2,
     COUNT(*) AS veces_comprados_juntos
-FROM detalles_pedidos dp1
-INNER JOIN detalles_pedidos dp2 
+FROM detalle_pedidos dp1
+INNER JOIN detalle_pedidos dp2 
     ON dp1.pedido_idPedido = dp2.pedido_idPedido 
    AND dp1.producto_idProducto < dp2.producto_idProducto
 INNER JOIN productos p1 ON dp1.producto_idProducto = p1.idProducto
@@ -154,13 +154,13 @@ WHERE c.tipoCliente = 'Frecuente'
 
 ## 1. Pedidos cuyo número de productos es superior al promedio
 SELECT pedido_idPedido, SUM(cantidad) AS cantidad_productos
-FROM detalles_pedidos
+FROM detalle_pedidos
 GROUP BY pedido_idPedido
 HAVING SUM(cantidad) > (
 SELECT AVG(total_productos)
 FROM (
 SELECT SUM(cantidad) AS total_productos
-FROM detalles_pedidos
+FROM detalle_pedidos
 GROUP BY pedido_idPedido) AS promedio)
 ORDER BY SUM(cantidad) DESC;
 
@@ -185,26 +185,26 @@ FROM inventarios);
 
 ## 4. Productos que se han vendido más veces que el promedio
 SELECT producto_idProducto, SUM(cantidad) AS unidadesVendidas
-FROM detalles_pedidos
+FROM detalle_pedidos
 GROUP BY producto_idProducto
 HAVING SUM(cantidad) > (
 SELECT AVG(unidadesVendidas)
 FROM (
 SELECT SUM(cantidad) AS unidadesVendidas
-FROM detalles_pedidos
+FROM detalle_pedidos
 GROUP BY producto_idProducto) AS promedio);
 
 ## 5. Clientes que han gastado más dinero que el promedio
 SELECT p.cliente_idCliente, SUM(d.cantidad * d.precioFijo) AS gastoTotal
 FROM pedidos p
-JOIN detalles_pedidos d ON p.idPedido = d.pedido_idPedido
+JOIN detalle_pedidos d ON p.idPedido = d.pedido_idPedido
 GROUP BY p.cliente_idCliente
 HAVING SUM(d.cantidad * d.precioFijo) > (
 SELECT AVG(gastoTotal)
 FROM (
 SELECT p2.cliente_idCliente, SUM(d2.cantidad * d2.precioFijo) AS gastoTotal
 FROM pedidos p2
-JOIN detalles_pedidos d2 ON p2.idPedido = d2.pedido_idPedido
+JOIN detalle_pedidos d2 ON p2.idPedido = d2.pedido_idPedido
 GROUP BY p2.cliente_idCliente) AS gastos);
 
 ## 6. Día(s) de la semana con mayor volumen de pedidos
