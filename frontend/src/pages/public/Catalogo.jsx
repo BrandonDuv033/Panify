@@ -24,6 +24,7 @@ const Catalogo = () => {
 
     cargarProductos();
   }, []);
+  
   useEffect(() => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }, [carrito]);

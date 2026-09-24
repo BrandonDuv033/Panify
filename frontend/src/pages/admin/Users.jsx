@@ -11,6 +11,7 @@ import { obtenerNombreUsuarioActual } from "../../services/auth.js";
 import DataTable from "datatables.net-react";
 import DT from "datatables.net-bs5";
 import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+import { obtenerProductos } from "../../services/inventario.js";
 
 export default function Users() {
   DataTable.use(DT);
@@ -47,6 +48,7 @@ export default function Users() {
 
   const modalEditar = useModal();
   const [usuarios, setUsuarios] = useState([]);
+  const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   function nombreRol(id) {
@@ -60,19 +62,30 @@ export default function Users() {
   }
 
   useEffect(() => {
-    async function cargarUsuarios() {
-      try {
-        const usuarios = await obtenerUsuarios();
-        setUsuarios(usuarios);
-      } catch (err) {
-        console.error("Error al cargar usuarios:", err);
+    async function cargarDatos() {
+      const [resUsuarios, resProductos] = await Promise.allSettled([
+        obtenerUsuarios(),
+        obtenerProductos(),
+      ]);
+
+      if (resUsuarios.status === "fulfilled") {
+        setUsuarios(resUsuarios.value);
+      } else {
+        console.error("Error al cargar usuarios:", resUsuarios.reason);
         Swal.fire("Error", "No se pudieron cargar los usuarios", "error");
-      } finally {
-        setCargando(false);
       }
+
+      if (resProductos.status === "fulfilled") {
+        setProductos(resProductos.value);
+      } else {
+        console.error("Error al cargar productos:", resProductos.reason);
+        Swal.fire("Error", "No se pudieron cargar los productos", "error");
+      }
+
+      setCargando(false);
     }
 
-    cargarUsuarios();
+    cargarDatos();
   }, []);
 
   const handleEditar = (usuario) => modalEditar.abrir(usuario);
@@ -159,7 +172,7 @@ export default function Users() {
             <div className="card-resumen">
               <i className="fa-solid fa-box"></i>
               <div>
-                <h3>15</h3>
+                <h3>{productos.length}</h3>
                 <p>Productos activos</p>
               </div>
             </div>
