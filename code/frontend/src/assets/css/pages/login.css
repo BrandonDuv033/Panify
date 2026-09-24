@@ -1,0 +1,54 @@
+/* Tarjeta del modal */
+.modal-login {
+  min-width: 60vh;
+  margin-top: 12vh;
+  background-color: #3d2b1f !important;
+  border-radius: 20px;
+  position: relative;
+  z-index: 10;
+  width: 100%; /* Permite que tome el espacio hasta llegar al max-width */
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid #d8d8d8 !important;
+}
+
+.modal-login h2 {
+  text-align: center;
+  align-items: center;
+  font-weight: 700;
+  color: #ffffff !important;
+}
+
+/* Botón de Ingresar */
+.btn-login-ingresar {
+  border-radius: 20px !important;
+  background-color: #8b5a2b !important;
+  border: none !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login-ingresar:hover {
+  background-color: #e5a93c !important;
+  color: #ffffff !important;
+}
+
+/* Enlaces (Recuperar y Registro) */
+.link-login {
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.link-login:hover {
+  text-decoration: underline;
+  color: #e5a93c !important;
+}
+
+@media (max-width: 500px) {
+  .modal-login {
+  min-width: 40vh !important;
+}
+}

@@ -1,0 +1,40 @@
+/* Base */
+
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "base/index.css";
+
+/* Layout */
+
+@import "layout/navbar.css";
+@import "layout/footer.css";
+@import "layout/sidebar.css";
+
+/* Components */
+
+@import "components/hero.css";
+@import "components/cards.css";
+@import "components/visit.css";
+@import "components/tables.css";
+@import "components/modalDetallePedidoAdmin.css";
+@import "components/modalRuta.css";
+@import "components/modalDetallePedido.css";
+
+/* Pages */
+
+/* Public */
+@import "pages/login.css";
+@import "pages/register.css";
+@import "pages/usuarios.css";
+
+/* Admin */
+
+@import "pages/recibos.css";
+@import "pages/pedidosAdmin.css";
+
+/* Client */
+@import "components/tables.css";
+@import "components/visit.css";
+@import "pages/pedidosCliente.css";
+
+/* Client */
+@import "pages/profile.css";

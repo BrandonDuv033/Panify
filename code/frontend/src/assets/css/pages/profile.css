@@ -1,0 +1,163 @@
+/* ==========================================
+   CONTENEDOR Y ESTRUCTURA GENERAL
+   ========================================== */
+
+
+.panify-profile-container {
+  max-width: 860px;
+  margin-top: 5rem;
+  padding: 2rem 1rem 3rem;
+}
+
+/* ==========================================
+   CONTENEDOR DE DATOS PERSONALES Y CABECERA
+   ========================================== */
+.panify-profile-card {
+  background-color: #4a382b; /* Fondo un poco más clarito */
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  padding: 1.8rem;
+  color: #ffffff;
+}
+
+/* ==========================================
+   AVATAR / ENCABEZADO
+   ========================================== */
+.panify-profile-avatar-wrapper {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e5a93c 0%, #8b5a2b 100%);
+  color: #2b1e13;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  overflow: hidden;
+  border: 3px solid #d4af37;
+  box-shadow: 0 6px 16px rgba(229, 169, 60, 0.35);
+}
+
+.panify-profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.panify-profile-title {
+  color: #e5a93c;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================
+   CAMPOS DE TEXTO E INPUTS (FORMULARIO)
+   ========================================== */
+.panify-profile-card .form-label {
+  color: #f5ebe0;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.panify-profile-input {
+  background-color: #35261c !important; /* Ligeramente más claro que antes */
+  border: 1px solid rgba(212, 175, 55, 0.4) !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+  min-height: 48px;
+  padding: 0.8rem 1rem;
+  transition: all 0.25s ease;
+}
+
+.panify-profile-input::placeholder {
+  color: rgba(245, 235, 224, 0.5);
+}
+
+.panify-profile-input:focus,
+.panify-profile-input:focus-visible {
+  background-color: #2b1e13 !important;
+  border-color: #e5a93c !important;
+  box-shadow: 0 0 0 0.22rem rgba(229, 169, 60, 0.3) !important;
+  outline: none;
+  color: #ffffff !important;
+}
+
+/* ==========================================
+   BOTONES
+   ========================================== */
+.panify-profile-card .btn-warning,
+.panify-profile-card .btn,
+.panify-profile-card button[type="submit"] {
+  background: linear-gradient(135deg, #e5a93c 0%, #8b5a2b 100%);
+  border: none;
+  color: #2b1e13;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0.85rem 1.6rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
+}
+
+.panify-profile-card .btn-warning:hover,
+.panify-profile-card .btn:hover,
+.panify-profile-card button[type="submit"]:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(229, 169, 60, 0.4);
+  color: #2b1e13;
+}
+
+.panify-profile-card .btn-warning:focus,
+.panify-profile-card .btn:focus,
+.panify-profile-card button[type="submit"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.4);
+}
+
+/* ==========================================
+   TEXTOS, ÍCONOS Y ALERTAS
+   ========================================== */
+.panify-profile-card .text-light,
+.panify-profile-card .text-muted,
+.panify-profile-card small {
+  color: #f5ebe0 !important;
+  opacity: 0.9;
+}
+
+.panify-profile-card .fa-solid,
+.panify-profile-card .fa-regular
+.panify-profile-card .fa-brands {
+  color: #e5a93c;
+}
+.fa-floppy-disk {
+  color: #201603 !important;
+}
+.panify-profile-card .alert {
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  background: rgba(53, 38, 28, 0.9);
+  color: #f5ebe0;
+}
+
+/* ==========================================
+   ADAPTATIVIDAD (RESPONSIVE)
+   ========================================== */
+@media (max-width: 576px) {
+  .panify-profile-container {
+    padding: 1rem 0.5rem 2rem;
+  }
+
+  .panify-profile-card {
+    padding: 1.25rem;
+  }
+
+  .panify-profile-avatar-wrapper {
+    width: 76px;
+    height: 76px;
+    font-size: 1.8rem;
+  }
+}

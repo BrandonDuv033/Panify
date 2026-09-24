@@ -1,0 +1,25 @@
+footer {
+  background-color: var(--color-oscuro);
+  color: #a19285;
+  padding: 40px 20px;
+  border-top: solid #e5aa3c96 1px;
+}
+
+.footer-logo {
+  color: var(--color-blanco);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  padding-top: 30px;
+}
+
+.footer-info p {
+  font-size: 14px;
+}
+
+.footer-rights {
+  border-top: 1px solid #3d2b1b;
+  padding-top: 20px;
+  margin-top: 20px;
+  font-size: 12px;
+}

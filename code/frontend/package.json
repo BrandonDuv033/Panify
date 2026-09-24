@@ -1,0 +1,39 @@
+{
+  "name": "panify",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Sistema web de gestión para panaderías - Proyecto Formativo SENA ADSO",
+  "main": "index.html",
+  "scripts": {
+    "server": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrandonDuv033/Panify.git"
+  },
+  "author": "Brandon Guevara, Kevin González, Brayan Devia, Jeison Diaz, Martín Cruz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrandonDuv033/Panify/issues"
+  },
+  "homepage": "https://github.com/BrandonDuv033/Panify#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "datatables.net-bs5": "^3.0.4",
+    "datatables.net-dt": "^3.0.4",
+    "datatables.net-react": "^1.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.3",
+    "sweetalert2": "^11.26.25"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.1"
+  }
+}

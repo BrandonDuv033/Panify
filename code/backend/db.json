@@ -1,0 +1,335 @@
+{
+  "roles": [
+    {
+      "id": 1,
+      "idRol": 1,
+      "nombre": "Cliente"
+    },
+    {
+      "id": 2,
+      "idRol": 2,
+      "nombre": "Domiciliario"
+    },
+    {
+      "id": 3,
+      "idRol": 3,
+      "nombre": "Panadero"
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "idCliente": 1,
+      "tipoCliente": "Frecuente",
+      "direccion": "Calle 10 # 15-20, Soacha",
+      "email": "carlos.mendoza@gmail.com",
+      "ciudad": "Soacha",
+      "telefono": "3001234567"
+    },
+    {
+      "id": 2,
+      "idCliente": 2,
+      "tipoCliente": "Ocasional",
+      "direccion": "Carrera 7 # 45-12, Bogotá",
+      "email": "jeison.diaz@gmail.com",
+      "ciudad": "Soacha",
+      "telefono": "3001234567"
+    }
+  ],
+  "domiciliarios": [
+    {
+      "id": 1,
+      "idDomiciliario": 1,
+      "estadoDisponibilidad": "Disponible"
+    },
+    {
+      "id": 2,
+      "idDomiciliario": 2,
+      "estadoDisponibilidad": "Ocupado"
+    }
+  ],
+  "panaderos": [
+    {
+      "id": 1,
+      "idPanadero": 1,
+      "estadoActividad": "Activo"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "idUsuario": 1,
+      "nombre": "Carlos",
+      "apellido": "Mendoza",
+      "correo": "carlos.mendoza@gmail.com",
+      "email": "carlos.mendoza@gmail.com",
+      "contraseña": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "password": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "telefono": "3001234567",
+      "estado": "Activo",
+      "Rol_idRol": 1,
+      "cliente_idCliente": 1,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": null,
+      "visibilidad": {
+        "mostrarEmail": true,
+        "mostrarTelefono": true,
+        "mostrarActividad": true,
+        "perfilPublico": true
+      }
+    },
+    {
+      "id": 2,
+      "idUsuario": 2,
+      "nombre": "Brayan",
+      "apellido": "Devia",
+      "correo": "brayan@panify.com",
+      "email": "brayan@panify.com",
+      "contraseña": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "password": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "telefono": "3001234567",
+      "estado": "Activo",
+      "Rol_idRol": 2,
+      "cliente_idCliente": null,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": 1
+    },
+    {
+      "id": 3,
+      "idUsuario": 3,
+      "nombre": "Brandon",
+      "apellido": "Guevara",
+      "correo": "brandon@panify.com",
+      "email": "brandon@panify.com",
+      "contraseña": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "password": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "telefono": "3154567890",
+      "estado": "Activo",
+      "Rol_idRol": 2,
+      "cliente_idCliente": null,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": 2
+    },
+    {
+      "id": 4,
+      "idUsuario": 4,
+      "nombre": "Jose",
+      "apellido": "Bautista",
+      "correo": "josebautista@panify.com",
+      "email": "josebautista@panify.com",
+      "contraseña": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "password": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "telefono": "3223875891",
+      "estado": "Activo",
+      "Rol_idRol": 3,
+      "cliente_idCliente": null,
+      "panadero_idPanadero": 1,
+      "domiciliario_idDomiciliario": null
+    },
+    {
+      "id": 5,
+      "idUsuario": 5,
+      "nombre": "Jeison",
+      "apellido": "Diaz",
+      "correo": "jeison.diaz@gmail.com",
+      "email": "jeison.diaz@gmail.com",
+      "contraseña": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "password": "$2a$10$rf/LkGVSA00BmXOf0DCSDOnYokcomh2JenlOjUDjm/OMDr56RMTTK",
+      "telefono": "3001234567",
+      "estado": "Activo",
+      "Rol_idRol": 1,
+      "cliente_idCliente": 2,
+      "panadero_idPanadero": null,
+      "domiciliario_idDomiciliario": null,
+      "visibilidad": {
+        "mostrarEmail": true,
+        "mostrarTelefono": true,
+        "mostrarActividad": true,
+        "perfilPublico": true
+      }
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "idProducto": 1,
+      "nombre": "Pan Blandito",
+      "precio": 500,
+      "estado": "Disponible",
+      "descripcion": "Pan fresco artesanal por unidad"
+    },
+    {
+      "id": 2,
+      "idProducto": 2,
+      "nombre": "Croissant de Queso",
+      "precio": 2500,
+      "estado": "Disponible",
+      "descripcion": "Croissant hojaldrado relleno de queso"
+    },
+    {
+      "id": 3,
+      "idProducto": 3,
+      "nombre": "Pan Frances",
+      "precio": 3000,
+      "estado": "Disponible",
+      "descripcion": "Pan Frances relleno de queso"
+    }
+  ],
+  "inventarios": [
+    {
+      "id": 1,
+      "idInventario": 1,
+      "stockMinimo": 20,
+      "stockActual": 150,
+      "producto_idProducto": 1
+    },
+    {
+      "id": 2,
+      "idInventario": 2,
+      "stockMinimo": 10,
+      "stockActual": 45,
+      "producto_idProducto": 2
+    },
+    {
+      "id": 3,
+      "idInventario": 3,
+      "stockMinimo": 10,
+      "stockActual": 10,
+      "producto_idProducto": 3
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "idPedido": 1,
+      "fechaHoraCreacion": "2026-09-08T08:30:00",
+      "fechaHoraEntregaEstimada": "2026-09-08T09:15:00",
+      "estadoPedido": "En Camino",
+      "cliente_idCliente": 1,
+      "domiciliario_idDomiciliario": 1,
+      "estado": "Cancelado"
+    },
+    {
+      "id": 2,
+      "idPedido": 2,
+      "fechaHoraCreacion": "2026-09-08T09:00:00",
+      "fechaHoraEntregaEstimada": "2026-09-08T09:45:00",
+      "estadoPedido": "Pendiente",
+      "cliente_idCliente": 2,
+      "domiciliario_idDomiciliario": 1,
+      "estado": "Cancelado"
+    }
+  ],
+  "detalle_pedidos": [
+    {
+      "id": 1,
+      "idDetalle_Pedido": 1,
+      "precioFijo": 500,
+      "cantidad": 10,
+      "idPedido": 1,
+      "producto_idProducto": 1
+    },
+    {
+      "id": 2,
+      "idDetalle_Pedido": 2,
+      "precioFijo": 2500,
+      "cantidad": 2,
+      "idPedido": 1,
+      "producto_idProducto": 2
+    },
+    {
+      "id": 3,
+      "idDetalle_Pedido": 3,
+      "precioFijo": 500,
+      "cantidad": 10,
+      "idPedido": 2,
+      "producto_idProducto": 1
+    },
+    {
+      "id": 4,
+      "idDetalle_Pedido": 4,
+      "precioFijo": 2500,
+      "cantidad": 2,
+      "idPedido": 2,
+      "producto_idProducto": 2
+    },
+    {
+  "id": 3,
+  "idDetalle_Pedido": 3,
+  "precioFijo": 3000,
+  "cantidad": 1,
+  "pedido_id": 1,
+  "producto_idProducto": 3
+}
+  ],
+  "recibos": [
+    {
+      "id": 1,
+      "idRecibo": 1,
+      "totalPagar": 10000,
+      "fechaEmision": "2026-09-08T08:31:00",
+      "idPedido": 1
+    },
+    {
+      "id": 2,
+      "idRecibo": 2,
+      "totalPagar": 5000,
+      "fechaEmision": "2026-09-08T09:01:00",
+      "idPedido": 2
+    }
+  ],
+  "rutasEntrega": [
+    {
+      "id": 1,
+      "idRutasEntrega": 1,
+      "estadoRuta": "En Progreso",
+      "urlRutaGoogle": "https://maps.google.com/?q=route1",
+      "domiciliarios_idDomiciliario": 1
+    },
+    {
+      "id": 2,
+      "idRutasEntrega": 2,
+      "estadoRuta": "Pendiente",
+      "urlRutaGoogle": "https://maps.google.com/?q=route2",
+      "domiciliarios_idDomiciliario": 2
+    }
+  ],
+  "rutasParada": [
+    {
+      "id": 1,
+      "idRutasParada": 1,
+      "rutasEntrega_idRutasEntrega": 1,
+      "pedidos_id": 1,
+      "ordenEntrega": 1,
+      "estadoParada": "Pendiente"
+    },
+    {
+      "id": 2,
+      "idRutasParada": 2,
+      "rutasEntrega_idRutasEntrega": 1,
+      "pedidos_id": 2,
+      "ordenEntrega": 2,
+      "estadoParada": "Pendiente"
+    }
+  ],
+  "movimientos": [
+    {
+      "id": 1,
+      "idMovimiento": 1,
+      "tipoMovimiento": "Salida",
+      "cantidad": 100,
+      "fechaHora": "2026-09-08T06:00:00",
+      "panadero_idPanadero": 1,
+      "producto_idProducto": 1
+    },
+    {
+      "id": 2,
+      "idMovimiento": 2,
+      "tipoMovimiento": "Entrada",
+      "cantidad": 10,
+      "fechaHora": "2026-09-08T08:30:00",
+      "panadero_idPanadero": null,
+      "producto_idProducto": 1
+    }
+  ]
+}

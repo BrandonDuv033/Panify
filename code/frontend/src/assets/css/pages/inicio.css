@@ -1,0 +1,155 @@
+.inicio-cliente {
+  position: relative;
+  z-index: 1;
+  margin-top: 10vh;
+  color: var(--color-texto) !important;
+}
+
+.inicio-cliente::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
+
+  background-image:
+    linear-gradient(
+      rgba(45, 28, 18, 0.35),
+      rgba(45, 28, 18, 0.35)
+    ),
+    url("../../img/fondo.png");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  z-index: -1;
+}
+
+
+.inicio-cliente .total {
+  background: var(--color-dorado);
+}
+
+.inicio-cliente .imagen-producto {
+  width: 95px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+}
+
+/* Tarjetas y Contenedores */
+
+.inicio-cliente .custom-card {
+  background: #2b1e13;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+/* Detalles del Carrito */
+
+.inicio-cliente .item-carrito {
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.inicio-cliente .item-carrito:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.inicio-cliente .precio-container {
+  background-color: var(--color-small-background) !important;
+}
+
+.inicio-cliente .btn-finalizar {
+  border-radius: 20px;
+  background-color: var(--color-principal) !important;
+  border: none;
+  font-weight: 600;
+  color: white;
+  padding: 12px;
+  transition: all 0.2s ease;
+}
+
+.inicio-cliente .btn-finalizar:hover {
+  background-color: var(--color-dorado);
+  color: var(--color-texto);
+  transform: translateY(-1px);
+}
+
+/* Historial y Estados */
+
+.inicio-cliente .btn-historial {
+  color: var(--color-dorado);
+  text-decoration: none !important;
+}
+
+.inicio-cliente .btn-historial:hover {
+  color: #fb6900;
+}
+
+.inicio-cliente .pedido-row {
+  background-color: var(--color-small-background);
+  transition: background-color 0.2s;
+  border-radius: 12px;
+}
+
+.inicio-cliente .pedido-row:hover {
+  background-color: var(--color-claro) !important;
+}
+
+.inicio-cliente .badge {
+  background-color: var(--color-small-background);
+}
+
+.inicio-cliente .bg-status {
+  width: 45px;
+  height: 45px;
+}
+
+.inicio-cliente .estado-badge {
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.inicio-cliente .estado-preparacion {
+  background-color: #fff8e1;
+  color: #b78103;
+  border: 1px solid #ffe082;
+}
+
+.inicio-cliente .estado-entregado {
+  background-color: #ccf3d0;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.letra-cantidad{
+  color:white ;
+}
+.letra-Listo{
+  color: white;
+}
+.producto-cliente{
+  color: white;
+}
+.carrito-inicio{
+  color: white;
+}
+.numero-pedido{
+  color: white;
+}
+.estado-inicio{
+color: white;
+}
+.pagar-inicio{
+  color: white;
+}

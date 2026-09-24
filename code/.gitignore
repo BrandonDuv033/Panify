@@ -1,0 +1,7 @@
+# Depencias (Node)
+/frontend/node_modules
+/backend/node_modules
+
+# Archivos de entorno / secretos (si los usas)
+/frontend/.env
+/backend/.env

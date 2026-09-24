@@ -1,0 +1,61 @@
+/*  RESUMEN DEL DIA */
+
+.resumenDia{
+    margin: auto;
+    background-color: var(--color-crema);
+    width: 570px;
+    height: 60px;
+    color: var(--color-claro);
+    border-radius: 20px;
+}
+
+/* BOTNES DE ACCIONES */
+
+.btn-detalle {
+  color: var(--color-secundario) ;
+  background: #fffdf0;
+  border: 1px solid #f3ebd0;
+}
+.btn-detalle:hover {
+  background: var(--color-secundario);
+  color: white;
+}
+
+.btn-ruta {
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.btn-ruta:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.Botones{
+    gap: 10px;
+    display: flex;
+}
+
+/* RESPONSIVE */
+
+
+@media (max-width: 768px) {
+
+    .modal-actualizar {
+        width: 95%;
+        min-width: auto;
+    }
+
+    .modal-ruta {
+        width: 95%;
+    }
+
+    .modal-ruta .modal-body {
+        padding: 15px;
+    }
+
+    .mapa-modal iframe {
+        height: 300px;
+    }
+}
