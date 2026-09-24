@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section className="banner">
       <h1>Distribuidora Oro Pan</h1>
-      <p>Horneamos Calidad, Entregamos Confianza</p>
+      <p>Horneamos Calidad, Entregamos Confianza y unimos lazos</p>
       
       {/* Botón convertido en Link para navegar al catálogo/productos */}
       <Link

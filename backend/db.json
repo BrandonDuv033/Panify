@@ -252,7 +252,15 @@
       "cantidad": 2,
       "idPedido": 2,
       "producto_idProducto": 2
-    }
+    },
+    {
+  "id": 3,
+  "idDetalle_Pedido": 3,
+  "precioFijo": 3000,
+  "cantidad": 1,
+  "pedido_id": 1,
+  "producto_idProducto": 3
+}
   ],
   "recibos": [
     {
