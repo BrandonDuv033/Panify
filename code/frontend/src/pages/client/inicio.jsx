@@ -1,22 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { obtenerNombreUsuarioActual } from "../../services/auth.js";
-import "../../assets/css/pages/inicio.css";
+import { formatearMoneda } from "../../utils/formatearMoneda.js";
+import { formatearFechaHora } from "../../utils/formatearFechaHora.js";
+import { useEffect, useState } from "react";
+import { obtenerPedidosCliente } from "../../services/clienteService.js";
 import imagenblandito from "../../assets/img/pan-blandito.jpg";
 import imagencorisant from "../../assets/img/croissant.jfif";
 import imagenFrances from "../../assets/img/frances.jfif";
-import { formatearMoneda } from "../../utils/formatearMoneda.js";
-
-import { useEffect, useState } from "react";
-
-import { obtenerPedidosCliente } from "../../services/clienteService.js";
-
-function formatoPrecio(valor) {
-  return valor.toLocaleString("es-CO", {
-    style: "currency",
-    currency: "COP",
-    minimumFractionDigits: 0,
-  });
-}
 
 function obtenerImagenProducto(id) {
   if (id === 1) {
@@ -140,9 +130,11 @@ export default function InicioCliente() {
                       </div>
 
                       <span className="fw-bold text-white">
-                        {formatoPrecio(item.precio * item.cantidad)}
+                        {formatearMoneda(item.precio)}
                       </span>
-                      <span className="fw-bold text-white">Cantidad: {item.cantidad}</span>
+                      <span className="fw-bold text-white">
+                        Cantidad: {item.cantidad}
+                      </span>
                     </div>
                   ))
                 )}
@@ -153,7 +145,7 @@ export default function InicioCliente() {
                   <span className="text-light small">Subtotal</span>
 
                   <span className="fw-semibold text-white">
-                    {formatoPrecio(subtotal)}
+                    {formatearMoneda(subtotal)}
                   </span>
                 </div>
 
@@ -161,7 +153,7 @@ export default function InicioCliente() {
                   <span className="fw-bold">Total Estimado</span>
 
                   <span className="fw-bold fs-5">
-                    {formatoPrecio(subtotal)}
+                    {formatearMoneda(subtotal)}
                   </span>
                 </div>
               </div>
@@ -224,7 +216,7 @@ export default function InicioCliente() {
                         </div>
 
                         <span className="text-white small">
-                          Pedido • {pedido.fechaHoraCreacion}
+                          Pedido • {formatearFechaHora(pedido.fechaHoraCreacion)}
                         </span>
                       </div>
                     </div>
