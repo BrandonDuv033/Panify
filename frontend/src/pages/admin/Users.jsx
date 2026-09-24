@@ -4,6 +4,8 @@ import {
   eliminarUsuario,
 } from "../../services/users";
 import { useState, useEffect } from "react";
+import useModal from "../../hooks/useModal.js";
+import EditarUsuarioModal from "../../components/admin/EditarUsuarioModal.jsx";
 import Swal from "sweetalert2";
 import { obtenerNombreUsuarioActual } from "../../services/auth.js";
 import DataTable from "datatables.net-react";
@@ -43,6 +45,7 @@ export default function Users() {
     },
   ];
 
+  const modalEditar = useModal();
   const [usuarios, setUsuarios] = useState([]);
   const [cargando, setCargando] = useState(true);
 
@@ -72,82 +75,30 @@ export default function Users() {
     cargarUsuarios();
   }, []);
 
-  const handleEditar = async (usuario) => {
-    const { value: datosActualizados } = await Swal.fire({
-      title: `Editar usuario #${usuario.id}`,
-      html: `
-        <input id="editar-nombre" class="swal2-input" placeholder="Nombre" value="${usuario.nombre ?? ""}">
-        <input id="editar-apellido" class="swal2-input" placeholder="Apellido" value="${usuario.apellido ?? ""}">
-        <input id="editar-correo" type="email" class="swal2-input" placeholder="Correo" value="${usuario.correo ?? usuario.email ?? ""}">
-        <input id="editar-telefono" class="swal2-input" placeholder="Teléfono" value="${usuario.telefono ?? ""}">
-        <select id="editar-rol" class="swal2-select">
-          <option value="1" ${Number(usuario.Rol_idRol) === 1 ? "selected" : ""}>Cliente</option>
-          <option value="2" ${Number(usuario.Rol_idRol) === 2 ? "selected" : ""}>Domiciliario</option>
-          <option value="3" ${Number(usuario.Rol_idRol) === 3 ? "selected" : ""}>Panadero</option>
-        </select>
-        <select id="editar-estado" class="swal2-select">
-          <option value="Activo" ${usuario.estado === "Activo" ? "selected" : ""}>Activo</option>
-          <option value="Inactivo" ${usuario.estado === "Inactivo" ? "selected" : ""}>Inactivo</option>
-        </select>
-      `,
-      showCancelButton: true,
-      confirmButtonText: "Guardar cambios",
-      cancelButtonText: "Cancelar",
-      focusConfirm: false,
-      preConfirm: () => {
-        const nombre = document.getElementById("editar-nombre").value.trim();
-        const apellido = document
-          .getElementById("editar-apellido")
-          .value.trim();
-        const correo = document.getElementById("editar-correo").value.trim();
-        const telefono = document
-          .getElementById("editar-telefono")
-          .value.trim();
+  const handleEditar = (usuario) => modalEditar.abrir(usuario);
 
-        if (!nombre || !apellido || !correo) {
-          Swal.showValidationMessage(
-            "Nombre, apellido y correo son obligatorios.",
-          );
-          return null;
-        }
+  const handleGuardarEdicion = async (datosActualizados) => {
+    const usuario = modalEditar.datos;
 
-        return {
-          nombre,
-          apellido,
-          correo,
-          email: correo,
-          telefono,
-          Rol_idRol: Number(document.getElementById("editar-rol").value),
-          estado: document.getElementById("editar-estado").value,
-        };
-      },
-    });
+    // Si falla, lanza el error y el modal muestra el mensaje sin cerrarse
+    const usuarioGuardado = await actualizarUsuario(
+      usuario.id,
+      datosActualizados,
+    );
 
-    if (!datosActualizados) return;
+    setUsuarios((usuariosActuales) =>
+      usuariosActuales.map((u) =>
+        u.id === usuario.id ? { ...u, ...usuarioGuardado } : u,
+      ),
+    );
 
-    try {
-      const usuarioGuardado = await actualizarUsuario(
-        usuario.id,
-        datosActualizados,
-      );
+    modalEditar.cerrar();
 
-      setUsuarios((usuariosActuales) =>
-        usuariosActuales.map((usuarioActual) =>
-          usuarioActual.id === usuario.id
-            ? { ...usuarioActual, ...usuarioGuardado }
-            : usuarioActual,
-        ),
-      );
-
-      await Swal.fire(
-        "Usuario actualizado",
-        "Los cambios se guardaron correctamente.",
-        "success",
-      );
-    } catch (error) {
-      console.error("Error al actualizar usuario:", error);
-      Swal.fire("Error", "No se pudo actualizar el usuario.", "error");
-    }
+    Swal.fire(
+      "Usuario actualizado",
+      "Los cambios se guardaron correctamente.",
+      "success",
+    );
   };
 
   const handleEliminar = async (user) => {
@@ -272,6 +223,12 @@ export default function Users() {
             />
           </div>
         </section>
+        <EditarUsuarioModal
+          abierto={modalEditar.abierto}
+          usuario={modalEditar.datos}
+          onCerrar={modalEditar.cerrar}
+          onGuardar={handleGuardarEdicion}
+        />
       </main>
     </div>
   );
